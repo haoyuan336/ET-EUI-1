@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 using YooAsset;
 
@@ -11,13 +12,11 @@ namespace ET
     {
         public static string StringToAB(this string value)
         {
-            string result =  $"Assets/Bundles/UI/Dlg/{value}.prefab";
+            string result = $"Assets/Bundles/UI/Dlg/{value}.prefab";
             return result;
         }
-
     }
-    
-    
+
     /// <summary>
     /// 远端资源地址查询服务类
     /// </summary>
@@ -52,18 +51,20 @@ namespace ET
 
         protected override void Destroy()
         {
-            YooAssets.Destroy();
+            // YooAssets.Destroy();
         }
 
         public async ETTask CreatePackageAsync(string packageName, bool isDefault = false)
         {
             ResourcePackage package = YooAssets.CreatePackage(packageName);
+            Debug.Log($"is default {isDefault}");
             if (isDefault)
             {
                 YooAssets.SetDefaultPackage(package);
             }
 
             GlobalConfig globalConfig = Resources.Load<GlobalConfig>("GlobalConfig");
+
             EPlayMode ePlayMode = globalConfig.EPlayMode;
 
             // 编辑器下的模拟模式
@@ -71,9 +72,25 @@ namespace ET
             {
                 case EPlayMode.EditorSimulateMode:
                 {
-                    EditorSimulateModeParameters createParameters = new();
-                    createParameters.SimulateManifestFilePath = EditorSimulateModeHelper.SimulateBuild("ScriptableBuildPipeline", packageName);
-                    await package.InitializeAsync(createParameters).Task;
+                    var buildPipeline = EDefaultBuildPipeline.BuiltinBuildPipeline;
+
+                    var simulateBuildResult = EditorSimulateModeHelper.SimulateBuild(buildPipeline, "DefaultPackage");
+
+                    var editorFileSystem = FileSystemParameters.CreateDefaultEditorFileSystemParameters(simulateBuildResult);
+
+                    var initParameters = new EditorSimulateModeParameters();
+
+                    initParameters.EditorFileSystemParameters = editorFileSystem;
+
+                    InitializationOperation initializationOperation = package.InitializeAsync(initParameters);
+
+                    await initializationOperation.Task;
+
+                    if (initializationOperation.Status == EOperationStatus.Succeed)
+                        Debug.Log("资源包初始化成功！");
+                    else
+                        Debug.LogError($"资源包初始化失败：{initializationOperation.Error}");
+
                     break;
                 }
                 case EPlayMode.OfflinePlayMode:
@@ -87,14 +104,62 @@ namespace ET
                     string defaultHostServer = GetHostServerURL();
                     string fallbackHostServer = GetHostServerURL();
                     HostPlayModeParameters createParameters = new();
-                    createParameters.BuildinQueryServices = new GameQueryServices();
-                    createParameters.RemoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
+
+                    // createParameters.
+
+                    // createParameters.BuildinQueryServices = new GameQueryServices();
+                    // createParameters.RemoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
                     await package.InitializeAsync(createParameters).Task;
                     break;
                 }
+                case EPlayMode.WebPlayMode:
+
+                {
+                    var webFileSystem = FileSystemParameters.CreateDefaultWebFileSystemParameters();
+
+                    var initParameters = new WebPlayModeParameters();
+
+                    initParameters.WebFileSystemParameters = webFileSystem;
+
+                    var initOperation = package.InitializeAsync(initParameters);
+
+                    await initOperation.Task;
+
+                    if (initOperation.Status == EOperationStatus.Succeed)
+                        Debug.Log("资源包初始化成功！");
+                    else
+                        Debug.LogError($"资源包初始化失败：{initOperation.Error}");
+                }
+
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
+            RequestPackageVersionOperation requestPackageVersionOperation = package.RequestPackageVersionAsync();
+
+            await requestPackageVersionOperation.Task;
+
+            Log.Debug($"task state {requestPackageVersionOperation.PackageVersion}");
+
+            UpdatePackageManifestOperation updatePackageManifestOperation =
+                    package.UpdatePackageManifestAsync(requestPackageVersionOperation.PackageVersion);
+
+            await updatePackageManifestOperation.Task;
+
+            string version = package.GetPackageVersion();
+
+            Log.Debug($"version {version}");
+
+            AssetHandle handle = YooAssets.LoadAssetAsync<GameObject>("Cube");
+            //
+            await handle.Task;
+            //
+            Debug.Log($"handler {handle.Status}");
+
+            GameObject prefab = handle.AssetObject as GameObject;
+
+            GameObject gameObject = GameObject.Instantiate(prefab);
         }
 
         static string GetHostServerURL()
@@ -139,24 +204,25 @@ namespace ET
         public void DestroyPackage(string packageName)
         {
             ResourcePackage package = YooAssets.GetPackage(packageName);
-            package.UnloadUnusedAssets();
+            // package.UnloadUnusedAssets();
+            // package.UnloadAllAssetsAsync();
         }
 
-        public  T LoadAssetSync<T>(string location) where T: UnityEngine.Object
+        public T LoadAssetSync<T>(string location) where T : UnityEngine.Object
         {
             AssetHandle handle = YooAssets.LoadAssetSync<T>(location);
             T t = (T)handle.AssetObject;
             handle.Release();
             return t;
         }
-        
-        
+
         /// <summary>
         /// 主要用来加载dll config aotdll，因为这时候纤程还没创建，无法使用ResourcesLoaderComponent。
         /// 游戏中的资源应该使用ResourcesLoaderComponent来加载
         /// </summary>
         public async ETTask<T> LoadAssetAsync<T>(string location) where T : UnityEngine.Object
         {
+            Log.Debug($"location {location}");
             AssetHandle handle = YooAssets.LoadAssetAsync<T>(location);
             await handle.Task;
             T t = (T)handle.AssetObject;
