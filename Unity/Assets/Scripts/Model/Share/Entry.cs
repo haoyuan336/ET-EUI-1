@@ -6,28 +6,29 @@ namespace ET
 {
     public struct EntryEvent1
     {
-    }   
-    
+    }
+
     public struct EntryEvent2
     {
-    } 
-    
+    }
+
     public struct EntryEvent3
     {
     }
-    
+
     public static class Entry
     {
         public static void Init()
         {
-            
         }
-        
+
         public static void Start()
         {
+            Log.Warning("entry start");
+
             StartAsync().Coroutine();
         }
-        
+
         private static async ETTask StartAsync()
         {
             WinPeriod.Init();
@@ -43,10 +44,10 @@ namespace ET
             World.Instance.AddSingleton<NetServices>();
             World.Instance.AddSingleton<NavmeshComponent>();
             World.Instance.AddSingleton<LogMsg>();
-            
+
             // 创建需要reload的code singleton
             CodeTypes.Instance.CreateCode();
-            
+
             await World.Instance.AddSingleton<ConfigLoader>().LoadAsync();
 
             await FiberManager.Instance.Create(SchedulerType.Main, ConstFiberId.Main, 0, SceneType.Main, "");

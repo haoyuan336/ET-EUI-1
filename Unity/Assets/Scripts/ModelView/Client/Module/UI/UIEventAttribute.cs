@@ -4,9 +4,9 @@ namespace ET.Client
 {
     public class UIEventAttribute: BaseAttribute
     {
-        public string UIType { get; }
+        public WindowID UIType { get; }
 
-        public UIEventAttribute(string uiType)
+        public UIEventAttribute(WindowID uiType)
         {
             this.UIType = uiType;
         }

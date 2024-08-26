@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: MiniGameConfig
   m_EditorClassIdentifier: 
   ProjectConf:
-    projectName: minigame
+    projectName: xiaoyouxi
     Appid: wxb27d263a17ae5528
-    CDN: http://localhost:3001/minigame
+    CDN: http://192.168.2.100:3000/xiaoyouxi
     assetLoadType: 0
     compressDataPackage: 0
     VideoUrl: 
-    DST: D:/workspace/ET-EUI/Unity/Build
+    DST: D:/workspace/ET-EUI/Unity/Build/xiaoyouxi
     StreamCDN: 
     bundleHashLength: 32
     bundlePathIdentifier: StreamingAssets;
-    bundleExcludeExtensions: json;
+    bundleExcludeExtensions: json;.version;.bytes;hash;
     AssetsUrl: 
     MemorySize: 256
     HideAfterCallMain: 1
@@ -51,11 +51,11 @@ MonoBehaviour:
     ScriptOnly: 0
     Il2CppOptimizeSize: 1
     profilingFuncs: 1
-    Webgl2: 0
+    Webgl2: 1
     fbslim: 1
     DeleteStreamingAssets: 1
     ProfilingMemory: 0
-    CleanBuild: 0
+    CleanBuild: 1
     CustomNodePath: 
     autoAdaptScreen: 1
     showMonitorSuggestModal: 1

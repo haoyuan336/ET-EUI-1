@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="720,1280">
+  <displayList>
+    <graph id="n0_l5qe" name="bg" xy="0,0" size="720,1280" type="rect" lineSize="0" fillColor="#ff586658">
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <component id="n4_l5qe" name="BgLayer" src="l5qe2" fileName="BgLayer.xml" xy="-3,-3"/>
+    <component id="n2_l5qe" name="n2" src="l5qe1" fileName="LoginButton.xml" xy="282,900" size="155,53">
+      <relation target="" sidePair="middle-middle"/>
+      <Button titleFontSize="30"/>
+    </component>
+    <text id="n1_l5qe" name="Account" xy="165,603" size="389,54" font="HarmonyOS Sans SC" fontSize="40" align="center" autoSize="none" text="9999999" input="true">
+      <relation target="" sidePair="middle-middle"/>
+    </text>
+    <text id="n3_l5qe" name="Password" xy="165,715" size="389,54" font="HarmonyOS Sans SC" fontSize="40" align="center" autoSize="none" text="9999999" input="true">
+      <relation target="" sidePair="middle-middle"/>
+    </text>
+  </displayList>
+</component>

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using FairyGUI;
+using UnityEngine;
 
 namespace ET.Client
 {
@@ -48,5 +49,6 @@ namespace ET.Client
         public WindowID m_windowID           = WindowID.WindowID_Invaild;
         public GameObject UIPrefabGameObject = null;
         public UIWindowType windowType = UIWindowType.Normal;
+        public GComponent GComponent;
     }
 }

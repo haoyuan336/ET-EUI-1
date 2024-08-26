@@ -56,16 +56,20 @@ namespace ET
 
         public async ETTask CreatePackageAsync(string packageName, bool isDefault = false)
         {
+            GlobalConfig globalConfig = Resources.Load<GlobalConfig>("GlobalConfig");
+
+            EPlayMode ePlayMode = globalConfig.EPlayMode;
+            
+            Debug.Log($"e play mode {ePlayMode}");
+            
             ResourcePackage package = YooAssets.CreatePackage(packageName);
+            
             Debug.Log($"is default {isDefault}");
+            
             if (isDefault)
             {
                 YooAssets.SetDefaultPackage(package);
             }
-
-            GlobalConfig globalConfig = Resources.Load<GlobalConfig>("GlobalConfig");
-
-            EPlayMode ePlayMode = globalConfig.EPlayMode;
 
             // 编辑器下的模拟模式
             switch (ePlayMode)
@@ -113,8 +117,8 @@ namespace ET
                     break;
                 }
                 case EPlayMode.WebPlayMode:
-
                 {
+                    Debug.Log("web player mode");
                     var webFileSystem = FileSystemParameters.CreateDefaultWebFileSystemParameters();
 
                     var initParameters = new WebPlayModeParameters();
@@ -140,7 +144,7 @@ namespace ET
 
             await requestPackageVersionOperation.Task;
 
-            Log.Debug($"task state {requestPackageVersionOperation.PackageVersion}");
+            Debug.Log($"task state {requestPackageVersionOperation.PackageVersion}");
 
             UpdatePackageManifestOperation updatePackageManifestOperation =
                     package.UpdatePackageManifestAsync(requestPackageVersionOperation.PackageVersion);
@@ -149,7 +153,7 @@ namespace ET
 
             string version = package.GetPackageVersion();
 
-            Log.Debug($"version {version}");
+            Debug.Log($"version {version}");
 
             AssetHandle handle = YooAssets.LoadAssetAsync<GameObject>("Cube");
             //

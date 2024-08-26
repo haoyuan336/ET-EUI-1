@@ -42,10 +42,10 @@ namespace ET
         [MenuItem("ET/Reload _F7", false, ETMenuItemPriority.Compile)]
         static void MenuItemOfReload()
         {
-            if (Application.isPlaying)
-            {
-                CodeLoader.Instance?.Reload();
-            }
+            // if (Application.isPlaying)
+            // {
+            //     CodeLoader.Instance?.Reload();
+            // }
         }
 
         /// <summary>
