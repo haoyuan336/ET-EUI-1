@@ -36,6 +36,8 @@ namespace ET
         //---------------LoginLayerPackage---------------
         public const string LoginLayer = "ui://9sdsckomrsyn0";
         public const string BgLayer = "ui://9sdsckoml5qe2";
-        //---------------MainPackage---------------
+        //---------------RootPackage---------------
+        public const string RootLayer = "ui://9nomxs01i2d80";
+        public const string EmptyLayer = "ui://9nomxs01i2d81";
     }
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="720,1080">
+  <displayList>
+    <component id="n0_i2d8" name="NormalRootLayer" src="i2d81" fileName="EmptyLayer.xml" xy="0,0">
+      <relation target="" sidePair="width-width,height-height"/>
+    </component>
+    <component id="n1_i2d8" name="PopUpRootLayer" src="i2d81" fileName="EmptyLayer.xml" xy="0,0">
+      <relation target="" sidePair="width-width,height-height"/>
+    </component>
+    <component id="n2_i2d8" name="FixedRootLayer" src="i2d81" fileName="EmptyLayer.xml" xy="0,0">
+      <relation target="" sidePair="width-width,height-height"/>
+    </component>
+    <component id="n3_i2d8" name="OtherRootLayer" src="i2d81" fileName="EmptyLayer.xml" xy="0,0">
+      <relation target="" sidePair="width-width,height-height"/>
+    </component>
+  </displayList>
+</component>

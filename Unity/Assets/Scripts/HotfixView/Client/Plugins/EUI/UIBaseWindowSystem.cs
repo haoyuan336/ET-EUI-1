@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using FairyGUI;
+using UnityEngine;
 
 namespace ET.Client
 {
@@ -17,27 +18,50 @@ namespace ET.Client
         {
             self.WindowID = WindowID.WindowID_Invaild;
             self.IsInStackQueue = false;
-            if (self.UIPrefabGameObject != null)
+            if (self.GComponent != null)
             {
-                GameObject.Destroy(self.UIPrefabGameObject);
-                self.UIPrefabGameObject = null;
+                // GameObject.Destroy(self.UIPrefabGameObject);
+                // self.UIPrefabGameObject = null;
+                self.GComponent.Dispose();
+
+                self.GComponent = null;
             }
         }
 
-        public static void SetRoot(this UIBaseWindow self, Transform rootTransform)
+        public static void SetRoot(this UIBaseWindow self, GComponent gComponent)
         {
-            if (self.uiTransform == null)
+            if (self.GComponent == null)
             {
                 Log.Error($"uibaseWindows {self.WindowID} uiTransform is null!!!");
                 return;
             }
-            if (rootTransform == null)
+
+            if (gComponent == null)
             {
                 Log.Error($"uibaseWindows {self.WindowID} rootTransform is null!!!");
                 return;
             }
-            self.uiTransform.SetParent(rootTransform, false);
-            self.uiTransform.transform.localScale = Vector3.one;
+
+            gComponent.AddChild(self.GComponent);
+
+            // self.GComponent.SetParent(rootTransform, false);
+            // self.uiTransform.transform.localScale = Vector3.one;
         }
+
+        // public static void SetRoot(this UIBaseWindow self, Transform rootTransform)
+        // {
+        //     if (self.uiTransform == null)
+        //     {
+        //         Log.Error($"uibaseWindows {self.WindowID} uiTransform is null!!!");
+        //         return;
+        //     }
+        //     if (rootTransform == null)
+        //     {
+        //         Log.Error($"uibaseWindows {self.WindowID} rootTransform is null!!!");
+        //         return;
+        //     }
+        //     self.uiTransform.SetParent(rootTransform, false);
+        //     self.uiTransform.transform.localScale = Vector3.one;
+        // }
     }
 }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="9nomxs01">
+  <resources>
+    <component id="i2d80" name="RootLayer.xml" path="/" exported="true"/>
+    <component id="i2d81" name="EmptyLayer.xml" path="/" exported="true"/>
+  </resources>
+  <publish name="RootPackage" path="D:\workspace\ET-EUI\Unity\Assets\Resources\FGUI\RootPackage" packageCount="2" branchPath="D:\workspace\ET-EUI\Unity\Assets\Resources\FGUI\RootPackage"/>
+</packageDescription>

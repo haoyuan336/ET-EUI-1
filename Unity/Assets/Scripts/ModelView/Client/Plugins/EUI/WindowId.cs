@@ -11,7 +11,9 @@ namespace ET.Client
         //----------------------LoginLayerPackage---------------------
         LoginLayer = 1,
         BgLayer = 2,
-        //----------------------MainPackage---------------------
+        //----------------------RootPackage---------------------
+        RootLayer = 3,
+        EmptyLayer = 4,
     }
     public class ComponentPackageMap
     {
@@ -37,10 +39,10 @@ namespace ET.Client
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "LoginLayerPackage");
             }
-            for (int j = 3; j < 3; j++)
+            for (int j = 3; j < 5; j++)
             {
                 WindowID windowID = (WindowID)j;
-                 this.Maps.Add(windowID, "MainPackage");
+                 this.Maps.Add(windowID, "RootPackage");
             }
         }
         public static string[] GetPackNames()

@@ -371,7 +371,7 @@ function PublishHotfixEventCode(handler, codeWriter, classInfo, exportCodePath) 
     codeWriter.writeln('using UnityEngine;')
     codeWriter.writeln('namespace ET.Client')
     codeWriter.startBlock()
-    codeWriter.writeln('[UIEvent(WindowID.%s)]', ConvertComponentId(classInfo.className))
+    codeWriter.writeln('[AUIEvent(WindowID.%s)]', ConvertComponentId(classInfo.className))
     codeWriter.writeln('[FriendOf(typeof (UIBaseWindow))]')
     codeWriter.writeln('public class %s: IAUIEventHandler', className)
     codeWriter.startBlock()
@@ -753,7 +753,7 @@ function ConvertToComponentMember(codeWriter, member) {
     codeWriter.writeln();
     codeWriter.writeln('UIBaseWindow childBaseWindow = this.AddChild<UIBaseWindow>();')
     codeWriter.writeln();
-    codeWriter.writeln('childBaseWindow.WindowID = WindowID.%s;', member.type)
+    codeWriter.writeln('childBaseWindow.WindowID = WindowID.%s;', member.type.replace("FGUI", ""))
     codeWriter.writeln();
     codeWriter.writeln('childBaseWindow.GComponent = gComponent.GetChild("%s").asCom;', member.name)
     // codeWriter.writeln('childBaseWindow.GComponent.fairyBatching = true;');

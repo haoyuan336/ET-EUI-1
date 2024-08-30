@@ -11,9 +11,9 @@ namespace ET.Client
         {
             foreach (WindowID windowID in Enum.GetValues(typeof(WindowID)))
             {
-                string dlgName = "Dlg" + windowID.ToString().Split('_')[1];
-                self.WindowPrefabPath.Add((int)windowID, dlgName);
-                self.WindowTypeIdDict.Add(dlgName, (int)windowID);
+                // string dlgName = "Dlg" + windowID.ToString().Split('_')[1];
+                // self.WindowPrefabPath.Add((int)windowID, dlgName);
+                // self.WindowTypeIdDict.Add(dlgName, (int)windowID);
             }
         }
         

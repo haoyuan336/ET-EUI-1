@@ -48,7 +48,7 @@ MonoBehaviour:
   CompileOptions:
     DevelopBuild: 0
     AutoProfile: 0
-    ScriptOnly: 0
+    ScriptOnly: 1
     Il2CppOptimizeSize: 1
     profilingFuncs: 1
     Webgl2: 1

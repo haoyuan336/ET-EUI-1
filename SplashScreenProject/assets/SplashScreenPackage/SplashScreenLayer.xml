@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="720,1080">
+  <displayList>
+    <graph id="n0_repx" name="n0" xy="0,0" size="720,1080" type="rect" lineSize="0" fillColor="#ff666666">
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <text id="n1_repx" name="n1" xy="262,513" size="195,54" fontSize="40" text="Loading...">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </text>
+  </displayList>
+</component>

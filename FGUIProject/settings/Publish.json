@@ -10,7 +10,7 @@
   "codeGeneration": {
     "allowGenCode": false,
     "codePath": "D:\\workspace\\ET-EUI",
-    "classNamePrefix": "",
+    "classNamePrefix": "FGUI",
     "memberNamePrefix": "",
     "packageName": null,
     "ignoreNoname": false,

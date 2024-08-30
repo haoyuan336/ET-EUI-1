@@ -5,5 +5,5 @@
     <component id="l5qe1" name="LoginButton.xml" path="/"/>
     <component id="l5qe2" name="BgLayer.xml" path="/" exported="true"/>
   </resources>
-  <publish name="Loginlayer" path="D:\workspace\ET-EUI\Unity\Assets\Bundles\FGUI\LoginLayerPackage" packageCount="2" branchPath="D:\workspace\ET-EUI\Unity\Assets\Bundles\FGUI\LoginLayerPackage"/>
+  <publish name="LoginLayerPackage" path="D:\workspace\ET-EUI\Unity\Assets\Resources\FGUI\LoginLayerPackage" packageCount="2" branchPath="D:\workspace\ET-EUI\Unity\Assets\Resources\FGUI\LoginLayerPackage"/>
 </packageDescription>

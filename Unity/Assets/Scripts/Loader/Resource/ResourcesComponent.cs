@@ -59,13 +59,13 @@ namespace ET
             GlobalConfig globalConfig = Resources.Load<GlobalConfig>("GlobalConfig");
 
             EPlayMode ePlayMode = globalConfig.EPlayMode;
-            
+
             Debug.Log($"e play mode {ePlayMode}");
-            
+
             ResourcePackage package = YooAssets.CreatePackage(packageName);
-            
+
             Debug.Log($"is default {isDefault}");
-            
+
             if (isDefault)
             {
                 YooAssets.SetDefaultPackage(package);

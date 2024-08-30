@@ -24,19 +24,6 @@ MonoBehaviour:
     AutoCollectShaders: 1
     IgnoreRuleName: NormalIgnoreRule
     Groups:
-    - GroupName: AotDlls
-      GroupDesc: 
-      AssetTags: 
-      ActiveRuleName: EnableGroup
-      Collectors:
-      - CollectPath: Assets/Bundles/AotDlls
-        CollectorGUID: 51f33a3e2065f5642bee2f96c2433544
-        CollectorType: 0
-        AddressRuleName: AddressByFileName
-        PackRuleName: PackDirectory
-        FilterRuleName: CollectAll
-        AssetTags: 
-        UserData: 
     - GroupName: Code
       GroupDesc: 
       AssetTags: 
@@ -63,13 +50,13 @@ MonoBehaviour:
         FilterRuleName: CollectAll
         AssetTags: 
         UserData: 
-    - GroupName: UI
+    - GroupName: FGUI
       GroupDesc: 
       AssetTags: 
       ActiveRuleName: EnableGroup
       Collectors:
-      - CollectPath: Assets/Bundles/UI
-        CollectorGUID: 3a57d524d1e0d7543828b2ac7273f608
+      - CollectPath: Assets/Bundles/FGUI
+        CollectorGUID: c36fcb49c7b342b4480c774236916bb1
         CollectorType: 0
         AddressRuleName: AddressByFileName
         PackRuleName: PackDirectory

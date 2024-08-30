@@ -4,7 +4,9 @@
     <graph id="n0_l5qe" name="bg" xy="0,0" size="720,1280" type="rect" lineSize="0" fillColor="#ff586658">
       <relation target="" sidePair="width-width,height-height"/>
     </graph>
-    <component id="n4_l5qe" name="BgLayer" src="l5qe2" fileName="BgLayer.xml" xy="-3,-3"/>
+    <component id="n4_l5qe" name="BgLayer" src="l5qe2" fileName="BgLayer.xml" xy="-3,-3">
+      <relation target="" sidePair="width-width,height-height"/>
+    </component>
     <component id="n2_l5qe" name="n2" src="l5qe1" fileName="LoginButton.xml" xy="282,900" size="155,53">
       <relation target="" sidePair="middle-middle"/>
       <Button titleFontSize="30"/>
