@@ -1,4 +1,5 @@
-﻿using MemoryPack;
+﻿using System;
+using MemoryPack;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Serializers;
 
@@ -24,7 +25,6 @@ namespace ET
 
         public static void Start()
         {
-            Log.Warning("entry start");
 
             StartAsync().Coroutine();
         }
@@ -51,6 +51,8 @@ namespace ET
             await World.Instance.AddSingleton<ConfigLoader>().LoadAsync();
 
             await FiberManager.Instance.Create(SchedulerType.Main, ConstFiberId.Main, 0, SceneType.Main, "");
+            
+            Log.Debug("start");
         }
     }
 }

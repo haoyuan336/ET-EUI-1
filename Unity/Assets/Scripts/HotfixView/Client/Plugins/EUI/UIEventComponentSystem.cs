@@ -11,11 +11,9 @@ namespace ET.Client
         {
             self.UIEventHandlers.Clear();
 
-            Log.Debug("ui event component awake");
             var AUIEventAttributeSets =  CodeTypes.Instance.GetTypes(typeof (AUIEventAttribute));
             foreach (Type v in AUIEventAttributeSets)
             {
-                Log.Debug($"UIEventComponent v {v}");
                 AUIEventAttribute attr = v.GetCustomAttributes(typeof (AUIEventAttribute), false)[0] as AUIEventAttribute;
                 self.UIEventHandlers.Add(attr.WindowID, Activator.CreateInstance(v) as IAUIEventHandler);
             }

@@ -19,7 +19,7 @@ MonoBehaviour:
     assetLoadType: 0
     compressDataPackage: 0
     VideoUrl: 
-    DST: D:/workspace/ET-EUI/Unity/Build/xiaoyouxi
+    DST: D:/workspace/ET-EUI/Unity/Build/xiaoyouxi2
     StreamCDN: 
     bundleHashLength: 32
     bundlePathIdentifier: StreamingAssets;
@@ -48,7 +48,7 @@ MonoBehaviour:
   CompileOptions:
     DevelopBuild: 0
     AutoProfile: 0
-    ScriptOnly: 1
+    ScriptOnly: 0
     Il2CppOptimizeSize: 1
     profilingFuncs: 1
     Webgl2: 1

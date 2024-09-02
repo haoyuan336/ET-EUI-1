@@ -528,6 +528,7 @@ namespace ET.Client
             // baseWindow.uiTransform.SetAsLastSibling();
 
             self.Root().GetComponent<UIEventComponent>().GetUIEventHandler(baseWindow.WindowID).OnInitComponent(baseWindow);
+            
             self.Root().GetComponent<UIEventComponent>().GetUIEventHandler(baseWindow.WindowID).OnRegisterUIEvent(baseWindow);
 
             self.AllWindowsDic[(int)baseWindow.WindowID] = baseWindow;

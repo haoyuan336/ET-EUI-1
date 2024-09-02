@@ -11,12 +11,10 @@ namespace ET
         
         public void Awake(Assembly[] assemblies)
         {
-            Log.Debug($"awakee {assemblies.Length}");
             
             Dictionary<string, Type> addTypes = AssemblyHelper.GetAssemblyTypes(assemblies);
             foreach ((string fullName, Type type) in addTypes)
             {
-                Log.Debug($"type {type}");
                 this.allTypes[fullName] = type;
                 
                 if (type.IsAbstract)
@@ -29,7 +27,6 @@ namespace ET
 
                 foreach (object o in objects)
                 {
-                    Log.Debug($"o {type}");
                     this.types.Add(o.GetType(), type);
                 }
             }

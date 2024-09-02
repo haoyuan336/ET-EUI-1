@@ -7,29 +7,15 @@ namespace ET
     [FriendOf(typeof(ET.Client.UIBaseWindow)), EnableMethod, ComponentOf(typeof(ET.Client.UIBaseWindow))]
     public class FGUILoginLayerViewComponent: Entity, IAwake
     {
-        public  FGUIBgLayerComponent BgLayerComponent
+        public GButton  LoginButton
         {
             get
             {
-                if (this._BgLayerComponent== null)
+                if (this._LoginButton == null)
                 {
-                    UIBaseWindow fguiBaseWindow = this.GetParent<UIBaseWindow>();
-
-                    GComponent gComponent = fguiBaseWindow.GComponent;
-
-                    UIBaseWindow childBaseWindow = this.AddChild<UIBaseWindow>();
-
-                    childBaseWindow.WindowID = WindowID.BgLayer;
-
-                    childBaseWindow.GComponent = gComponent.GetChild("BgLayer").asCom;
-
-                    childBaseWindow.AddComponent<FGUIBgLayerViewComponent>();
-
-                    this._BgLayerComponent = childBaseWindow.AddComponent<FGUIBgLayerComponent>();
-
-
+                    this._LoginButton = this.GetParent<UIBaseWindow>().GComponent.GetChild("LoginButton").asButton;
                 }
-                return this._BgLayerComponent;
+                return this._LoginButton;
             }
         }
         public GTextInput  Account
@@ -54,12 +40,12 @@ namespace ET
                 return this._Password;
             }
         }
-        private FGUIBgLayerComponent _BgLayerComponent = null;
+        private GButton _LoginButton = null;
         private GTextInput _Account = null;
         private GTextInput _Password = null;
         public void ClearBindCache()
         {
-            this._BgLayerComponent = null;
+            this._LoginButton = null;
             this._Account = null;
             this._Password = null;
         }

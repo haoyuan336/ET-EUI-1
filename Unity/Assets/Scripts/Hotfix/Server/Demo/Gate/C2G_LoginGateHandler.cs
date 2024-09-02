@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace ET.Server
 {
     [MessageSessionHandler(SceneType.Gate)]
@@ -16,27 +15,34 @@ namespace ET.Server
                 response.Message = "Gate key验证失败!";
                 return;
             }
-            
+
             session.RemoveComponent<SessionAcceptTimeoutComponent>();
 
             PlayerComponent playerComponent = root.GetComponent<PlayerComponent>();
             Player player = playerComponent.GetByAccount(account);
-            if (player == null)
+            if (player == null || player.GetComponent<PlayerRoomComponent>() == null)
             {
+                if (player != null && !player.IsDisposed)
+                {
+                    playerComponent.Remove(player);
+                    player?.Dispose();
+                }
+
                 player = playerComponent.AddChild<Player, string>(account);
                 playerComponent.Add(player);
                 PlayerSessionComponent playerSessionComponent = player.AddComponent<PlayerSessionComponent>();
                 playerSessionComponent.AddComponent<MailBoxComponent, MailBoxType>(MailBoxType.GateSession);
                 await playerSessionComponent.AddLocation(LocationType.GateSession);
-			
+
                 player.AddComponent<MailBoxComponent, MailBoxType>(MailBoxType.UnOrderedMessage);
                 await player.AddLocation(LocationType.Player);
-			
+
                 session.AddComponent<SessionPlayerComponent>().Player = player;
                 playerSessionComponent.Session = session;
             }
             else
             {
+                Log.Debug($"player id {player.Id}");
                 // 判断是否在战斗
                 PlayerRoomComponent playerRoomComponent = player.GetComponent<PlayerRoomComponent>();
                 if (playerRoomComponent.RoomActorId != default)
@@ -51,6 +57,7 @@ namespace ET.Server
             }
 
             response.PlayerId = player.Id;
+            Log.Debug($"player id {player.Id}");
             await ETTask.CompletedTask;
         }
 
@@ -69,7 +76,7 @@ namespace ET.Server
             g2CReconnect.Frame = room2GateReconnect.Frame;
             g2CReconnect.UnitInfos.AddRange(room2GateReconnect.UnitInfos);
             session.Send(g2CReconnect);
-            
+
             session.AddComponent<SessionPlayerComponent>().Player = player;
             player.GetComponent<PlayerSessionComponent>().Session = session;
         }

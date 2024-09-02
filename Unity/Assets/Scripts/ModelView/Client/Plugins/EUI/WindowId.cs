@@ -8,9 +8,10 @@ namespace ET.Client
     public enum WindowID
     {
         WindowID_Invaild = 0,
+        //----------------------GameUIPackage---------------------
+        GameUILayer = 1,
         //----------------------LoginLayerPackage---------------------
-        LoginLayer = 1,
-        BgLayer = 2,
+        LoginLayer = 2,
         //----------------------RootPackage---------------------
         RootLayer = 3,
         EmptyLayer = 4,
@@ -34,7 +35,12 @@ namespace ET.Client
         }
         private void InitData()
         {
-            for (int j = 1; j < 3; j++)
+            for (int j = 1; j < 2; j++)
+            {
+                WindowID windowID = (WindowID)j;
+                 this.Maps.Add(windowID, "GameUIPackage");
+            }
+            for (int j = 2; j < 3; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "LoginLayerPackage");

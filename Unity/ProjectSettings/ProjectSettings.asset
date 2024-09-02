@@ -904,7 +904,7 @@ PlayerSettings:
     Android: UNITY;ENABLE_VIEW
     Server: UNITY;ENABLE_VIEW
     Standalone: UNITY;ENABLE_VIEW
-    WebGL: UNITY
+    WebGL: UNITY;FAIRYGUI_TMPRO;FAIRYGUI_WEBGL_TEXT_INPUT
     iPhone: UNITY;ENABLE_VIEW
   additionalCompilerArguments: {}
   platformArchitecture:
@@ -1026,7 +1026,7 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 3
-  activeInputHandler: 0
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
   cloudProjectId: 
   framebufferDepthMemorylessMode: 0

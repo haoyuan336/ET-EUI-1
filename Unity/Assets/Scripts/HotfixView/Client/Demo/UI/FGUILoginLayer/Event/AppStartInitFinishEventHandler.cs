@@ -14,26 +14,25 @@ namespace ET.Client
             UnitConfig unitConfig = UnitConfigCategory.Instance.Get(1001);
 
             Log.Debug($"unit config name {unitConfig.Name}");
+            // Stage.keyboardInput = true;
 
-            // UIPackage.AddPackage("FGUI/RootPackage/RootPackage");
-            //
-            // GlobalComponent globalComponent = scene.GetComponent<GlobalComponent>();
-            //
-            // UIPanel uiPanel = globalComponent.UIPanel.GetComponent<UIPanel>();
-            //
-            // GComponent gComponent = uiPanel.ui;
-            //
-            // gComponent.Dispose();
-            //
-            // uiPanel.packageName = "RootPackage";
-            // //
-            // uiPanel.componentName = "RootLayer";
-
-            // EventSystem.Instance.Publish(scene, new ShowLoginLayer());
+            GRoot.inst.SetContentScaleFactor(720, 1280, UIContentScaler.ScreenMatchMode.MatchWidthOrHeight);
+            
+            // 注册字体
+            FontManager.RegisterFont(new DynamicFont("SIMHEI", Resources.Load<Font>("Fonts/SIMHEI")));
+            // 设置为默认字体
+            UIConfig.defaultFont = "SIMHEI";
 
             UIComponent uiComponent = scene.GetComponent<UIComponent>();
 
             uiComponent.ShowWindow(WindowID.LoginLayer);
+
+            GlobalComponent globalComponent = scene.GetComponent<GlobalComponent>();
+
+            float width = globalComponent.UIPanel.ui.width;
+
+            Log.Debug($"width {width} {globalComponent.NormalRoot.width}");
+
 
             await ETTask.CompletedTask;
         }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="24bwjhhn">
+  <resources>
+    <component id="k7it0" name="GameUILayer.xml" path="/" exported="true"/>
+  </resources>
+  <publish name="GameUIPackage" path=".\..\Unity\Assets\Resources\FGUI\GameUIPackage" packageCount="2" branchPath=".\..\Unity\Assets\Resources\FGUI\GameUIPackage"/>
+</packageDescription>

@@ -4,7 +4,7 @@ using FairyGUI;
 using UnityEngine;
 namespace ET.Client
 {
-    [UIEvent(WindowID.FGUIRootLayer)]
+    [AUIEvent(WindowID.RootLayer)]
     [FriendOf(typeof (UIBaseWindow))]
     public class FGUIRootLayerEventHandler: IAUIEventHandler
     {

@@ -44,6 +44,17 @@ namespace ET.Client
 
             gComponent.AddChild(self.GComponent);
 
+            self.GComponent.size = gComponent.size;
+            
+            Log.Debug($"size {gComponent.size.x}, {gComponent.size.y} {gComponent.name}, {gComponent.gameObjectName}");
+
+            
+            Log.Debug($"size {self.GComponent.size.x}, {self.GComponent.size.y}");
+
+            // self.GComponent
+
+            self.GComponent.position = Vector3.zero;
+
             // self.GComponent.SetParent(rootTransform, false);
             // self.uiTransform.transform.localScale = Vector3.one;
         }

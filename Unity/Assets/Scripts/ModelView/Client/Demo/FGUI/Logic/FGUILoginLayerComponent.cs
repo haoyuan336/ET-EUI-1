@@ -10,5 +10,7 @@ namespace ET.Client
     public class FGUILoginLayerComponent: Entity, IAwake, IUILogic
     {
         public FGUILoginLayerViewComponent View => this.GetParent<UIBaseWindow>().GetComponent<FGUILoginLayerViewComponent>();
+
+        public string InputType = "Account";
     }
 }

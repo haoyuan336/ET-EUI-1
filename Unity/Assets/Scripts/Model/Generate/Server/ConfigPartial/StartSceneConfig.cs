@@ -38,6 +38,7 @@ namespace ET
         {
             foreach (StartSceneConfig startSceneConfig in this.GetAll().Values)
             {
+                Log.Debug($"start scene condif {startSceneConfig.Id} {startSceneConfig.Process} {startSceneConfig.SceneType} {startSceneConfig.Type}");
                 this.ProcessScenes.Add(startSceneConfig.Process, startSceneConfig);
                 
                 if (!this.ClientScenesByName.ContainsKey(startSceneConfig.Zone))
@@ -45,7 +46,7 @@ namespace ET
                     this.ClientScenesByName.Add(startSceneConfig.Zone, new Dictionary<string, StartSceneConfig>());
                 }
                 this.ClientScenesByName[startSceneConfig.Zone].Add(startSceneConfig.Name, startSceneConfig);
-                
+                Log.Debug($"type {startSceneConfig.Type}");
                 switch (startSceneConfig.Type)
                 {
                     case SceneType.Realm:

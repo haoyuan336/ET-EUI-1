@@ -42,7 +42,7 @@ namespace ET.Client
             c2GLoginGate.GateId = r2CLogin.GateId;
             G2C_LoginGate g2CLoginGate = (G2C_LoginGate)await gateSession.Call(c2GLoginGate);
 
-            Log.Debug("登陆gate成功!");
+            Log.Debug($"登陆gate成功! {g2CLoginGate.PlayerId} ");
 
             response.PlayerId = g2CLoginGate.PlayerId;
         }

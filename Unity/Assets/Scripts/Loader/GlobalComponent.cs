@@ -33,6 +33,10 @@ namespace ET
             self.OtherRoot = self.RootLayer.GetChild("OtherRootLayer").asCom;
 
             self.GlobalConfig = Resources.Load<GlobalConfig>("GlobalConfig");
+            
+            // GRoot.inst.SetContentScaleFactor(720,1280,UIContentScaler.ScreenMatchMode.MatchWidth);
+
+            // self.UIPanel.ui.MakeFullScreen();
         }
     }
 
