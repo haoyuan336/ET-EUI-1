@@ -15,7 +15,19 @@ namespace ET
             self.AService.ReadCallback = self.OnRead;
             self.AService.ErrorCallback = self.OnError;
         }
-        
+        //
+        // [EntitySystem]
+        // private static void Awake(this NetComponent self, IPEndPoint address)
+        // {
+        //     self.AService = new WService();
+        //     long id = IdGenerater.Instance.GenerateId();
+        //     self.AService.Create(id, address);
+        //     self.AService.AcceptCallback = self.OnAccept;
+        //     self.AService.ReadCallback = self.OnRead;
+        //     self.AService.ErrorCallback = self.OnError;
+        //
+        // }
+
         [EntitySystem]
         private static void Awake(this NetComponent self, AddressFamily addressFamily, NetworkProtocol protocol)
         {
@@ -23,7 +35,7 @@ namespace ET
             self.AService.ReadCallback = self.OnRead;
             self.AService.ErrorCallback = self.OnError;
         }
-        
+
         [EntitySystem]
         private static void Update(this NetComponent self)
         {
@@ -62,7 +74,7 @@ namespace ET
                 session.AddComponent<SessionIdleCheckerComponent>();
             }
         }
-        
+
         private static void OnRead(this NetComponent self, long channelId, MemoryBuffer memoryBuffer)
         {
             Session session = self.GetChild<Session>(channelId);
@@ -70,16 +82,17 @@ namespace ET
             {
                 return;
             }
+
             session.LastRecvTime = TimeInfo.Instance.ClientNow();
-            
+
             (ActorId _, object message) = MessageSerializeHelper.ToMessage(self.AService, memoryBuffer);
             self.AService.Recycle(memoryBuffer);
-            
+
             LogMsg.Instance.Debug(self.Fiber(), message);
-            
-            EventSystem.Instance.Invoke((long)self.IScene.SceneType, new NetComponentOnRead() {Session = session, Message = message});
+
+            EventSystem.Instance.Invoke((long)self.IScene.SceneType, new NetComponentOnRead() { Session = session, Message = message });
         }
-        
+
         public static Session Create(this NetComponent self, IPEndPoint realIPEndPoint)
         {
             long channelId = NetServices.Instance.CreateConnectChannelId();
@@ -89,7 +102,7 @@ namespace ET
             {
                 session.AddComponent<SessionIdleCheckerComponent>();
             }
-            
+
             self.AService.Create(session.Id, session.RemoteAddress);
 
             return session;
@@ -104,6 +117,7 @@ namespace ET
             {
                 session.AddComponent<SessionIdleCheckerComponent>();
             }
+
             self.AService.Create(session.Id, routerIPEndPoint);
             return session;
         }

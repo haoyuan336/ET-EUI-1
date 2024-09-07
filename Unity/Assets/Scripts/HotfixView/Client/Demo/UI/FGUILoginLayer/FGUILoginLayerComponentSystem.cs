@@ -62,7 +62,9 @@ namespace ET.Client
         {
             // WX.OnKeyboardInput(self.OnKeyBoardInput);
 
-            WX.OnKeyboardConfirm(self.OnWXKeyboardConfirm);
+            // WX.OnKeyboardConfirm(self.OnWXKeyboardConfirm);
+            
+            WX.OnKeyboardComplete(self.OnWXKeyboardConfirm);
         }
 
         public static void OnWXKeyboardConfirm(this FGUILoginLayerComponent self, OnKeyboardInputListenerResult result)
@@ -85,7 +87,10 @@ namespace ET.Client
 
         public static void HideWindow(this FGUILoginLayerComponent self)
         {
-            WX.OffKeyboardConfirm(self.OnWXKeyboardConfirm);
+            // WX.OffKeyboardConfirm(self.OnWXKeyboardConfirm);
+            
+            WX.OffKeyboardComplete(self.OnWXKeyboardConfirm);
+            
         }
     }
 }

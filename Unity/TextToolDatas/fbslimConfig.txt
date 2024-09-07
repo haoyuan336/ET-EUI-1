@@ -1,0 +1,100 @@
+Soft.c1d63e75
+UnityWatermark-small.d7411008
+EscToExit_back.21b1540e
+EscToExit_Text.2e1ee8b4
+UnitySplash-cube.84543fde
+UnityWatermark-trial-big.66f46ac8
+UnityWatermark-trial.60b4e34e
+UnityWatermark-beta.dd37c61b
+UnityWatermark-edu.a8c472ae
+UnityWatermark-dev.ae1fc174
+WarningSign.59b8d955
+UnityWatermark-proto.5084375a
+UnityWatermarkPlugin-beta.52403834
+box.643f5df8
+button active.c15aedb7
+button hover.42efb15e
+button on hover.2c40c4b8
+button on.7ff0e5a1
+button.bdec6b82
+horizontal scrollbar thumb.4137b46d
+horizontal scrollbar.0ac38291
+horizontalslider.722f02b2
+slider thumb active.168a62a9
+slider thumb.a7acef71
+slidert humb hover.0c248117
+toggle active.e32a2ca9
+toggle hover.614620f6
+toggle on hover.528d6b34
+toggle on.1f99750a
+toggle on active.9d52caeb
+toggle.6eafbcb0
+vertical scrollbar thumb.7ba97313
+vertical scrollbar.d38290f1
+verticalslider.58266f5f
+window on.38a76040
+window.a62d1258
+textfield.a75d69ec
+textfield on.f2c2fb5c
+textfield hover.8c7ae9d8
+UnitySplash-HolographicTrackingLoss.cbf38e69
+LDR_LLL1_9.a46e05d1
+Medium01.f1d8276c
+LDR_LLL1_23.12394256
+LDR_LLL1_2.b981d457
+LDR_LLL1_17.0a778e95
+LDR_LLL1_31.b44b064e
+LDR_LLL1_25.9277009a
+LDR_LLL1_4.433b2b1c
+LDR_LLL1_6.4577ea59
+LDR_LLL1_14.d65b0304
+LDR_LLL1_15.e9cab65c
+Medium05.a0883dab
+SearchTex.ee3d8026
+Large02.41fa8438
+Thin01.56a8f501
+LDR_LLL1_3.4e6530d8
+LDR_LLL1_0.fce750bc
+LDR_LLL1_30.2caced0f
+LDR_LLL1_10.ccbfbea1
+Medium03.f0f38459
+LDR_LLL1_16.91786237
+LDR_LLL1_24.fea23955
+Medium06.7e3bde6c
+Medium04.eec9b966
+LDR_LLL1_12.3660b0d6
+LDR_LLL1_7.eefd977a
+LDR_LLL1_27.1182195e
+LDR_LLL1_20.3b09ec52
+LDR_LLL1_26.d74d282c
+AreaTex.7befc2ae
+LDR_LLL1_18.0ae6826f
+LDR_LLL1_19.bb8b897f
+LDR_LLL1_1.e6e26115
+LDR_LLL1_13.8d38e0bf
+LDR_LLL1_21.c75c847e
+Thin02.85ffa087
+LDR_LLL1_5.a916a824
+LDR_LLL1_8.93acaa37
+Medium02.fadc964a
+LDR_LLL1_22.a1e80e7a
+LDR_LLL1_29.10e196e1
+LDR_LLL1_11.8901a3fa
+Large01.636f1e2c
+LDR_LLL1_28.d5296d58
+Skeleton_D.714a507e
+Lightmap-0_comp_light.7bc50ae8
+Lightmap-0_comp_dir.4727dbfc
+Lightmap-0_comp_light.45d05f24
+Lightmap-0_comp_dir.0b617b90
+UIMask.09363183
+RootPackage_atlas0_1.5fcdae43
+White1px.f8d314fe
+RootPackage_atlas0_2.eb44c075
+UIFoldoutClosed.89295238
+RootPackage_atlas0.c7e3f57c
+UIFoldoutOpened.84255435
+UICheckMark.d924f22b
+UIElement8px.f411169b
+EmojiOne.eef190bd
+LiberationSans SDF Atlas.ac9f1c83

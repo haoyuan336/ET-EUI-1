@@ -3,11 +3,12 @@ using System.Net;
 using System.Net.Sockets;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.WebSockets;
 using System.Runtime.InteropServices;
 
 namespace ET
 {
-    public interface IKcpTransport: IDisposable
+    public interface IKcpTransport : IDisposable
     {
         void Send(byte[] bytes, int index, int length, EndPoint endPoint);
         int Recv(byte[] buffer, ref EndPoint endPoint);
@@ -16,7 +17,65 @@ namespace ET
         void OnError(long id, int error);
     }
 
-    public class UdpTransport: IKcpTransport
+    public class WebSocketTransport : IKcpTransport
+    {
+        public readonly ClientWebSocket Socket;
+
+        public bool IsContent = false;
+        public WebSocketTransport(AddressFamily addressFamily)
+        {
+            Log.Debug($"ip end point {addressFamily}");
+
+            // this.socket = new Socket(addressFamily, SocketType.Dgram, ProtocolType.Udp);
+            // NetworkHelper.SetSioUdpConnReset(this.socket);
+
+            this.Socket = new ClientWebSocket();
+        }
+
+        public WebSocketTransport(IPEndPoint ipEndPoint)
+        {
+            this.Socket = new ClientWebSocket();
+
+            // string address = ipEndPoint.ToString();
+
+            // Log.Debug($"address {address}");
+
+            // this.Socket.ConnectAsync($"wss://{address}");
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Send(byte[] bytes, int index, int length, EndPoint endPoint)
+        {
+            // throw new NotImplementedException();
+            // this.Socket.SendAsync(bytes,)
+        }
+
+        public int Recv(byte[] buffer, ref EndPoint endPoint)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Available()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnError(long id, int error)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class UdpTransport : IKcpTransport
     {
         private readonly Socket socket;
 
@@ -25,7 +84,7 @@ namespace ET
             this.socket = new Socket(addressFamily, SocketType.Dgram, ProtocolType.Udp);
             NetworkHelper.SetSioUdpConnReset(this.socket);
         }
-        
+
         public UdpTransport(IPEndPoint ipEndPoint)
         {
             this.socket = new Socket(ipEndPoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
@@ -34,7 +93,7 @@ namespace ET
                 this.socket.SendBufferSize = Kcp.OneM * 64;
                 this.socket.ReceiveBufferSize = Kcp.OneM * 64;
             }
-            
+
             try
             {
                 this.socket.Bind(ipEndPoint);
@@ -46,12 +105,12 @@ namespace ET
 
             NetworkHelper.SetSioUdpConnReset(this.socket);
         }
-        
+
         public void Send(byte[] bytes, int index, int length, EndPoint endPoint)
         {
             this.socket.SendTo(bytes, index, length, SocketFlags.None, endPoint);
         }
-        
+
         public int Recv(byte[] buffer, ref EndPoint endPoint)
         {
             return this.socket.ReceiveFrom(buffer, ref endPoint);
@@ -76,7 +135,7 @@ namespace ET
         }
     }
 
-    public class TcpTransport: IKcpTransport
+    public class TcpTransport : IKcpTransport
     {
         private readonly TService tService;
 
@@ -87,14 +146,14 @@ namespace ET
         private readonly Dictionary<long, long> readWriteTime = new();
 
         private readonly Queue<long> channelIds = new();
-        
+
         public TcpTransport(AddressFamily addressFamily)
         {
             this.tService = new TService(addressFamily, ServiceType.Outer);
             this.tService.ErrorCallback = this.OnError;
             this.tService.ReadCallback = this.OnRead;
         }
-        
+
         public TcpTransport(IPEndPoint ipEndPoint)
         {
             this.tService = new TService(ipEndPoint, ServiceType.Outer);
@@ -119,7 +178,7 @@ namespace ET
             this.idEndpoints.RemoveByKey(id);
             this.readWriteTime.Remove(id);
         }
-        
+
         private void OnRead(long id, MemoryBuffer memoryBuffer)
         {
             long timeNow = TimeInfo.Instance.ClientFrameTime();
@@ -127,7 +186,7 @@ namespace ET
             TChannel channel = this.tService.Get(id);
             channelRecvDatas.Enqueue((channel.RemoteAddress, memoryBuffer));
         }
-        
+
         public void Send(byte[] bytes, int index, int length, EndPoint endPoint)
         {
             long id = this.idEndpoints.GetKeyByValue(endPoint);
@@ -138,11 +197,12 @@ namespace ET
                 this.idEndpoints.Add(id, endPoint);
                 this.channelIds.Enqueue(id);
             }
+
             MemoryBuffer memoryBuffer = this.tService.Fetch();
             memoryBuffer.Write(bytes, index, length);
             memoryBuffer.Seek(0, SeekOrigin.Begin);
             this.tService.Send(id, memoryBuffer);
-            
+
             long timeNow = TimeInfo.Instance.ClientFrameTime();
             this.readWriteTime[id] = timeNow;
         }
@@ -171,7 +231,7 @@ namespace ET
             // 检查长时间不读写的TChannel, 超时断开, 一次update检查10个
             long timeNow = TimeInfo.Instance.ClientFrameTime();
             const int MaxCheckNum = 10;
-            int n = this.channelIds.Count < MaxCheckNum? this.channelIds.Count : MaxCheckNum;
+            int n = this.channelIds.Count < MaxCheckNum ? this.channelIds.Count : MaxCheckNum;
             for (int i = 0; i < n; ++i)
             {
                 long id = this.channelIds.Dequeue();
@@ -179,14 +239,16 @@ namespace ET
                 {
                     continue;
                 }
+
                 if (timeNow - rwTime > 30 * 1000)
                 {
                     this.OnError(id, ErrorCore.ERR_KcpReadWriteTimeout);
                     continue;
                 }
+
                 this.channelIds.Enqueue(id);
             }
-            
+
             this.tService.Update();
         }
 

@@ -481,6 +481,7 @@ GameObject:
   - component: {fileID: 834250143}
   - component: {fileID: 834250142}
   - component: {fileID: 834250141}
+  - component: {fileID: 834250145}
   m_Layer: 0
   m_Name: Stage Camera
   m_TagString: Untagged
@@ -585,13 +586,33 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834250140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8125, y: -5, z: 0}
+  m_LocalPosition: {x: 2.5, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &834250145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834250140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a723f7fd716aac049aa24e9186f18685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleMode: 1
+  screenMatchMode: 0
+  designResolutionX: 1080
+  designResolutionY: 1920
+  fallbackScreenDPI: 96
+  defaultSpriteDPI: 96
+  constantScaleFactor: 1
+  ignoreOrientation: 0
 --- !u!1 &1099409709
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,7 +644,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   packageName: RootPackage
   componentName: RootLayer
-  fitScreen: 0
+  fitScreen: 1
   sortingOrder: 1
   packagePath: FGUI/RootPackage/RootPackage
   renderMode: 0
@@ -633,7 +654,7 @@ MonoBehaviour:
   rotation: {x: 0, y: 0, z: 0}
   fairyBatching: 1
   touchDisabled: 0
-  cachedUISize: {x: 720, y: 1280}
+  cachedUISize: {x: 1080, y: 1920}
   hitTestMode: 0
   setNativeChildrenOrder: 0
 --- !u!4 &1099409711
@@ -645,7 +666,7 @@ Transform:
   m_GameObject: {fileID: 1099409709}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0052083335, y: 0.0052083335, z: 0.0052083335}
+  m_LocalScale: {x: 0.0046296297, y: 0.0046296297, z: 0.0046296297}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 575235020}

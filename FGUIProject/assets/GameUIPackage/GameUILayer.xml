@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="720,1280">
+<component size="1080,1920">
   <displayList>
     <text id="n0_k7it" name="n0" xy="200,208" size="342,69" fontSize="40" align="center" vAlign="middle" autoSize="none" text="GameUILayer"/>
   </displayList>

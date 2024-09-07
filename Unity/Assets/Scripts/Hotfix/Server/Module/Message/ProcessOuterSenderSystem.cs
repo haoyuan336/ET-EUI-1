@@ -3,8 +3,8 @@ using System.Net;
 
 namespace ET.Server
 {
-    [EntitySystemOf(typeof(ProcessOuterSender))]
-    [FriendOf(typeof(ProcessOuterSender))]
+    [EntitySystemOf(typeof (ProcessOuterSender))]
+    [FriendOf(typeof (ProcessOuterSender))]
     public static partial class ProcessOuterSenderSystem
     {
         [EntitySystem]
@@ -22,14 +22,25 @@ namespace ET.Server
                     self.AService = new KService(address, NetworkProtocol.UDP, ServiceType.Inner);
                     break;
                 }
+                case NetworkProtocol.Websocket:
+                {
+                    // string[] ps = new string[] { };
+
+                    string url = $"http://{address}";
+
+                    Log.Debug($"web socket url {url}");
+
+                    self.AService = new WService(new[] { url });
+
+                    break;
+                }
             }
-                
+
             self.AService.AcceptCallback = self.OnAccept;
             self.AService.ReadCallback = self.OnRead;
             self.AService.ErrorCallback = self.OnError;
         }
-        
-        
+
         [EntitySystem]
         private static void Update(this ProcessOuterSender self)
         {
@@ -49,12 +60,12 @@ namespace ET.Server
             {
                 return;
             }
-            
+
             session.LastRecvTime = TimeInfo.Instance.ClientFrameTime();
 
             (ActorId actorId, object message) = MessageSerializeHelper.ToMessage(self.AService, memoryBuffer);
             self.AService.Recycle(memoryBuffer);
-            
+
             if (message is IResponse response)
             {
                 self.HandleIActorResponse(response);
@@ -135,7 +146,7 @@ namespace ET.Server
                 return session;
             }
 
-            IPEndPoint ipEndPoint = StartProcessConfigCategory.Instance.Get((int) channelId).IPEndPoint;
+            IPEndPoint ipEndPoint = StartProcessConfigCategory.Instance.Get((int)channelId).IPEndPoint;
             session = self.CreateInner(channelId, ipEndPoint);
             return session;
         }
@@ -146,6 +157,7 @@ namespace ET.Server
             {
                 return;
             }
+
             Run(actorMessageSender, response);
         }
 
@@ -153,13 +165,15 @@ namespace ET.Server
         {
             if (response.Error == ErrorCore.ERR_MessageTimeout)
             {
-                self.SetException(new RpcException(response.Error, $"Rpc error: request, 注意Actor消息超时，请注意查看是否死锁或者没有reply: actorId: {self.ActorId} {self.RequestType.FullName}, response: {response}"));
+                self.SetException(new RpcException(response.Error,
+                    $"Rpc error: request, 注意Actor消息超时，请注意查看是否死锁或者没有reply: actorId: {self.ActorId} {self.RequestType.FullName}, response: {response}"));
                 return;
             }
 
             if (self.NeedException && ErrorCore.IsRpcNeedThrowException(response.Error))
             {
-                self.SetException(new RpcException(response.Error, $"Rpc error: actorId: {self.ActorId} request: {self.RequestType.FullName}, response: {response}"));
+                self.SetException(new RpcException(response.Error,
+                    $"Rpc error: actorId: {self.ActorId} request: {self.RequestType.FullName}, response: {response}"));
                 return;
             }
 
@@ -184,7 +198,7 @@ namespace ET.Server
             {
                 throw new Exception($"actor is the same process: {fiber.Process} {actorId.Process}");
             }
-            
+
             StartProcessConfig startProcessConfig = StartProcessConfigCategory.Instance.Get(actorId.Process);
             Session session = self.Get(startProcessConfig.Id);
             actorId.Process = fiber.Process;
@@ -202,8 +216,9 @@ namespace ET.Server
             {
                 throw new Exception($"actor id is 0: {iRequest}");
             }
+
             Fiber fiber = self.Fiber();
-            
+
             int rpcId = self.GetRpcId();
 
             iRequest.RpcId = rpcId;
@@ -211,7 +226,7 @@ namespace ET.Server
             Type requestType = iRequest.GetType();
             MessageSenderStruct messageSenderStruct = new(actorId, requestType, needException);
             self.requestCallback.Add(rpcId, messageSenderStruct);
-            
+
             self.SendInner(actorId, iRequest as MessageObject);
 
             async ETTask Timeout()
@@ -221,7 +236,7 @@ namespace ET.Server
                 {
                     return;
                 }
-                
+
                 if (needException)
                 {
                     action.SetException(new Exception($"actor sender timeout: {requestType.FullName}"));

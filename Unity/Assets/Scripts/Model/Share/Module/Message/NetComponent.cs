@@ -8,9 +8,10 @@ namespace ET
         public Session Session;
         public object Message;
     }
-    
+
     [ComponentOf(typeof(Scene))]
-    public class NetComponent: Entity, IAwake<IPEndPoint, NetworkProtocol>, IAwake<AddressFamily, NetworkProtocol>, IDestroy, IUpdate
+    public class NetComponent : Entity, IAwake<IPEndPoint, NetworkProtocol>, IAwake<AddressFamily, NetworkProtocol>, IAwake<IPEndPoint>, IDestroy,
+            IUpdate
     {
         public AService AService { get; set; }
     }

@@ -16,7 +16,7 @@ namespace ET.Client
             Log.Debug($"unit config name {unitConfig.Name}");
             // Stage.keyboardInput = true;
 
-            GRoot.inst.SetContentScaleFactor(720, 1280, UIContentScaler.ScreenMatchMode.MatchWidthOrHeight);
+            // GRoot.inst.SetContentScaleFactor(1080, 1920, UIContentScaler.ScreenMatchMode.MatchWidth);
             
             // 注册字体
             FontManager.RegisterFont(new DynamicFont("SIMHEI", Resources.Load<Font>("Fonts/SIMHEI")));
@@ -32,7 +32,6 @@ namespace ET.Client
             float width = globalComponent.UIPanel.ui.width;
 
             Log.Debug($"width {width} {globalComponent.NormalRoot.width}");
-
 
             await ETTask.CompletedTask;
         }
