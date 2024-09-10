@@ -62,7 +62,8 @@ namespace ET
         }
 
         public async ETTask<int> Create(SchedulerType schedulerType, int fiberId, int zone, SceneType sceneType, string name)
-        {
+        { 
+            Log.Warning($"create fiber {zone} {sceneType} {name}");
             try
             {
                 Fiber fiber = new(fiberId, zone, sceneType, name);

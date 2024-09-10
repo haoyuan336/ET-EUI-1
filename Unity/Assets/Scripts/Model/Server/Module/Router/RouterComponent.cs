@@ -12,8 +12,10 @@ namespace ET.Server
         public IKcpTransport OuterUdp;
         public IKcpTransport OuterTcp;
         public IKcpTransport InnerSocket;
+        public IKcpTransport OuterWebSocket;
         public EndPoint IPEndPoint = new IPEndPoint(IPAddress.Any, 0);
 
+        
         public byte[] Cache = new byte[1500];
 
         public Queue<uint> checkTimeout = new();

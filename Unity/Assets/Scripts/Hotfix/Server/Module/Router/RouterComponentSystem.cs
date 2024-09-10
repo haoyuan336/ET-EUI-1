@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlTypes;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
@@ -13,8 +14,10 @@ namespace ET.Server
         [EntitySystem]
         private static void Awake(this RouterComponent self, IPEndPoint outerAddress, string innerIP)
         {
+            Log.Warning("routercomponent");
             self.OuterUdp = new UdpTransport(outerAddress);
-            self.OuterTcp = new TcpTransport(outerAddress);
+            // self.OuterTcp = new TcpTransport(outerAddress);
+            self.OuterWebSocket = new WebSocketTransport(outerAddress);
             self.InnerSocket = new UdpTransport(new IPEndPoint(IPAddress.Parse(innerIP), 0));
         }
         
@@ -31,12 +34,14 @@ namespace ET.Server
         private static void Update(this RouterComponent self)
         {
             self.OuterUdp.Update();
-            self.OuterTcp.Update();
-            self.InnerSocket.Update();
+            self.OuterTcp?.Update();
+            self.InnerSocket?.Update();
+            self.OuterWebSocket?.Update();
             long timeNow = TimeInfo.Instance.ClientNow();
             self.RecvOuterUdp(timeNow);
             self.RecvOuterTcp(timeNow);
             self.RecvInner(timeNow);
+            self.RecvOuterWebSocket(timeNow);
 
             // 每秒钟检查一次
             if (timeNow - self.LastCheckTime > 1000)
@@ -51,7 +56,23 @@ namespace ET.Server
             IPEndPoint ipEndPoint = (IPEndPoint) self.IPEndPoint;
             return new IPEndPoint(ipEndPoint.Address, ipEndPoint.Port);
         }
-        
+
+
+        private static void RecvOuterWebSocket(this RouterComponent self, long timeNow)
+        {
+            while (self.OuterWebSocket != null && self.OuterWebSocket.Available() > 0)
+            {
+                try
+                {
+                    int messageLength = self.OuterWebSocket.Recv(self.Cache, ref self.IPEndPoint);
+                    self.RecvOuterHandler(messageLength, timeNow, self.OuterWebSocket);
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e);
+                }
+            }
+        }
         // 接收tcp消息
         private static void RecvOuterTcp(this RouterComponent self, long timeNow)
         {
@@ -375,7 +396,7 @@ namespace ET.Server
                         break;
                     }
                     routerNode.KcpTransport = transport;
-
+ 
                     routerNode.LastRecvOuterTime = timeNow;
                     Log.Info($"kcp router outer fin: {outerConn} {innerConn} {routerNode.InnerIpEndPoint}");
                     self.InnerSocket.Send(self.Cache, 0, messageLength, routerNode.InnerIpEndPoint);

@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 
 namespace ET
 {
-    public interface IKcpTransport : IDisposable
+    public interface IKcpTransport: IDisposable
     {
         void Send(byte[] bytes, int index, int length, EndPoint endPoint);
         int Recv(byte[] buffer, ref EndPoint endPoint);
@@ -17,11 +17,22 @@ namespace ET
         void OnError(long id, int error);
     }
 
-    public class WebSocketTransport : IKcpTransport
+    public class WebSocketTransport: IKcpTransport
     {
         public readonly ClientWebSocket Socket;
 
+        public WService WService;
+
         public bool IsContent = false;
+
+        private readonly DoubleMap<long, EndPoint> idEndpoints = new();
+
+        private readonly Queue<(EndPoint, MemoryBuffer)> channelRecvDatas = new();
+
+        private readonly Dictionary<long, long> readWriteTime = new();
+
+        private readonly Queue<long> channelIds = new();
+
         public WebSocketTransport(AddressFamily addressFamily)
         {
             Log.Debug($"ip end point {addressFamily}");
@@ -34,48 +45,117 @@ namespace ET
 
         public WebSocketTransport(IPEndPoint ipEndPoint)
         {
-            this.Socket = new ClientWebSocket();
+            string address = $"http://{ipEndPoint.ToString()}/";
 
-            // string address = ipEndPoint.ToString();
+            Log.Debug($"websocket transport address {address}");
 
-            // Log.Debug($"address {address}");
+            this.WService = new WService(new[] { address });
 
-            // this.Socket.ConnectAsync($"wss://{address}");
+            this.WService.AcceptCallback = this.OnAccept;
+
+            this.WService.ReadCallback = this.OnRead;
+
+            this.WService.ErrorCallback = this.OnError;
         }
 
-        public void Dispose()
+        private void OnAccept(long id, IPEndPoint ipEndPoint)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Send(byte[] bytes, int index, int length, EndPoint endPoint)
-        {
-            // throw new NotImplementedException();
-            // this.Socket.SendAsync(bytes,)
-        }
-
-        public int Recv(byte[] buffer, ref EndPoint endPoint)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Available()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update()
-        {
-            throw new NotImplementedException();
+            WChannel channel = this.WService.Get(id);
+            long timeNow = TimeInfo.Instance.ClientFrameTime();
+            this.readWriteTime[id] = timeNow;
+            this.channelIds.Enqueue(id);
+            this.idEndpoints.Add(id, channel.RemoteAddress);
         }
 
         public void OnError(long id, int error)
         {
-            throw new NotImplementedException();
+            Log.Warning($"IKcpTransport tcp error: {id} {error}");
+            this.WService.Remove(id, error);
+            this.idEndpoints.RemoveByKey(id);
+            this.readWriteTime.Remove(id);
+        }
+
+        private void OnRead(long id, MemoryBuffer memoryBuffer)
+        {
+            long timeNow = TimeInfo.Instance.ClientFrameTime();
+            this.readWriteTime[id] = timeNow;
+            WChannel channel = this.WService.Get(id);
+            channelRecvDatas.Enqueue((channel.RemoteAddress, memoryBuffer));
+        }
+
+        public void Dispose()
+        {
+            this.WService.Dispose();
+        }
+
+        public void Send(byte[] bytes, int index, int length, EndPoint endPoint)
+        {
+            long id = this.idEndpoints.GetKeyByValue(endPoint);
+
+            if (id == 0)
+            {
+                id = IdGenerater.Instance.GenerateInstanceId();
+                this.WService.Create(id, (IPEndPoint)endPoint);
+                this.idEndpoints.Add(id, endPoint);
+                this.channelIds.Enqueue(id);
+            }
+
+            MemoryBuffer memoryBuffer = this.WService.Fetch();
+            memoryBuffer.Write(bytes, index, length);
+            memoryBuffer.Seek(0, SeekOrigin.Begin);
+            this.WService.Send(id, memoryBuffer);
+
+            long timeNow = TimeInfo.Instance.ClientFrameTime();
+            this.readWriteTime[id] = timeNow;
+        }
+
+        public int Recv(byte[] buffer, ref EndPoint endPoint)
+        {
+            return RecvNonAlloc(buffer, ref endPoint);
+        }
+
+        public int RecvNonAlloc(byte[] buffer, ref EndPoint endPoint)
+        {
+            (EndPoint e, MemoryBuffer memoryBuffer) = this.channelRecvDatas.Dequeue();
+            endPoint = e;
+            int count = memoryBuffer.Read(buffer);
+            this.WService.Recycle(memoryBuffer);
+            return count;
+        }
+
+        public int Available()
+        {
+            return this.channelRecvDatas.Count;
+        }
+
+        public void Update()
+        {
+            // 检查长时间不读写的TChannel, 超时断开, 一次update检查10个
+            long timeNow = TimeInfo.Instance.ClientFrameTime();
+            const int MaxCheckNum = 10;
+            int n = this.channelIds.Count < MaxCheckNum? this.channelIds.Count : MaxCheckNum;
+            for (int i = 0; i < n; ++i)
+            {
+                long id = this.channelIds.Dequeue();
+                if (!this.readWriteTime.TryGetValue(id, out long rwTime))
+                {
+                    continue;
+                }
+
+                if (timeNow - rwTime > 30 * 1000)
+                {
+                    this.OnError(id, ErrorCore.ERR_KcpReadWriteTimeout);
+                    continue;
+                }
+
+                this.channelIds.Enqueue(id);
+            }
+
+            this.WService.Update();
         }
     }
 
-    public class UdpTransport : IKcpTransport
+    public class UdpTransport: IKcpTransport
     {
         private readonly Socket socket;
 
@@ -135,7 +215,7 @@ namespace ET
         }
     }
 
-    public class TcpTransport : IKcpTransport
+    public class TcpTransport: IKcpTransport
     {
         private readonly TService tService;
 
@@ -231,7 +311,7 @@ namespace ET
             // 检查长时间不读写的TChannel, 超时断开, 一次update检查10个
             long timeNow = TimeInfo.Instance.ClientFrameTime();
             const int MaxCheckNum = 10;
-            int n = this.channelIds.Count < MaxCheckNum ? this.channelIds.Count : MaxCheckNum;
+            int n = this.channelIds.Count < MaxCheckNum? this.channelIds.Count : MaxCheckNum;
             for (int i = 0; i < n; ++i)
             {
                 long id = this.channelIds.Dequeue();

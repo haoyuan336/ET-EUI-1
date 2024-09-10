@@ -121,5 +121,10 @@ namespace ET
             self.AService.Create(session.Id, routerIPEndPoint);
             return session;
         }
+        [EntitySystem]
+        private static void Awake(this ET.NetComponent self, System.Net.IPEndPoint args2)
+        {
+
+        }
     }
 }
