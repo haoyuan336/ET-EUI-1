@@ -84,9 +84,78 @@ namespace ET
         }
     }
 
+    [MemoryPackable]
+    [Message(ClientMessage.Main2ViewClient_HttpHelper)]
+    [ResponseType(nameof(View2MainClient_HttpHelper))]
+    public partial class Main2ViewClient_HttpHelper : MessageObject, IRequest
+    {
+        public static Main2ViewClient_HttpHelper Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(Main2ViewClient_HttpHelper), isFromPool) as Main2ViewClient_HttpHelper;
+        }
+
+        [MemoryPackOrder(0)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public string Url { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Url = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(ClientMessage.View2MainClient_HttpHelper)]
+    public partial class View2MainClient_HttpHelper : MessageObject, IResponse
+    {
+        public static View2MainClient_HttpHelper Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(View2MainClient_HttpHelper), isFromPool) as View2MainClient_HttpHelper;
+        }
+
+        [MemoryPackOrder(0)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(2)]
+        public string Message { get; set; }
+
+        [MemoryPackOrder(3)]
+        public string Text { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+            this.Text = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
     public static class ClientMessage
     {
         public const ushort Main2NetClient_Login = 1001;
         public const ushort NetClient2Main_Login = 1002;
+        public const ushort Main2ViewClient_HttpHelper = 1003;
+        public const ushort View2MainClient_HttpHelper = 1004;
     }
 }

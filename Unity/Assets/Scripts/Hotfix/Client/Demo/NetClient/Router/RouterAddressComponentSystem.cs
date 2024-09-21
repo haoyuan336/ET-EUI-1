@@ -26,7 +26,7 @@ namespace ET.Client
         {
             string url = $"http://{self.RouterManagerHost}:{self.RouterManagerPort}/get_router?v={RandomGenerator.RandUInt32()}";
             Log.Debug($"start get router info: {url}");
-            string routerInfo = await HttpClientHelper.Get(url);
+            string routerInfo = await HttpClientHelper.Get(self.Fiber(),url);
             Log.Debug($"recv router info: {routerInfo}");
             HttpGetRouterResponse httpGetRouterResponse = MongoHelper.FromJson<HttpGetRouterResponse>(routerInfo);
             self.Info = httpGetRouterResponse;

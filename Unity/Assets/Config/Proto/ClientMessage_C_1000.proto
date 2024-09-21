@@ -19,3 +19,18 @@ message NetClient2Main_Login // IResponse
 
 	int64 PlayerId = 4;
 }
+
+// ResponseType View2MainClient_HttpHelper
+message Main2ViewClient_HttpHelper // IRequest
+{
+	int32 RpcId = 1;
+	string Url = 2;
+}
+
+message View2MainClient_HttpHelper // IResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+	string Text = 4;
+}
