@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Net.Http;
 using System.Threading;
-using UnityEngine.Networking;
 
 namespace ET.Client
 {
@@ -36,29 +35,5 @@ namespace ET.Client
             Log.Debug($"response text {response.Text}");
             return response.Text;
         }
-        
-        // public static async ETTask<string> Get(Fiber fiber, string link)
-        // {
-        //
-        //     Log.Debug($"http client helper {link}");
-        //     using (UnityWebRequest unityWebRequest = UnityWebRequest.Get(link))
-        //     {
-        //         UnityWebRequestAsyncOperation asyncOperation = unityWebRequest.SendWebRequest();
-        //
-        //         ETTask etTask = ETTask.Create();
-        //
-        //         asyncOperation.completed += (result) =>
-        //         {
-        //             Log.Debug("async operation completed");
-        //             etTask.SetResult();
-        //         };
-        //
-        //         await etTask.GetAwaiter();
-        //
-        //         Log.Debug($"main 2 view client httphelper {unityWebRequest.downloadHandler.text}");
-        //
-        //         return unityWebRequest.downloadHandler.text;
-        //     }
-        // }
     }
 }
