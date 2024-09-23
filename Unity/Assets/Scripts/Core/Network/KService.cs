@@ -78,6 +78,9 @@ namespace ET
             this.Protocol = protocol;
             switch (this.Protocol)
             {
+                case NetworkProtocol.WXUDP:
+                    this.Transport = new WXSocketTransport(addressFamily);
+                    break;
                 case NetworkProtocol.TCP:
                     this.Transport = new TcpTransport(addressFamily);
                     break;

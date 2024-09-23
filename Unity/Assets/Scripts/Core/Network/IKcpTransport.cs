@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.WebSockets;
 using System.Runtime.InteropServices;
+using WeChatWASM;
 
 namespace ET
 {
-    public interface IKcpTransport: IDisposable
+    public interface IKcpTransport : IDisposable
     {
         void Send(byte[] bytes, int index, int length, EndPoint endPoint);
         int Recv(byte[] buffer, ref EndPoint endPoint);
@@ -17,7 +18,107 @@ namespace ET
         void OnError(long id, int error);
     }
 
-    public class WebSocketTransport: IKcpTransport
+    public class WXSocketTransport : IKcpTransport
+    {
+        public WXUDPSocket WxudpSocket;
+
+        private EndPoint endPoint;
+
+        private readonly Queue<byte[]> channelRecvDatas = new();
+
+        public WXSocketTransport()
+        {
+            Log.Debug("WXSocketTransport");
+
+            this.WxudpSocket = WX.CreateUDPSocket();
+        }
+
+        public WXSocketTransport(AddressFamily addressFamily)
+        {
+            Log.Debug("WXSocketTransport with AddressFamily ");
+
+            this.WxudpSocket = WXBase.CreateUDPSocket();
+
+            this.WxudpSocket.OnMessage(this.OnMessage);
+
+            this.WxudpSocket.OnError(this.OnError);
+
+            this.WxudpSocket.OnListening(this.OnListening);
+
+            this.WxudpSocket.OnClose(this.OnClose);
+        }
+
+        public void OnClose(GeneralCallbackResult result)
+        {
+        }
+
+        public void OnListening(GeneralCallbackResult result)
+        {
+        }
+
+        public void OnError(GeneralCallbackResult result)
+        {
+            this.OnError(0, 0);
+        }
+
+        public void OnMessage(UDPSocketOnMessageListenerResult result)
+        {
+            // this.channelRecvDatas.Enqueue(result.message);
+            channelRecvDatas.Enqueue(result.message);
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Send(byte[] bytes, int index, int length, EndPoint endPoint)
+        {
+            Log.Debug($"send endpoint {endPoint.ToString()}");
+
+            this.endPoint = endPoint;
+
+            IPEndPoint ipEndPoint = endPoint as IPEndPoint;
+
+            UDPSocketSendOption option = new UDPSocketSendOption();
+
+            option.address = endPoint.ToString();
+            //
+            option.message = bytes;
+            //
+            option.port = length;
+            //
+            option.port = ipEndPoint.Port;
+
+            option.offset = index;
+            //
+            this.WxudpSocket.Send(option);
+        }
+
+        public int Recv(byte[] buffer, ref EndPoint endPoint)
+        {
+            this.channelRecvDatas.TryDequeue(out buffer);
+
+            return buffer.Length;
+        }
+
+        public int Available()
+        {
+            return this.WxudpSocket != null ? 1 : 0;
+        }
+
+        public void Update()
+        {
+            
+        }
+
+        public void OnError(long id, int error)
+        {
+            Log.Debug($"on error {id} {error}");
+        }
+    }
+
+    public class WebSocketTransport : IKcpTransport
     {
         public readonly ClientWebSocket Socket;
 
@@ -133,7 +234,7 @@ namespace ET
             // 检查长时间不读写的TChannel, 超时断开, 一次update检查10个
             long timeNow = TimeInfo.Instance.ClientFrameTime();
             const int MaxCheckNum = 10;
-            int n = this.channelIds.Count < MaxCheckNum? this.channelIds.Count : MaxCheckNum;
+            int n = this.channelIds.Count < MaxCheckNum ? this.channelIds.Count : MaxCheckNum;
             for (int i = 0; i < n; ++i)
             {
                 long id = this.channelIds.Dequeue();
@@ -155,7 +256,7 @@ namespace ET
         }
     }
 
-    public class UdpTransport: IKcpTransport
+    public class UdpTransport : IKcpTransport
     {
         private readonly Socket socket;
 
@@ -215,7 +316,7 @@ namespace ET
         }
     }
 
-    public class TcpTransport: IKcpTransport
+    public class TcpTransport : IKcpTransport
     {
         private readonly TService tService;
 
@@ -311,7 +412,7 @@ namespace ET
             // 检查长时间不读写的TChannel, 超时断开, 一次update检查10个
             long timeNow = TimeInfo.Instance.ClientFrameTime();
             const int MaxCheckNum = 10;
-            int n = this.channelIds.Count < MaxCheckNum? this.channelIds.Count : MaxCheckNum;
+            int n = this.channelIds.Count < MaxCheckNum ? this.channelIds.Count : MaxCheckNum;
             for (int i = 0; i < n; ++i)
             {
                 long id = this.channelIds.Dequeue();
