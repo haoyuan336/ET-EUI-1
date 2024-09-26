@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
-
 namespace ET
 {
     public static class KcpProtocalType
@@ -78,8 +77,10 @@ namespace ET
             this.Protocol = protocol;
             switch (this.Protocol)
             {
+                case NetworkProtocol.WXSocket:
+                    
                 case NetworkProtocol.WXUDP:
-                    this.Transport = new WXSocketTransport(addressFamily);
+                    // this.Transport = new WXSocketTransport(addressFamily);
                     break;
                 case NetworkProtocol.TCP:
                     this.Transport = new TcpTransport(addressFamily);

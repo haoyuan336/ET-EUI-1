@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
+// #if !UNITY
+// using WeChatWASM;
+// #endif
 
 namespace ET.Client
 {
@@ -17,11 +20,12 @@ namespace ET.Client
             RouterAddressComponent routerAddressComponent =
                     root.AddComponent<RouterAddressComponent, string, int>(ConstValue.RouterHttpHost, ConstValue.RouterHttpPort);
             await routerAddressComponent.Init();
-            root.AddComponent<NetComponent, AddressFamily, NetworkProtocol>(routerAddressComponent.RouterManagerIPAddress.AddressFamily, NetworkProtocol.WXUDP);
+            root.AddComponent<NetComponent, AddressFamily, NetworkProtocol>(routerAddressComponent.RouterManagerIPAddress.AddressFamily,
+                NetworkProtocol.UDP);
             root.GetComponent<FiberParentComponent>().ParentFiberId = request.OwnerFiberId;
 
             NetComponent netComponent = root.GetComponent<NetComponent>();
-            
+
             IPEndPoint realmAddress = routerAddressComponent.GetRealmAddress(account);
 
             R2C_Login r2CLogin;

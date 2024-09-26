@@ -11,6 +11,7 @@ namespace ET
         Websocket,
         UDP,
         WXUDP,
+        WXSocket,
     }
 
     public class NetServices: Singleton<NetServices>, ISingletonAwake
