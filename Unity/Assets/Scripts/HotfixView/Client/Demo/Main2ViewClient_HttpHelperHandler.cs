@@ -18,13 +18,13 @@ namespace ET.Client
                 
                 asyncOperation.completed += (result) =>
                 {
-                    Log.Debug("async operation completed");
+                    Log.Warning("async operation completed");
                     etTask.SetResult();
                 };
 
                 await etTask.GetAwaiter();
 
-                Log.Debug($"main 2 view client httphelper {unityWebRequest.downloadHandler.text}");
+                Log.Warning($"main 2 view client httphelper {unityWebRequest.downloadHandler.text}");
                 response.Text = unityWebRequest.downloadHandler.text;
             }
         }

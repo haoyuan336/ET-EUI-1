@@ -247,6 +247,7 @@ namespace ET.Server
                     {
                         break;
                     }
+                    Log.Debug($"cache lenth {self.Cache.Length}");
                     
                     uint outerConn = BitConverter.ToUInt32(self.Cache, 1);
                     uint innerConn = BitConverter.ToUInt32(self.Cache, 5);
@@ -264,7 +265,7 @@ namespace ET.Server
                     if (routerNode == null)
                     {
                         routerNode = self.New(realAddress, outerConn, innerConn, connectId, self.CloneAddress());
-                        Log.Info($"router create: {realAddress} {outerConn} {innerConn} {routerNode.SyncIpEndPoint}");
+                        Log.Info($"router create: {realAddress} {outerConn}, {innerConn}, {routerNode.SyncIpEndPoint}");
                     }
 
                     if (routerNode.Status != RouterStatus.Sync)

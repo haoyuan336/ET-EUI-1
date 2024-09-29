@@ -21,11 +21,12 @@ namespace ET
         private bool isSending;
 
         private bool isConnected;
-        
+
         private CancellationTokenSource cancellationTokenSource = new();
-        
+
         public WChannel(long id, HttpListenerWebSocketContext webSocketContext, WService service)
         {
+            Log.Warning("WChannel HttpListenerWebSocketContext ");
             this.Service = service;
             this.Id = id;
             this.ChannelType = ChannelType.Accept;
@@ -33,24 +34,27 @@ namespace ET
             this.webSocket = webSocketContext.WebSocket;
 
             isConnected = true;
-            
-            this.Service.ThreadSynchronizationContext.Post(()=>
+
+            this.Service.ThreadSynchronizationContext.Post(() =>
             {
                 this.StartRecv().Coroutine();
                 this.StartSend().Coroutine();
             });
         }
 
-        public WChannel(long id, WebSocket webSocket, IPEndPoint ipEndPoint, WService service)
+        public WChannel(long id, ClientWebSocket webSocket, IPEndPoint ipEndPoint, WService service)
         {
+            Log.Warning("WChannel is new gouzao");
             this.Service = service;
             this.Id = id;
             this.ChannelType = ChannelType.Connect;
             this.webSocket = webSocket;
-
             isConnected = false;
-            
-            this.Service.ThreadSynchronizationContext.Post(()=>this.ConnectAsync($"ws://{ipEndPoint}").Coroutine());
+            this.Service.ThreadSynchronizationContext.Post(() =>
+            {
+                Log.Warning("ThreadSynchronizationContext posy");
+                this.ConnectAsync($"ws://{ipEndPoint}").Coroutine();
+            });
         }
 
         public override void Dispose()
@@ -69,12 +73,27 @@ namespace ET
 
         private async ETTask ConnectAsync(string url)
         {
+            url = "ws://192.168.2.18:8080";
+            Log.Warning($"wchannel connect async {url} {this.isConnected} {this.webSocket.GetType()} ");
             try
             {
-                await ((ClientWebSocket) this.webSocket).ConnectAsync(new Uri(url), cancellationTokenSource.Token);
+                Uri uri = new Uri(url);
+
+                Log.Warning($"connect async {uri}");
+
+                // ClientWebSocket ws = new ClientWebSocket();
+
+                // ws.ConnectAsync();
+
+                // await ws.ConnectAsync(uri, this.cancellationTokenSource.Token);
+                await ((ClientWebSocket)this.webSocket).ConnectAsync(uri, cancellationTokenSource.Token);
+
                 isConnected = true;
-                
+
+                Log.Warning($"connect async completed {this.isConnected}");
+
                 this.StartRecv().Coroutine();
+
                 this.StartSend().Coroutine();
             }
             catch (Exception e)
@@ -86,7 +105,11 @@ namespace ET
 
         public void Send(MemoryBuffer memoryBuffer)
         {
+            Log.Warning($"wchannel send {memoryBuffer.Length}");
+
             this.queue.Enqueue(memoryBuffer);
+
+            Log.Warning($"wchannel send {this.queue.Count} {this.isConnected}");
 
             if (this.isConnected)
             {
@@ -110,22 +133,47 @@ namespace ET
 
                 this.isSending = true;
 
+                Log.Warning("start send ");
                 while (true)
                 {
+                    Log.Warning($"start send  {this.queue.Count}");
+
                     if (this.queue.Count == 0)
                     {
                         this.isSending = false;
                         return;
                     }
 
+                    Log.Warning($"start send  {this.queue.Count}");
+
                     MemoryBuffer stream = this.queue.Dequeue();
-            
+
                     try
                     {
-                        await this.webSocket.SendAsync(stream.GetMemory(), WebSocketMessageType.Binary, true, cancellationTokenSource.Token);
+                        Log.Warning($"this.webSocket.SendAsync");
+
+                        byte[] buffer = new byte[stream.Length];
+
+                        int bytesRead = stream.Read(buffer);
+
+                        Log.Debug($"bytes first {buffer[0]} {stream.Length}, {stream.GetMemory().Length}");
+
+                        ArraySegment<byte> arraySegment = new ArraySegment<byte>(buffer, 0, bytesRead);
+
+                        foreach (var value in arraySegment)
+                        {
+                            Log.Debug($"value {value}");
+                        }
                         
+                        await this.webSocket.SendAsync(arraySegment, WebSocketMessageType.Binary, true,
+                            CancellationToken.None);
+
+                        // await this.webSocket.SendAsync(stream.GetMemory(), WebSocketMessageType.Binary, true, cancellationTokenSource.Token);
+
+                        Log.Warning($"this.webSocket.SendAsync over");
+
                         this.Service.Recycle(stream);
-                        
+
                         if (this.IsDisposed)
                         {
                             return;
@@ -166,9 +214,9 @@ namespace ET
                     int receiveCount = 0;
                     do
                     {
-                        receiveResult = await this.webSocket.ReceiveAsync(
-                            new Memory<byte>(cache, receiveCount, this.cache.Length - receiveCount),
+                        receiveResult = await this.webSocket.ReceiveAsync(new Memory<byte>(cache, receiveCount, this.cache.Length - receiveCount),
                             cancellationTokenSource.Token);
+
                         if (this.IsDisposed)
                         {
                             return;
@@ -177,6 +225,8 @@ namespace ET
                         receiveCount += receiveResult.Count;
                     }
                     while (!receiveResult.EndOfMessage);
+
+                    Log.Debug($"receive count {receiveCount} {this.cache.Length}");
 
                     if (receiveResult.MessageType == WebSocketMessageType.Close)
                     {
@@ -196,6 +246,8 @@ namespace ET
                     memoryBuffer.SetLength(receiveCount);
                     memoryBuffer.Seek(0, SeekOrigin.Begin);
                     Array.Copy(this.cache, 0, memoryBuffer.GetBuffer(), 0, receiveCount);
+
+                    Log.Debug($"memoty buffer length {memoryBuffer.Length}");
                     this.OnRead(memoryBuffer);
                 }
             }
@@ -205,9 +257,12 @@ namespace ET
                 this.OnError(ErrorCore.ERR_WebsocketRecvError);
             }
         }
-        
+
         private void OnRead(MemoryBuffer memoryStream)
         {
+            Log.Warning($"on read {memoryStream.Length} {this.Service}");
+
+            Log.Warning($"read call back {this.Service.ReadCallback}");
             try
             {
                 this.Service.ReadCallback(this.Id, memoryStream);
@@ -218,15 +273,15 @@ namespace ET
                 this.OnError(ErrorCore.ERR_PacketParserError);
             }
         }
-        
+
         private void OnError(int error)
         {
             Log.Info($"WChannel error: {error} {this.RemoteAddress}");
-			
+
             long channelId = this.Id;
-			
+
             this.Service.Remove(channelId);
-			
+
             this.Service.ErrorCallback(channelId, error);
         }
     }

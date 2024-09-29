@@ -10,7 +10,7 @@ namespace ET
     }
 
     [ComponentOf(typeof(Scene))]
-    public class NetComponent : Entity, IAwake<IPEndPoint, NetworkProtocol>, IAwake<AddressFamily, NetworkProtocol>, IAwake<IPEndPoint>, IDestroy,
+    public class NetComponent : Entity,IAwake, IAwake<IPEndPoint, NetworkProtocol>, IAwake<AddressFamily, NetworkProtocol>, IAwake<IPEndPoint>, IAwake<NetworkProtocol>, IDestroy,
             IUpdate
     {
         public AService AService { get; set; }

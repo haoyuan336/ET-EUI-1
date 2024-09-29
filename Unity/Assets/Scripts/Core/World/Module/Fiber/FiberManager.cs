@@ -31,8 +31,10 @@ namespace ET
             this.schedulers[(int)SchedulerType.Thread] = this.mainThreadScheduler;
             this.schedulers[(int)SchedulerType.ThreadPool] = this.mainThreadScheduler;
 #else
-            this.schedulers[(int)SchedulerType.Thread] = new ThreadScheduler(this);
-            this.schedulers[(int)SchedulerType.ThreadPool] = new ThreadPoolScheduler(this);
+            // this.schedulers[(int)SchedulerType.Thread] = new ThreadScheduler(this);
+            // this.schedulers[(int)SchedulerType.ThreadPool] = new ThreadPoolScheduler(this);
+            this.schedulers[(int)SchedulerType.Thread] = this.mainThreadScheduler;
+            this.schedulers[(int)SchedulerType.ThreadPool] = this.mainThreadScheduler;
 #endif
         }
         

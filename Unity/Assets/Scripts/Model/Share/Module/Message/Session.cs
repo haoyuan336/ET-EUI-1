@@ -112,6 +112,7 @@ namespace ET
 
         public static async ETTask<IResponse> Call(this Session self, IRequest request, int time = 0)
         {
+            Log.Debug($"IResponse call {time}");
             int rpcId = ++self.RpcId;
             RpcInfo rpcInfo = new(request.GetType());
             self.requestCallbacks[rpcId] = rpcInfo;
@@ -149,6 +150,7 @@ namespace ET
         
         public static void Send(this Session self, ActorId actorId, IMessage message)
         {
+            Log.Debug("Session send");
             self.LastSendTime = TimeInfo.Instance.ClientNow();
             LogMsg.Instance.Debug(self.Fiber(), message);
 

@@ -6,12 +6,12 @@ using System.Net.WebSockets;
 
 namespace ET
 {
-    public class WService: AService
+    public class WService : AService
     {
         private long idGenerater = 200000000;
-        
+
         private HttpListener httpListener;
-        
+
         private readonly Dictionary<long, WChannel> channels = new Dictionary<long, WChannel>();
 
         public ThreadSynchronizationContext ThreadSynchronizationContext;
@@ -19,18 +19,18 @@ namespace ET
         public WService(IEnumerable<string> prefixs)
         {
             this.ThreadSynchronizationContext = new ThreadSynchronizationContext();
-            
+
             this.httpListener = new HttpListener();
 
             StartAccept(prefixs).Coroutine();
         }
-        
+
         public WService()
         {
             this.ServiceType = ServiceType.Outer;
             this.ThreadSynchronizationContext = new ThreadSynchronizationContext();
         }
-        
+
         private long GetId
         {
             get
@@ -38,10 +38,12 @@ namespace ET
                 return ++this.idGenerater;
             }
         }
-        
+
         public override void Create(long id, IPEndPoint ipEndpoint)
         {
-			ClientWebSocket webSocket = new();
+            Log.Warning("wserver create wchannel ");
+            ClientWebSocket webSocket = new();
+            webSocket.Options.AddSubProtocol("binary");
             WChannel channel = new(id, webSocket, ipEndpoint, this);
             this.channels[channel.Id] = channel;
         }
@@ -77,7 +79,7 @@ namespace ET
                 this.Create(id, ipEndPoint);
             }
         }
-        
+
         public WChannel Get(long id)
         {
             WChannel channel = null;
@@ -88,7 +90,7 @@ namespace ET
         public override void Dispose()
         {
             base.Dispose();
-            
+
             this.ThreadSynchronizationContext = null;
             this.httpListener?.Close();
             this.httpListener = null;
@@ -102,7 +104,7 @@ namespace ET
                 {
                     this.httpListener.Prefixes.Add(prefix);
                 }
-                
+
                 httpListener.Start();
 
                 while (true)
@@ -114,7 +116,13 @@ namespace ET
                         HttpListenerWebSocketContext webSocketContext = await httpListenerContext.AcceptWebSocketAsync(null);
 
                         WChannel channel = new WChannel(this.GetId, webSocketContext, this);
+                        
+                        Log.Debug($"channel {channel.Id}");
+                        
                         channel.RemoteAddress = httpListenerContext.Request.RemoteEndPoint;
+                        
+                        Log.Debug($"channle remote address {channel.RemoteAddress}");
+                        
                         this.channels[channel.Id] = channel;
 
                         this.AcceptCallback(channel.Id, channel.RemoteAddress);
@@ -142,11 +150,15 @@ namespace ET
 
         public override void Send(long channelId, MemoryBuffer memoryBuffer)
         {
+            Log.Warning($"wservice  send {channelId}");
+
             this.channels.TryGetValue(channelId, out WChannel channel);
             if (channel == null)
             {
+                Log.Warning("channel is null");
                 return;
             }
+
             channel.Send(memoryBuffer);
         }
     }

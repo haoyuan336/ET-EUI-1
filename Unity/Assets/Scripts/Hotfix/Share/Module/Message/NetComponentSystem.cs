@@ -48,7 +48,7 @@ namespace ET
             self.AService.Dispose();
         }
 
-        private static void OnError(this NetComponent self, long channelId, int error)
+        public static void OnError(this NetComponent self, long channelId, int error)
         {
             Session session = self.GetChild<Session>(channelId);
             if (session == null)
@@ -75,7 +75,7 @@ namespace ET
             }
         }
 
-        private static void OnRead(this NetComponent self, long channelId, MemoryBuffer memoryBuffer)
+        public static void OnRead(this NetComponent self, long channelId, MemoryBuffer memoryBuffer)
         {
             Session session = self.GetChild<Session>(channelId);
             if (session == null)
@@ -95,7 +95,9 @@ namespace ET
 
         public static Session Create(this NetComponent self, IPEndPoint realIPEndPoint)
         {
+            Log.Warning($"net component create {realIPEndPoint}");
             long channelId = NetServices.Instance.CreateConnectChannelId();
+            Log.Warning($"channel id {channelId}");
             Session session = self.AddChildWithId<Session, AService>(channelId, self.AService);
             session.RemoteAddress = realIPEndPoint;
             if (self.IScene.SceneType != SceneType.BenchmarkClient)
@@ -110,6 +112,7 @@ namespace ET
 
         public static Session Create(this NetComponent self, IPEndPoint routerIPEndPoint, IPEndPoint realIPEndPoint, uint localConn)
         {
+            Log.Warning($"net component create {localConn} {routerIPEndPoint} {realIPEndPoint}");
             long channelId = localConn;
             Session session = self.AddChildWithId<Session, AService>(channelId, self.AService);
             session.RemoteAddress = realIPEndPoint;
@@ -121,8 +124,18 @@ namespace ET
             self.AService.Create(session.Id, routerIPEndPoint);
             return session;
         }
+
         [EntitySystem]
         private static void Awake(this ET.NetComponent self, System.Net.IPEndPoint args2)
+        {
+        }
+
+        [EntitySystem]
+        private static void Awake(this ET.NetComponent self, ET.NetworkProtocol args2)
+        {
+        }
+        [EntitySystem]
+        private static void Awake(this ET.NetComponent self)
         {
 
         }

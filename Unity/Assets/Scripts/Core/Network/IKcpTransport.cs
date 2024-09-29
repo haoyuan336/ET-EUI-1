@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.WebSockets;
 using System.Runtime.InteropServices;
+
 // using WeChatWASM;
 
 namespace ET
@@ -17,106 +18,6 @@ namespace ET
         void Update();
         void OnError(long id, int error);
     }
-
-    // public class WXSocketTransport : IKcpTransport
-    // {
-    //     public WXUDPSocket WxudpSocket;
-    //
-    //     private EndPoint endPoint;
-    //
-    //     private readonly Queue<byte[]> channelRecvDatas = new();
-    //
-    //     public WXSocketTransport()
-    //     {
-    //         Log.Warning("WXSocketTransport");
-    //
-    //         this.WxudpSocket = WX.CreateUDPSocket();
-    //     }
-    //
-    //     public WXSocketTransport(AddressFamily addressFamily)
-    //     {
-    //         Log.Warning("WXSocketTransport with AddressFamily ");
-    //
-    //         this.WxudpSocket = WXBase.CreateUDPSocket();
-    //
-    //         this.WxudpSocket.OnMessage(this.OnMessage);
-    //
-    //         this.WxudpSocket.OnError(this.OnError);
-    //
-    //         this.WxudpSocket.OnListening(this.OnListening);
-    //
-    //         this.WxudpSocket.OnClose(this.OnClose);
-    //     }
-    //
-    //     public void OnClose(GeneralCallbackResult result)
-    //     {
-    //     }
-    //
-    //     public void OnListening(GeneralCallbackResult result)
-    //     {
-    //     }
-    //
-    //     public void OnError(GeneralCallbackResult result)
-    //     {
-    //         this.OnError(0, 0);
-    //     }
-    //
-    //     public void OnMessage(UDPSocketOnMessageListenerResult result)
-    //     {
-    //         // this.channelRecvDatas.Enqueue(result.message);
-    //         channelRecvDatas.Enqueue(result.message);
-    //     }
-    //
-    //     public void Dispose()
-    //     {
-    //         throw new NotImplementedException();
-    //     }
-    //
-    //     public void Send(byte[] bytes, int index, int length, EndPoint endPoint)
-    //     {
-    //         Log.Warning($"send endpoint {endPoint.ToString()}");
-    //
-    //         this.endPoint = endPoint;
-    //
-    //         IPEndPoint ipEndPoint = endPoint as IPEndPoint;
-    //
-    //         UDPSocketSendOption option = new UDPSocketSendOption();
-    //
-    //         option.address = endPoint.ToString();
-    //         //
-    //         option.message = bytes;
-    //         //
-    //         option.port = length;
-    //         //
-    //         option.port = ipEndPoint.Port;
-    //
-    //         option.offset = index;
-    //         //
-    //         this.WxudpSocket.Send(option);
-    //     }
-    //
-    //     public int Recv(byte[] buffer, ref EndPoint endPoint)
-    //     {
-    //         this.channelRecvDatas.TryDequeue(out buffer);
-    //
-    //         return buffer.Length;
-    //     }
-    //
-    //     public int Available()
-    //     {
-    //         return this.WxudpSocket != null ? 1 : 0;
-    //     }
-    //
-    //     public void Update()
-    //     {
-    //         
-    //     }
-    //
-    //     public void OnError(long id, int error)
-    //     {
-    //         Log.Debug($"on error {id} {error}");
-    //     }
-    // }
 
     public class WebSocketTransport : IKcpTransport
     {
@@ -134,14 +35,20 @@ namespace ET
 
         private readonly Queue<long> channelIds = new();
 
-        public WebSocketTransport(AddressFamily addressFamily)
+        public WebSocketTransport()
         {
-            Log.Debug($"ip end point {addressFamily}");
+            // Log.Debug($"ip end point {addressFamily}");
 
             // this.socket = new Socket(addressFamily, SocketType.Dgram, ProtocolType.Udp);
             // NetworkHelper.SetSioUdpConnReset(this.socket);
 
-            this.Socket = new ClientWebSocket();
+            // this.Socket = new ClientWebSocket();
+
+            this.WService = new WService();
+
+            this.WService.ReadCallback = this.OnRead;
+
+            this.WService.ErrorCallback = this.OnError;
         }
 
         public WebSocketTransport(IPEndPoint ipEndPoint)
@@ -178,6 +85,7 @@ namespace ET
 
         private void OnRead(long id, MemoryBuffer memoryBuffer)
         {
+            Log.Debug($"memoryBuffer {memoryBuffer.GetMemory()}");
             long timeNow = TimeInfo.Instance.ClientFrameTime();
             this.readWriteTime[id] = timeNow;
             WChannel channel = this.WService.Get(id);
@@ -193,9 +101,14 @@ namespace ET
         {
             long id = this.idEndpoints.GetKeyByValue(endPoint);
 
+            Log.Warning($" WebSocketTransport send  {id} {endPoint}");
+
             if (id == 0)
             {
                 id = IdGenerater.Instance.GenerateInstanceId();
+
+                Log.Warning($"id {id}");
+
                 this.WService.Create(id, (IPEndPoint)endPoint);
                 this.idEndpoints.Add(id, endPoint);
                 this.channelIds.Enqueue(id);
@@ -330,6 +243,7 @@ namespace ET
 
         public TcpTransport(AddressFamily addressFamily)
         {
+            Log.Warning($"TcpTransport {addressFamily}");
             this.tService = new TService(addressFamily, ServiceType.Outer);
             this.tService.ErrorCallback = this.OnError;
             this.tService.ReadCallback = this.OnRead;

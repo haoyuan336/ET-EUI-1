@@ -1,14 +1,9 @@
-﻿using System;
-using System.Net;
-using System.Net.Sockets;
-// #if !UNITY
-// using WeChatWASM;
-// #endif
+﻿using System.Net;
 
 namespace ET.Client
 {
     [MessageHandler(SceneType.NetClient)]
-    public class Main2NetClient_LoginHandler: MessageHandler<Scene, Main2NetClient_Login, NetClient2Main_Login>
+    public class Main2NetClient_LoginHandler : MessageHandler<Scene, Main2NetClient_Login, NetClient2Main_Login>
     {
         protected override async ETTask Run(Scene root, Main2NetClient_Login request, NetClient2Main_Login response)
         {
@@ -20,11 +15,20 @@ namespace ET.Client
             RouterAddressComponent routerAddressComponent =
                     root.AddComponent<RouterAddressComponent, string, int>(ConstValue.RouterHttpHost, ConstValue.RouterHttpPort);
             await routerAddressComponent.Init();
-            root.AddComponent<NetComponent, AddressFamily, NetworkProtocol>(routerAddressComponent.RouterManagerIPAddress.AddressFamily,
-                NetworkProtocol.UDP);
-            root.GetComponent<FiberParentComponent>().ParentFiberId = request.OwnerFiberId;
+            //
+            // NetComponent netComponent = root.AddComponent<NetComponent, AddressFamily, NetworkProtocol>(
+            //     routerAddressComponent.RouterManagerIPAddress.AddressFamily,
+            //     NetworkProtocol.UDP);
 
-            NetComponent netComponent = root.GetComponent<NetComponent>();
+            NetComponent netComponent = root.AddComponent<NetComponent>();
+            //
+            netComponent.AService = new KSService();
+            
+            netComponent.AService.ReadCallback = netComponent.OnRead;
+            
+            netComponent.AService.ErrorCallback = netComponent.OnError;
+
+            root.GetComponent<FiberParentComponent>().ParentFiberId = request.OwnerFiberId;
 
             IPEndPoint realmAddress = routerAddressComponent.GetRealmAddress(account);
 

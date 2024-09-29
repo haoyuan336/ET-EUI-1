@@ -34,6 +34,7 @@ namespace ET
 
 		public TService(AddressFamily addressFamily, ServiceType serviceType)
 		{
+			Log.Warning($"Tserver gouzao {serviceType}");
 			this.ServiceType = serviceType;
 		}
 

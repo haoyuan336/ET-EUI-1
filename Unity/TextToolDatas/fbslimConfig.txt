@@ -82,19 +82,15 @@ LDR_LLL1_29.10e196e1
 LDR_LLL1_11.8901a3fa
 Large01.636f1e2c
 LDR_LLL1_28.d5296d58
-Skeleton_D.714a507e
+Skeleton_D.3daf0299
 Lightmap-0_comp_light.7bc50ae8
 Lightmap-0_comp_dir.4727dbfc
 Lightmap-0_comp_light.45d05f24
 Lightmap-0_comp_dir.0b617b90
 UIMask.09363183
-RootPackage_atlas0_1.5fcdae43
 White1px.f8d314fe
-RootPackage_atlas0_2.eb44c075
 UIFoldoutClosed.89295238
-RootPackage_atlas0.c7e3f57c
 UIFoldoutOpened.84255435
 UICheckMark.d924f22b
 UIElement8px.f411169b
-EmojiOne.eef190bd
 LiberationSans SDF Atlas.ac9f1c83
