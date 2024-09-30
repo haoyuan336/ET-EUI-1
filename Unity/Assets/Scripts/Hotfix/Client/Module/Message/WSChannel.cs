@@ -66,12 +66,6 @@ namespace ET
 
         public void OnMessage(object sender, UnityWebSocket.MessageEventArgs messageEventArgs)
         {
-            Log.Warning($"on message {messageEventArgs.RawData} {messageEventArgs.RawData.Length} {messageEventArgs.IsBinary} ");
-
-            foreach (var value in messageEventArgs.RawData)
-            {
-                Log.Warning($"on message {value}");
-            }
             ValueWebSocketReceiveResult receiveResult;
             int receiveCount = messageEventArgs.RawData.Length;
             if (messageEventArgs.IsBinary)
@@ -80,21 +74,6 @@ namespace ET
                 // Array.Copy(this.cache, 0, messageEventArgs.RawData, 0, receiveCount);
                 Array.Copy(messageEventArgs.RawData, 0, this.cache, 0, receiveCount);
             }
-
-            Log.Warning($"receive count {receiveCount} {this.cache.Length}");
-
-            for (int i = 0; i < receiveCount; i++)
-            {
-                byte value = this.cache[i];
-                
-                Log.Warning($"value {value}");
-            }
-
-            foreach (var value in messageEventArgs.RawData)
-            {
-                Log.Warning($"value {value}");
-            }
-            
             MemoryBuffer memoryBuffer = this.Service.Fetch(receiveCount);
             memoryBuffer.SetLength(receiveCount);
             memoryBuffer.Seek(0, SeekOrigin.Begin);
@@ -139,11 +118,7 @@ namespace ET
 
         public void Send(MemoryBuffer memoryBuffer)
         {
-            Log.Warning($"wchannel send {memoryBuffer.Length}");
-
             this.queue.Enqueue(memoryBuffer);
-
-            Log.Warning($"wchannel send {this.queue.Count} {this.isConnected}");
 
             if (this.isConnected)
             {
@@ -167,36 +142,27 @@ namespace ET
 
                 this.isSending = true;
 
-                Log.Warning("start send ");
                 while (true)
                 {
-                    Log.Warning($"start send  {this.queue.Count}");
 
                     if (this.queue.Count == 0)
                     {
                         this.isSending = false;
-                        Log.Debug("send over");
                         return;
                     }
-
-                    Log.Warning($"start send  {this.queue.Count}");
 
                     MemoryBuffer stream = this.queue.Dequeue();
 
                     try
                     {
-                        Log.Warning($"this.webSocket.SendAsync");
 
                         // await this.webSocket.SendAsync(stream.GetMemory(), WebSocketMessageType.Binary, true, cancellationTokenSource.Token);
                         byte[] buff = new byte[stream.Length];
 
                         int read = stream.Read(buff);
 
-                        Log.Debug($"straam count {stream.GetBuffer().Length} buff length {buff.Length} read {read}");
                         // stream.GetMemory().;
                         this.webSocket.SendAsync(buff);
-
-                        Log.Warning($"this.webSocket.SendAsync over");
 
                         this.Service.Recycle(stream);
 
@@ -284,9 +250,6 @@ namespace ET
 
         private void OnRead(MemoryBuffer memoryStream)
         {
-            Log.Warning($"on read {memoryStream.Length} {this.Service}");
-
-            Log.Warning($"read call back {this.Service.ReadCallback}");
             try
             {
                 this.Service.ReadCallback(this.Id, memoryStream);

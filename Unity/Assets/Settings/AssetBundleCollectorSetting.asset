@@ -20,8 +20,8 @@ MonoBehaviour:
     PackageDesc: 
     EnableAddressable: 1
     LocationToLower: 0
-    IncludeAssetGUID: 0
-    AutoCollectShaders: 1
+    IncludeAssetGUID: 1
+    AutoCollectShaders: 0
     IgnoreRuleName: NormalIgnoreRule
     Groups:
     - GroupName: Code
@@ -64,16 +64,16 @@ MonoBehaviour:
         AssetTags: 
         UserData: 
     - GroupName: Unit
-      GroupDesc: 
-      AssetTags: 
+      GroupDesc: Unit
+      AssetTags: Unit
       ActiveRuleName: EnableGroup
       Collectors:
       - CollectPath: Assets/Bundles/Unit
         CollectorGUID: c3561f86a9d0b324680975876c94ca05
         CollectorType: 0
         AddressRuleName: AddressByFileName
-        PackRuleName: PackSeparately
-        FilterRuleName: CollectPrefab
+        PackRuleName: PackDirectory
+        FilterRuleName: CollectAll
         AssetTags: 
         UserData: 
     - GroupName: Scene
@@ -102,13 +102,13 @@ MonoBehaviour:
         FilterRuleName: CollectAll
         AssetTags: 
         UserData: 
-    - GroupName: Scene
+    - GroupName: Shader
       GroupDesc: 
       AssetTags: 
       ActiveRuleName: EnableGroup
       Collectors:
-      - CollectPath: Assets/Bundles/Scenes
-        CollectorGUID: 406b13cb70603ef449d91f5572708db2
+      - CollectPath: 
+        CollectorGUID: 
         CollectorType: 0
         AddressRuleName: AddressByFileName
         PackRuleName: PackDirectory

@@ -16,6 +16,7 @@ namespace ET.Server
             {
                 if (!WatcherHelper.IsThisMachine(startProcessConfig.InnerIP, localIP))
                 {
+                    Log.Debug("启动的innerip 与本机ip不一致 所以跳过");
                     continue;
                 }
                 System.Diagnostics.Process process = WatcherHelper.StartProcess(startProcessConfig.Id);

@@ -9,6 +9,7 @@ namespace ET.Server
     {
         protected override async ETTask Run(Scene root, EntryEvent2 args)
         {
+            Log.Debug($"entry event 2 {Options.Instance.AppType}");
             switch (Options.Instance.AppType)
             {
                 case AppType.Server:

@@ -14,7 +14,7 @@ namespace ET.Server
         [EntitySystem]
         private static void Awake(this RouterComponent self, IPEndPoint outerAddress, string innerIP)
         {
-            Log.Warning("routercomponent");
+            Log.Debug($"routercomponent awake  {outerAddress}, {innerIP} ");
             self.OuterUdp = new UdpTransport(outerAddress);
             // self.OuterTcp = new TcpTransport(outerAddress);
             self.OuterWebSocket = new WebSocketTransport(outerAddress);
@@ -98,6 +98,7 @@ namespace ET.Server
                 try
                 {
                     int messageLength = self.OuterUdp.Recv(self.Cache, ref self.IPEndPoint);
+                    Log.Debug($"recv out udp {messageLength}");
                     self.RecvOuterHandler(messageLength, timeNow, self.OuterUdp);
                 }
                 catch (Exception e)

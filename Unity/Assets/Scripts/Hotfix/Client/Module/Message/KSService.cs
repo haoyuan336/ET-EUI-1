@@ -143,7 +143,6 @@ namespace ET
 
         private void Recv()
         {
-            Log.Warning("recv");
             if (this.Transport == null)
             {
                 Log.Warning("transport is null");
@@ -154,7 +153,6 @@ namespace ET
             {
                 int messageLength = this.Transport.Recv(this.cache, ref this.ipEndPoint);
                 
-                Log.Debug($"message length {messageLength}");
                 // 长度小于1，不是正常的消息
                 if (messageLength < 1)
                 {
@@ -164,8 +162,6 @@ namespace ET
                 // accept
                 byte flag = this.cache[0];
                 
-                Log.Debug($"flag {flag}");
-
                 // conn从100开始，如果为1，2，3则是特殊包
                 uint remoteConn = 0;
                 uint localConn = 0;

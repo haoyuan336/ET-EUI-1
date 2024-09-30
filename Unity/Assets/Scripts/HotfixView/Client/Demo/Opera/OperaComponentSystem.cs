@@ -17,21 +17,31 @@ namespace ET.Client
         {
             if (Input.GetMouseButtonDown(1))
             {
+                Log.Warning("get mouse button down ");
+
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, 1000, self.mapMask))
+
+                bool isHited = Physics.Raycast(ray, out hit, 1000, self.mapMask);
+
+                Log.Warning($"is hited {isHited}");
+
+                if (isHited)
                 {
                     C2M_PathfindingResult c2MPathfindingResult = C2M_PathfindingResult.Create();
+
                     c2MPathfindingResult.Position = hit.point;
+
                     self.Root().GetComponent<ClientSenderComponent>().Send(c2MPathfindingResult);
                 }
             }
-            
+
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 self.Test1().Coroutine();
             }
-                
+
             if (Input.GetKeyDown(KeyCode.W))
             {
                 self.Test2().Coroutine();
@@ -49,7 +59,7 @@ namespace ET.Client
                 self.Root().GetComponent<ClientSenderComponent>().Call(c2MTransferMap).Coroutine();
             }
         }
-        
+
         private static async ETTask Test1(this OperaComponent self)
         {
             Log.Debug($"Croutine 1 start1 ");
@@ -60,7 +70,7 @@ namespace ET.Client
 
             Log.Debug($"Croutine 1 end1");
         }
-            
+
         private static async ETTask Test2(this OperaComponent self)
         {
             Log.Debug($"Croutine 2 start2");
@@ -68,6 +78,7 @@ namespace ET.Client
             {
                 await self.Root().GetComponent<TimerComponent>().WaitAsync(1000);
             }
+
             Log.Debug($"Croutine 2 end2");
         }
     }

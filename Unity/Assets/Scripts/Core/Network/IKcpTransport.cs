@@ -53,9 +53,9 @@ namespace ET
 
         public WebSocketTransport(IPEndPoint ipEndPoint)
         {
-            string address = $"http://{ipEndPoint.ToString()}/";
-
-            Log.Debug($"websocket transport address {address}");
+            string address = $"http://+:{ipEndPoint.Port}/";
+            
+            Log.Debug($"WebSocketTransport address {address}");
 
             this.WService = new WService(new[] { address });
 
@@ -68,7 +68,9 @@ namespace ET
 
         private void OnAccept(long id, IPEndPoint ipEndPoint)
         {
+            Log.Debug($"websocker transport OnAccept {ipEndPoint}");
             WChannel channel = this.WService.Get(id);
+            Log.Debug($"channel {channel}");
             long timeNow = TimeInfo.Instance.ClientFrameTime();
             this.readWriteTime[id] = timeNow;
             this.channelIds.Enqueue(id);

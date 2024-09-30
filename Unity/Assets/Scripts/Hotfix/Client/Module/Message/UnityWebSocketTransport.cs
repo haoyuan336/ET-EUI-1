@@ -124,7 +124,6 @@ namespace ET.Client
 
         public int Available()
         {
-            Log.Debug($"channel reve data count {this.channelRecvDatas.Count}");
             return this.channelRecvDatas.Count;
         }
 

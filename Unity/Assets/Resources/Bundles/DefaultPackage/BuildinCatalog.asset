@@ -13,37 +13,41 @@ MonoBehaviour:
   m_Name: BuildinCatalog
   m_EditorClassIdentifier: 
   PackageName: DefaultPackage
-  PackageVersion: 2024-08-27-640
+  PackageVersion: 2024-09-29-1250
   Wrappers:
-  - BundleGUID: d48ebefc433938bd497b3d566172601c
-    FileName: assets_bundles_code_d48ebefc433938bd497b3d566172601c.bundle
+  - BundleGUID: 14101afa3ef0c887d0946529652135a2
+    FileName: assets_bundles_code_14101afa3ef0c887d0946529652135a2.bundle
   - BundleGUID: 4844e5e93d774eb3364449b400d06b70
     FileName: assets_bundles_config_4844e5e93d774eb3364449b400d06b70.bundle
-  - BundleGUID: 0619e0840180b0ed5514a928476d93bf
-    FileName: assets_bundles_fgui_loginlayerpackage_0619e0840180b0ed5514a928476d93bf.bundle
-  - BundleGUID: 68f7455874d7bad568172fe6f0819342
-    FileName: assets_bundles_fgui_mainpackage_68f7455874d7bad568172fe6f0819342.bundle
-  - BundleGUID: 33b90e410069e9a62d2c88f27bc946ec
-    FileName: assets_bundles_prefabs_33b90e410069e9a62d2c88f27bc946ec.bundle
-  - BundleGUID: 16ff5270366a7e9f8f6ad5fe383901b4
-    FileName: assets_bundles_scenes_map1_16ff5270366a7e9f8f6ad5fe383901b4.bundle
-  - BundleGUID: 60e5d9be5fb775973370a4daa876ed9b
-    FileName: assets_bundles_scenes_map2_60e5d9be5fb775973370a4daa876ed9b.bundle
-  - BundleGUID: be284bf2e2d8ed9c21c5fe277482449b
-    FileName: assets_bundles_unit_unit_be284bf2e2d8ed9c21c5fe277482449b.bundle
-  - BundleGUID: 6438ac0d009fd653302c409fc3731f0e
-    FileName: share_assets_bundles_scenes_6438ac0d009fd653302c409fc3731f0e.bundle
-  - BundleGUID: 9e568ae6d968a8b5e0352b5caab816f8
-    FileName: share_assets_bundles_scenes_map1_9e568ae6d968a8b5e0352b5caab816f8.bundle
-  - BundleGUID: 389eaa194ca6d59672c48f3cc26b267d
-    FileName: share_assets_bundles_scenes_map2_389eaa194ca6d59672c48f3cc26b267d.bundle
-  - BundleGUID: d0fbc328c22b4b9a7a7b0bc8c8471b9e
-    FileName: share_assets_res_mat_d0fbc328c22b4b9a7a7b0bc8c8471b9e.bundle
-  - BundleGUID: 0e321f524778678abc987a58a4a204ef
-    FileName: share_assets_res_unit_skeleton_0e321f524778678abc987a58a4a204ef.bundle
+  - BundleGUID: 40a23b402d35f2c3c0f9cf9fc3d227d2
+    FileName: assets_bundles_prefabs_40a23b402d35f2c3c0f9cf9fc3d227d2.bundle
+  - BundleGUID: a6f49720cd5659f1c154e8b630bd417f
+    FileName: assets_bundles_scenes_map1_a6f49720cd5659f1c154e8b630bd417f.bundle
+  - BundleGUID: 2555cbd063832beffb2d3c99e2f6b862
+    FileName: share_assets_bundles_scenes_2555cbd063832beffb2d3c99e2f6b862.bundle
+  - BundleGUID: 4c0146950c84c0333febb5e68103777b
+    FileName: share_assets_bundles_scenes_map1_4c0146950c84c0333febb5e68103777b.bundle
+  - BundleGUID: 8ea27bc0e329a071b5402cd064b2dd03
+    FileName: share_assets_res_mat_8ea27bc0e329a071b5402cd064b2dd03.bundle
+  - BundleGUID: a417e6522fa407478385d50264399f4a
+    FileName: share_assets_res_unit_skeleton_a417e6522fa407478385d50264399f4a.bundle
   - BundleGUID: 3483fa93f8bd1f429c4389b9be030cda
     FileName: share_assets_res_unit_skeleton_ani_3483fa93f8bd1f429c4389b9be030cda.bundle
-  - BundleGUID: c8d34cff0831c77a333946c88a8e134e
-    FileName: share_assets_res_unit_skeleton_ani_materials_c8d34cff0831c77a333946c88a8e134e.bundle
+  - BundleGUID: 2ea762a04273331cf749434fce2bd9f7
+    FileName: share_assets_res_unit_skeleton_ani_materials_2ea762a04273331cf749434fce2bd9f7.bundle
+  - BundleGUID: 393fe152174bd9d8f30f10c7c9ce7630
+    FileName: share_assets_res_unit_skeleton_character_393fe152174bd9d8f30f10c7c9ce7630.bundle
+  - BundleGUID: c70b5a55ff86fac0ad46cd81a5f459cd
+    FileName: share_assets_res_unit_skeleton_character_materials_c70b5a55ff86fac0ad46cd81a5f459cd.bundle
   - BundleGUID: 50deb932c60c491b97b392620a32609c
     FileName: share_assets_res_unit_skeleton_texture_50deb932c60c491b97b392620a32609c.bundle
+  - BundleGUID: 405e84239e5d1d38af3e5886f84dbf17
+    FileName: share_assets_textmesh_pro_fonts_405e84239e5d1d38af3e5886f84dbf17.bundle
+  - BundleGUID: ca8ad4258b627e3bf38d7fe01455de70
+    FileName: share_assets_textmesh_pro_resources_fonts_&_materials_ca8ad4258b627e3bf38d7fe01455de70.bundle
+  - BundleGUID: e785ea1f901e3e0d948c7bcaa35577f8
+    FileName: share_assets_textmesh_pro_shaders_e785ea1f901e3e0d948c7bcaa35577f8.bundle
+  - BundleGUID: 7188f6e3087201ad0478f6945df51e6d
+    FileName: share_packages_com_unity_render-pipelines_universal_shaders_7188f6e3087201ad0478f6945df51e6d.bundle
+  - BundleGUID: a6ca43ed3c1a0f50f6654482f8fda201
+    FileName: share_packages_com_unity_textmeshpro_editor_resources_gizmos_a6ca43ed3c1a0f50f6654482f8fda201.bundle

@@ -215,12 +215,6 @@ namespace UnityWebSocket
                     ms.Write(segment.Array, 0, result.Count);
                     if (!result.EndOfMessage) continue;
                     var data = ms.ToArray();
-
-                    foreach (var value in data)
-                    {
-                        Debug.Log($"StartReceiveTask value {value}");
-                    }
-                    
                     ms.SetLength(0);
                     switch (result.MessageType)
                     {
@@ -307,13 +301,6 @@ namespace UnityWebSocket
                 else if (e is MessageEventArgs)
                 {
                     MessageEventArgs args = e as MessageEventArgs;
-                    
-                    Debug.Log($"args {args.RawData.Length}");
-
-                    foreach (var value in args.RawData)
-                    {
-                        Debug.Log($"Update value {value}");
-                    }
                     
                     OnMessage?.Invoke(this, args);
                 }

@@ -51,15 +51,15 @@ MonoBehaviour:
     ScriptOnly: 0
     Il2CppOptimizeSize: 1
     profilingFuncs: 1
-    Webgl2: 1
+    Webgl2: 0
     fbslim: 1
-    DeleteStreamingAssets: 1
+    DeleteStreamingAssets: 0
     ProfilingMemory: 0
-    CleanBuild: 1
+    CleanBuild: 0
     CustomNodePath: 
     autoAdaptScreen: 1
     showMonitorSuggestModal: 1
-    enableProfileStats: 1
+    enableProfileStats: 0
     enableRenderAnalysis: 0
     iOSAutoGCInterval: 10000
     enableIOSPerformancePlus: 0
