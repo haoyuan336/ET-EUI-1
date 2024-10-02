@@ -161,9 +161,18 @@ namespace ET
             //
             Debug.Log($"handler {handle.Status}");
 
-            GameObject prefab = handle.AssetObject as GameObject;
 
-            GameObject gameObject = GameObject.Instantiate(prefab);
+            // GameObject prefab = handle.AssetObject as GameObject;
+            //
+            // GameObject gameObject = GameObject.Instantiate(prefab);
+            //
+            // gameObject.transform.position = new Vector3(1, 0, 0);
+
+            // GameObject cubePrefab = Resources.Load("Player1") as GameObject;
+            //
+            // GameObject cube = GameObject.Instantiate(cubePrefab);
+            //
+            // cube.transform.position = new Vector3(1, 0, 0);
         }
 
         static string GetHostServerURL()

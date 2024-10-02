@@ -10,7 +10,7 @@ namespace ET.Client
         {
             Unit unit = args.Unit;
             // // Unit View层
-            string assetsName = $"Player1";
+            string assetsName = $"Cube";
 
             // AssetHandle handle = YooAssets.LoadAssetAsync<GameObject>(assetsName);
             //
@@ -29,10 +29,15 @@ namespace ET.Client
             //
             // };
 
-            GameObject prefab = await scene.GetComponent<ResourcesLoaderComponent>().LoadAssetAsync<GameObject>(assetsName);
+            // GameObject prefab = Resources.Load("Player1") as GameObject;
+
+            // GameObject prefab = await scene.GetComponent<ResourcesLoaderComponent>().LoadAssetAsync<GameObject>(assetsName);
             // GameObject prefab = bundleGameObject.Get<GameObject>("Skeleton");
+            // GameObject prefab = scene.Root().GetComponent<GlobalComponent>().Prefabs.PlayerPrefab;
             // //
             GlobalComponent globalComponent = scene.Root().GetComponent<GlobalComponent>();
+
+            GameObject prefab = globalComponent.Prefabs.PlayerPrefab;
             
             GameObject go = UnityEngine.Object.Instantiate(prefab, globalComponent.Unit, true);
             

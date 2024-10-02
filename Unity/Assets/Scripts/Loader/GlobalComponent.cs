@@ -18,6 +18,8 @@ namespace ET
             // self.OtherRoot = GameObject.Find("/Global/UI/OtherRoot").transform;
             self.PoolRoot = GameObject.Find("/Global/PoolRoot").transform;
 
+            self.Prefabs = GameObject.Find("/Global/Prefabs").GetComponent<Prefabs>();
+
             self.UIPanel = GameObject.Find("/Global/UIPanel").transform.GetComponent<UIPanel>();
 
             // self.NormalRoot = self.UIPanel.
@@ -33,7 +35,7 @@ namespace ET
             self.OtherRoot = self.RootLayer.GetChild("OtherRootLayer").asCom;
 
             self.GlobalConfig = Resources.Load<GlobalConfig>("GlobalConfig");
-            
+
             // GRoot.inst.SetContentScaleFactor(720,1280,UIContentScaler.ScreenMatchMode.MatchWidth);
 
             // self.UIPanel.ui.MakeFullScreen();
@@ -46,6 +48,7 @@ namespace ET
         public Transform Global;
         public Transform Unit { get; set; }
 
+        public Prefabs Prefabs;
         // public Transform UI;
 
         public GlobalConfig GlobalConfig { get; set; }

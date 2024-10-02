@@ -102,13 +102,13 @@ MonoBehaviour:
         FilterRuleName: CollectAll
         AssetTags: 
         UserData: 
-    - GroupName: Shader
+    - GroupName: shader
       GroupDesc: 
       AssetTags: 
       ActiveRuleName: EnableGroup
       Collectors:
-      - CollectPath: 
-        CollectorGUID: 
+      - CollectPath: Assets/Bundles/shader
+        CollectorGUID: a4191d742143d0d44b0e458c9e99b36f
         CollectorType: 0
         AddressRuleName: AddressByFileName
         PackRuleName: PackDirectory

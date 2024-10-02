@@ -13,41 +13,55 @@ MonoBehaviour:
   m_Name: BuildinCatalog
   m_EditorClassIdentifier: 
   PackageName: DefaultPackage
-  PackageVersion: 2024-09-29-1250
+  PackageVersion: 2024-10-01-1212
   Wrappers:
   - BundleGUID: 14101afa3ef0c887d0946529652135a2
     FileName: assets_bundles_code_14101afa3ef0c887d0946529652135a2.bundle
   - BundleGUID: 4844e5e93d774eb3364449b400d06b70
     FileName: assets_bundles_config_4844e5e93d774eb3364449b400d06b70.bundle
-  - BundleGUID: 40a23b402d35f2c3c0f9cf9fc3d227d2
-    FileName: assets_bundles_prefabs_40a23b402d35f2c3c0f9cf9fc3d227d2.bundle
-  - BundleGUID: a6f49720cd5659f1c154e8b630bd417f
-    FileName: assets_bundles_scenes_map1_a6f49720cd5659f1c154e8b630bd417f.bundle
-  - BundleGUID: 2555cbd063832beffb2d3c99e2f6b862
-    FileName: share_assets_bundles_scenes_2555cbd063832beffb2d3c99e2f6b862.bundle
-  - BundleGUID: 4c0146950c84c0333febb5e68103777b
-    FileName: share_assets_bundles_scenes_map1_4c0146950c84c0333febb5e68103777b.bundle
-  - BundleGUID: 8ea27bc0e329a071b5402cd064b2dd03
-    FileName: share_assets_res_mat_8ea27bc0e329a071b5402cd064b2dd03.bundle
+  - BundleGUID: df943c62663ecfce4d11643932ab4084
+    FileName: assets_bundles_prefabs_df943c62663ecfce4d11643932ab4084.bundle
+  - BundleGUID: 6a34c96c3d68156a368828d265807435
+    FileName: assets_bundles_scenes_gamescene_6a34c96c3d68156a368828d265807435.bundle
+  - BundleGUID: a7c84a53d6ddfab26667fa90e31385ac
+    FileName: assets_bundles_scenes_map1_a7c84a53d6ddfab26667fa90e31385ac.bundle
+  - BundleGUID: c5dc410740161ebf10fda3ce3918f79d
+    FileName: assets_bundles_shader_c5dc410740161ebf10fda3ce3918f79d.bundle
+  - BundleGUID: c014ec28dd8abf00db3c6ad38388e5c5
+    FileName: share_assets_bundles_scenes_c014ec28dd8abf00db3c6ad38388e5c5.bundle
+  - BundleGUID: b223e27621188146f508aa24979141e8
+    FileName: share_assets_bundles_scenes_map1_b223e27621188146f508aa24979141e8.bundle
+  - BundleGUID: efb98b9b0d5bbdfdd8d60231748bcc4d
+    FileName: share_assets_efb98b9b0d5bbdfdd8d60231748bcc4d.bundle
+  - BundleGUID: cacce7e4cda2555de230f7b668cd2e55
+    FileName: share_assets_res_mat_cacce7e4cda2555de230f7b668cd2e55.bundle
   - BundleGUID: a417e6522fa407478385d50264399f4a
     FileName: share_assets_res_unit_skeleton_a417e6522fa407478385d50264399f4a.bundle
   - BundleGUID: 3483fa93f8bd1f429c4389b9be030cda
     FileName: share_assets_res_unit_skeleton_ani_3483fa93f8bd1f429c4389b9be030cda.bundle
-  - BundleGUID: 2ea762a04273331cf749434fce2bd9f7
-    FileName: share_assets_res_unit_skeleton_ani_materials_2ea762a04273331cf749434fce2bd9f7.bundle
+  - BundleGUID: 4076f71e07256daac9a8244d46807c1d
+    FileName: share_assets_res_unit_skeleton_ani_materials_4076f71e07256daac9a8244d46807c1d.bundle
   - BundleGUID: 393fe152174bd9d8f30f10c7c9ce7630
     FileName: share_assets_res_unit_skeleton_character_393fe152174bd9d8f30f10c7c9ce7630.bundle
-  - BundleGUID: c70b5a55ff86fac0ad46cd81a5f459cd
-    FileName: share_assets_res_unit_skeleton_character_materials_c70b5a55ff86fac0ad46cd81a5f459cd.bundle
+  - BundleGUID: 85884f4a6e8e0d307994e44ec2fbde64
+    FileName: share_assets_res_unit_skeleton_character_materials_85884f4a6e8e0d307994e44ec2fbde64.bundle
   - BundleGUID: 50deb932c60c491b97b392620a32609c
     FileName: share_assets_res_unit_skeleton_texture_50deb932c60c491b97b392620a32609c.bundle
   - BundleGUID: 405e84239e5d1d38af3e5886f84dbf17
     FileName: share_assets_textmesh_pro_fonts_405e84239e5d1d38af3e5886f84dbf17.bundle
   - BundleGUID: ca8ad4258b627e3bf38d7fe01455de70
     FileName: share_assets_textmesh_pro_resources_fonts_&_materials_ca8ad4258b627e3bf38d7fe01455de70.bundle
-  - BundleGUID: e785ea1f901e3e0d948c7bcaa35577f8
-    FileName: share_assets_textmesh_pro_shaders_e785ea1f901e3e0d948c7bcaa35577f8.bundle
-  - BundleGUID: 7188f6e3087201ad0478f6945df51e6d
-    FileName: share_packages_com_unity_render-pipelines_universal_shaders_7188f6e3087201ad0478f6945df51e6d.bundle
+  - BundleGUID: b501c80a8b860b04947f4644445237ea
+    FileName: share_assets_textmesh_pro_shaders_b501c80a8b860b04947f4644445237ea.bundle
+  - BundleGUID: b7465cd1a5c92a281072c74b6a7f8d12
+    FileName: share_packages_com_unity_render-pipelines_core_runtime_b7465cd1a5c92a281072c74b6a7f8d12.bundle
+  - BundleGUID: f4353b2382dfdc5f8a518cd7e553fe73
+    FileName: share_packages_com_unity_render-pipelines_universal_runtime_materials_f4353b2382dfdc5f8a518cd7e553fe73.bundle
+  - BundleGUID: 8968c1dcee029ffb515c549b2b1440e0
+    FileName: share_packages_com_unity_render-pipelines_universal_shaders_8968c1dcee029ffb515c549b2b1440e0.bundle
+  - BundleGUID: a3714993b5bae94e1259b2af7d65ae43
+    FileName: share_packages_com_unity_render-pipelines_universal_shaders_postprocessing_a3714993b5bae94e1259b2af7d65ae43.bundle
+  - BundleGUID: 4042703880691fe06913f9899fef9041
+    FileName: share_packages_com_unity_render-pipelines_universal_shaders_utils_4042703880691fe06913f9899fef9041.bundle
   - BundleGUID: a6ca43ed3c1a0f50f6654482f8fda201
     FileName: share_packages_com_unity_textmeshpro_editor_resources_gizmos_a6ca43ed3c1a0f50f6654482f8fda201.bundle

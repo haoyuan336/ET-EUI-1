@@ -34,14 +34,20 @@ namespace ET.Client
 
             Log.Debug($"width {width} {globalComponent.NormalRoot.width}");
 
-            AssetHandle assetHandle = YooAssets.LoadAssetAsync<GameObject>("Cube");
+            // AssetHandle assetHandle = YooAssets.LoadAssetAsync<GameObject>("Cube");
+            //
+            // assetHandle.Completed += (result) =>
+            // {
+            //     GameObject prefab = result.AssetObject as GameObject;
+            //
+            //     GameObject go = GameObject.Instantiate(prefab);
+            // };
 
-            assetHandle.Completed += (result) =>
-            {
-                GameObject prefab = result.AssetObject as GameObject;
-
-                GameObject go = GameObject.Instantiate(prefab);
-            };
+            GameObject playerPrefab = scene.Root().GetComponent<GlobalComponent>().Prefabs.PlayerPrefab;
+            
+            GameObject player = GameObject.Instantiate(playerPrefab);
+            
+            player.transform.position = new Vector3(1, 0, 0);
 
             await ETTask.CompletedTask;
         }

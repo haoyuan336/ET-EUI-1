@@ -2,7 +2,6 @@
 using System.Net.WebSockets;
 using System.Threading;
 using CommandLine;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityWebSocket;
 
@@ -12,30 +11,7 @@ namespace ET
     {
         private void Start()
         {
-
-            UnityWebSocket.WebSocket ws = new UnityWebSocket.WebSocket("ws://43.159.192.184:30301");
-            
-            // UnityWebSocket.WebSocket ws = new UnityWebSocket.WebSocket("ws://192.168.2.18:30301");
-            
-            ws.ConnectAsync();
-            
-            ws.OnOpen += this.OnOpen;
-            
-            ws.OnError += this.OnError;
-            
-            ws.OnMessage += this.OnMessage;
-            //
-
-            // ClientWebSocket cws = new ClientWebSocket();
-            //
-            // CancellationToken cancellationToken = new CancellationToken();
-            //
-            // cws.ConnectAsync(new Uri("ws://127.0.0.1:30301"),cancellationToken);
-
-            
-            
             this.StartAsync().Coroutine();
-
         }
 
         public void OnOpen(object sender, OpenEventArgs args)

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace ET.Client
 {
@@ -15,10 +16,9 @@ namespace ET.Client
         [EntitySystem]
         private static void Update(this OperaComponent self)
         {
-            if (Input.GetMouseButtonDown(1))
+            
+            if (Input.GetMouseButtonDown(0))
             {
-                Log.Warning("get mouse button down ");
-
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 RaycastHit hit;
