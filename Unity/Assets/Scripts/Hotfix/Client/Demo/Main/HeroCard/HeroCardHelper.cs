@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace ET.Client
 {
     public static class HeroCardHelper
@@ -29,5 +31,23 @@ namespace ET.Client
 
             return null;
         }
-    }
+
+        public static List<HeroCard> GetHeroCards(Scene root)
+        {
+            Unit unit = root.CurrentScene().GetComponent<UnitComponent>().MyUnit;
+
+            HeroCardComponent heroCardComponent = unit.GetComponent<HeroCardComponent>();
+
+            List<HeroCard> heroCards = new List<HeroCard>();
+
+            foreach (var kv in heroCardComponent.Children)
+            {
+                HeroCard heroCard = kv.Value as HeroCard;
+                
+                heroCards.Add(heroCard);
+            }
+            
+            return heroCards;
+        }
+}
 }

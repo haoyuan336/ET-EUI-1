@@ -4,6 +4,9 @@
     <text id="n0_ckxh" name="n0" xy="34,41" size="246,124" fontSize="40" autoSize="none" text="MainLayer&#xA;">
       <relation target="" sidePair="center-center,middle-middle"/>
     </text>
+    <component id="n8_iygc" name="JoyStickLayer" src="iygc3" fileName="JoyStickLayer.xml" xy="0,0">
+      <relation target="" sidePair="width-width,height-height"/>
+    </component>
     <component id="n3_ckxh" name="HeroBagButton" src="jh1l3d" fileName="NButton.xml" pkg="9nomxs01" xy="609,234" size="117,69">
       <Button title="Hero bg" titleFontSize="20"/>
     </component>

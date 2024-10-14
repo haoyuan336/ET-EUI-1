@@ -1,6 +1,8 @@
+using MongoDB.Bson.Serialization.Attributes;
+
 namespace ET
 {
-    [ChildOf(typeof (HeroCardComponent))]
+    [ChildOf(typeof(HeroCardComponent))]
 
 #if UNITY
     public class HeroCard : Entity, IAwake
@@ -9,5 +11,8 @@ namespace ET
 #endif
     {
         public int HeroConfigId { get; set; }
+
+        [BsonIgnore]
+        public HeroConfig Config => HeroConfigCategory.Instance.Get(this.HeroConfigId);
     }
 }

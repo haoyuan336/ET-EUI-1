@@ -39,6 +39,9 @@ namespace ET
         public const string LoginServerLayer = "ui://8qgfwpa8jh1l2";
         //---------------GameUIPackage---------------
         public const string GameUILayer = "ui://24bwjhhnk7it0";
+        //---------------HeroCardBagPackage---------------
+        public const string HeroCardBagLayer = "ui://1o0rv0gziygc0";
+        public const string HeroCardItemCell = "ui://1o0rv0gziygc1";
         //---------------LoadingPackage---------------
         public const string LoadingLayer = "ui://8l9768khjh1l0";
         //---------------LoginLayerPackage---------------
@@ -48,6 +51,7 @@ namespace ET
         //---------------MainLayerPackage---------------
         public const string MainLayer = "ui://7sxmdg4qckxh0";
         public const string AddHeroItemCell = "ui://7sxmdg4qckxh2";
+        public const string JoyStickLayer = "ui://7sxmdg4qiygc3";
         //---------------RootPackage---------------
         public const string RootLayer = "ui://9nomxs01i2d80";
         public const string EmptyLayer = "ui://9nomxs01i2d81";
@@ -173,5 +177,6 @@ namespace ET
         public const string SpalshLayer = "ui://9nomxs01jh1l0";
         public const string NButton = "ui://9nomxs01jh1l3d";
         public const string AButton = "ui://9nomxs01jh1l3e";
+        public const string CloseButton = "ui://9nomxs01iygc3f";
     }
 }

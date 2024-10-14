@@ -4,7 +4,7 @@ using YooAsset;
 namespace ET.Client
 {
     [Event(SceneType.Current)]
-    public class AfterUnitCreate_CreateUnitView: AEvent<Scene, AfterUnitCreate>
+    public class AfterUnitCreate_CreateUnitView : AEvent<Scene, AfterUnitCreate>
     {
         protected override async ETTask Run(Scene scene, AfterUnitCreate args)
         {
@@ -38,12 +38,12 @@ namespace ET.Client
             GlobalComponent globalComponent = scene.Root().GetComponent<GlobalComponent>();
 
             GameObject prefab = globalComponent.Prefabs.PlayerPrefab;
-            
+
             GameObject go = UnityEngine.Object.Instantiate(prefab, globalComponent.Unit, true);
-            
+
             go.transform.position = unit.Position;
-            
-            unit.AddComponent<GameObjectComponent>().GameObject = go;
+
+            unit.AddComponent<GameObjectComponent, GameObject>(go);
             // unit.AddComponent<AnimatorComponent>();
             // await ETTask.CompletedTask;
         }

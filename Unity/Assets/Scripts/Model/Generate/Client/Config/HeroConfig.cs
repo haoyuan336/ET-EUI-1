@@ -63,6 +63,8 @@ namespace ET
 		public int Id { get; set; }
 		/// <summary>预制体名字</summary>
 		public string PrefabName { get; set; }
+		/// <summary>英雄名称</summary>
+		public string HeroName { get; set; }
 
 	}
 }

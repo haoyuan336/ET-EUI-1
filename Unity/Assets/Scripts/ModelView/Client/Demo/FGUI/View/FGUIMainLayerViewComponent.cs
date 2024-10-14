@@ -7,6 +7,31 @@ namespace ET
     [FriendOf(typeof(ET.Client.UIBaseWindow)), EnableMethod, ComponentOf(typeof(ET.Client.UIBaseWindow))]
     public class FGUIMainLayerViewComponent: Entity, IAwake
     {
+        public  FGUIJoyStickLayerComponent JoyStickLayerComponent
+        {
+            get
+            {
+                if (this._JoyStickLayerComponent== null)
+                {
+                    UIBaseWindow fguiBaseWindow = this.GetParent<UIBaseWindow>();
+
+                    GComponent gComponent = fguiBaseWindow.GComponent;
+
+                    UIBaseWindow childBaseWindow = this.AddChild<UIBaseWindow>();
+
+                    childBaseWindow.WindowID = WindowID.JoyStickLayer;
+
+                    childBaseWindow.GComponent = gComponent.GetChild("JoyStickLayer").asCom;
+
+                    childBaseWindow.AddComponent<FGUIJoyStickLayerViewComponent>();
+
+                    this._JoyStickLayerComponent = childBaseWindow.AddComponent<FGUIJoyStickLayerComponent>();
+
+
+                }
+                return this._JoyStickLayerComponent;
+            }
+        }
         public GButton  HeroBagButton
         {
             get
@@ -29,10 +54,12 @@ namespace ET
                 return this._List;
             }
         }
+        private FGUIJoyStickLayerComponent _JoyStickLayerComponent = null;
         private GButton _HeroBagButton = null;
         private GList _List = null;
         public void ClearBindCache()
         {
+            this._JoyStickLayerComponent = null;
             this._HeroBagButton = null;
             this._List = null;
         }

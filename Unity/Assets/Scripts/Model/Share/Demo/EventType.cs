@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET.Client
 {
@@ -15,6 +16,11 @@ namespace ET.Client
     public struct HideLayerById
     {
         public WindowID WindowID;
+    }
+
+    public struct MoveUnitPos
+    {
+        public Vector2 Vector2;
     }
 #endif
     public struct ShowLoadingLayer

@@ -125,6 +125,7 @@
     <component id="jh1l0" name="SpalshLayer.xml" path="/" exported="true"/>
     <component id="jh1l3d" name="NButton.xml" path="/" exported="true"/>
     <component id="jh1l3e" name="AButton.xml" path="/" exported="true"/>
+    <component id="iygc3f" name="CloseButton.xml" path="/" exported="true"/>
   </resources>
   <publish name="RootPackage" path="D:\workspace\ET-EUI\Unity\Assets\Resources\FGUI\RootPackage" packageCount="2" branchPath="D:\workspace\ET-EUI\Unity\Assets\Resources\FGUI\RootPackage"/>
 </packageDescription>

@@ -3,10 +3,13 @@ using UnityEngine;
 namespace ET.Client
 {
     [ComponentOf(typeof(Unit))]
-    public class GameObjectComponent: Entity, IAwake, IDestroy
+    public class GameObjectComponent : Entity, IAwake<GameObject>, IDestroy, IUpdate
     {
         private GameObject gameObject;
 
+        public CharacterController CharacterController;
+
+        public Vector3 MoveSpeed;
         public GameObject GameObject
         {
             get

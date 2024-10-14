@@ -3,6 +3,7 @@
   <resources>
     <component id="ckxh0" name="MainLayer.xml" path="/" exported="true"/>
     <component id="ckxh2" name="AddHeroItemCell.xml" path="/" exported="true"/>
+    <component id="iygc3" name="JoyStickLayer.xml" path="/" exported="true"/>
   </resources>
   <publish name="MainLayerPackage" path="D:\workspace\ET-EUI\Unity\Assets\Resources\FGUI\MainLayerPackage" packageCount="2" branchPath="D:\workspace\ET-EUI\Unity\Assets\Resources\FGUI\MainLayerPackage"/>
 </packageDescription>
