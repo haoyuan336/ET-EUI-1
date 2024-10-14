@@ -44,6 +44,8 @@
         </Compile>
 
         <Compile Remove="..\..\Unity\Assets\Scripts\Model\Client\**" />
+
+        <Compile Remove="..\..\Unity\Assets\Scripts\Model\Server\Demo\UnitCache\Handler\**" />
         
     </ItemGroup> 
     <ItemGroup> 

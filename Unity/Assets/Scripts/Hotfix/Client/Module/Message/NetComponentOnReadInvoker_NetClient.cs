@@ -7,7 +7,6 @@ namespace ET.Client
     {
         public override void Handle(NetComponentOnRead args)
         {
-            Log.Debug($"net component on read {args}");
             Session session = args.Session;
             object message = args.Message;
             Fiber fiber = session.Fiber();

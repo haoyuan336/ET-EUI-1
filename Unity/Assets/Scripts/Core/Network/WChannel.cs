@@ -42,20 +42,20 @@ namespace ET
             });
         }
 
-        public WChannel(long id, ClientWebSocket webSocket, IPEndPoint ipEndPoint, WService service)
-        {
-            Log.Warning("WChannel is new gouzao");
-            this.Service = service;
-            this.Id = id;
-            this.ChannelType = ChannelType.Connect;
-            this.webSocket = webSocket;
-            isConnected = false;
-            this.Service.ThreadSynchronizationContext.Post(() =>
-            {
-                Log.Warning("ThreadSynchronizationContext posy");
-                this.ConnectAsync($"ws://{ipEndPoint}").Coroutine();
-            });
-        }
+        // public WChannel(long id, ClientWebSocket webSocket, IPEndPoint ipEndPoint, WService service)
+        // {
+        //     Log.Warning("WChannel is new gouzao");
+        //     this.Service = service;
+        //     this.Id = id;
+        //     this.ChannelType = ChannelType.Connect;
+        //     this.webSocket = webSocket;
+        //     isConnected = false;
+        //     this.Service.ThreadSynchronizationContext.Post(() =>
+        //     {
+        //         Log.Warning("ThreadSynchronizationContext posy");
+        //         this.ConnectAsync($"ws://{ipEndPoint}").Coroutine();
+        //     });
+        // }
 
         public override void Dispose()
         {
@@ -71,33 +71,33 @@ namespace ET
             this.webSocket.Dispose();
         }
 
-        private async ETTask ConnectAsync(string url)
-        {
-            url = "ws://192.168.2.18:8080";
-            Log.Warning($"wchannel connect async {url} {this.isConnected} {this.webSocket.GetType()} ");
-            try
-            {
-                Uri uri = new Uri(url);
-
-                // ClientWebSocket ws = new ClientWebSocket();
-
-                // ws.ConnectAsync();
-
-                // await ws.ConnectAsync(uri, this.cancellationTokenSource.Token);
-                await ((ClientWebSocket)this.webSocket).ConnectAsync(uri, cancellationTokenSource.Token);
-
-                isConnected = true;
-
-                this.StartRecv().Coroutine();
-
-                this.StartSend().Coroutine();
-            }
-            catch (Exception e)
-            {
-                Log.Error(e);
-                this.OnError(ErrorCore.ERR_WebsocketConnectError);
-            }
-        }
+        // private async ETTask ConnectAsync(string url)
+        // {
+        //     url = "ws://192.168.2.18:8080";
+        //     Log.Warning($"wchannel connect async {url} {this.isConnected} {this.webSocket.GetType()} ");
+        //     try
+        //     {
+        //         Uri uri = new Uri(url);
+        //
+        //         // ClientWebSocket ws = new ClientWebSocket();
+        //
+        //         // ws.ConnectAsync();
+        //
+        //         // await ws.ConnectAsync(uri, this.cancellationTokenSource.Token);
+        //         await ((ClientWebSocket)this.webSocket).ConnectAsync(uri, cancellationTokenSource.Token);
+        //
+        //         isConnected = true;
+        //
+        //         this.StartRecv().Coroutine();
+        //
+        //         this.StartSend().Coroutine();
+        //     }
+        //     catch (Exception e)
+        //     {
+        //         Log.Error(e);
+        //         this.OnError(ErrorCore.ERR_WebsocketConnectError);
+        //     }
+        // }
 
         public void Send(MemoryBuffer memoryBuffer)
         {
@@ -190,7 +190,7 @@ namespace ET
                     int receiveCount = 0;
                     do
                     {
-                        receiveResult = await this.webSocket.ReceiveAsync(new Memory<byte>(cache, receiveCount, this.cache.Length - receiveCount),
+                         receiveResult = await this.webSocket.ReceiveAsync(new Memory<byte>(cache, receiveCount, this.cache.Length - receiveCount),
                             cancellationTokenSource.Token);
 
                         if (this.IsDisposed)

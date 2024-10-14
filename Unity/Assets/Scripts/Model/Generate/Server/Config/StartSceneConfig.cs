@@ -71,6 +71,10 @@ namespace ET
 		public string Name { get; set; }
 		/// <summary>外网端口</summary>
 		public int Port { get; set; }
+		/// <summary>服务名</summary>
+		public string ServerName { get; set; }
+		/// <summary>服务器状态</summary>
+		public int ServerState { get; set; }
 
 	}
 }

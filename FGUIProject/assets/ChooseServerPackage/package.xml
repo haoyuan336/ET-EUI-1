@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="8qgfwpa8">
+  <resources>
+    <component id="jh1l0" name="ChooseServerLayer.xml" path="/" exported="true"/>
+    <component id="jh1l1" name="ServerItemCell.xml" path="/" exported="true"/>
+    <component id="jh1l2" name="LoginServerLayer.xml" path="/" exported="true"/>
+  </resources>
+  <publish name="ChooseServerPackage" path=".\..\Unity\Assets\Resources\FGUI\ChooseServerPackage" packageCount="2" branchPath=".\..\Unity\Assets\Resources\FGUI\ChooseServerPackage"/>
+</packageDescription>

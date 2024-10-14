@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="268,55">
+  <displayList>
+    <graph id="n0_ckxh" name="Bg" xy="0,0" size="268,55" type="rect">
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <component id="n1_ckxh" name="ClickButton" src="jh1l3e" fileName="AButton.xml" pkg="9nomxs01" xy="0,0" size="268,55">
+      <relation target="" sidePair="width-width,height-height"/>
+    </component>
+    <text id="n2_ckxh" name="Label" xy="0,0" size="268,55" fontSize="30" align="center" vAlign="middle" autoSize="none" text="Add Hero 1000">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+  </displayList>
+</component>

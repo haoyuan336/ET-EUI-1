@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,1334">
+  <displayList>
+    <text id="n0_ckxh" name="n0" xy="34,41" size="246,124" fontSize="40" autoSize="none" text="MainLayer&#xA;">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </text>
+    <component id="n3_ckxh" name="HeroBagButton" src="jh1l3d" fileName="NButton.xml" pkg="9nomxs01" xy="609,234" size="117,69">
+      <Button title="Hero bg" titleFontSize="20"/>
+    </component>
+    <list id="n4_ckxh" name="List" xy="33,216" size="330,470" layout="flow_hz" overflow="scroll" defaultItem="ui://7sxmdg4qckxh2" align="center">
+      <relation target="" sidePair="center-center,middle-middle"/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+    </list>
+  </displayList>
+</component>

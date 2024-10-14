@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,1334">
+  <displayList>
+    <graph id="n0_jh1l" name="n0" xy="0,0" size="750,1334" type="rect" lineSize="0" fillColor="#ff666666"/>
+    <component id="n2_jh1l" name="CurrentServer" src="jh1l1" fileName="ServerItemCell.xml" xy="175,617">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </component>
+    <component id="n3_jh1l" name="LoginButton" src="jh1l3d" fileName="NButton.xml" pkg="9nomxs01" xy="255,815" size="239,98">
+      <relation target="" sidePair="center-center,middle-middle"/>
+      <Button title="登录" titleFontSize="50"/>
+    </component>
+  </displayList>
+</component>

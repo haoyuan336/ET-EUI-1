@@ -1,63 +1,100 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET.Server
 {
     [MessageSessionHandler(SceneType.Gate)]
-    public class C2G_LoginGateHandler : MessageSessionHandler<C2G_LoginGate, G2C_LoginGate>
+    [FriendOfAttribute(typeof (ET.Server.Player))]
+    public class C2G_LoginGateHandler: MessageSessionHandler<C2G_LoginGate, G2C_LoginGate>
     {
         protected override async ETTask Run(Session session, C2G_LoginGate request, G2C_LoginGate response)
         {
+            Log.Debug($"C2G_LoginGate session {session.Id}");
+
             Scene root = session.Root();
+
             string account = root.GetComponent<GateSessionKeyComponent>().Get(request.Key);
+
             if (account == null)
             {
                 response.Error = ErrorCore.ERR_ConnectGateKeyError;
+
                 response.Message = "Gate key验证失败!";
+
                 return;
             }
 
             session.RemoveComponent<SessionAcceptTimeoutComponent>();
 
-            PlayerComponent playerComponent = root.GetComponent<PlayerComponent>();
-            Player player = playerComponent.GetByAccount(account);
-            if (player == null || player.GetComponent<PlayerRoomComponent>() == null)
-            {
-                if (player != null && !player.IsDisposed)
-                {
-                    playerComponent.Remove(player);
-                    player?.Dispose();
-                }
+            int zoneConfigId = request.ZoneConfigId;
 
-                player = playerComponent.AddChild<Player, string>(account);
+            long roleId = await this.GetCurrentRoleId(session.Root(), account, zoneConfigId);
+
+            PlayerComponent playerComponent = root.GetComponent<PlayerComponent>();
+
+            Player player = playerComponent.GetByAccount(account);
+
+            PlayerSessionComponent playerSessionComponent = null;
+
+            // if (player == null || player.GetComponent<PlayerRoomComponent>() == null)
+            // {
+            //     if (player != null && !player.IsDisposed)
+            //     {
+            //         playerComponent.Remove(player);
+            //         
+            //         player?.Dispose();
+            //     }
+            //
+            //     player = playerComponent.AddChildWithId<Player, string>(roleId, account);
+            //
+            //     player.ZoneConfigId = zoneConfigId;
+            //
+            //     playerComponent.Add(player);
+            //
+            //     playerSessionComponent = player.AddComponent<PlayerSessionComponent>();
+            //
+            //     playerSessionComponent.AddComponent<MailBoxComponent, MailBoxType>(MailBoxType.GateSession);
+            //
+            //     await playerSessionComponent.AddLocation(LocationType.GateSession);
+            //
+            //     player.AddComponent<MailBoxComponent, MailBoxType>(MailBoxType.UnOrderedMessage);
+            //
+            //     await player.AddLocation(LocationType.Player);
+            // }
+
+            if (player == null)
+            {
+                player = playerComponent.AddChildWithId<Player, string>(roleId, account);
+
                 playerComponent.Add(player);
-                PlayerSessionComponent playerSessionComponent = player.AddComponent<PlayerSessionComponent>();
+
+                playerSessionComponent = player.AddComponent<PlayerSessionComponent>();
+
                 playerSessionComponent.AddComponent<MailBoxComponent, MailBoxType>(MailBoxType.GateSession);
+
                 await playerSessionComponent.AddLocation(LocationType.GateSession);
 
                 player.AddComponent<MailBoxComponent, MailBoxType>(MailBoxType.UnOrderedMessage);
+                
                 await player.AddLocation(LocationType.Player);
-
-                session.AddComponent<SessionPlayerComponent>().Player = player;
-                playerSessionComponent.Session = session;
             }
             else
             {
-                Log.Debug($"player id {player.Id}");
-                // 判断是否在战斗
-                PlayerRoomComponent playerRoomComponent = player.GetComponent<PlayerRoomComponent>();
-                if (playerRoomComponent.RoomActorId != default)
-                {
-                    CheckRoom(player, session).Coroutine();
-                }
-                else
-                {
-                    PlayerSessionComponent playerSessionComponent = player.GetComponent<PlayerSessionComponent>();
-                    playerSessionComponent.Session = session;
-                }
+                playerSessionComponent = player.GetComponent<PlayerSessionComponent>();
             }
 
+            player.ZoneConfigId = zoneConfigId;
+
+            session.AddComponent<SessionPlayerComponent>().Player = player;
+
+            playerSessionComponent.Session = session;
+
+            player.ZoneConfigId = zoneConfigId;
+
             response.PlayerId = player.Id;
+
             Log.Debug($"player id {player.Id}");
+
             await ETTask.CompletedTask;
         }
 
@@ -79,6 +116,24 @@ namespace ET.Server
 
             session.AddComponent<SessionPlayerComponent>().Player = player;
             player.GetComponent<PlayerSessionComponent>().Session = session;
+        }
+
+        private async ETTask<long> GetCurrentRoleId(Scene scene, string account, int zoneConfigId)
+        {
+            MessageSender messageSender = scene.Root().GetComponent<MessageSender>();
+
+            StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.GetRealSceneConfig();
+
+            G2R_GetServerCurrentRoleIdRequest request = G2R_GetServerCurrentRoleIdRequest.Create();
+
+            request.Account = account;
+
+            request.ZoneConfigId = zoneConfigId;
+
+            R2G_GetServerCurrentRoleIdResponse response =
+                    await messageSender.Call(startSceneConfig.ActorId, request) as R2G_GetServerCurrentRoleIdResponse;
+
+            return response.RoleId;
         }
     }
 }

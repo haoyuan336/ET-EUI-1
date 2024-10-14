@@ -4,13 +4,17 @@ using Unity.Mathematics;
 
 namespace ET
 {
-    [ChildOf(typeof(UnitComponent))]
+    [ChildOf(typeof (UnitComponent))]
     [DebuggerDisplay("ViewName,nq")]
-    public partial class Unit: Entity, IAwake<int>
+#if UNITY
+    public partial class Unit: Entity, IAwake<int>,IGetComponentSys
+#else
+    public partial class Unit: Entity, IAwake<int>, IGetComponentSys
+#endif
     {
         public int ConfigId { get; set; } //配置表id
 
-        [BsonElement]
+        [BsonIgnore]
         private float3 position; //坐标
 
         [BsonIgnore]
@@ -31,10 +35,10 @@ namespace ET
             get => math.mul(this.Rotation, math.forward());
             set => this.Rotation = quaternion.LookRotation(value, math.up());
         }
-        
-        [BsonElement]
+
+        [BsonIgnore]
         private quaternion rotation;
-        
+
         [BsonIgnore]
         public quaternion Rotation
         {

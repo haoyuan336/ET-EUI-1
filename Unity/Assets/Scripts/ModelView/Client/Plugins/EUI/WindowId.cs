@@ -8,13 +8,23 @@ namespace ET.Client
     public enum WindowID
     {
         WindowID_Invaild = 0,
+        //----------------------ChooseServerPackage---------------------
+        ChooseServerLayer = 1,
+        ServerItemCell = 2,
+        LoginServerLayer = 3,
         //----------------------GameUIPackage---------------------
-        GameUILayer = 1,
+        GameUILayer = 4,
+        //----------------------LoadingPackage---------------------
+        LoadingLayer = 5,
         //----------------------LoginLayerPackage---------------------
-        LoginLayer = 2,
+        LoginLayer = 6,
+        //----------------------MainLayerPackage---------------------
+        MainLayer = 7,
+        AddHeroItemCell = 8,
         //----------------------RootPackage---------------------
-        RootLayer = 3,
-        EmptyLayer = 4,
+        RootLayer = 9,
+        EmptyLayer = 10,
+        SpalshLayer = 11,
     }
     public class ComponentPackageMap
     {
@@ -35,17 +45,32 @@ namespace ET.Client
         }
         private void InitData()
         {
-            for (int j = 1; j < 2; j++)
+            for (int j = 1; j < 4; j++)
+            {
+                WindowID windowID = (WindowID)j;
+                 this.Maps.Add(windowID, "ChooseServerPackage");
+            }
+            for (int j = 4; j < 5; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "GameUIPackage");
             }
-            for (int j = 2; j < 3; j++)
+            for (int j = 5; j < 6; j++)
+            {
+                WindowID windowID = (WindowID)j;
+                 this.Maps.Add(windowID, "LoadingPackage");
+            }
+            for (int j = 6; j < 7; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "LoginLayerPackage");
             }
-            for (int j = 3; j < 5; j++)
+            for (int j = 7; j < 9; j++)
+            {
+                WindowID windowID = (WindowID)j;
+                 this.Maps.Add(windowID, "MainLayerPackage");
+            }
+            for (int j = 9; j < 12; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "RootPackage");

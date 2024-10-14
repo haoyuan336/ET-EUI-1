@@ -313,6 +313,9 @@ namespace ET
         [MemoryPackOrder(0)]
         public UnitInfo Unit { get; set; }
 
+        [MemoryPackOrder(1)]
+        public List<HeroCardInfo> HeroCardInfos { get; set; } = new();
+
         public override void Dispose()
         {
             if (!this.IsFromPool)
@@ -321,6 +324,7 @@ namespace ET
             }
 
             this.Unit = default;
+            this.HeroCardInfos.Clear();
 
             ObjectPool.Instance.Recycle(this);
         }
@@ -722,6 +726,12 @@ namespace ET
         [MemoryPackOrder(5)]
         public long GateId { get; set; }
 
+        [MemoryPackOrder(6)]
+        public List<ServerInfo> ServerInfos { get; set; } = new();
+
+        [MemoryPackOrder(7)]
+        public List<RoleInfo> RoleInfos { get; set; } = new();
+
         public override void Dispose()
         {
             if (!this.IsFromPool)
@@ -735,6 +745,89 @@ namespace ET
             this.Address = default;
             this.Key = default;
             this.GateId = default;
+            this.ServerInfos.Clear();
+            this.RoleInfos.Clear();
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.RoleInfo)]
+    public partial class RoleInfo : MessageObject
+    {
+        public static RoleInfo Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(RoleInfo), isFromPool) as RoleInfo;
+        }
+
+        [MemoryPackOrder(0)]
+        public long RoleId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public int HeroConfigId { get; set; }
+
+        [MemoryPackOrder(2)]
+        public string RoleName { get; set; }
+
+        [MemoryPackOrder(3)]
+        public int ZoneConfigId { get; set; }
+
+        [MemoryPackOrder(4)]
+        public long LastLoginStamp { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RoleId = default;
+            this.HeroConfigId = default;
+            this.RoleName = default;
+            this.ZoneConfigId = default;
+            this.LastLoginStamp = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.ServerInfo)]
+    public partial class ServerInfo : MessageObject
+    {
+        public static ServerInfo Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(ServerInfo), isFromPool) as ServerInfo;
+        }
+
+        [MemoryPackOrder(0)]
+        public int ZoneConfigId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public int ServerState { get; set; }
+
+        [MemoryPackOrder(2)]
+        public string ServerName { get; set; }
+
+        /// <summary>
+        /// 服务器开启时间
+        /// </summary>
+        [MemoryPackOrder(3)]
+        public long StartTime { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.ZoneConfigId = default;
+            this.ServerState = default;
+            this.ServerName = default;
+            this.StartTime = default;
 
             ObjectPool.Instance.Recycle(this);
         }
@@ -762,6 +855,9 @@ namespace ET
         [MemoryPackOrder(2)]
         public long GateId { get; set; }
 
+        [MemoryPackOrder(3)]
+        public int ZoneConfigId { get; set; }
+
         public override void Dispose()
         {
             if (!this.IsFromPool)
@@ -772,6 +868,7 @@ namespace ET
             this.RpcId = default;
             this.Key = default;
             this.GateId = default;
+            this.ZoneConfigId = default;
 
             ObjectPool.Instance.Recycle(this);
         }
@@ -1082,6 +1179,106 @@ namespace ET
         }
     }
 
+    [MemoryPackable]
+    [Message(OuterMessage.HeroCardInfo)]
+    public partial class HeroCardInfo : MessageObject
+    {
+        public static HeroCardInfo Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(HeroCardInfo), isFromPool) as HeroCardInfo;
+        }
+
+        [MemoryPackOrder(0)]
+        public long HeroId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public int Level { get; set; }
+
+        [MemoryPackOrder(2)]
+        public int ConfigId { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.HeroId = default;
+            this.Level = default;
+            this.ConfigId = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.C2M_CreateOneHeroByConfigId)]
+    [ResponseType(nameof(M2C_CreateOneHeroByConfigId))]
+    public partial class C2M_CreateOneHeroByConfigId : MessageObject, ILocationRequest
+    {
+        public static C2M_CreateOneHeroByConfigId Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(C2M_CreateOneHeroByConfigId), isFromPool) as C2M_CreateOneHeroByConfigId;
+        }
+
+        [MemoryPackOrder(0)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public int ConfigId { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.ConfigId = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.M2C_CreateOneHeroByConfigId)]
+    public partial class M2C_CreateOneHeroByConfigId : MessageObject, ILocationResponse
+    {
+        public static M2C_CreateOneHeroByConfigId Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(M2C_CreateOneHeroByConfigId), isFromPool) as M2C_CreateOneHeroByConfigId;
+        }
+
+        [MemoryPackOrder(0)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(2)]
+        public string Message { get; set; }
+
+        [MemoryPackOrder(0)]
+        public HeroCardInfo HeroCardInfo { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+            this.HeroCardInfo = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
     public static class OuterMessage
     {
         public const ushort HttpGetRouterResponse = 10002;
@@ -1107,16 +1304,21 @@ namespace ET
         public const ushort M2C_Reload = 10022;
         public const ushort C2R_Login = 10023;
         public const ushort R2C_Login = 10024;
-        public const ushort C2G_LoginGate = 10025;
-        public const ushort G2C_LoginGate = 10026;
-        public const ushort G2C_TestHotfixMessage = 10027;
-        public const ushort C2M_TestRobotCase = 10028;
-        public const ushort M2C_TestRobotCase = 10029;
-        public const ushort C2M_TestRobotCase2 = 10030;
-        public const ushort M2C_TestRobotCase2 = 10031;
-        public const ushort C2M_TransferMap = 10032;
-        public const ushort M2C_TransferMap = 10033;
-        public const ushort C2G_Benchmark = 10034;
-        public const ushort G2C_Benchmark = 10035;
+        public const ushort RoleInfo = 10025;
+        public const ushort ServerInfo = 10026;
+        public const ushort C2G_LoginGate = 10027;
+        public const ushort G2C_LoginGate = 10028;
+        public const ushort G2C_TestHotfixMessage = 10029;
+        public const ushort C2M_TestRobotCase = 10030;
+        public const ushort M2C_TestRobotCase = 10031;
+        public const ushort C2M_TestRobotCase2 = 10032;
+        public const ushort M2C_TestRobotCase2 = 10033;
+        public const ushort C2M_TransferMap = 10034;
+        public const ushort M2C_TransferMap = 10035;
+        public const ushort C2G_Benchmark = 10036;
+        public const ushort G2C_Benchmark = 10037;
+        public const ushort HeroCardInfo = 10038;
+        public const ushort C2M_CreateOneHeroByConfigId = 10039;
+        public const ushort M2C_CreateOneHeroByConfigId = 10040;
     }
 }

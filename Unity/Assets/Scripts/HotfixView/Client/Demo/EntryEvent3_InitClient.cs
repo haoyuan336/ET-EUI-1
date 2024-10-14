@@ -25,8 +25,9 @@ namespace ET.Client
             Log.Debug($"scenentype {sceneType}");
             
             root.SceneType = sceneType;
-            
+
             await EventSystem.Instance.PublishAsync(root, new AppStartInitFinish());
+            Log.Debug($"current time {DateTime.Now}");
             
         }
     }

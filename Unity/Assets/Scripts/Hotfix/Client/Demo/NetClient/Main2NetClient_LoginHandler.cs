@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using System.Net.Sockets;
 
 namespace ET.Client
 {
@@ -24,9 +23,9 @@ namespace ET.Client
             NetComponent netComponent = root.AddComponent<NetComponent>();
             //
             netComponent.AService = new KSService();
-            
+
             netComponent.AService.ReadCallback = netComponent.OnRead;
-            
+
             netComponent.AService.ErrorCallback = netComponent.OnError;
 
             root.GetComponent<FiberParentComponent>().ParentFiberId = request.OwnerFiberId;
@@ -42,18 +41,38 @@ namespace ET.Client
                 r2CLogin = (R2C_Login)await session.Call(c2RLogin);
             }
 
-            // 创建一个gate Session,并且保存到SessionComponent中
-            Session gateSession = await netComponent.CreateRouterSession(NetworkHelper.ToIPEndPoint(r2CLogin.Address), account, password);
-            gateSession.AddComponent<ClientSessionErrorComponent>();
-            root.AddComponent<SessionComponent>().Session = gateSession;
-            C2G_LoginGate c2GLoginGate = C2G_LoginGate.Create();
-            c2GLoginGate.Key = r2CLogin.Key;
-            c2GLoginGate.GateId = r2CLogin.GateId;
-            G2C_LoginGate g2CLoginGate = (G2C_LoginGate)await gateSession.Call(c2GLoginGate);
+            if (r2CLogin.Error == ErrorCode.Passwd_Error)
+            {
+                Log.Error("passwd error");
+                return;
+            }
 
-            Log.Debug($"登陆gate成功! {g2CLoginGate.PlayerId} ");
+            response.ServerInfos = r2CLogin.ServerInfos;
 
-            response.PlayerId = g2CLoginGate.PlayerId;
+            response.RoleInfos = r2CLogin.RoleInfos;
+
+            response.Address = r2CLogin.Address;
+
+            response.GateId = r2CLogin.GateId;
+
+            response.LoginGateKey = r2CLogin.Key;
+
+
+            // // 创建一个gate Session,并且保存到SessionComponent中
+            // Session gateSession = await netComponent.CreateRouterSession(NetworkHelper.ToIPEndPoint(r2CLogin.Address), account, password);
+            // gateSession.AddComponent<ClientSessionErrorComponent>();
+            // root.AddComponent<SessionComponent>().Session = gateSession;
+            // C2G_LoginGate c2GLoginGate = C2G_LoginGate.Create();
+            // c2GLoginGate.Key = r2CLogin.Key;
+            // c2GLoginGate.GateId = r2CLogin.GateId;
+            // G2C_LoginGate g2CLoginGate = (G2C_LoginGate)await gateSession.Call(c2GLoginGate);
+            //
+            // // Log.Debug($"登陆gate成功! {g2CLoginGate.PlayerId}  {root.Id}");
+            // //
+            // response.PlayerId = g2CLoginGate.PlayerId;
+            //
+            // // EventSystem.Instance.Publish(root,
+            // //     new ShowChooseServerLayer() { serverInfos = g2CLoginGate.ServerInfos, RoleInfos = g2CLoginGate.RoleInfos });
         }
     }
 }

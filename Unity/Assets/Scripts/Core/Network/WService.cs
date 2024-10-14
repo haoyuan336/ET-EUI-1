@@ -41,11 +41,11 @@ namespace ET
 
         public override void Create(long id, IPEndPoint ipEndpoint)
         {
-            Log.Warning("wserver create wchannel ");
-            ClientWebSocket webSocket = new();
-            webSocket.Options.AddSubProtocol("binary");
-            WChannel channel = new(id, webSocket, ipEndpoint, this);
-            this.channels[channel.Id] = channel;
+            // Log.Warning("wserver create wchannel ");
+            // ClientWebSocket webSocket = new();
+            // webSocket.Options.AddSubProtocol("binary");
+            // WChannel channel = new(id, webSocket, ipEndpoint, this);
+            // this.channels[channel.Id] = channel;
         }
 
         public override void Update()

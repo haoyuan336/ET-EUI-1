@@ -103,13 +103,13 @@ namespace ET
         {
             long id = this.idEndpoints.GetKeyByValue(endPoint);
 
-            Log.Warning($" WebSocketTransport send  {id} {endPoint}");
+            Log.Debug($" WebSocketTransport send  {id} {endPoint}");
 
             if (id == 0)
             {
                 id = IdGenerater.Instance.GenerateInstanceId();
 
-                Log.Warning($"id {id}");
+                Log.Debug($"id {id}");
 
                 this.WService.Create(id, (IPEndPoint)endPoint);
                 this.idEndpoints.Add(id, endPoint);

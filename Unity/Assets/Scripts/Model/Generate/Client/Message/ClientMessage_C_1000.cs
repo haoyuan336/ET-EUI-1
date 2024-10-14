@@ -65,8 +65,20 @@ namespace ET
         [MemoryPackOrder(2)]
         public string Message { get; set; }
 
-        [MemoryPackOrder(3)]
-        public long PlayerId { get; set; }
+        [MemoryPackOrder(4)]
+        public List<ServerInfo> ServerInfos { get; set; } = new();
+
+        [MemoryPackOrder(5)]
+        public List<RoleInfo> RoleInfos { get; set; } = new();
+
+        [MemoryPackOrder(6)]
+        public string Address { get; set; }
+
+        [MemoryPackOrder(7)]
+        public long GateId { get; set; }
+
+        [MemoryPackOrder(8)]
+        public long LoginGateKey { get; set; }
 
         public override void Dispose()
         {
@@ -78,7 +90,11 @@ namespace ET
             this.RpcId = default;
             this.Error = default;
             this.Message = default;
-            this.PlayerId = default;
+            this.ServerInfos.Clear();
+            this.RoleInfos.Clear();
+            this.Address = default;
+            this.GateId = default;
+            this.LoginGateKey = default;
 
             ObjectPool.Instance.Recycle(this);
         }
@@ -151,11 +167,100 @@ namespace ET
         }
     }
 
+    [MemoryPackable]
+    [Message(ClientMessage.Main2NetClient_LoginGate)]
+    [ResponseType(nameof(NetClient2Main_LoginGate))]
+    public partial class Main2NetClient_LoginGate : MessageObject, IRequest
+    {
+        public static Main2NetClient_LoginGate Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(Main2NetClient_LoginGate), isFromPool) as Main2NetClient_LoginGate;
+        }
+
+        [MemoryPackOrder(0)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public long Key { get; set; }
+
+        [MemoryPackOrder(2)]
+        public long GateId { get; set; }
+
+        [MemoryPackOrder(3)]
+        public string Address { get; set; }
+
+        [MemoryPackOrder(4)]
+        public string Account { get; set; }
+
+        [MemoryPackOrder(5)]
+        public string Password { get; set; }
+
+        [MemoryPackOrder(6)]
+        public int ZoneConfigId { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Key = default;
+            this.GateId = default;
+            this.Address = default;
+            this.Account = default;
+            this.Password = default;
+            this.ZoneConfigId = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(ClientMessage.NetClient2Main_LoginGate)]
+    public partial class NetClient2Main_LoginGate : MessageObject, IResponse
+    {
+        public static NetClient2Main_LoginGate Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(NetClient2Main_LoginGate), isFromPool) as NetClient2Main_LoginGate;
+        }
+
+        [MemoryPackOrder(0)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(2)]
+        public string Message { get; set; }
+
+        [MemoryPackOrder(3)]
+        public long PlayerId { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+            this.PlayerId = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
     public static class ClientMessage
     {
         public const ushort Main2NetClient_Login = 1001;
         public const ushort NetClient2Main_Login = 1002;
         public const ushort Main2ViewClient_HttpHelper = 1003;
         public const ushort View2MainClient_HttpHelper = 1004;
+        public const ushort Main2NetClient_LoginGate = 1005;
+        public const ushort NetClient2Main_LoginGate = 1006;
     }
 }

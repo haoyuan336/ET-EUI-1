@@ -15,5 +15,9 @@
         public const int SessionAcceptTimeout = 203;
         
         public const int RoomUpdate = 301;
+
+        public const int SaveChangeDBData = 302;
+
+        public const int AutoSaveServerInfo = 303; //自动保存服务开启状态等
     }
 }

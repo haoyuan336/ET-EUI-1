@@ -1,4 +1,6 @@
-﻿namespace ET.Client
+﻿using FairyGUI;
+
+namespace ET.Client
 {
     public interface IAUIEventHandler
     {
@@ -38,5 +40,11 @@
         /// </summary>
         /// <param name="uiBaseWindow"></param>
         void BeforeUnload(UIBaseWindow uiBaseWindow);
+        
+        /// <summary>
+        /// 绑定component
+        /// </summary>
+        /// <param name="gComponent"></param>
+        void BindComponent(UIBaseWindow baseWindow, GComponent gComponent);
     }
 }

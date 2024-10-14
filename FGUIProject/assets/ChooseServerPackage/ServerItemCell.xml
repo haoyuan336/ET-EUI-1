@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="400,100">
+  <displayList>
+    <graph id="n0_jh1l" name="n0" xy="0,0" size="400,100" type="rect">
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <text id="n1_jh1l" name="ServerName" xy="12,23" size="231,54" fontSize="40" autoSize="none" text="区服1区">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+    <component id="n3_jh1l" name="ClickButton" src="jh1l3e" fileName="AButton.xml" pkg="9nomxs01" xy="0,0" size="400,100">
+      <relation target="" sidePair="width-width,height-height"/>
+    </component>
+  </displayList>
+</component>

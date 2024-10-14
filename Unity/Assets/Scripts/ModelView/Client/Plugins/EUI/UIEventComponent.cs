@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FairyGUI;
 
 namespace ET.Client
 {
@@ -8,5 +9,8 @@ namespace ET.Client
       
         public readonly Dictionary<WindowID, IAUIEventHandler> UIEventHandlers = new Dictionary<WindowID, IAUIEventHandler>();
         public bool IsClicked { get; set; }
+        
+        public Dictionary<GButton, bool> IsClickedMap = new Dictionary<GButton, bool>();
+
     }
 }

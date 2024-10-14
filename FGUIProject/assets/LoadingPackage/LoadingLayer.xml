@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,1334">
+  <displayList>
+    <graph id="n0_ckxh" name="n0" xy="0,0" size="750,1334" type="rect" fillColor="#ff666666">
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <text id="n1_ckxh" name="n1" xy="0,0" size="750,1334" fontSize="50" align="center" vAlign="middle" autoSize="none" text="Loading...">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+  </displayList>
+</component>

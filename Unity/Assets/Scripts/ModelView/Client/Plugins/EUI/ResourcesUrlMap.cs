@@ -33,12 +33,21 @@ namespace ET
                 this.Maps.Add(name, value);
             }
         }
+        //---------------ChooseServerPackage---------------
+        public const string ChooseServerLayer = "ui://8qgfwpa8jh1l0";
+        public const string ServerItemCell = "ui://8qgfwpa8jh1l1";
+        public const string LoginServerLayer = "ui://8qgfwpa8jh1l2";
         //---------------GameUIPackage---------------
         public const string GameUILayer = "ui://24bwjhhnk7it0";
+        //---------------LoadingPackage---------------
+        public const string LoadingLayer = "ui://8l9768khjh1l0";
         //---------------LoginLayerPackage---------------
         public const string BgButton = "ui://9sdsckomk7it3";
         public const string LoginLayer = "ui://9sdsckomrsyn0";
         public const string LoginButton = "ui://9sdsckomigda4";
+        //---------------MainLayerPackage---------------
+        public const string MainLayer = "ui://7sxmdg4qckxh0";
+        public const string AddHeroItemCell = "ui://7sxmdg4qckxh2";
         //---------------RootPackage---------------
         public const string RootLayer = "ui://9nomxs01i2d80";
         public const string EmptyLayer = "ui://9nomxs01i2d81";
@@ -161,5 +170,8 @@ namespace ET
         public const string bgvipgm = "ui://9nomxs01k7it3a";
         public const string btn_gg02 = "ui://9nomxs01k7it3b";
         public const string zt_03 = "ui://9nomxs01k7it3c";
+        public const string SpalshLayer = "ui://9nomxs01jh1l0";
+        public const string NButton = "ui://9nomxs01jh1l3d";
+        public const string AButton = "ui://9nomxs01jh1l3e";
     }
 }

@@ -16,8 +16,13 @@ message NetClient2Main_Login // IResponse
 	int32 RpcId = 1;
 	int32 Error = 2;
 	string Message = 3;
+	repeated ServerInfo ServerInfos = 5;
+	repeated RoleInfo RoleInfos = 6;
+	string Address = 7;
+	int64 GateId = 8;
+	int64 LoginGateKey = 9;
 
-	int64 PlayerId = 4;
+
 }
 
 // ResponseType View2MainClient_HttpHelper
@@ -33,4 +38,24 @@ message View2MainClient_HttpHelper // IResponse
 	int32 Error = 2;
 	string Message = 3;
 	string Text = 4;
+}
+
+//ResponseType NetClient2Main_LoginGate
+message Main2NetClient_LoginGate // IRequest
+{
+	int32 RpcId = 1;
+	int64 Key = 2;
+	int64 GateId = 3;
+	string Address = 4;
+	string Account = 5;
+	string Password = 6;
+	int32 ZoneConfigId = 7;
+}
+
+message NetClient2Main_LoginGate // IResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+	int64 PlayerId = 4;
 }

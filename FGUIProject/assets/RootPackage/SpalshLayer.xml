@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,1334">
+  <displayList>
+    <graph id="n0_jh1l" name="n0" xy="0,0" size="750,1334" type="rect">
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <text id="n1_jh1l" name="n1" xy="126,599" size="498,135" fontSize="50" align="center" vAlign="middle" autoSize="none" text="闪屏loading页面"/>
+  </displayList>
+</component>

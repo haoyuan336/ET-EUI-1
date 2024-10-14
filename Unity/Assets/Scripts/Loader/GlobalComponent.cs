@@ -26,13 +26,13 @@ namespace ET
 
             self.RootLayer = self.UIPanel.ui;
 
-            self.NormalRoot = self.RootLayer.GetChild("NormalRootLayer").asCom;
-
-            self.PopUpRoot = self.RootLayer.GetChild("PopUpRootLayer").asCom;
-
-            self.FixedRoot = self.RootLayer.GetChild("FixedRootLayer").asCom;
-
-            self.OtherRoot = self.RootLayer.GetChild("OtherRootLayer").asCom;
+            // self.NormalRoot = self.RootLayer.GetChild("NormalRootLayer").asCom;
+            //
+            // self.PopUpRoot = self.RootLayer.GetChild("PopUpRootLayer").asCom;
+            //
+            // self.FixedRoot = self.RootLayer.GetChild("FixedRootLayer").asCom;
+            //
+            // self.OtherRoot = self.RootLayer.GetChild("OtherRootLayer").asCom;
 
             self.GlobalConfig = Resources.Load<GlobalConfig>("GlobalConfig");
 
@@ -45,6 +45,19 @@ namespace ET
     [ComponentOf(typeof(Scene))]
     public class GlobalComponent : Entity, IAwake
     {
+        public void Init()
+        {
+            this.RootLayer = this.UIPanel.ui;
+
+            this.NormalRoot = this.RootLayer.GetChild("NormalRootLayer").asCom;
+            
+            this.PopUpRoot = this.RootLayer.GetChild("PopUpRootLayer").asCom;
+            
+            this.FixedRoot = this.RootLayer.GetChild("FixedRootLayer").asCom;
+            
+            this.OtherRoot = this.RootLayer.GetChild("OtherRootLayer").asCom;
+        }
+
         public Transform Global;
         public Transform Unit { get; set; }
 

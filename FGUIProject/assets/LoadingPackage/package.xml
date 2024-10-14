@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="8l9768kh">
+  <resources>
+    <component id="jh1l0" name="LoadingLayer.xml" path="/" exported="true"/>
+  </resources>
+  <publish name="" path=".\..\Unity\Assets\Resources\FGUI\LoadingPackage" packageCount="2" branchPath=".\..\Unity\Assets\Resources\FGUI\LoadingPackage"/>
+</packageDescription>

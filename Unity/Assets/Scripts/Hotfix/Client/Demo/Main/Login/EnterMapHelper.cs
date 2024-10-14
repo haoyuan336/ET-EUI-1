@@ -1,16 +1,19 @@
 using System;
 
-
 namespace ET.Client
 {
     public static partial class EnterMapHelper
     {
-        public static async ETTask EnterMapAsync(Scene root)
+        public static async ETTask EnterMapAsync(Scene root, int zoneConfigId)
         {
             try
             {
-                G2C_EnterMap g2CEnterMap = await root.GetComponent<ClientSenderComponent>().Call(C2G_EnterMap.Create()) as G2C_EnterMap;
+                Log.Debug($"zone configId {zoneConfigId}");
+
+                C2G_EnterMap enterMap = C2G_EnterMap.Create();
                 
+                G2C_EnterMap g2CEnterMap = await root.GetComponent<ClientSenderComponent>().Call(enterMap) as G2C_EnterMap;
+
                 // 等待场景切换完成
                 await root.GetComponent<ObjectWait>().Wait<Wait_SceneChangeFinish>();
                 
@@ -19,9 +22,9 @@ namespace ET.Client
             catch (Exception e)
             {
                 Log.Error(e);
-            }	
+            }
         }
-        
+
         public static async ETTask Match(Fiber fiber)
         {
             try
@@ -31,7 +34,7 @@ namespace ET.Client
             catch (Exception e)
             {
                 Log.Error(e);
-            }	
+            }
         }
     }
 }

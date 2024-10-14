@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Unity.Mathematics;
 
 namespace ET.Server
@@ -8,40 +9,93 @@ namespace ET.Server
     {
         protected override async ETTask Run(Scene scene, M2M_UnitTransferRequest request, M2M_UnitTransferResponse response)
         {
-            UnitComponent unitComponent = scene.GetComponent<UnitComponent>();
-            Unit unit = MongoHelper.Deserialize<Unit>(request.Unit);
-
-            unitComponent.AddChild(unit);
-            unitComponent.Add(unit);
-
-            foreach (byte[] bytes in request.Entitys)
+            try
             {
-                Entity entity = MongoHelper.Deserialize<Entity>(bytes);
-                unit.AddComponent(entity);
+                UnitComponent unitComponent = scene.GetComponent<UnitComponent>();
+
+                Unit unit = MongoHelper.Deserialize<Unit>(request.Unit);
+
+                Log.Debug($"M2M_UnitTransferRequest unit {unit.Id}");
+
+                Log.Debug($"unitcomponent {unitComponent.Children.Count}");
+
+                foreach (var kv in unitComponent.Children)
+                {
+                    Log.Debug($"kv {kv.Key} {kv.Value}");
+                }
+
+                Unit oldUnit = unitComponent.GetChild<Unit>(unit.Id);
+
+                if (oldUnit != null)
+                {
+                    unitComponent.RemoveChild(unit.Id);
+                }
+
+                unitComponent.AddChild(unit);
+
+                unitComponent.Add(unit);
+
+                unit.AddComponent<UnitDBSaveComponent>();
+
+                foreach (byte[] bytes in request.Entitys)
+                {
+                    Entity entity = MongoHelper.Deserialize<Entity>(bytes);
+                    unit.AddComponent(entity);
+                }
+
+                unit.AddComponent<MoveComponent>();
+                unit.AddComponent<PathfindingComponent, string>(scene.Name);
+                unit.Position = new float3(-10, 0, -10);
+
+                unit.AddComponent<MailBoxComponent, MailBoxType>(MailBoxType.OrderedMessage);
+
+                // 通知客户端开始切场景
+                M2C_StartSceneChange m2CStartSceneChange = M2C_StartSceneChange.Create();
+                m2CStartSceneChange.SceneInstanceId = scene.InstanceId;
+                m2CStartSceneChange.SceneName = scene.Name;
+                MapMessageHelper.SendToClient(unit, m2CStartSceneChange);
+
+                // 通知客户端创建My Unit
+                M2C_CreateMyUnit m2CCreateUnits = M2C_CreateMyUnit.Create();
+
+                m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
+
+                Log.Debug("获取当前的地图信息");
+                m2CCreateUnits.HeroCardInfos = this.GetHeroCardInfos(unit);
+
+                MapMessageHelper.SendToClient(unit, m2CCreateUnits);
+
+                // 加入aoi
+                unit.AddComponent<AOIEntity, int, float3>(9 * 1000, unit.Position);
+
+                // 解锁location，可以接收发给Unit的消息
+                await scene.Root().GetComponent<LocationProxyComponent>().UnLock(LocationType.Unit, unit.Id, request.OldActorId, unit.GetActorId());
+            }
+            catch (Exception e)
+            {
+                Log.Debug($"M2M_UnitTransferRequest {e}");
+            }
+        }
+
+        private List<HeroCardInfo> GetHeroCardInfos(Unit unit)
+        {
+            HeroCardComponent heroCardComponent = unit.GetComponent<HeroCardComponent>();
+
+            if (heroCardComponent == null)
+            {
+                heroCardComponent = unit.AddComponent<HeroCardComponent>();
             }
 
-            unit.AddComponent<MoveComponent>();
-            unit.AddComponent<PathfindingComponent, string>(scene.Name);
-            unit.Position = new float3(-10, 0, -10);
+            List<HeroCardInfo> heroCardInfos = new List<HeroCardInfo>();
 
-            unit.AddComponent<MailBoxComponent, MailBoxType>(MailBoxType.OrderedMessage);
+            foreach (var kv in heroCardComponent.Children)
+            {
+                HeroCard card = kv.Value as HeroCard;
 
-            // 通知客户端开始切场景
-            M2C_StartSceneChange m2CStartSceneChange = M2C_StartSceneChange.Create();
-            m2CStartSceneChange.SceneInstanceId = scene.InstanceId;
-            m2CStartSceneChange.SceneName = scene.Name;
-            MapMessageHelper.SendToClient(unit, m2CStartSceneChange);
+                heroCardInfos.Add(card.GetInfo());
+            }
 
-            // 通知客户端创建My Unit
-            M2C_CreateMyUnit m2CCreateUnits = M2C_CreateMyUnit.Create();
-            m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
-            MapMessageHelper.SendToClient(unit, m2CCreateUnits);
-
-            // 加入aoi
-            unit.AddComponent<AOIEntity, int, float3>(9 * 1000, unit.Position);
-
-            // 解锁location，可以接收发给Unit的消息
-            await scene.Root().GetComponent<LocationProxyComponent>().UnLock(LocationType.Unit, unit.Id, request.OldActorId, unit.GetActorId());
+            return heroCardInfos;
         }
     }
 }

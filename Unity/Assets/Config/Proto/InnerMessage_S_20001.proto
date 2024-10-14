@@ -147,6 +147,38 @@ message G2R_GetLoginKey // IResponse
 	int64 GateId = 5;
 }
 
+// ResponseType R2G_GetServerInfoResponse
+message G2R_GetServerInfoRequest // IRequest
+{
+	int32 RpcId = 1;
+
+	string UserName = 2;
+}
+message R2G_GetServerInfoResponse // IResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+	repeated ServerInfo ServerInfos = 4;
+	repeated RoleInfo RoleInfos = 5;
+}
+
+//ResponseType R2G_GetServerCurrentRoleIdResponse
+message G2R_GetServerCurrentRoleIdRequest // IRequest
+{
+	int32 RpcId = 1;
+	string Account = 2;
+	int32 ZoneConfigId = 3;
+
+}
+message R2G_GetServerCurrentRoleIdResponse // IResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+	int64 RoleId = 4;
+}
+
 message G2M_SessionDisconnect // ILocationMessage
 {
 	int32 RpcId = 1;
@@ -175,3 +207,63 @@ message M2M_UnitTransferResponse // IResponse
 	int32 Error = 2;
 	string Message = 3;
 }
+
+//ResponseType UnitCache2Other_AddOrUpdateUnit
+message Other2UnitCache_AddOrUpdateUnit // IRequest
+{
+	int32 RpcId = 1;
+
+	int64 UnitId = 2;
+
+	repeated string EntityTypes = 3;
+
+	repeated  bytes EntityBytes = 4;
+}
+
+message UnitCache2Other_AddOrUpdateUnit // IResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+}
+
+//ResponseType UnitCache2Other_DeleteUnit
+message Other2UnitCache_DeleteUnit // IRequest
+{
+	int32 RpcId = 1;
+
+	int64 UnitId = 2;
+
+}
+
+message UnitCache2Other_DeleteUnit // IResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+}
+
+//ResponseType UnitCache2Other_GetUnit
+message Other2UnitCache_GetUnit // IRequest
+{
+	int32 RpcId = 1;
+
+	int64 UnitId = 2;
+
+	repeated string ComponentNameList = 3;
+
+}
+
+message UnitCache2Other_GetUnit // IResponse
+{
+	int32 RpcId = 1;
+
+	int32 Error = 2;
+	
+	string Message = 3;
+
+	repeated Entity EntityList = 4;
+
+	repeated string ComponentNameList = 5;
+}
+
