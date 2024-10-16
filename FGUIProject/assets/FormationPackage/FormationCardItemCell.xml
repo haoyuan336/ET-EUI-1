@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="156,212">
+  <controller name="IsFormation" pages="0,No,1,Yes" selected="0"/>
+  <displayList>
+    <graph id="n0_iygc" name="n0" xy="0,0" size="156,212" type="rect">
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <text id="n1_iygc" name="HeroName" xy="3,34" size="150,55" fontSize="40" align="center" vAlign="middle" autoSize="none" text="英雄1">
+      <relation target="" sidePair="width-width,top-top"/>
+    </text>
+    <text id="n2_iygc" name="Level" xy="2,140" size="150,55" fontSize="40" align="center" vAlign="middle" vars="true" autoSize="none" text="Lv:{Level=100}">
+      <relation target="" sidePair="width-width,bottom-bottom"/>
+    </text>
+    <graph id="n4_iygc" name="n4" xy="0,0" size="156,212" type="rect" fillColor="#a1000000">
+      <gearDisplay controller="IsFormation" pages="1"/>
+    </graph>
+    <graph id="n3_iygc" name="n3" xy="0,67" size="156,79" type="polygon" fillColor="#ff00ff00" points="31,25,71,50,127,-3,156.5003,-0.9997635,72.25029,79.00016,9,28">
+      <gearDisplay controller="IsFormation" pages="1"/>
+    </graph>
+  </displayList>
+</component>

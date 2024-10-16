@@ -21,6 +21,8 @@ namespace ET.Client
     public struct MoveUnitPos
     {
         public Vector2 Vector2;
+
+        public float Power;
     }
 #endif
     public struct ShowLoadingLayer

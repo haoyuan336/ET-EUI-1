@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: MiniGameConfig
   m_EditorClassIdentifier: 
   ProjectConf:
-    projectName: xiaoyouxi
+    projectName: minigame
     Appid: wxb27d263a17ae5528
     CDN: http://192.168.2.100:3000/xiaoyouxi
     assetLoadType: 0
     compressDataPackage: 0
     VideoUrl: 
-    DST: D:/workspace/ET-EUI/Unity/Build/xiaoyouxi2
+    DST: D:/workspace/ET-EUI/Unity/Build/xiaoyouxi
     StreamCDN: 
     bundleHashLength: 32
     bundlePathIdentifier: StreamingAssets;
-    bundleExcludeExtensions: json;.version;.bytes;hash;
+    bundleExcludeExtensions: json;
     AssetsUrl: 
     MemorySize: 256
     HideAfterCallMain: 1
@@ -44,7 +44,7 @@ MonoBehaviour:
     UseFriendRelation: 0
     UseCompressedTexture: 0
     UseMiniGameChat: 0
-    PreloadWXFont: 1
+    PreloadWXFont: 0
   CompileOptions:
     DevelopBuild: 0
     AutoProfile: 0
@@ -61,6 +61,7 @@ MonoBehaviour:
     showMonitorSuggestModal: 0
     enableProfileStats: 0
     enableRenderAnalysis: 0
+    enablePerfAnalysis: 0
     iOSAutoGCInterval: 10000
     enableIOSPerformancePlus: 0
     brotliMT: 1

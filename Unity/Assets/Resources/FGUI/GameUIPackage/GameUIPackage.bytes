@@ -1,9 +1,0 @@
-k7it0.xml|215|<component size="750,1334">
-  <displayList>
-    <text id="n0_k7it" name="n0" xy="204,208" size="342,69" fontSize="40" align="center" vAlign="middle" autoSize="none" text="GameUILayer"/>
-  </displayList>
-</component>package.xml|194|<packageDescription id="24bwjhhn" name="GameUIPackage">
-  <resources>
-    <component id="k7it0" name="GameUILayer" path="/" size="750,1334" exported="true"/>
-  </resources>
-</packageDescription>

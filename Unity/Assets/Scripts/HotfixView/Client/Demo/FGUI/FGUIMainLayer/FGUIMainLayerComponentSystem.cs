@@ -18,11 +18,18 @@ namespace ET.Client
             self.View.JoyStickLayerComponent.RegisterUIEvent();
 
             self.View.JoyStickLayerComponent.JoyAction = self.OnJoyAction;
+
+            self.View.FormationButton.SetListener(self.OnFormationButtonClick);
+        }
+
+        private static void OnFormationButtonClick(this FGUIMainLayerComponent self)
+        {
+            EventSystem.Instance.Publish(self.Root(), new ShowLayerById() { WindowID = WindowID.FormationLayer });
         }
 
         private static void OnJoyAction(this FGUIMainLayerComponent self, Vector2 direction, float power)
         {
-            EventSystem.Instance.Publish(self.Root().CurrentScene(), new MoveUnitPos() { Vector2 = direction });
+            EventSystem.Instance.Publish(self.Root().CurrentScene(), new MoveUnitPos() { Vector2 = direction, Power = power });
         }
 
         private static void OnHeroBagButtonClick(this FGUIMainLayerComponent self)

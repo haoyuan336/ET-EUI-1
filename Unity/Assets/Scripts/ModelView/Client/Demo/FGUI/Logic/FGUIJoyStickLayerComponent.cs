@@ -17,5 +17,7 @@ namespace ET.Client
         public GComponent GComponent = null;
 
         public Action<Vector2, float> JoyAction = null;
+
+        public Vector2 Direction = Vector2.one;
     }
 }

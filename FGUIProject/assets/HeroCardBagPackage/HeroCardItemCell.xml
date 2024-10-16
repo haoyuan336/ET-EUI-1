@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="156,212">
   <displayList>
-    <graph id="n0_iygc" name="n0" xy="0,0" size="156,212" type="rect" fillColor="#ffcccccc">
+    <graph id="n0_iygc" name="n0" xy="0,0" size="156,212" type="rect">
       <relation target="" sidePair="width-width,height-height"/>
     </graph>
     <text id="n1_iygc" name="HeroName" xy="3,34" size="150,55" fontSize="40" align="center" vAlign="middle" autoSize="none" text="英雄1">

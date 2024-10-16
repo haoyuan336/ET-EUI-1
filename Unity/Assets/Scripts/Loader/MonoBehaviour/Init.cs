@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.WebSockets;
+using System.Reflection;
 using System.Threading;
 using CommandLine;
 using UnityEngine;
@@ -54,10 +55,11 @@ namespace ET
 
             await World.Instance.AddSingleton<ResourcesComponent>().CreatePackageAsync("DefaultPackage", true);
 
-            CodeLoader codeLoader = World.Instance.AddSingleton<CodeLoader>();
-            await codeLoader.DownloadAsync();
-
-            codeLoader.Start();
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            
+            World.Instance.AddSingleton<CodeTypes, Assembly[]>(new[] { assembly });
+            
+            ET.Entry.Start();
         }
 
         private void Update()

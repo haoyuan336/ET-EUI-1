@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BodiesPBRMaskTint
-  m_Shader: {fileID: -6465566751694194690, guid: cd8f260f93c08de4f8f6f7f2b5d3546e,
-    type: 3}
+  m_Shader: {fileID: 4800000, guid: 5a2fa7579a6b7f248a0e07654d4b1916, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -101,6 +100,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 111b5d53b1593dd4bb0651a84be2fea0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: 1fcddc08702c0894faa0d61c3e998cd0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _texcoord:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -126,6 +129,7 @@ Material:
     - Vector1_D682A6C5: 3
     - Vector1_E784DED5: 3
     - Vector1_F1794ABA: 2
+    - _AlphaCutoff: 0.5
     - _BumpScale: 1
     - _Color01Power: 3
     - _Color02Power: 4
@@ -147,6 +151,7 @@ Material:
     - _Parallax: 0.02
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _ReceiveShadows: 1
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

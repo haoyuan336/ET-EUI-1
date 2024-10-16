@@ -8,13 +8,13 @@ namespace ET.Client
         protected override async ETTask Run(Scene scene, ChangeRotation args)
         {
             Unit unit = args.Unit;
-            GameObjectComponent gameObjectComponent = unit.GetComponent<GameObjectComponent>();
-            if (gameObjectComponent == null)
-            {
-                return;
-            }
-            Transform transform = gameObjectComponent.GameObject.transform;
-            transform.rotation = unit.Rotation;
+            // GameObjectComponent gameObjectComponent = unit.GetComponent<GameObjectComponent>();
+            // if (gameObjectComponent == null)
+            // {
+            //     return;
+            // }
+            // Transform transform = gameObjectComponent.GameObject.transform;
+            // transform.rotation = unit.Rotation;
             await ETTask.CompletedTask;
         }
     }

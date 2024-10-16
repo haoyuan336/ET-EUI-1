@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="1rgdxzmj">
+  <resources>
+    <component id="iygc0" name="FormationLayer.xml" path="/" exported="true"/>
+    <component id="iygc2" name="FormationCardItemCell.xml" path="/" exported="true"/>
+  </resources>
+  <publish name="FormationPackage" path=".\..\Unity\Assets\Resources\FGUI\FormationPackage" packageCount="2" branchPath=".\..\Unity\Assets\Resources\FGUI\FormationPackage"/>
+</packageDescription>

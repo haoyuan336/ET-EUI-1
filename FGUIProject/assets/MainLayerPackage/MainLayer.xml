@@ -17,5 +17,8 @@
       <item/>
       <item/>
     </list>
+    <component id="n9_iygc" name="FormationButton" src="jh1l3d" fileName="NButton.xml" pkg="9nomxs01" xy="609,333" size="117,69">
+      <Button title="Formation" titleFontSize="20"/>
+    </component>
   </displayList>
 </component>

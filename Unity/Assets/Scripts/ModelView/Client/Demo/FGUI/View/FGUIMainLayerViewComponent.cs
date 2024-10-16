@@ -54,14 +54,27 @@ namespace ET
                 return this._List;
             }
         }
+        public GButton  FormationButton
+        {
+            get
+            {
+                if (this._FormationButton == null)
+                {
+                    this._FormationButton = this.GetParent<UIBaseWindow>().GComponent.GetChild("FormationButton").asButton;
+                }
+                return this._FormationButton;
+            }
+        }
         private FGUIJoyStickLayerComponent _JoyStickLayerComponent = null;
         private GButton _HeroBagButton = null;
         private GList _List = null;
+        private GButton _FormationButton = null;
         public void ClearBindCache()
         {
             this._JoyStickLayerComponent = null;
             this._HeroBagButton = null;
             this._List = null;
+            this._FormationButton = null;
         }
     }
 }

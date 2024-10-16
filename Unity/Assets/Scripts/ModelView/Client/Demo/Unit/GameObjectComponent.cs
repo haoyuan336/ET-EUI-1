@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 
 namespace ET.Client
@@ -9,7 +10,12 @@ namespace ET.Client
 
         public CharacterController CharacterController;
 
+        public int Speed = Animator.StringToHash("speed");
+
         public Vector3 MoveSpeed;
+
+        public Vector3 Rotation;
+
         public GameObject GameObject
         {
             get
@@ -24,5 +30,11 @@ namespace ET.Client
         }
 
         public Transform Transform { get; private set; }
+
+        public Camera Camera;
+
+        public float TargetPower = 0;
+
+        public float CurrentPower = 0;
     }
 }

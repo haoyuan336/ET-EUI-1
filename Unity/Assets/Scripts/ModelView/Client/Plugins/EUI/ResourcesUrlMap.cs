@@ -37,6 +37,9 @@ namespace ET
         public const string ChooseServerLayer = "ui://8qgfwpa8jh1l0";
         public const string ServerItemCell = "ui://8qgfwpa8jh1l1";
         public const string LoginServerLayer = "ui://8qgfwpa8jh1l2";
+        //---------------FormationPackage---------------
+        public const string FormationLayer = "ui://1rgdxzmjiygc0";
+        public const string FormationCardItemCell = "ui://1rgdxzmjiygc2";
         //---------------GameUIPackage---------------
         public const string GameUILayer = "ui://24bwjhhnk7it0";
         //---------------HeroCardBagPackage---------------
@@ -178,5 +181,6 @@ namespace ET
         public const string NButton = "ui://9nomxs01jh1l3d";
         public const string AButton = "ui://9nomxs01jh1l3e";
         public const string CloseButton = "ui://9nomxs01iygc3f";
+        public const string WindowBox = "ui://9nomxs01iygc3h";
     }
 }

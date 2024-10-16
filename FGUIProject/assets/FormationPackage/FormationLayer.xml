@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,1334">
+  <displayList>
+    <component id="n3_iygc" name="n3" src="iygc3h" fileName="WindowBox.xml" pkg="9nomxs01" xy="35,93">
+      <Label title="布阵"/>
+    </component>
+    <component id="n2_iygc" name="CloseButton" src="iygc3f" fileName="CloseButton.xml" pkg="9nomxs01" xy="644,60">
+      <relation target="" sidePair="center-center,top-top"/>
+    </component>
+    <graph id="n6_iygc" name="n6" xy="49,208" size="649,444" type="rect" fillColor="#ffcccccc"/>
+    <graph id="n7_iygc" name="n7" xy="49,675" size="651,542" type="rect" fillColor="#ffcccccc"/>
+    <list id="n4_iygc" name="FormationList" xy="55,216" size="646,435" layout="flow_hz" overflow="scroll" lineGap="6" colGap="6" lineItemCount="4" defaultItem="ui://1rgdxzmjiygc2" autoClearItems="true">
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+    </list>
+    <list id="n5_iygc" name="CardList" xy="53,686" size="644,527" layout="flow_hz" overflow="scroll" lineGap="6" colGap="6" lineItemCount="4" defaultItem="ui://1rgdxzmjiygc2" autoClearItems="true">
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+    </list>
+  </displayList>
+</component>

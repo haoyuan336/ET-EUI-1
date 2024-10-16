@@ -68,7 +68,9 @@ namespace ET.Client
 
             if (self.JoyAction != null)
             {
-                self.JoyAction.Invoke(director.normalized, director.magnitude);
+                self.Direction = director.normalized;
+
+                self.JoyAction.Invoke(self.Direction, self.Direction.magnitude);
             }
         }
 
@@ -78,7 +80,7 @@ namespace ET.Client
 
             if (self.JoyAction != null)
             {
-                self.JoyAction.Invoke(Vector2.zero, 0);
+                self.JoyAction.Invoke(self.Direction, 0);
             }
         }
 

@@ -5545,7 +5545,7 @@ Animator:
   m_GameObject: {fileID: 7369448170708576210}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 9f078227c6f09b54392514bfaa25c741, type: 3}
-  m_Controller: {fileID: 9100000, guid: 91468e12735484741a3f95709c52ccf5, type: 2}
+  m_Controller: {fileID: 9100000, guid: c523be2b94e833a40bdd7af9d7b103d0, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -5567,13 +5567,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 1.88
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.96, z: 0}
 --- !u!1 &7369448170710031444
 GameObject:
   m_ObjectHideFlags: 0

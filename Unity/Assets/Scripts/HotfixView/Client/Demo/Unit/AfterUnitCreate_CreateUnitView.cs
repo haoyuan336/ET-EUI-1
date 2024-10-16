@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using YooAsset;
 
 namespace ET.Client
 {
@@ -37,15 +36,19 @@ namespace ET.Client
             // //
             GlobalComponent globalComponent = scene.Root().GetComponent<GlobalComponent>();
 
-            GameObject prefab = globalComponent.Prefabs.PlayerPrefab;
+            GameObject prefab = globalComponent.ReferenceCollector.Get<GameObject>("AlienDefault");
+
+            // GameObject prefab = globalComponent.Prefabs.PlayerPrefab;
 
             GameObject go = UnityEngine.Object.Instantiate(prefab, globalComponent.Unit, true);
-
-            go.transform.position = unit.Position;
-
+            //
+            // go.transform.position = unit.Position;
+            //
             unit.AddComponent<GameObjectComponent, GameObject>(go);
+            
             // unit.AddComponent<AnimatorComponent>();
-            // await ETTask.CompletedTask;
+            
+            await ETTask.CompletedTask;
         }
     }
 }

@@ -2,10 +2,10 @@
 <component size="750,1334">
   <controller name="JostickShowState" pages="0,No,1,Yes" selected="1"/>
   <displayList>
-    <graph id="n0_iygc" name="BgNode" xy="375,375" pivot="0.5,0.5" anchor="true" size="300,300" type="eclipse" fillColor="#33ffffff">
+    <graph id="n0_iygc" name="BgNode" xy="375,375" pivot="0.5,0.5" anchor="true" size="260,260" type="eclipse" lineSize="2" lineColor="#99ffffff" fillColor="#00ffffff">
       <gearDisplay controller="JostickShowState" pages="1"/>
     </graph>
-    <graph id="n1_iygc" name="JoyStickNode" xy="375,375" pivot="0.5,0.5" anchor="true" size="100,100" type="eclipse" fillColor="#4ccccccc">
+    <graph id="n1_iygc" name="JoyStickNode" xy="369,379" pivot="0.5,0.5" anchor="true" size="100,100" type="eclipse" lineSize="3" lineColor="#99ffffff" fillColor="#66cccccc">
       <gearDisplay controller="JostickShowState" pages="1"/>
     </graph>
   </displayList>

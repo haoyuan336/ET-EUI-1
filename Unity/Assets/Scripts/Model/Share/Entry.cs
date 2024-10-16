@@ -25,14 +25,13 @@ namespace ET
 
         public static void Start()
         {
-
             StartAsync().Coroutine();
         }
 
         private static async ETTask StartAsync()
         {
             WinPeriod.Init();
-
+            
             // 注册Mongo type
             MongoRegister.Init();
             // 注册Entity序列化器
@@ -44,15 +43,13 @@ namespace ET
             World.Instance.AddSingleton<NetServices>();
             World.Instance.AddSingleton<NavmeshComponent>();
             World.Instance.AddSingleton<LogMsg>();
-
-            // 创建需要reload的code singleton
+            //
+            // // 创建需要reload的code singleton
             CodeTypes.Instance.CreateCode();
-
-            await World.Instance.AddSingleton<ConfigLoader>().LoadAsync();
-
-            await FiberManager.Instance.Create(SchedulerType.Main, ConstFiberId.Main, 0, SceneType.Main, "");
             
-            Log.Debug("start");
+            await World.Instance.AddSingleton<ConfigLoader>().LoadAsync();
+            //
+            await FiberManager.Instance.Create(SchedulerType.Main, ConstFiberId.Main, 0, SceneType.Main, "");
         }
     }
 }

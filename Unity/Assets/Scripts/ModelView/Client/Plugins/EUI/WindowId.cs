@@ -12,23 +12,26 @@ namespace ET.Client
         ChooseServerLayer = 1,
         ServerItemCell = 2,
         LoginServerLayer = 3,
+        //----------------------FormationPackage---------------------
+        FormationLayer = 4,
+        FormationCardItemCell = 5,
         //----------------------GameUIPackage---------------------
-        GameUILayer = 4,
+        GameUILayer = 6,
         //----------------------HeroCardBagPackage---------------------
-        HeroCardBagLayer = 5,
-        HeroCardItemCell = 6,
+        HeroCardBagLayer = 7,
+        HeroCardItemCell = 8,
         //----------------------LoadingPackage---------------------
-        LoadingLayer = 7,
+        LoadingLayer = 9,
         //----------------------LoginLayerPackage---------------------
-        LoginLayer = 8,
+        LoginLayer = 10,
         //----------------------MainLayerPackage---------------------
-        MainLayer = 9,
-        AddHeroItemCell = 10,
-        JoyStickLayer = 11,
+        MainLayer = 11,
+        AddHeroItemCell = 12,
+        JoyStickLayer = 13,
         //----------------------RootPackage---------------------
-        RootLayer = 12,
-        EmptyLayer = 13,
-        SpalshLayer = 14,
+        RootLayer = 14,
+        EmptyLayer = 15,
+        SpalshLayer = 16,
     }
     public class ComponentPackageMap
     {
@@ -54,32 +57,37 @@ namespace ET.Client
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "ChooseServerPackage");
             }
-            for (int j = 4; j < 5; j++)
+            for (int j = 4; j < 6; j++)
+            {
+                WindowID windowID = (WindowID)j;
+                 this.Maps.Add(windowID, "FormationPackage");
+            }
+            for (int j = 6; j < 7; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "GameUIPackage");
             }
-            for (int j = 5; j < 7; j++)
+            for (int j = 7; j < 9; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "HeroCardBagPackage");
             }
-            for (int j = 7; j < 8; j++)
+            for (int j = 9; j < 10; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "LoadingPackage");
             }
-            for (int j = 8; j < 9; j++)
+            for (int j = 10; j < 11; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "LoginLayerPackage");
             }
-            for (int j = 9; j < 12; j++)
+            for (int j = 11; j < 14; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "MainLayerPackage");
             }
-            for (int j = 12; j < 15; j++)
+            for (int j = 14; j < 17; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "RootPackage");

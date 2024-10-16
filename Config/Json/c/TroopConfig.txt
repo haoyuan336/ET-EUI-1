@@ -1,0 +1,3 @@
+{"dict": [
+[1000, {"_t":"TroopConfig","_id":1000,"TroopType":"MainLine"}],
+]}

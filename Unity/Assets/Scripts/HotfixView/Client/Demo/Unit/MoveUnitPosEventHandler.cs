@@ -15,8 +15,8 @@ namespace ET.Client
             Unit unit = unitComponent.MyUnit;
 
             GameObjectComponent gameObjectComponent = unit.GetComponent<GameObjectComponent>();
-            
-            gameObjectComponent.Move(direction);
+
+            gameObjectComponent.Move(direction, a.Power);
         }
     }
 }
