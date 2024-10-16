@@ -19,7 +19,21 @@ namespace ET.Client
 
             self.View.JoyStickLayerComponent.JoyAction = self.OnJoyAction;
 
+            self.View.JoyStickLayerComponent.StartJoyAction = self.OnStartJoyAction;
+
+            self.View.JoyStickLayerComponent.EndJoyAction = self.OnEndJoyAction;
+
             self.View.FormationButton.SetListener(self.OnFormationButtonClick);
+        }
+
+        private static void OnEndJoyAction(this FGUIMainLayerComponent self)
+        {
+            EventSystem.Instance.Publish(self.Root().CurrentScene(), new StartMoveUnitPos());
+        }
+
+        private static void OnStartJoyAction(this FGUIMainLayerComponent self)
+        {
+            EventSystem.Instance.Publish(self.Root().CurrentScene(), new EndMoveUnitPos());
         }
 
         private static void OnFormationButtonClick(this FGUIMainLayerComponent self)

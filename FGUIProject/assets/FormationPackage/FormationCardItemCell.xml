@@ -17,5 +17,8 @@
     <graph id="n3_iygc" name="n3" xy="0,67" size="156,79" type="polygon" fillColor="#ff00ff00" points="31,25,71,50,127,-3,156.5003,-0.9997635,72.25029,79.00016,9,28">
       <gearDisplay controller="IsFormation" pages="1"/>
     </graph>
+    <component id="n5_jj24" name="ClickButton" src="jh1l3e" fileName="AButton.xml" pkg="9nomxs01" xy="0,0" size="156,212">
+      <relation target="" sidePair="width-width,height-height"/>
+    </component>
   </displayList>
 </component>

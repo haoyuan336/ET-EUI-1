@@ -71,6 +71,8 @@ message M2C_CreateMyUnit // IMessage
 	UnitInfo Unit = 1;
 
 	repeated HeroCardInfo HeroCardInfos = 2;
+
+	repeated TroopInfo TroopInfos = 3;
 }
 
 message M2C_StartSceneChange // IMessage
@@ -281,4 +283,43 @@ message M2C_CreateOneHeroByConfigId // ILocationResponse
 	string Message = 3;
 
 	HeroCardInfo HeroCardInfo = 1;
+}
+
+message TroopInfo 
+{
+	int64 TroopId = 1;
+
+	repeated int64 HeroCardIds = 2;
+
+}
+
+//ResponseType M2C_SetHeroFormation
+message C2M_SetHeroFormation // ILocationRequest
+{
+	int32 RpcId = 1;
+	int64 HeroCardId = 2;
+	int32 Index = 3;
+	int64 TroopId = 4;
+}
+
+message M2C_SetHeroFormation // ILocationResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+}
+
+//ResponseType M2C_UnSetHeroFormation
+message C2M_UnSetHeroFromation // ILocationRequest
+{
+	int32 RpcId = 1;
+	int64 TroopId = 2;
+	int32 Index = 3;
+
+}
+message M2C_UnSetHeroFormation // ILocationResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
 }

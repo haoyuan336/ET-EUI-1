@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace ET.Client
@@ -25,8 +26,10 @@ namespace ET.Client
             EventSystem.Instance.Publish(scene.Root(), new ShowLayerById() { WindowID = WindowID.MainLayer });
 
             GameObjectComponent gameObjectComponent = myUnit.GetComponent<GameObjectComponent>();
-            
+
             gameObjectComponent.BindCM();
+
+            EventSystem.Instance.Publish(scene.Root(), new CreateHeroObjects() { });
         }
     }
 }

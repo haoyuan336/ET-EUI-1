@@ -1,9 +1,39 @@
 ﻿using System.Collections.Generic;
+
+#if UNITY
 using UnityEngine;
+
+#endif
 
 namespace ET.Client
 {
 #if UNITY
+
+    // public struct MoveHeroCard
+    // {
+    //     public HeroCard HeroCard;
+    //
+    //     public Vector2 MoveSpeed;
+    //
+    //     public float Power;
+    // }
+    public struct CreateHeroObject
+    {
+        public Unit Unit;
+        
+        public HeroCard HeroCard;
+
+        public int Index;
+    }
+
+    public struct DisposeHeroObject
+    {
+        public HeroCard HeroCard;
+    }
+    
+    public struct CreateHeroObjects
+    {
+    }
     public struct ShowLayerById
     {
         public WindowID WindowID;
@@ -18,11 +48,20 @@ namespace ET.Client
         public WindowID WindowID;
     }
 
+    public struct StartMoveUnitPos
+    {
+        
+    }
     public struct MoveUnitPos
     {
         public Vector2 Vector2;
 
         public float Power;
+    }
+
+    public struct EndMoveUnitPos
+    {
+        
     }
 #endif
     public struct ShowLoadingLayer

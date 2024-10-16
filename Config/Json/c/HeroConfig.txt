@@ -1,6 +1,6 @@
 {"dict": [
-[1001, {"_t":"HeroConfig","_id":1001,"PrefabName":"BasicMaleDefault","HeroName":"英雄1"}],
-[1002, {"_t":"HeroConfig","_id":1002,"PrefabName":"BasicFemaleDefault","HeroName":"英雄2"}],
-[1003, {"_t":"HeroConfig","_id":1003,"PrefabName":"AlienDefault","HeroName":"英雄3"}],
+[1001, {"_t":"HeroConfig","_id":1001,"PrefabName":"BearDefault","HeroName":"英雄1"}],
+[1002, {"_t":"HeroConfig","_id":1002,"PrefabName":"BasicMaleDefault","HeroName":"英雄2"}],
+[1003, {"_t":"HeroConfig","_id":1003,"PrefabName":"BasicFemaleDefault","HeroName":"英雄3"}],
 [1004, {"_t":"HeroConfig","_id":1004,"PrefabName":"AlienDefault","HeroName":"英雄4"}],
 ]}

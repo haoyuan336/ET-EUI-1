@@ -448,8 +448,8 @@ MonoBehaviour:
   - key: BasicMaleDefault
     gameObject: {fileID: 1762018173025169312, guid: 5811f4236f7f88b41b2a1da538566706,
       type: 3}
-  - key: BasicMaleNoWeaponDefault
-    gameObject: {fileID: 1338158378579552491, guid: 0b764a1b0b8e7be49840198c1c767688,
+  - key: BearDefault
+    gameObject: {fileID: 909545961731707779, guid: 5cacba29a1abb9a4aa2b32001a835a1f,
       type: 3}
 --- !u!1 &590194894
 GameObject:

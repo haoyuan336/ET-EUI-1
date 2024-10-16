@@ -43,6 +43,11 @@ namespace ET.Client
             self.View.BgNode.position = localPos;
 
             self.View.JoyStickNode.position = localPos;
+
+            if (self.StartJoyAction != null)
+            {
+                self.StartJoyAction.Invoke();
+            }
         }
 
         private static void OnTouchMove(this FGUIJoyStickLayerComponent self, EventContext context)
@@ -81,6 +86,11 @@ namespace ET.Client
             if (self.JoyAction != null)
             {
                 self.JoyAction.Invoke(self.Direction, 0);
+            }
+
+            if (self.EndJoyAction != null)
+            {
+                self.EndJoyAction.Invoke();
             }
         }
 

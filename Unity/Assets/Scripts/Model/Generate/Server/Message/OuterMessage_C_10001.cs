@@ -316,6 +316,9 @@ namespace ET
         [MemoryPackOrder(1)]
         public List<HeroCardInfo> HeroCardInfos { get; set; } = new();
 
+        [MemoryPackOrder(2)]
+        public List<TroopInfo> TroopInfos { get; set; } = new();
+
         public override void Dispose()
         {
             if (!this.IsFromPool)
@@ -325,6 +328,7 @@ namespace ET
 
             this.Unit = default;
             this.HeroCardInfos.Clear();
+            this.TroopInfos.Clear();
 
             ObjectPool.Instance.Recycle(this);
         }
@@ -1279,6 +1283,173 @@ namespace ET
         }
     }
 
+    [MemoryPackable]
+    [Message(OuterMessage.TroopInfo)]
+    public partial class TroopInfo : MessageObject
+    {
+        public static TroopInfo Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(TroopInfo), isFromPool) as TroopInfo;
+        }
+
+        [MemoryPackOrder(0)]
+        public long TroopId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public List<long> HeroCardIds { get; set; } = new();
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.TroopId = default;
+            this.HeroCardIds.Clear();
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.C2M_SetHeroFormation)]
+    [ResponseType(nameof(M2C_SetHeroFormation))]
+    public partial class C2M_SetHeroFormation : MessageObject, ILocationRequest
+    {
+        public static C2M_SetHeroFormation Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(C2M_SetHeroFormation), isFromPool) as C2M_SetHeroFormation;
+        }
+
+        [MemoryPackOrder(0)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public long HeroCardId { get; set; }
+
+        [MemoryPackOrder(2)]
+        public int Index { get; set; }
+
+        [MemoryPackOrder(3)]
+        public long TroopId { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.HeroCardId = default;
+            this.Index = default;
+            this.TroopId = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.M2C_SetHeroFormation)]
+    public partial class M2C_SetHeroFormation : MessageObject, ILocationResponse
+    {
+        public static M2C_SetHeroFormation Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(M2C_SetHeroFormation), isFromPool) as M2C_SetHeroFormation;
+        }
+
+        [MemoryPackOrder(0)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(2)]
+        public string Message { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.C2M_UnSetHeroFromation)]
+    [ResponseType(nameof(M2C_UnSetHeroFormation))]
+    public partial class C2M_UnSetHeroFromation : MessageObject, ILocationRequest
+    {
+        public static C2M_UnSetHeroFromation Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(C2M_UnSetHeroFromation), isFromPool) as C2M_UnSetHeroFromation;
+        }
+
+        [MemoryPackOrder(0)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public long TroopId { get; set; }
+
+        [MemoryPackOrder(2)]
+        public int Index { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.TroopId = default;
+            this.Index = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.M2C_UnSetHeroFormation)]
+    public partial class M2C_UnSetHeroFormation : MessageObject, ILocationResponse
+    {
+        public static M2C_UnSetHeroFormation Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(M2C_UnSetHeroFormation), isFromPool) as M2C_UnSetHeroFormation;
+        }
+
+        [MemoryPackOrder(0)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(2)]
+        public string Message { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
     public static class OuterMessage
     {
         public const ushort HttpGetRouterResponse = 10002;
@@ -1320,5 +1491,10 @@ namespace ET
         public const ushort HeroCardInfo = 10038;
         public const ushort C2M_CreateOneHeroByConfigId = 10039;
         public const ushort M2C_CreateOneHeroByConfigId = 10040;
+        public const ushort TroopInfo = 10041;
+        public const ushort C2M_SetHeroFormation = 10042;
+        public const ushort M2C_SetHeroFormation = 10043;
+        public const ushort C2M_UnSetHeroFromation = 10044;
+        public const ushort M2C_UnSetHeroFormation = 10045;
     }
 }

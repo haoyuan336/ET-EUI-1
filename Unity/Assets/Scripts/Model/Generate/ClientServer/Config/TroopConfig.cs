@@ -63,6 +63,8 @@ namespace ET
 		public int Id { get; set; }
 		/// <summary>队伍类型</summary>
 		public string TroopType { get; set; }
+		/// <summary>队伍认数</summary>
+		public int TroopCount { get; set; }
 
 	}
 }

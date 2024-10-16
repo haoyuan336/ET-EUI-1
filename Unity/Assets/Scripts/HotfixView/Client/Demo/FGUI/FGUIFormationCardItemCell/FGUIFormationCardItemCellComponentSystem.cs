@@ -22,8 +22,14 @@ namespace ET.Client
 
         public static void SetInfo(this FGUIFormationCardItemCellComponent self, HeroCard heroCard)
         {
-            self.View.HeroName.text = heroCard.Config.HeroName;
-            
+            if (heroCard != null)
+            {
+                self.View.HeroName.text = heroCard.Config.HeroName;
+            }
+            else
+            {
+                self.View.HeroName.text = "";
+            }
         }
     }
 }

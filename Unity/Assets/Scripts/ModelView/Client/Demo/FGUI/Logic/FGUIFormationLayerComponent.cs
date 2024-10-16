@@ -13,8 +13,14 @@ namespace ET.Client
 
         public Dictionary<int, UIBaseWindow> UIBaseWindows = new Dictionary<int, UIBaseWindow>();
 
+        public Dictionary<int, UIBaseWindow> FormationBaseWinwdows = new Dictionary<int, UIBaseWindow>();
+
         public List<HeroCard> HeroCards;
 
         public UIEventComponent UIEventComponent;
+
+        public List<HeroCard> FormationCards;
+
+        public Troop CurrentTroop;
     }
 }

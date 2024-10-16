@@ -18,6 +18,8 @@ namespace ET.Client
         {
             self.GameObject = gameObject;
 
+            self.GameObject.transform.forward = Vector3.back;
+
             self.CharacterController = self.GameObject.GetComponent<CharacterController>();
         }
 
@@ -30,7 +32,6 @@ namespace ET.Client
         {
             self.TargetPower = power;
 
-            Log.Debug($"target power {self.TargetPower}");
             self.MoveSpeed = new Vector3(direction.x, 0, direction.y * -1);
 
             // 获取当前朝向和目标朝向之间的差值
@@ -64,7 +65,7 @@ namespace ET.Client
                 }
             }
 
-            self.CharacterController.Move(self.MoveSpeed * Time.deltaTime * 3 * self.CurrentPower);
+            self.CharacterController.Move(self.MoveSpeed * Time.deltaTime * ConstValue.MoveSpeed * self.CurrentPower);
 
             self.GameObject.GetComponent<Animator>().SetFloat(self.Speed, self.CurrentPower);
 

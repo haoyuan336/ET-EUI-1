@@ -63,6 +63,8 @@ namespace ET.Server
                 Log.Debug("获取当前的地图信息");
                 m2CCreateUnits.HeroCardInfos = this.GetHeroCardInfos(unit);
 
+                m2CCreateUnits.TroopInfos = this.GetTroopInfos(unit);
+
                 MapMessageHelper.SendToClient(unit, m2CCreateUnits);
 
                 // 加入aoi
@@ -77,10 +79,34 @@ namespace ET.Server
             }
         }
 
+        private List<TroopInfo> GetTroopInfos(Unit unit)
+        {
+            TroopComponent troopComponent = unit.GetComponent<TroopComponent>();
+
+            if (troopComponent == null)
+            {
+                Log.Debug("troop component is null");
+                troopComponent = unit.AddComponent<TroopComponent>();
+            }
+
+            List<TroopInfo> troopInfos = new List<TroopInfo>();
+
+            foreach (var kv in troopComponent.Children)
+            {
+                Troop troop = kv.Value as Troop;
+
+                troopInfos.Add(troop.GetInfo());
+            }
+
+            return troopInfos;
+        }
+
         private List<HeroCardInfo> GetHeroCardInfos(Unit unit)
         {
             HeroCardComponent heroCardComponent = unit.GetComponent<HeroCardComponent>();
 
+            Log.Debug($"hero card component is null {heroCardComponent == null}");
+            
             if (heroCardComponent == null)
             {
                 heroCardComponent = unit.AddComponent<HeroCardComponent>();

@@ -18,6 +18,10 @@ namespace ET.Client
 
         public Action<Vector2, float> JoyAction = null;
 
+        public Action StartJoyAction = null;
+
+        public Action EndJoyAction = null;
+
         public Vector2 Direction = Vector2.one;
     }
 }

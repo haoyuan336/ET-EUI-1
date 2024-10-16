@@ -30,6 +30,8 @@ namespace ET.Client
 
             InitUnit(unit, m2CCreateMyUnit);
 
+            InitTroopInfo(unit, m2CCreateMyUnit);
+
             EventSystem.Instance.Publish(currentScene, new SceneChangeFinish());
             // 通知等待场景切换的协程
             root.GetComponent<ObjectWait>().Notify(new Wait_SceneChangeFinish());
@@ -52,6 +54,47 @@ namespace ET.Client
 
                 heroCard.SetInfo(info);
             }
+        }
+
+        private static void InitTroopInfo(Unit unit, M2C_CreateMyUnit createMyUnit)
+        {
+            TroopComponent troopComponent = unit.GetComponent<TroopComponent>();
+
+            if (troopComponent == null)
+            {
+                troopComponent = unit.AddComponent<TroopComponent>();
+            }
+
+            List<TroopInfo> troopInfos = createMyUnit.TroopInfos;
+
+            List<Troop> troops = new List<Troop>();
+
+            foreach (var troopInfo in troopInfos)
+            {
+                Troop troop = troopComponent.AddChildWithId<Troop>(troopInfo.TroopId);
+
+                troops.Add(troop);
+
+                troop.SetInfo(troopInfo);
+            }
+
+            Troop currentTroop = troops[0];
+
+            List<HeroCard> heroCards = new List<HeroCard>();
+
+            HeroCardComponent heroCardComponent = unit.GetComponent<HeroCardComponent>();
+
+            foreach (var cardId in currentTroop.HeroCardIds)
+            {
+                HeroCard heroCard = heroCardComponent.GetChild<HeroCard>(cardId);
+
+                if (heroCard != null)
+                {
+                    heroCards.Add(heroCard);
+                }
+            }
+
+            heroCardComponent.FormationHeroCards = heroCards;
         }
     }
 }

@@ -17,6 +17,17 @@ namespace ET.Client
             GameObjectComponent gameObjectComponent = unit.GetComponent<GameObjectComponent>();
 
             gameObjectComponent.Move(direction, a.Power);
+
+            HeroCardComponent heroCardComponent = unit.GetComponent<HeroCardComponent>();
+
+            // TimerComponent timerComponent = scene.Root().GetComponent<TimerComponent>();
+
+            // foreach (var heroCard in heroCardComponent.FormationHeroCards)
+            // {
+            //     await timerComponent.WaitAsync(200);
+            //     
+            //     EventSystem.Instance.Publish(scene, new MoveHeroCard() { HeroCard = heroCard, MoveSpeed = direction, Power = a.Power });
+            // }
         }
     }
 }
