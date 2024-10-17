@@ -36,7 +36,7 @@ namespace ET.Client
             // //
             GlobalComponent globalComponent = scene.Root().GetComponent<GlobalComponent>();
 
-            GameObject prefab = globalComponent.ReferenceCollector.Get<GameObject>("AlienDefault");
+            GameObject prefab = globalComponent.ReferenceCollector.Get<GameObject>("Hero1");
 
             // GameObject prefab = globalComponent.Prefabs.PlayerPrefab;
 

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
@@ -36,5 +37,8 @@ namespace ET.Client
         public float TargetPower = 0;
 
         public float CurrentPower = 0;
+        public Vector3 OldPos { get; set; }
+
+        public Queue<Vector3> PathPos = new Queue<Vector3>();
     }
 }

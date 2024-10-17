@@ -1,3 +1,5 @@
+using System;
+
 namespace ET.Client
 {
     [Event(SceneType.Demo)]
@@ -21,7 +23,7 @@ namespace ET.Client
                 heroCardObjectComponent.Dispose();
             }
 
-            heroCard.AddComponent<HeroCardObjectComponent, Unit>(unit);
+            heroCard.AddComponent<HeroCardObjectComponent, Unit, int>(unit, a.Index);
 
             await ETTask.CompletedTask;
         }

@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET.Client
@@ -11,7 +13,7 @@ namespace ET.Client
     }
 
     [ComponentOf(typeof(HeroCard))]
-    public class HeroCardObjectComponent : Entity, IAwake<Unit>, IDestroy, IUpdate
+    public class HeroCardObjectComponent : Entity, IAwake<Unit, int>, IDestroy, IUpdate
     {
         public GameObject GameObject;
 
@@ -35,6 +37,18 @@ namespace ET.Client
 
         public Vector3 BeforFramePos = Vector3.zero;
 
-        public Animator Animator;
+        // public Animator Animator;
+
+        public int CheckColliderNumber = 0;
+
+        public List<Vector3> ColliderPos = new List<Vector3>();
+
+        public Vector3 TargetPos = Vector3.zero;
+
+        public List<Vector3> FlowerPosList = null;
+
+        public Unit Unit;
+
+        public Vector3 OldPos { get; set; }
     }
 }

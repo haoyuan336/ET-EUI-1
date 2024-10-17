@@ -439,17 +439,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-  - key: AlienDefault
-    gameObject: {fileID: 7369448170708576210, guid: a2836f0676e46dc4685632e429aadbc8,
+  - key: Hero4
+    gameObject: {fileID: 1061296902038557447, guid: 2207457ee9057b94fb63fe87e119c2bb,
       type: 3}
-  - key: BasicFemaleDefault
-    gameObject: {fileID: 5824428352053320391, guid: 9c86e41b5e19b7447aa5c4f94049889d,
+  - key: Hero3
+    gameObject: {fileID: 8105492799984181494, guid: d17a74aa6713bdd44ac6eaf387d9aa8f,
       type: 3}
-  - key: BasicMaleDefault
-    gameObject: {fileID: 1762018173025169312, guid: 5811f4236f7f88b41b2a1da538566706,
+  - key: Hero2
+    gameObject: {fileID: 3842090534552742908, guid: 69d9c5349b5168b438c0e99698565bcc,
       type: 3}
-  - key: BearDefault
-    gameObject: {fileID: 909545961731707779, guid: 5cacba29a1abb9a4aa2b32001a835a1f,
+  - key: Hero1
+    gameObject: {fileID: 4962877029139279551, guid: 84e9b94fb2b83c4468427ce82a9db3f6,
       type: 3}
 --- !u!1 &590194894
 GameObject:

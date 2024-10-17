@@ -13,6 +13,8 @@ namespace ET
         private void Start()
         {
             this.StartAsync().Coroutine();
+
+            Application.targetFrameRate = 59;
         }
 
         public void OnOpen(object sender, OpenEventArgs args)
