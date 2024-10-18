@@ -10,7 +10,7 @@ namespace ET.Client
 {
     [ComponentOf(typeof(UIBaseWindow))]
     [ChildOf(typeof(UIBaseWindow))]
-    public class FGUIJoyStickLayerComponent : Entity, IAwake, IUILogic
+    public class FGUIJoyStickLayerComponent : Entity, IAwake, IUILogic, IUpdate
     {
         public FGUIJoyStickLayerViewComponent View => this.GetParent<UIBaseWindow>().GetComponent<FGUIJoyStickLayerViewComponent>();
 
@@ -22,6 +22,8 @@ namespace ET.Client
 
         public Action EndJoyAction = null;
 
-        public Vector2 Direction = Vector2.one;
+        public Vector2 Direction = Vector2.zero;
+
+        public bool IsJoying = false;
     }
 }

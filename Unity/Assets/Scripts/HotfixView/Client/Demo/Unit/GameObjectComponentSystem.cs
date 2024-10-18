@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using Spine.Unity;
+using UnityEngine;
+using WeChatWASM;
+using Random = UnityEngine.Random;
 
 namespace ET.Client
 {
@@ -21,6 +25,37 @@ namespace ET.Client
             self.GameObject.transform.position = Vector3.zero;
 
             self.CharacterController = self.GameObject.GetComponent<CharacterController>();
+
+            self.Animation = self.GameObject.GetComponent<SkeletonAnimation>();
+
+            self.Animation.state.SetAnimation(0, "idle", true);
+
+            self.LocalScale = self.GameObject.transform.localScale;
+
+            self.PosList = new Vector3[10];
+
+            self.InitPosList();
+        }
+
+        public static void InitPosList(this GameObjectComponent self)
+        {
+            int index = 0;
+
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < i + 1; j++)
+                {
+                    // int number = RandomGenerator.RandomNumber(0, 360);
+
+                    Vector3 pos = new Vector3(j, 0, i);
+
+                    Vector3 endPos = Quaternion.Euler(0, 45, 0) * pos;
+
+                    self.PosList[index] = self.GameObject.transform.position + endPos;
+
+                    index++;
+                }
+            }
         }
 
         public static void BindCM(this GameObjectComponent self)
@@ -30,65 +65,54 @@ namespace ET.Client
             self.GameObject.transform.rotation = Camera.main.transform.rotation;
         }
 
-        public static void Move(this GameObjectComponent self, Vector2 direction, float power)
+        public static void Move(this GameObjectComponent self, Vector3 targetPos)
         {
-            self.TargetPower = power;
+            self.TargetPos = targetPos;
+        }
 
-            self.MoveSpeed = new Vector3(direction.x, 0, direction.y * -1);
+        public static void StartMove(this GameObjectComponent self)
+        {
+            self.TargetPower = 1;
 
-            // 获取当前朝向和目标朝向之间的差值
-            // Quaternion targetRotation = Quaternion.LookRotation(self.MoveSpeed);
-            // 平滑旋转到目标朝向
-            // self.GameObject.transform.rotation = Quaternion.Slerp(self.GameObject.transform.rotation, targetRotation, Time.deltaTime * 10);
+            self.Animation.state.SetAnimation(0, "move", true);
+        }
+
+        public static void EndMove(this GameObjectComponent self)
+        {
+            self.TargetPower = 0;
+
+            self.Animation.state.SetAnimation(0, "idle", true);
+
+            self.TargetPos = self.GameObject.transform.position;
         }
 
         [EntitySystem]
-        public static async void Update(this GameObjectComponent self)
+        public static void Update(this GameObjectComponent self)
         {
-            // Vector3 worldTargetDirection = self.GameObject.transform.TransformDirection(self.MoveSpeed);
+            Vector3 moveSpeed = self.TargetPos - self.GameObject.transform.position;
 
-            if (self.CurrentPower < self.TargetPower)
+            moveSpeed = new Vector3(moveSpeed.x, 0, moveSpeed.z).normalized;
+            
+            int heroMask = LayerMask.GetMask("Hero");
+
+            bool isHited = Physics.Raycast(self.GameObject.transform.position, moveSpeed, out RaycastHit hit, 1, heroMask);
+
+            Vector3 dir = Vector3.zero;
+
+            if (isHited)
             {
-                self.CurrentPower += Time.deltaTime * 4;
-
-                if (self.CurrentPower > self.TargetPower)
-                {
-                    self.CurrentPower = self.TargetPower;
-                }
+                dir = self.GameObject.transform.position - hit.transform.position;
             }
-            else if (self.CurrentPower > self.TargetPower)
+            
+            self.CharacterController.Move(moveSpeed * ConstValue.MoveSpeed * Time.deltaTime);
+            
+            self.GameObject.transform.position = new Vector3(self.GameObject.transform.position.x, 0, self.GameObject.transform.position.z);
+            
+            if (moveSpeed.x != 0)
             {
-                self.CurrentPower -= Time.deltaTime * 4;
-
-                if (self.CurrentPower < 0)
-                {
-                    self.CurrentPower = 0;
-                }
-            }
-
-            self.CharacterController.Move(self.MoveSpeed * Time.deltaTime * ConstValue.MoveSpeed * self.CurrentPower);
-
-            // self.GameObject.GetComponent<Animator>().SetFloat(self.Speed, self.CurrentPower);
-
-            if (self.Camera != null)
-            {
-                // self.Camera.transform.LookAt(self.GameObject.transform.position);
-
-                Vector3 pos = self.GameObject.transform.position;
-
-                self.Camera.transform.position = new Vector3(pos.x - 5, 10f, pos.z - 5);
-            }
-
-            if ((self.GameObject.transform.position - self.OldPos).magnitude > ConstValue.MoveDistance)
-            {
-                self.OldPos = self.GameObject.transform.position;
-            }
-
-            self.PathPos.Enqueue(self.GameObject.transform.position);
-
-            if (self.PathPos.Count > 100)
-            {
-                self.PathPos.Dequeue();
+                self.GameObject.transform.localScale = new Vector3(self.LocalScale.x * moveSpeed.x / Math.Abs(moveSpeed.x) * -1,
+                    self.LocalScale.y,
+                    self.LocalScale.z);
             }
         }
     }

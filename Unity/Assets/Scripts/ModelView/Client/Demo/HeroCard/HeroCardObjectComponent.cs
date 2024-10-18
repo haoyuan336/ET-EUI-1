@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Spine.Unity;
 using UnityEngine;
 
 namespace ET.Client
@@ -43,12 +44,13 @@ namespace ET.Client
 
         public List<Vector3> ColliderPos = new List<Vector3>();
 
-        public Vector3 TargetPos = Vector3.zero;
-
-        public List<Vector3> FlowerPosList = null;
-
         public Unit Unit;
 
-        public Vector3 OldPos { get; set; }
+        public SkeletonAnimation Animation;
+
+        public Vector3 LocalScale;
+
+        public Vector3 TargetPos;
+
     }
 }

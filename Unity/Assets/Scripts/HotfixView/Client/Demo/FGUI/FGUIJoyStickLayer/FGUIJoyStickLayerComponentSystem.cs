@@ -7,18 +7,11 @@ namespace ET.Client
 {
     [FriendOf(typeof(FGUIJoyStickLayerComponent))]
     [FriendOf(typeof(UIBaseWindow))]
-    public static class FGUIJoyStickLayerComponentSystem
+    [EntitySystemOf(typeof(FGUIJoyStickLayerComponent))]
+    public static partial class FGUIJoyStickLayerComponentSystem
     {
         public static void RegisterUIEvent(this FGUIJoyStickLayerComponent self)
         {
-            Log.Debug("RegisterUIEvent FGUIJoyStickLayerComponent");
-
-            // self.View.BgNode.onTouchBegin.Set(self.OnTouchBegin);
-            //
-            // self.View.BgNode.onTouchMove.Set(self.OnTouchMove);
-            //
-            // self.View.BgNode.onTouchEnd.Set(self.OnTouchEnd);
-
             UIBaseWindow baseWindow = self.GetParent<UIBaseWindow>();
 
             GComponent goComponent = baseWindow.GComponent;
@@ -48,6 +41,8 @@ namespace ET.Client
             {
                 self.StartJoyAction.Invoke();
             }
+
+            self.IsJoying = true;
         }
 
         private static void OnTouchMove(this FGUIJoyStickLayerComponent self, EventContext context)
@@ -81,6 +76,8 @@ namespace ET.Client
 
         private static void OnTouchEnd(this FGUIJoyStickLayerComponent self, EventContext context)
         {
+            self.IsJoying = false;
+
             self.View.JostickShowState.selectedIndex = 0;
 
             if (self.JoyAction != null)
@@ -91,6 +88,15 @@ namespace ET.Client
             if (self.EndJoyAction != null)
             {
                 self.EndJoyAction.Invoke();
+            }
+        }
+
+        [EntitySystem]
+        public static void Update(this FGUIJoyStickLayerComponent self)
+        {
+            if (self.IsJoying && self.EndJoyAction != null)
+            {
+                self.JoyAction.Invoke(self.Direction, self.Direction.magnitude);
             }
         }
 

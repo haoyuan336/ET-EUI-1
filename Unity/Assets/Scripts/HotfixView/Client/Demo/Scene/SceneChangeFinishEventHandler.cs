@@ -13,10 +13,6 @@ namespace ET.Client
 
             Unit myUnit = unitComponent.MyUnit;
 
-            // int currentMapConfigId = unitMapInfoComponent.CurrentMapConfigId;
-
-            // MapConfig config = MapConfigCategory.Instance.Get(currentMapConfigId);
-
             MapConfig mapConfig = MapConfigCategory.Instance.GetMainCity();
 
             await SceneManager.LoadSceneAsync(mapConfig.SceneName);
@@ -30,6 +26,8 @@ namespace ET.Client
             gameObjectComponent.BindCM();
 
             EventSystem.Instance.Publish(scene.Root(), new CreateHeroObjects() { });
+
+            scene.Root().AddComponent<CameraComponent>();
         }
     }
 }

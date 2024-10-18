@@ -16,18 +16,29 @@ namespace ET.Client
 
             GameObjectComponent gameObjectComponent = unit.GetComponent<GameObjectComponent>();
 
-            gameObjectComponent.Move(direction, a.Power);
+            Vector3 targetPos = gameObjectComponent.GameObject.transform.position + new Vector3(direction.x, 0, -direction.y) * 4;
+
+            GlobalComponent globalComponent = scene.Root().GetComponent<GlobalComponent>();
+
+            globalComponent.ArrowGameObject.transform.position = targetPos;
+
+            gameObjectComponent.Move(targetPos);
 
             HeroCardComponent heroCardComponent = unit.GetComponent<HeroCardComponent>();
 
-            // TimerComponent timerComponent = scene.Root().GetComponent<TimerComponent>();
+            foreach (var heroCard in heroCardComponent.FormationHeroCards)
+            {
 
-            // foreach (var heroCard in heroCardComponent.FormationHeroCards)
-            // {
-            //     await timerComponent.WaitAsync(200);
-            //     
-            //     EventSystem.Instance.Publish(scene, new MoveHeroCard() { HeroCard = heroCard, MoveSpeed = direction, Power = a.Power });
-            // }
+                if (heroCard.IsDisposed)
+                {
+                    continue;
+                }
+                HeroCardObjectComponent heroCardObjectComponent = heroCard.GetComponent<HeroCardObjectComponent>();
+
+                heroCardObjectComponent.Move(targetPos);
+            }
+
+            await ETTask.CompletedTask;
         }
     }
 }

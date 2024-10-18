@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace ET.Client
@@ -20,7 +21,7 @@ namespace ET.Client
             for (int i = 0; i < troop.HeroCardIds.Length; i++)
             {
                 long heroCardId = troop.HeroCardIds[i];
-                
+
                 HeroCard heroCard = heroCardComponent.GetChild<HeroCard>(heroCardId);
 
                 if (heroCard != null)
@@ -28,6 +29,8 @@ namespace ET.Client
                     EventSystem.Instance.Publish(scene, new CreateHeroObject() { HeroCard = heroCard, Unit = unit, Index = i });
                 }
             }
+
+            EventSystem.Instance.Publish(scene, new DiffuseHero() { Unit = unit });
 
             await ETTask.CompletedTask;
         }

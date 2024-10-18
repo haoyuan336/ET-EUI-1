@@ -17,6 +17,12 @@ namespace ET.Client
     //
     //     public float Power;
     // }
+
+    public struct DiffuseHero
+    {
+        public Unit Unit;
+    }
+
     public struct CreateHeroObject
     {
         public Unit Unit;

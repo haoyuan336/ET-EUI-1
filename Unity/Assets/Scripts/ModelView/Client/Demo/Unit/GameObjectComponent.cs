@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Cinemachine;
+using Spine.Unity;
 using UnityEngine;
 
 namespace ET.Client
@@ -9,11 +10,11 @@ namespace ET.Client
     {
         private GameObject gameObject;
 
+        public GameObject ArrowGameObject;
+
         public CharacterController CharacterController;
 
         public int Speed = Animator.StringToHash("speed");
-
-        public Vector3 MoveSpeed;
 
         public Vector3 Rotation;
 
@@ -40,5 +41,13 @@ namespace ET.Client
         public Vector3 OldPos { get; set; }
 
         public Queue<Vector3> PathPos = new Queue<Vector3>();
+
+        public SkeletonAnimation Animation = null;
+
+        public Vector3 LocalScale;
+
+        public Vector3[] PosList;
+
+        public Vector3 TargetPos;
     }
 }

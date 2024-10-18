@@ -13,5 +13,7 @@ namespace ET
         public const float MoveSpeed = 5.0f;
 
         public const float MoveDistance = 1.4f;
+        
+        public const float Acceleration = 1f;
     }
 }

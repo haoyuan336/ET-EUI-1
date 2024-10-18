@@ -28,12 +28,12 @@ namespace ET.Client
 
         private static void OnEndJoyAction(this FGUIMainLayerComponent self)
         {
-            EventSystem.Instance.Publish(self.Root().CurrentScene(), new StartMoveUnitPos());
+            EventSystem.Instance.Publish(self.Root().CurrentScene(), new EndMoveUnitPos());
         }
 
         private static void OnStartJoyAction(this FGUIMainLayerComponent self)
         {
-            EventSystem.Instance.Publish(self.Root().CurrentScene(), new EndMoveUnitPos());
+            EventSystem.Instance.Publish(self.Root().CurrentScene(), new StartMoveUnitPos());
         }
 
         private static void OnFormationButtonClick(this FGUIMainLayerComponent self)

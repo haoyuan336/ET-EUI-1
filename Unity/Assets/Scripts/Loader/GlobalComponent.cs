@@ -22,6 +22,9 @@ namespace ET
 
             self.UIPanel = GameObject.Find("/Global/UIPanel").transform.GetComponent<UIPanel>();
 
+            self.ArrowGameObject = GameObject.Find("/Global/ArrowGameObject");
+
+
             // self.NormalRoot = self.UIPanel.
 
             self.RootLayer = self.UIPanel.ui;
@@ -87,5 +90,7 @@ namespace ET
         public UIPanel UIPanel { get; set; }
 
         public ReferenceCollector ReferenceCollector { get; set; }
+
+        public GameObject ArrowGameObject { get; set; }
     }
 }

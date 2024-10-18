@@ -1,5 +1,6 @@
 using System;
 using Cinemachine.Utility;
+using Spine.Unity;
 using UnityEngine;
 using WeChatWASM;
 
@@ -33,119 +34,73 @@ namespace ET.Client
 
             self.GameObject = gameObject;
 
+            self.Animation = gameObject.GetComponent<SkeletonAnimation>();
+
+            self.Animation.state.SetAnimation(0, "idle", true);
+
             self.GameObject.transform.rotation = Camera.main.transform.rotation;
 
             self.CharacterController = self.GameObject.GetComponent<CharacterController>();
 
-            // self.Animator = self.GameObject.GetComponent<Animator>();
+            self.LocalScale = self.GameObject.transform.localScale;
 
-            GameObject beforObject = self.GetBeforGameObject();
+            // Vector3 pos = Quaternion.Euler(0, index * 36, 0) * Vector3.forward * 2;
 
-            self.GameObject.transform.position = beforObject.transform.position + Vector3.back * ConstValue.MoveDistance;
+            Vector3 pos = Vector3.left * 2 * self.Index;
+
+            self.GameObject.transform.position = self.UnitObject.transform.position + pos;
 
             self.TargetPos = self.GameObject.transform.position;
-
-            self.OldPos = self.GameObject.transform.position;
         }
 
-        public static GameObject GetBeforGameObject(this HeroCardObjectComponent self)
+        public static void Move(this HeroCardObjectComponent self, Vector3 targetPos)
         {
-            if (self.Index == 0)
-            {
-                return self.UnitObject;
-            }
-
-            HeroCardComponent heroCardComponent = self.Unit.GetComponent<HeroCardComponent>();
-
-            HeroCard card = heroCardComponent.FormationHeroCards[self.Index - 1];
-
-            HeroCardObjectComponent heroCardObjectComponent = card.GetComponent<HeroCardObjectComponent>();
-
-            return heroCardObjectComponent.GameObject;
+            self.TargetPos = targetPos;
         }
 
-        public static Vector3 GetBeforPos(this HeroCardObjectComponent self)
+        public static void StartMove(this HeroCardObjectComponent self)
         {
-            Vector3 oldPos = Vector3.zero;
+            self.Animation.state.SetAnimation(0, "move", true);
 
-            if (self.Index == 0)
-            {
-                oldPos = self.Unit.GetComponent<GameObjectComponent>().OldPos;
-            }
-
-            else
-            {
-                HeroCardComponent heroCardComponent = self.Unit.GetComponent<HeroCardComponent>();
-
-                HeroCard card = heroCardComponent.FormationHeroCards[self.Index - 1];
-
-                HeroCardObjectComponent heroCardObjectComponent = card.GetComponent<HeroCardObjectComponent>();
-
-                oldPos = heroCardObjectComponent.OldPos;
-            }
-
-            return oldPos;
+            self.TargetPower = 1;
         }
 
         public static void MoveEnd(this HeroCardObjectComponent self)
         {
+            self.Animation.state.SetAnimation(0, "idle", true);
+
+            self.TargetPower = 0;
+
+            self.TargetPos = self.GameObject.transform.position;
         }
 
         [EntitySystem]
         public static void Update(this HeroCardObjectComponent self)
         {
-            if (self.GameObject != null)
+            Vector3 moveSpeed = self.TargetPos - self.GameObject.transform.position;
+
+            moveSpeed = new Vector3(moveSpeed.x, 0, moveSpeed.z).normalized;
+
+            int heroMask = LayerMask.GetMask("Hero");
+
+            bool isHited = Physics.Raycast(self.GameObject.transform.position, moveSpeed, out RaycastHit hit, 1, heroMask);
+
+            Vector3 dir = Vector3.zero;
+
+            if (isHited)
             {
-                Vector3 targetPos = self.GetBeforPos();
+                dir = self.GameObject.transform.position - hit.transform.position;
+            }
 
-                float distance = (self.GameObject.transform.position - targetPos).magnitude;
+            self.CharacterController.Move((moveSpeed.normalized + dir.normalized) * ConstValue.MoveSpeed * Time.deltaTime);
 
-                if (distance > ConstValue.MoveDistance)
-                {
-                    self.TargetPos = targetPos;
-
-                    self.OldPos = self.GameObject.transform.position;
-
-                    self.TargetPower = 1;
-                }
-                else
-                {
-                    self.TargetPower = 0;
-                }
-
-                if (self.CurrentPower < self.TargetPower)
-                {
-                    self.CurrentPower += Time.deltaTime * 4;
-
-                    if (self.CurrentPower > self.TargetPower)
-                    {
-                        self.CurrentPower = self.TargetPower;
-                    }
-                }
-                else if (self.CurrentPower > self.TargetPower)
-                {
-                    self.CurrentPower -= Time.deltaTime * 4;
-
-                    if (self.CurrentPower < 0)
-                    {
-                        self.CurrentPower = 0;
-                    }
-                }
-
-                Vector3 moveSpeed = (self.TargetPos - self.GameObject.transform.position).normalized;
-
-                moveSpeed.y = 0;
-
-                self.CharacterController.Move(moveSpeed * Time.deltaTime * ConstValue.MoveSpeed * self.CurrentPower);
-
-                if (!moveSpeed.Equals(Vector3.zero))
-                {
-                    // Quaternion targetRotation = Quaternion.LookRotation(moveSpeed);
-                    // 平滑旋转到目标朝向
-                    // self.GameObject.transform.rotation = Quaternion.Slerp(self.GameObject.transform.rotation, targetRotation, Time.deltaTime * 10);
-
-                    // self.Animator.SetFloat(self.Speed, self.CurrentPower);
-                }
+            self.GameObject.transform.position = new Vector3(self.GameObject.transform.position.x, 0, self.GameObject.transform.position.z);
+            
+            if (moveSpeed.x != 0)
+            {
+                self.GameObject.transform.localScale = new Vector3(self.LocalScale.x * moveSpeed.x / Math.Abs(moveSpeed.x) * -1,
+                    self.LocalScale.y,
+                    self.LocalScale.z);
             }
         }
     }

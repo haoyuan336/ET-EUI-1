@@ -11,6 +11,21 @@ namespace ET.Client
 
             GameObjectComponent gameObjectComponent = unit.GetComponent<GameObjectComponent>();
 
+            gameObjectComponent.StartMove();
+
+            HeroCardComponent heroCardComponent = unit.GetComponent<HeroCardComponent>();
+
+            foreach (var card in heroCardComponent.FormationHeroCards)
+            {
+                HeroCardObjectComponent heroCardObjectComponent = card.GetComponent<HeroCardObjectComponent>();
+
+                heroCardObjectComponent.StartMove();
+            }
+
+            GlobalComponent globalComponent = scene.Root().GetComponent<GlobalComponent>();
+
+            globalComponent.ArrowGameObject.SetActive(true);
+
             await ETTask.CompletedTask;
         }
     }

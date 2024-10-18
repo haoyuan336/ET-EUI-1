@@ -11,10 +11,31 @@ namespace ET.Client
 
             GameObjectComponent gameObjectComponent = unit.GetComponent<GameObjectComponent>();
 
-            Vector3 unitPos = gameObjectComponent.GameObject.transform.position;
-            
-            
-             
+            gameObjectComponent.EndMove();
+
+            HeroCardComponent heroCardComponent = unit.GetComponent<HeroCardComponent>();
+
+            foreach (var card in heroCardComponent.FormationHeroCards)
+            {
+                HeroCardObjectComponent heroCardObjectComponent = card.GetComponent<HeroCardObjectComponent>();
+
+                if (heroCardObjectComponent != null && !heroCardObjectComponent.IsDisposed)
+                {
+                    heroCardObjectComponent.MoveEnd();
+                }
+            }
+
+            GlobalComponent globalComponent = scene.Root().GetComponent<GlobalComponent>();
+
+            globalComponent.ArrowGameObject.SetActive(false);
+
+            // TimerComponent timerComponent = scene.Root().GetComponent<TimerComponent>();
+            //
+            // await timerComponent.WaitAsync(1000);
+            //
+            // Log.Debug("EndMoveUnitPos");
+            //
+            EventSystem.Instance.Publish(scene.Root(), new DiffuseHero() { Unit = unit });
 
             await ETTask.CompletedTask;
         }

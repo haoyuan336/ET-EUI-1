@@ -56,7 +56,10 @@ namespace ET.Client
                 {
                     HeroCard card = heroCardComponent.GetChild<HeroCard>(cardId);
 
-                    heroCardComponent.FormationHeroCards.Add(card);
+                    if (card != null)
+                    {
+                        heroCardComponent.FormationHeroCards.Add(card);
+                    }
                 }
 
                 HeroCard heroCard = heroCardComponent.GetChild<HeroCard>(heroCardId);
@@ -95,7 +98,10 @@ namespace ET.Client
                 {
                     HeroCard card = heroCardComponent.GetChild<HeroCard>(cardId);
 
-                    heroCardComponent.FormationHeroCards.Add(card);
+                    if (card != null)
+                    {
+                        heroCardComponent.FormationHeroCards.Add(card);
+                    }
                 }
 
                 HeroCard heroCard = heroCardComponent.GetChild<HeroCard>(heroCardId);
