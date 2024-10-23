@@ -1,0 +1,10 @@
+{"dict": [
+[10001, {"_t":"SkillLogicConfig","_id":10001,"OwnerSkillConfigId":1001,"DelayTime":0,"LogicCode":"PlayAnim","LogicParam":"attack0","DataParam":10000,"Level":1}],
+[10002, {"_t":"SkillLogicConfig","_id":10002,"OwnerSkillConfigId":1001,"DelayTime":1000,"LogicCode":"Damage","LogicParam":"Single","DataParam":10000,"Level":1}],
+[10003, {"_t":"SkillLogicConfig","_id":10003,"OwnerSkillConfigId":1002,"DelayTime":0,"LogicCode":"PlayAnim","LogicParam":"attack0","DataParam":10000,"Level":1}],
+[10004, {"_t":"SkillLogicConfig","_id":10004,"OwnerSkillConfigId":1002,"DelayTime":1000,"LogicCode":"Damage","LogicParam":"Single","DataParam":10000,"Level":1}],
+[10005, {"_t":"SkillLogicConfig","_id":10005,"OwnerSkillConfigId":1003,"DelayTime":0,"LogicCode":"PlayAnim","LogicParam":"attack0","DataParam":10000,"Level":1}],
+[10006, {"_t":"SkillLogicConfig","_id":10006,"OwnerSkillConfigId":1003,"DelayTime":1000,"LogicCode":"Damage","LogicParam":"Single","DataParam":10000,"Level":1}],
+[10007, {"_t":"SkillLogicConfig","_id":10007,"OwnerSkillConfigId":1004,"DelayTime":0,"LogicCode":"PlayAnim","LogicParam":"attack0","DataParam":10000,"Level":1}],
+[10008, {"_t":"SkillLogicConfig","_id":10008,"OwnerSkillConfigId":1004,"DelayTime":1000,"LogicCode":"Damage","LogicParam":"Single","DataParam":10000,"Level":1}],
+]}

@@ -9,9 +9,5 @@ namespace ET
     public class HeroCardComponent: Entity, IAwake, ITransfer, IUnitCache
 #endif
     {
-#if UNITY
-
-        public List<HeroCard> FormationHeroCards = new List<HeroCard>();
-#endif
     }
 }

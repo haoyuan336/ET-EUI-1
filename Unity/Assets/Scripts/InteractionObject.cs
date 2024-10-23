@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace ET
 {
     public class InteractionObject : MonoBehaviour
     {
+        
+        
+        
         private Transform[] child;
 
         void Start()
@@ -16,6 +20,7 @@ namespace ET
             {
                 this.child[i] = this.transform.GetChild(i);
             }
+            
         }
 
         // Update is called once per frame

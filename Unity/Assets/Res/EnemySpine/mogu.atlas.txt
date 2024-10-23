@@ -1,0 +1,41 @@
+
+mogu.png
+size: 328,132
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+2/body1
+  rotate: false
+  xy: 160, 36
+  size: 81, 92
+  orig: 81, 92
+  offset: 0, 0
+  index: -1
+2/body2
+  rotate: false
+  xy: 243, 36
+  size: 81, 92
+  orig: 81, 92
+  offset: 0, 0
+  index: -1
+2/hat_behind
+  rotate: true
+  xy: 82, 7
+  size: 121, 76
+  orig: 123, 77
+  offset: 0, 1
+  index: -1
+2/hat_front
+  rotate: true
+  xy: 2, 5
+  size: 123, 78
+  orig: 123, 79
+  offset: 0, 1
+  index: -1
+2/shadow
+  rotate: false
+  xy: 160, 2
+  size: 101, 32
+  orig: 101, 32
+  offset: 0, 0
+  index: -1

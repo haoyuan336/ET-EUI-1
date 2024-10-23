@@ -1,0 +1,5 @@
+{"dict": [
+[10001, {"_t":"EnemyConfig","_id":10001,"PrefabName":"Mogu","Name":"蘑菇","Level":1}],
+[10002, {"_t":"EnemyConfig","_id":10002,"PrefabName":"Yazi","Name":"兔子","Level":1}],
+[10003, {"_t":"EnemyConfig","_id":10003,"PrefabName":"Tuzi","Name":"鸭子","Level":1}],
+]}

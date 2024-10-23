@@ -6,11 +6,11 @@ using UnityEngine;
 namespace ET.Client
 {
     [ComponentOf(typeof(Unit))]
-    public class GameObjectComponent : Entity, IAwake<GameObject>, IDestroy, IUpdate
+    public class GameObjectComponent : Entity, IAwake, IDestroy, IUpdate
     {
         private GameObject gameObject;
 
-        public GameObject ArrowGameObject;
+        // public GameObject ArrowGameObject;
 
         public CharacterController CharacterController;
 
@@ -33,20 +33,17 @@ namespace ET.Client
 
         public Transform Transform { get; private set; }
 
-        public Camera Camera;
+        // public Camera Camera;
 
-        public float TargetPower = 0;
+        // public float TargetPower = 0;
 
         public float CurrentPower = 0;
-        public Vector3 OldPos { get; set; }
+        
+        // public Vector3 OldPos { get; set; }
 
-        public Queue<Vector3> PathPos = new Queue<Vector3>();
+        // public Queue<Vector3> PathPos = new Queue<Vector3>();
 
-        public SkeletonAnimation Animation = null;
-
-        public Vector3 LocalScale;
-
-        public Vector3[] PosList;
+        // public SkeletonAnimation Animation = null;
 
         public Vector3 TargetPos;
     }

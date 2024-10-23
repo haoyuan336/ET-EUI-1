@@ -1,0 +1,27 @@
+
+tree2.png
+size: 844,240
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sm2
+  rotate: true
+  xy: 2, 2
+  size: 234, 369
+  orig: 234, 369
+  offset: 0, 0
+  index: -1
+sm2b
+  rotate: true
+  xy: 373, 2
+  size: 234, 369
+  orig: 234, 369
+  offset: 0, 0
+  index: -1
+sz1
+  rotate: true
+  xy: 744, 123
+  size: 113, 97
+  orig: 113, 97
+  offset: 0, 0
+  index: -1

@@ -1,6 +1,6 @@
 {"dict": [
-[1000, {"_t":"MapConfig","_id":1000,"MapName":"主城","SceneName":"MainCity","PrefabName":"MainCity"}],
-[1001, {"_t":"MapConfig","_id":1001,"MapName":"地狱1号","SceneName":"MainCity","PrefabName":"City1"}],
-[1002, {"_t":"MapConfig","_id":1002,"MapName":"地狱2号","SceneName":"MainCity","PrefabName":"City2"}],
-[1003, {"_t":"MapConfig","_id":1003,"MapName":"地狱3号","SceneName":"MainCity","PrefabName":"City3"}],
+[1000, {"_t":"MapConfig","_id":1000,"MapName":"主城","SceneName":"MainCity"}],
+[1001, {"_t":"MapConfig","_id":1001,"MapName":"地图1","SceneName":"MapScene1"}],
+[1002, {"_t":"MapConfig","_id":1002,"MapName":"地图2","SceneName":"MapScene2"}],
+[1003, {"_t":"MapConfig","_id":1003,"MapName":"地图3","SceneName":"MapScene3"}],
 ]}

@@ -1,0 +1,83 @@
+
+tuzi.png
+size: 420,80
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/3/arm_l
+  rotate: true
+  xy: 271, 2
+  size: 41, 35
+  orig: 41, 35
+  offset: 0, 0
+  index: -1
+images/3/arm_r
+  rotate: true
+  xy: 271, 2
+  size: 41, 35
+  orig: 41, 35
+  offset: 0, 0
+  index: -1
+images/3/body
+  rotate: true
+  xy: 136, 9
+  size: 68, 57
+  orig: 68, 57
+  offset: 0, 0
+  index: -1
+images/3/ear_l
+  rotate: false
+  xy: 232, 15
+  size: 37, 62
+  orig: 37, 62
+  offset: 0, 0
+  index: -1
+images/3/ear_r
+  rotate: false
+  xy: 195, 13
+  size: 35, 64
+  orig: 35, 64
+  offset: 0, 0
+  index: -1
+images/3/head1
+  rotate: true
+  xy: 2, 3
+  size: 74, 65
+  orig: 74, 65
+  offset: 0, 0
+  index: -1
+images/3/head2
+  rotate: true
+  xy: 69, 3
+  size: 74, 65
+  orig: 74, 65
+  offset: 0, 0
+  index: -1
+images/3/leg_l
+  rotate: true
+  xy: 308, 3
+  size: 40, 38
+  orig: 40, 43
+  offset: 0, 3
+  index: -1
+images/3/leg_r
+  rotate: true
+  xy: 348, 3
+  size: 40, 37
+  orig: 40, 43
+  offset: 0, 3
+  index: -1
+images/3/shadow
+  rotate: false
+  xy: 271, 45
+  size: 123, 32
+  orig: 123, 32
+  offset: 0, 0
+  index: -1
+images/3/tail
+  rotate: false
+  xy: 387, 11
+  size: 31, 32
+  orig: 31, 32
+  offset: 0, 0
+  index: -1

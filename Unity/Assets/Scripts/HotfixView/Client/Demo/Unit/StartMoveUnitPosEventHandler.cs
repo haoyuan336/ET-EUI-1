@@ -13,19 +13,25 @@ namespace ET.Client
 
             gameObjectComponent.StartMove();
 
-            HeroCardComponent heroCardComponent = unit.GetComponent<HeroCardComponent>();
-
-            foreach (var card in heroCardComponent.FormationHeroCards)
-            {
-                HeroCardObjectComponent heroCardObjectComponent = card.GetComponent<HeroCardObjectComponent>();
-
-                heroCardObjectComponent.StartMove();
-            }
-
             GlobalComponent globalComponent = scene.Root().GetComponent<GlobalComponent>();
 
             globalComponent.ArrowGameObject.SetActive(true);
 
+            FightManagerComponent fightManagerComponent = unit.GetComponent<FightManagerComponent>();
+
+            foreach (var heroCard in fightManagerComponent.HeroCards)
+            {
+                if (heroCard != null && !heroCard.IsDisposed)
+                {
+                    MoveObjectComponent moveObjectComponent = heroCard.GetComponent<MoveObjectComponent>();
+
+                    if (moveObjectComponent != null && !moveObjectComponent.IsDisposed)
+                    {
+                        moveObjectComponent.StartMove();
+                    }
+                }
+            }
+            
             await ETTask.CompletedTask;
         }
     }

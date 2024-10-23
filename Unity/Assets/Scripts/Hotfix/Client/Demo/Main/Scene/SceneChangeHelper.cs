@@ -22,7 +22,9 @@ namespace ET.Client
             EventSystem.Instance.Publish(root, new SceneChangeStart());
             // 等待CreateMyUnit的消息
             Wait_CreateMyUnit waitCreateMyUnit = await root.GetComponent<ObjectWait>().Wait<Wait_CreateMyUnit>();
+            
             M2C_CreateMyUnit m2CCreateMyUnit = waitCreateMyUnit.Message;
+            
             Unit unit = UnitFactory.Create(currentScene, m2CCreateMyUnit.Unit);
             unitComponent.Add(unit);
             unitComponent.MyUnit = unit;
@@ -67,34 +69,12 @@ namespace ET.Client
 
             List<TroopInfo> troopInfos = createMyUnit.TroopInfos;
 
-            List<Troop> troops = new List<Troop>();
-
             foreach (var troopInfo in troopInfos)
             {
                 Troop troop = troopComponent.AddChildWithId<Troop>(troopInfo.TroopId);
 
-                troops.Add(troop);
-
                 troop.SetInfo(troopInfo);
             }
-
-            Troop currentTroop = troops[0];
-
-            List<HeroCard> heroCards = new List<HeroCard>();
-
-            HeroCardComponent heroCardComponent = unit.GetComponent<HeroCardComponent>();
-
-            foreach (var cardId in currentTroop.HeroCardIds)
-            {
-                HeroCard heroCard = heroCardComponent.GetChild<HeroCard>(cardId);
-
-                if (heroCard != null)
-                {
-                    heroCards.Add(heroCard);
-                }
-            }
-
-            heroCardComponent.FormationHeroCards = heroCards;
         }
     }
 }

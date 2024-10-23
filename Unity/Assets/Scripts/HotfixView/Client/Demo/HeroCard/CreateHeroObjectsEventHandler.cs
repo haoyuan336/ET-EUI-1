@@ -10,19 +10,13 @@ namespace ET.Client
     {
         protected override async ETTask Run(Scene scene, CreateHeroObjects a)
         {
-            Unit unit = UnitHelper.GetMyUnit(scene);
+            Unit unit = a.Unit;
 
-            HeroCardComponent heroCardComponent = unit.GetComponent<HeroCardComponent>();
+            FightManagerComponent fightManagerComponent = unit.GetComponent<FightManagerComponent>();
 
-            List<Troop> troops = TroopHelper.GetTroops(scene);
-
-            Troop troop = troops[0];
-
-            for (int i = 0; i < troop.HeroCardIds.Length; i++)
+            for (int i = 0; i < fightManagerComponent.HeroCards.Count; i++)
             {
-                long heroCardId = troop.HeroCardIds[i];
-
-                HeroCard heroCard = heroCardComponent.GetChild<HeroCard>(heroCardId);
+                HeroCard heroCard = fightManagerComponent.HeroCards[i];
 
                 if (heroCard != null)
                 {

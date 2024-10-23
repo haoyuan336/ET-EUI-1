@@ -47,24 +47,6 @@ namespace ET.Client
                 Troop troop = troopComponent.GetChild<Troop>(troopId);
 
                 troop.HeroCardIds[index] = heroCardId;
-
-                HeroCardComponent heroCardComponent = unit.GetComponent<HeroCardComponent>();
-
-                heroCardComponent.FormationHeroCards.Clear();
-
-                foreach (var cardId in troop.HeroCardIds)
-                {
-                    HeroCard card = heroCardComponent.GetChild<HeroCard>(cardId);
-
-                    if (card != null)
-                    {
-                        heroCardComponent.FormationHeroCards.Add(card);
-                    }
-                }
-
-                HeroCard heroCard = heroCardComponent.GetChild<HeroCard>(heroCardId);
-
-                EventSystem.Instance.Publish(root, new CreateHeroObject() { HeroCard = heroCard, Unit = unit, Index = index });
             }
 
             return response.Error;
@@ -91,18 +73,6 @@ namespace ET.Client
                 long heroCardId = troop.HeroCardIds[index];
 
                 HeroCardComponent heroCardComponent = unit.GetComponent<HeroCardComponent>();
-
-                heroCardComponent.FormationHeroCards.Clear();
-
-                foreach (var cardId in troop.HeroCardIds)
-                {
-                    HeroCard card = heroCardComponent.GetChild<HeroCard>(cardId);
-
-                    if (card != null)
-                    {
-                        heroCardComponent.FormationHeroCards.Add(card);
-                    }
-                }
 
                 HeroCard heroCard = heroCardComponent.GetChild<HeroCard>(heroCardId);
 

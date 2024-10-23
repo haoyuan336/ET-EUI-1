@@ -26,7 +26,7 @@ namespace ET
         {
             if (self.UnitObject != null)
             {
-                Vector3 pos = self.UnitObject.transform.position + new Vector3(-6, 10, -6);
+                Vector3 pos = self.UnitObject.transform.position + new Vector3(-8, 14, -8);
 
                 Vector3 endPos = Vector3.Lerp(pos, self.Camera.transform.position, Time.deltaTime);
                 

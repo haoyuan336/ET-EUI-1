@@ -1,0 +1,16 @@
+{"dict": [
+[1001, {"_t":"SkillConfig","_id":1001,"Des":"技能1","OwnerRole":"英雄1","OwnerRoleConfigId":1001,"CDTime":500}],
+[1002, {"_t":"SkillConfig","_id":1002,"Des":"技能2","OwnerRole":"英雄1","OwnerRoleConfigId":1001,"CDTime":2000}],
+[1003, {"_t":"SkillConfig","_id":1003,"Des":"技能3","OwnerRole":"英雄2","OwnerRoleConfigId":1002,"CDTime":500}],
+[1004, {"_t":"SkillConfig","_id":1004,"Des":"技能4","OwnerRole":"英雄2","OwnerRoleConfigId":1002,"CDTime":2000}],
+[1005, {"_t":"SkillConfig","_id":1005,"Des":"技能5","OwnerRole":"英雄3","OwnerRoleConfigId":1003,"CDTime":500}],
+[1006, {"_t":"SkillConfig","_id":1006,"Des":"技能6","OwnerRole":"英雄3","OwnerRoleConfigId":1003,"CDTime":2000}],
+[1007, {"_t":"SkillConfig","_id":1007,"Des":"技能7","OwnerRole":"英雄4","OwnerRoleConfigId":1004,"CDTime":500}],
+[1008, {"_t":"SkillConfig","_id":1008,"Des":"技能8","OwnerRole":"英雄4","OwnerRoleConfigId":1004,"CDTime":2000}],
+[1009, {"_t":"SkillConfig","_id":1009,"Des":"技能9","OwnerRole":"蘑菇怪","OwnerRoleConfigId":10001,"CDTime":500}],
+[1010, {"_t":"SkillConfig","_id":1010,"Des":"技能10","OwnerRole":"蘑菇怪","OwnerRoleConfigId":10001,"CDTime":2000}],
+[1011, {"_t":"SkillConfig","_id":1011,"Des":"技能11","OwnerRole":"兔子怪","OwnerRoleConfigId":10002,"CDTime":500}],
+[1012, {"_t":"SkillConfig","_id":1012,"Des":"技能12","OwnerRole":"兔子怪","OwnerRoleConfigId":10002,"CDTime":2000}],
+[1013, {"_t":"SkillConfig","_id":1013,"Des":"技能13","OwnerRole":"鸭子怪","OwnerRoleConfigId":10003,"CDTime":500}],
+[1014, {"_t":"SkillConfig","_id":1014,"Des":"技能14","OwnerRole":"鸭子怪","OwnerRoleConfigId":10003,"CDTime":2000}],
+]}

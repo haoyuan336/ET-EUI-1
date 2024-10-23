@@ -65,8 +65,6 @@ namespace ET
 		public string MapName { get; set; }
 		/// <summary>所属场景名字</summary>
 		public string SceneName { get; set; }
-		/// <summary>预制体名字</summary>
-		public string PrefabName { get; set; }
 
 	}
 }

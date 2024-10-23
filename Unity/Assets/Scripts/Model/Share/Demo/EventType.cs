@@ -18,6 +18,67 @@ namespace ET.Client
     //     public float Power;
     // }
 
+    // public struct EnterMapCollider
+    // {
+    //     public Unit Unit;
+    //
+    //     public string ColliderName;
+    // }
+    //
+    // public struct ExitMapCollider
+    // {
+    //     public Unit Unit;
+    //
+    //     public string ColliderName;
+    // }
+
+    public struct HideEnemyObject
+    {
+        public Enemy Enemy;
+    }
+    public struct ShowEnemyObject
+    {
+        public Enemy Enemy;
+    }
+
+    public struct SpawnOneEnemy
+    {
+        public Unit Unit;
+
+        public EnemySpawnPos EnemySpawnPos;
+    }
+
+    public struct ShowEnemySpawnPos
+    {
+        public Unit Unit;
+
+        public MapConfig MapConfig;
+    }
+
+    public struct HideEnemySpawnPos
+    {
+        public Unit Unit;
+
+        public MapConfig MapConfig;
+    }
+
+    public struct InitMapManager
+    {
+        public Unit Unit;
+    }
+
+    public struct UpdateTroop
+    {
+        public Unit Unit;
+
+        public Troop Troop;
+    }
+
+    public struct StartFight
+    {
+        public Unit Unit;
+    }
+
     public struct DiffuseHero
     {
         public Unit Unit;
@@ -26,7 +87,7 @@ namespace ET.Client
     public struct CreateHeroObject
     {
         public Unit Unit;
-        
+
         public HeroCard HeroCard;
 
         public int Index;
@@ -36,10 +97,12 @@ namespace ET.Client
     {
         public HeroCard HeroCard;
     }
-    
+
     public struct CreateHeroObjects
     {
+        public Unit Unit;
     }
+
     public struct ShowLayerById
     {
         public WindowID WindowID;
@@ -49,6 +112,7 @@ namespace ET.Client
     {
         public WindowID WindowID;
     }
+
     public struct HideLayerById
     {
         public WindowID WindowID;
@@ -56,8 +120,8 @@ namespace ET.Client
 
     public struct StartMoveUnitPos
     {
-        
     }
+
     public struct MoveUnitPos
     {
         public Vector2 Vector2;
@@ -67,7 +131,6 @@ namespace ET.Client
 
     public struct EndMoveUnitPos
     {
-        
     }
 #endif
     public struct ShowLoadingLayer

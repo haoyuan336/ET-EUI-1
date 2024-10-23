@@ -13,29 +13,24 @@ namespace ET.Client
 
             gameObjectComponent.EndMove();
 
-            HeroCardComponent heroCardComponent = unit.GetComponent<HeroCardComponent>();
+            FightManagerComponent fightManagerComponent = unit.GetComponent<FightManagerComponent>();
 
-            foreach (var card in heroCardComponent.FormationHeroCards)
+            foreach (var heroCard in fightManagerComponent.HeroCards)
             {
-                HeroCardObjectComponent heroCardObjectComponent = card.GetComponent<HeroCardObjectComponent>();
-
-                if (heroCardObjectComponent != null && !heroCardObjectComponent.IsDisposed)
+                if (heroCard != null && !heroCard.IsDisposed)
                 {
-                    heroCardObjectComponent.MoveEnd();
+                    MoveObjectComponent moveObjectComponent = heroCard.GetComponent<MoveObjectComponent>();
+
+                    if (moveObjectComponent != null && !moveObjectComponent.IsDisposed)
+                    {
+                        moveObjectComponent.MoveEnd();
+                    }
                 }
             }
 
             GlobalComponent globalComponent = scene.Root().GetComponent<GlobalComponent>();
 
             globalComponent.ArrowGameObject.SetActive(false);
-
-            // TimerComponent timerComponent = scene.Root().GetComponent<TimerComponent>();
-            //
-            // await timerComponent.WaitAsync(1000);
-            //
-            // Log.Debug("EndMoveUnitPos");
-            //
-            EventSystem.Instance.Publish(scene.Root(), new DiffuseHero() { Unit = unit });
 
             await ETTask.CompletedTask;
         }

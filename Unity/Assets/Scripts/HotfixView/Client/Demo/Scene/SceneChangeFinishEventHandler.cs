@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace ET.Client
@@ -17,7 +16,7 @@ namespace ET.Client
 
             await SceneManager.LoadSceneAsync(mapConfig.SceneName);
 
-            EventSystem.Instance.Publish(scene.Root(), new ShowLoadingLayer() { IsShow = false });
+            EventSystem.Instance.Publish(scene.Root(), new AfterUnitCreate() { Unit = myUnit });
 
             EventSystem.Instance.Publish(scene.Root(), new ShowLayerById() { WindowID = WindowID.MainLayer });
 
@@ -25,7 +24,11 @@ namespace ET.Client
 
             gameObjectComponent.BindCM();
 
-            EventSystem.Instance.Publish(scene.Root(), new CreateHeroObjects() { });
+            EventSystem.Instance.Publish(scene.Root(), new StartFight() { Unit = myUnit });
+
+            EventSystem.Instance.Publish(scene.Root(), new InitMapManager() { Unit = myUnit });
+
+            EventSystem.Instance.Publish(scene.Root(), new ShowLoadingLayer() { IsShow = false });
 
             scene.Root().AddComponent<CameraComponent>();
         }

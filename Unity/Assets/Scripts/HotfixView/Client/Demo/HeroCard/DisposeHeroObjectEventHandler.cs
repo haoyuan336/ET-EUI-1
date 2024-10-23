@@ -12,11 +12,11 @@ namespace ET.Client
                 return;
             }
 
-            HeroCardObjectComponent heroCardObjectComponent = heroCard.GetComponent<HeroCardObjectComponent>();
+            MoveObjectComponent moveObjectComponent = heroCard.GetComponent<MoveObjectComponent>();
 
-            if (heroCardObjectComponent != null)
+            if (moveObjectComponent != null)
             {
-                heroCardObjectComponent.Dispose();
+                moveObjectComponent.Dispose();
             }
 
             await ETTask.CompletedTask;

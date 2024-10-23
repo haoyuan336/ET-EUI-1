@@ -1,0 +1,90 @@
+
+yazi.png
+size: 100,268
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+4/body1
+  rotate: false
+  xy: 2, 83
+  size: 57, 55
+  orig: 57, 55
+  offset: 0, 0
+  index: -1
+4/body2
+  rotate: false
+  xy: 2, 33
+  size: 52, 48
+  orig: 52, 48
+  offset: 0, 0
+  index: -1
+4/body3
+  rotate: false
+  xy: 61, 99
+  size: 34, 39
+  orig: 34, 39
+  offset: 0, 0
+  index: -1
+4/foot_l
+  rotate: false
+  xy: 61, 76
+  size: 30, 21
+  orig: 30, 21
+  offset: 0, 0
+  index: -1
+4/foot_l2
+  rotate: false
+  xy: 61, 76
+  size: 30, 21
+  orig: 30, 21
+  offset: 0, 0
+  index: -1
+4/foot_r
+  rotate: false
+  xy: 56, 53
+  size: 30, 21
+  orig: 30, 21
+  offset: 0, 0
+  index: -1
+4/hand_l
+  rotate: false
+  xy: 56, 28
+  size: 25, 23
+  orig: 25, 23
+  offset: 0, 0
+  index: -1
+4/hand_r
+  rotate: false
+  xy: 56, 28
+  size: 25, 23
+  orig: 25, 23
+  offset: 0, 0
+  index: -1
+4/head1
+  rotate: false
+  xy: 36, 204
+  size: 62, 62
+  orig: 62, 62
+  offset: 0, 0
+  index: -1
+4/head2
+  rotate: false
+  xy: 36, 140
+  size: 62, 62
+  orig: 62, 62
+  offset: 0, 0
+  index: -1
+4/mouth
+  rotate: false
+  xy: 2, 2
+  size: 42, 29
+  orig: 42, 29
+  offset: 0, 0
+  index: -1
+4/shadow
+  rotate: true
+  xy: 2, 143
+  size: 123, 32
+  orig: 123, 32
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,27 @@
+
+tree3.png
+size: 792,356
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sm3
+  rotate: false
+  xy: 2, 2
+  size: 344, 349
+  orig: 344, 349
+  offset: 0, 0
+  index: -1
+sm3b
+  rotate: false
+  xy: 348, 2
+  size: 344, 349
+  orig: 344, 349
+  offset: 0, 0
+  index: -1
+sz3
+  rotate: false
+  xy: 694, 251
+  size: 93, 100
+  orig: 94, 101
+  offset: 0, 1
+  index: -1

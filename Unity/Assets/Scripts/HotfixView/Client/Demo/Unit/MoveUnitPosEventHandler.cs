@@ -16,26 +16,29 @@ namespace ET.Client
 
             GameObjectComponent gameObjectComponent = unit.GetComponent<GameObjectComponent>();
 
-            Vector3 targetPos = gameObjectComponent.GameObject.transform.position + new Vector3(direction.x, 0, -direction.y) * 4;
+            Vector3 targetPos = gameObjectComponent.GameObject.transform.position + new Vector3(direction.x, 0, -direction.y) * 10;
+
+            Vector3 drawPos = gameObjectComponent.GameObject.transform.position + new Vector3(direction.x, 0, -direction.y) * 4;
 
             GlobalComponent globalComponent = scene.Root().GetComponent<GlobalComponent>();
 
-            globalComponent.ArrowGameObject.transform.position = targetPos;
+            globalComponent.ArrowGameObject.transform.position = new Vector3(drawPos.x, 0.1f, drawPos.z);
 
             gameObjectComponent.Move(targetPos);
 
-            HeroCardComponent heroCardComponent = unit.GetComponent<HeroCardComponent>();
+            FightManagerComponent fightManagerComponent = unit.GetComponent<FightManagerComponent>();
 
-            foreach (var heroCard in heroCardComponent.FormationHeroCards)
+            foreach (var heroCard in fightManagerComponent.HeroCards)
             {
-
-                if (heroCard.IsDisposed)
+                if (heroCard != null && !heroCard.IsDisposed)
                 {
-                    continue;
-                }
-                HeroCardObjectComponent heroCardObjectComponent = heroCard.GetComponent<HeroCardObjectComponent>();
+                    MoveObjectComponent moveObjectComponent = heroCard.GetComponent<MoveObjectComponent>();
 
-                heroCardObjectComponent.Move(targetPos);
+                    if (moveObjectComponent != null && !moveObjectComponent.IsDisposed)
+                    {
+                        moveObjectComponent.Move(targetPos);
+                    }
+                }
             }
 
             await ETTask.CompletedTask;
