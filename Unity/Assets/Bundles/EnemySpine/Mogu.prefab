@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8058741383030953966}
   - component: {fileID: 8058741383030953961}
+  - component: {fileID: 2948082135698299716}
   m_Layer: 0
   m_Name: Mogu
   m_TagString: Untagged
@@ -55,6 +56,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!135 &2948082135698299716
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8058741383030953960}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.62
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &8058741383123064591
 GameObject:
   m_ObjectHideFlags: 0

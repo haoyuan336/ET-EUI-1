@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace ET.Client
 {
     [ChildOf(typeof(SkillComponent))]
@@ -10,5 +12,7 @@ namespace ET.Client
         public int Level = 0; //等级
 
         public long CastTimeStamp = 0;
+
+        public List<ETCancellationToken> Tokens = new List<ETCancellationToken>();
     }
 }

@@ -40,7 +40,7 @@ namespace ET.Client
 
                 if (self.FindAngle % 10 == 0)
                 {
-                    Vector3 forword = Quaternion.Euler(0, self.FindAngle, 0) * objectComponent.GameObject.transform.forward;
+                    Vector3 forword = Quaternion.Euler(0, self.FindAngle, 0) * objectComponent.GameObject.transform.forward + objectComponent.GameObject.GetComponent<SphereCollider>().center;
 
                     bool isHited = Physics.SphereCast(objectComponent.GameObject.transform.position, 1, forword, out RaycastHit hit, 10.0f,
                         self.ColliderLayer);

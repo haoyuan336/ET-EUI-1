@@ -66,6 +66,7 @@ namespace ET.Client
                 self.Body.rotation = Camera.main.transform.rotation;
             }
         }
+
         public static void StartMove(this MoveObjectComponent self)
         {
             self.SkeletonAnimation.state.SetAnimation(0, "move", true);
@@ -76,6 +77,11 @@ namespace ET.Client
             self.SkeletonAnimation.state.SetAnimation(0, "idle", true);
 
             self.NavMeshAgent.SetDestination(self.NavMeshAgent.transform.position);
+        }
+
+        public static void PlayAnim(this MoveObjectComponent self, string animName, bool isLoop)
+        {
+            self.SkeletonAnimation.state.SetAnimation(0, animName, isLoop);
         }
     }
 }

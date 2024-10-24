@@ -1,5 +1,5 @@
 {"dict": [
-[1001, {"_t":"EnemySpawnPosConfig","_id":1001,"Name":"蘑菇出生点","EnemyConfigId":[1001],"SpawnCount":1,"TimeInterval":10000}],
-[1002, {"_t":"EnemySpawnPosConfig","_id":1002,"Name":"兔子出生点","EnemyConfigId":[1002],"SpawnCount":1,"TimeInterval":10000}],
-[1003, {"_t":"EnemySpawnPosConfig","_id":1003,"Name":"鸭子出生点","EnemyConfigId":[1003],"SpawnCount":1,"TimeInterval":10000}],
+[1001, {"_t":"EnemySpawnPosConfig","_id":1001,"Name":"蘑菇出生点","EnemyConfigId":[10001],"SpawnCount":1,"TimeInterval":10000}],
+[1002, {"_t":"EnemySpawnPosConfig","_id":1002,"Name":"兔子出生点","EnemyConfigId":[10002],"SpawnCount":1,"TimeInterval":10000}],
+[1003, {"_t":"EnemySpawnPosConfig","_id":1003,"Name":"鸭子出生点","EnemyConfigId":[10003],"SpawnCount":1,"TimeInterval":10000}],
 ]}

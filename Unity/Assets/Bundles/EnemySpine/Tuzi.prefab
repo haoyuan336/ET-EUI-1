@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 25a748553bd3ca14a89306d6b74aca71, type: 2}
+  - {fileID: 2100000, guid: d34e1a80d8b2b9541bb0b968ab8e552d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -131,6 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4161007156228946771}
   - component: {fileID: 5617422204329031347}
+  - component: {fileID: 6534175320783670071}
   m_Layer: 0
   m_Name: Tuzi
   m_TagString: Untagged
@@ -176,3 +177,16 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!135 &6534175320783670071
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9033057438150323736}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.62
+  m_Center: {x: 0, y: 0.6, z: 0}

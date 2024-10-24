@@ -21,7 +21,6 @@ namespace ET.Client
         {
             if (self.AIComponent != null)
             {
-                Log.Debug($"current ai state {self.AIComponent.CurrentAIState}");
                 if (self.AIComponent.CurrentAIState == AIState.Attacking)
                 {
                     ObjectComponent objectComponent = self.Parent.GetComponent<ObjectComponent>();
@@ -35,13 +34,17 @@ namespace ET.Client
                         trackComponent.SetTrackObject(self.AttackObject);
 
                         self.AIComponent.EnterAIState(AIState.Track);
-                        
+
                         return;
                     }
 
                     if (self.CurrentCastSkill == null)
                     {
                         SkillComponent skillComponent = self.Parent.GetComponent<SkillComponent>();
+
+                        self.CurrentCastSkill = skillComponent.GetCurrentSkill();
+
+                        self.CurrentCastSkill.Cast();
                     }
                 }
             }
