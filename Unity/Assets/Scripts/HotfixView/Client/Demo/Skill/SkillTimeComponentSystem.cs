@@ -69,7 +69,6 @@ namespace ET.Client
                 self.Run(timerId, ref timerAction);
             }
 
-            Log.Debug($"self  now time {self.NowTime}");
         }
 
         public static long GetNow(this SkillTimeComponent self)

@@ -4,6 +4,6 @@ namespace ET.Client
 {
     public class FightManagerComponent : Entity, IAwake
     {
-        public List<HeroCard> HeroCards = new List<HeroCard>();
+        // public List<HeroCard> HeroCards = new List<HeroCard>();
     }
 }

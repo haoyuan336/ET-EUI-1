@@ -17,7 +17,7 @@ namespace ET.Client
         }
 
         [EntitySystem]
-        public static void Update(this AttackComponent self)
+        public static async void Update(this AttackComponent self)
         {
             if (self.AIComponent != null)
             {
@@ -44,7 +44,9 @@ namespace ET.Client
 
                         self.CurrentCastSkill = skillComponent.GetCurrentSkill();
 
-                        self.CurrentCastSkill.Cast();
+                        await self.CurrentCastSkill.Cast();
+
+                        self.CurrentCastSkill = null;
                     }
                 }
             }

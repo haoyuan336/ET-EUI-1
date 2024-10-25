@@ -12,6 +12,7 @@ namespace ET.Client
         public FGUIMainLayerViewComponent View => this.GetParent<UIBaseWindow>().GetComponent<FGUIMainLayerViewComponent>();
 
         public Dictionary<int, UIBaseWindow> BaseWindows = new Dictionary<int, UIBaseWindow>();
-        
+
+        public Stack<FGUIHPProgressItemCellComponent> FguihpProgressItemCellComponents = new Stack<FGUIHPProgressItemCellComponent>();
     }
 }

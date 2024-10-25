@@ -28,10 +28,11 @@ namespace ET.Client
         MainLayer = 11,
         AddHeroItemCell = 12,
         JoyStickLayer = 13,
+        HPProgressItemCell = 14,
         //----------------------RootPackage---------------------
-        RootLayer = 14,
-        EmptyLayer = 15,
-        SpalshLayer = 16,
+        RootLayer = 15,
+        EmptyLayer = 16,
+        SpalshLayer = 17,
     }
     public class ComponentPackageMap
     {
@@ -82,12 +83,12 @@ namespace ET.Client
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "LoginLayerPackage");
             }
-            for (int j = 11; j < 14; j++)
+            for (int j = 11; j < 15; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "MainLayerPackage");
             }
-            for (int j = 14; j < 17; j++)
+            for (int j = 15; j < 18; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "RootPackage");

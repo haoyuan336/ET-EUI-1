@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace ET
@@ -14,5 +15,7 @@ namespace ET
 
         [BsonIgnore]
         public HeroConfig Config => HeroConfigCategory.Instance.Get(this.HeroConfigId);
+
+        public Dictionary<string, float> Datas = new Dictionary<string, float>();
     }
 }

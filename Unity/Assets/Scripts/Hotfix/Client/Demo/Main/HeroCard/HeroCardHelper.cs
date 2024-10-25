@@ -43,11 +43,24 @@ namespace ET.Client
             foreach (var kv in heroCardComponent.Children)
             {
                 HeroCard heroCard = kv.Value as HeroCard;
-                
+
                 heroCards.Add(heroCard);
             }
-            
+
             return heroCards;
         }
-}
+
+        /// <summary>
+        /// 获取英雄的等级 星级最终值
+        /// </summary>
+        /// <param name="baseValue">基础数值</param>
+        /// <param name="grow">成长值</param>
+        /// <param name="level">等级</param>
+        /// <param name="star">星级</param>
+        /// <returns></returns>
+        public static int GetHeroBaseDataValue(int baseValue, int grow, int level, int star)
+        {
+            return baseValue + grow * level + grow * star * 10;
+        }
+    }
 }

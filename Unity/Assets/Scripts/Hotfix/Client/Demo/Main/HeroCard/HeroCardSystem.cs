@@ -8,5 +8,14 @@ namespace ET.Client
         {
             self.HeroConfigId = info.ConfigId;
         }
+
+        public static HeroCardInfo GetInfo(this HeroCard self)
+        {
+            HeroCardInfo info = HeroCardInfo.Create();
+
+            info.ConfigId = self.HeroConfigId;
+
+            return info;
+        }
     }
 }

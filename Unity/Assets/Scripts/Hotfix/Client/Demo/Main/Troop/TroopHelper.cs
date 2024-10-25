@@ -47,6 +47,8 @@ namespace ET.Client
                 Troop troop = troopComponent.GetChild<Troop>(troopId);
 
                 troop.HeroCardIds[index] = heroCardId;
+
+                EventSystem.Instance.Publish(root, new CreateFightHero() { Unit = unit, HeroCardId = heroCardId, Index = index });
             }
 
             return response.Error;
@@ -72,11 +74,7 @@ namespace ET.Client
 
                 long heroCardId = troop.HeroCardIds[index];
 
-                HeroCardComponent heroCardComponent = unit.GetComponent<HeroCardComponent>();
-
-                HeroCard heroCard = heroCardComponent.GetChild<HeroCard>(heroCardId);
-
-                EventSystem.Instance.Publish(root, new DisposeHeroObject() { HeroCard = heroCard });
+                EventSystem.Instance.Publish(root, new DisposeHeroObject() { Unit = unit, CardId = heroCardId });
 
                 troop.HeroCardIds[index] = 0;
             }

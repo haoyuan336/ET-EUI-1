@@ -63,8 +63,18 @@ namespace ET
 		public int Id { get; set; }
 		/// <summary>预制体名字</summary>
 		public string PrefabName { get; set; }
+		/// <summary>受击动作</summary>
+		public string BeAttackAnim { get; set; }
 		/// <summary>英雄名称</summary>
 		public string HeroName { get; set; }
+		/// <summary>生命值基础之</summary>
+		public int Hp { get; set; }
+		/// <summary>生命值成长系数</summary>
+		public int HpGrow { get; set; }
+		/// <summary>攻击力基础数值</summary>
+		public int Attack { get; set; }
+		/// <summary>攻击力成长系数</summary>
+		public int AttackGrow { get; set; }
 
 	}
 }

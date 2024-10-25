@@ -32,19 +32,9 @@ namespace ET.Client
         }
 
         public Transform Transform { get; private set; }
-
-        // public Camera Camera;
-
-        // public float TargetPower = 0;
-
-        public float CurrentPower = 0;
         
-        // public Vector3 OldPos { get; set; }
-
-        // public Queue<Vector3> PathPos = new Queue<Vector3>();
-
-        // public SkeletonAnimation Animation = null;
-
         public Vector3 TargetPos;
+
+        public List<HeroCard> HeroCards = new List<HeroCard>();
     }
 }

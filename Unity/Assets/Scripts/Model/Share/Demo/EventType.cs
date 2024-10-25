@@ -67,13 +67,6 @@ namespace ET.Client
         public Unit Unit;
     }
 
-    public struct UpdateTroop
-    {
-        public Unit Unit;
-
-        public Troop Troop;
-    }
-
     public struct StartFight
     {
         public Unit Unit;
@@ -84,24 +77,28 @@ namespace ET.Client
         public Unit Unit;
     }
 
-    public struct CreateHeroObject
+    public struct CreateFightHero
     {
         public Unit Unit;
 
-        public HeroCard HeroCard;
+        public long HeroCardId;
 
         public int Index;
     }
 
     public struct DisposeHeroObject
     {
-        public HeroCard HeroCard;
+        public Unit Unit;
+                
+        public long CardId;
     }
 
-    public struct CreateHeroObjects
-    {
-        public Unit Unit;
-    }
+    // public struct CreateHeroObjects
+    // {
+    //     public Unit Unit;
+    //
+    //     public List<long> CardIds;
+    // }
 
     public struct ShowLayerById
     {

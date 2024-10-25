@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET.Client
@@ -13,9 +14,11 @@ namespace ET.Client
 
             gameObjectComponent.EndMove();
 
-            FightManagerComponent fightManagerComponent = unit.GetComponent<FightManagerComponent>();
+            // FightManagerComponent fightManagerComponent = unit.GetComponent<FightManagerComponent>();
 
-            foreach (var heroCard in fightManagerComponent.HeroCards)
+            List<HeroCard> remnoveCard = new List<HeroCard>();
+
+            foreach (var heroCard in gameObjectComponent.HeroCards)
             {
                 if (heroCard != null && !heroCard.IsDisposed)
                 {
@@ -26,6 +29,15 @@ namespace ET.Client
                         moveObjectComponent.MoveEnd();
                     }
                 }
+                else
+                {
+                    remnoveCard.Add(heroCard);
+                }
+            }
+
+            foreach (var card in remnoveCard)
+            {
+                gameObjectComponent.HeroCards.Remove(card);
             }
 
             GlobalComponent globalComponent = scene.Root().GetComponent<GlobalComponent>();

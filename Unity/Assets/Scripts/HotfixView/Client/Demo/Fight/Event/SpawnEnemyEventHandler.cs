@@ -9,11 +9,11 @@ namespace ET.Client
 
             EnemySpawnPos enemySpawnPos = a.EnemySpawnPos;
 
-            EnemyComponent enemyComponent = unit.GetComponent<EnemyComponent>();
+            FightManagerComponent fightManagerComponent = unit.GetComponent<FightManagerComponent>();
 
-            if (enemyComponent == null)
+            if (fightManagerComponent == null)
             {
-                enemyComponent = unit.AddComponent<EnemyComponent>();
+                fightManagerComponent = unit.AddComponent<FightManagerComponent>();
             }
 
             EnemySpawnPosConfig config = enemySpawnPos.Config;
@@ -22,7 +22,7 @@ namespace ET.Client
 
             int enemyConfigId = enemyConfigIds[0];
 
-            Enemy enemy = enemyComponent.AddChild<Enemy, int, EnemySpawnPos>(enemyConfigId, enemySpawnPos);
+            Enemy enemy = fightManagerComponent.AddChild<Enemy, int, EnemySpawnPos>(enemyConfigId, enemySpawnPos);
 
             enemySpawnPos.Add(enemy);
 

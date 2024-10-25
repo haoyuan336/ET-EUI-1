@@ -26,9 +26,7 @@ namespace ET.Client
 
             gameObjectComponent.Move(targetPos);
 
-            FightManagerComponent fightManagerComponent = unit.GetComponent<FightManagerComponent>();
-
-            foreach (var heroCard in fightManagerComponent.HeroCards)
+            foreach (var heroCard in gameObjectComponent.HeroCards)
             {
                 if (heroCard != null && !heroCard.IsDisposed)
                 {

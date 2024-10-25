@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="80,6">
+  <displayList>
+    <component id="n0_4yhj" name="Progress" src="p1ff4" fileName="HPProgress.xml" xy="0,0" size="80,6">
+      <relation target="" sidePair="width-width,height-height"/>
+      <ProgressBar value="100" max="100"/>
+    </component>
+  </displayList>
+</component>

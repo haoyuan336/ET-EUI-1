@@ -41,31 +41,31 @@ namespace ET
         {
             self.Insert(numericType, value, false);
         }
-
+  
         public static void Insert(this NumericComponent self, int numericType, long value, bool isPublicEvent = true)
         {
-            long oldValue = self.GetByKey(numericType);
-            if (oldValue == value)
-            {
-                return;
-            }
-
-            self.NumericDic[numericType] = value;
-
-            if (numericType >= NumericType.Max)
-            {
-                self.Update(numericType, isPublicEvent);
-                return;
-            }
-
-            if (isPublicEvent)
-            {
-                EventSystem.Instance.Publish(self.Scene(),
-                    new NumbericChange() { Unit = self.GetParent<Unit>(), New = value, Old = oldValue, NumericType = numericType });
-            }
+            // long oldValue = self.GetByKey(numericType);
+            // if (oldValue == value)
+            // {
+            //     return;
+            // }
+            //
+            // self.NumericDic[numericType] = value;
+            //
+            // if (numericType >= NumericType.Max)
+            // {
+            //     self.Update(numericType, isPublicEvent);
+            //     return;
+            // }
+            //
+            // if (isPublicEvent)
+            // {
+            //     EventSystem.Instance.Publish(self.Scene(),
+            //         new NumbericChange() { Unit = self.GetParent<Unit>(), New = value, Old = oldValue, NumericType = numericType });
+            // }
         }
 
-        public static long GetByKey(this NumericComponent self, int key)
+        public static long  GetByKey(this NumericComponent self, int key)
         {
             long value = 0;
             self.NumericDic.TryGetValue(key, out value);

@@ -5,19 +5,15 @@ namespace ET.Client
     {
         protected override async ETTask Run(Scene scene, DisposeHeroObject a)
         {
-            HeroCard heroCard = a.HeroCard;
+            Unit unit = a.Unit;
 
-            if (heroCard == null)
-            {
-                return;
-            }
+            long cardId = a.CardId;
 
-            MoveObjectComponent moveObjectComponent = heroCard.GetComponent<MoveObjectComponent>();
+            FightManagerComponent fightManagerComponent = unit.GetComponent<FightManagerComponent>();
 
-            if (moveObjectComponent != null)
-            {
-                moveObjectComponent.Dispose();
-            }
+            HeroCard heroCard = fightManagerComponent.GetChild<HeroCard>(cardId);
+
+            heroCard.Dispose();
 
             await ETTask.CompletedTask;
         }

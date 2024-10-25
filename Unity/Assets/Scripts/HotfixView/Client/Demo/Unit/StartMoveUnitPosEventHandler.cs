@@ -17,9 +17,7 @@ namespace ET.Client
 
             globalComponent.ArrowGameObject.SetActive(true);
 
-            FightManagerComponent fightManagerComponent = unit.GetComponent<FightManagerComponent>();
-
-            foreach (var heroCard in fightManagerComponent.HeroCards)
+            foreach (var heroCard in gameObjectComponent.HeroCards)
             {
                 if (heroCard != null && !heroCard.IsDisposed)
                 {
@@ -31,7 +29,7 @@ namespace ET.Client
                     }
                 }
             }
-            
+
             await ETTask.CompletedTask;
         }
     }

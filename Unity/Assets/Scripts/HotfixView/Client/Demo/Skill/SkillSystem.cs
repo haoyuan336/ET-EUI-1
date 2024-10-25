@@ -57,12 +57,16 @@ namespace ET.Client
 
             bool isCancel = await skillTimeComponent.WaitAsync(config.DelayTime, token);
 
+            Log.Debug($"is cancel {isCancel}");
+
             if (isCancel)
             {
                 return;
             }
 
             string logic = config.LogicCode;
+
+            Log.Debug($"logic {logic}");
 
             switch (logic)
             {
@@ -78,10 +82,9 @@ namespace ET.Client
 
                 case "Damage":
 
-                    EventSystem.Instance.Publish(self.Root(), new DamageEvent()
+                    EventSystem.Instance.Publish(self.Root(), new AttackEvent()
                     {
                         Skill = self,
-
                         LogicConfig = config
                     });
 

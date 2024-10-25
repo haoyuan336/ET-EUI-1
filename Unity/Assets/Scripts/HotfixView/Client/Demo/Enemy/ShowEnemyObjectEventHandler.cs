@@ -11,7 +11,9 @@ namespace ET.Client
 
             GlobalComponent globalComponent = scene.Root().GetComponent<GlobalComponent>();
 
-            GameObject prefab = globalComponent.ReferenceCollector.Get<GameObject>(enemy.Config.PrefabName);
+            HeroConfig heroConfig = HeroConfigCategory.Instance.Get(enemy.Config.HeroConfigId);
+
+            GameObject prefab = globalComponent.ReferenceCollector.Get<GameObject>(heroConfig.PrefabName);
 
             EnemySpawnPos enemySpawnPos = enemy.EnemySpawnPos;
 
@@ -36,6 +38,8 @@ namespace ET.Client
             enemy.AddComponent<TrackComponent>();
 
             enemy.AddComponent<AttackComponent>();
+
+            enemy.AddComponent<FightDataComponent, Enemy>(enemy);
 
             int level = enemy.Config.Level;
 

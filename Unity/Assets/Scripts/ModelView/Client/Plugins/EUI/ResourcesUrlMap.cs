@@ -55,6 +55,8 @@ namespace ET
         public const string MainLayer = "ui://7sxmdg4qckxh0";
         public const string AddHeroItemCell = "ui://7sxmdg4qckxh2";
         public const string JoyStickLayer = "ui://7sxmdg4qiygc3";
+        public const string HPProgress = "ui://7sxmdg4qp1ff4";
+        public const string HPProgressItemCell = "ui://7sxmdg4q4yhj6";
         //---------------RootPackage---------------
         public const string RootLayer = "ui://9nomxs01i2d80";
         public const string EmptyLayer = "ui://9nomxs01i2d81";

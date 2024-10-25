@@ -4,6 +4,8 @@
     <component id="ckxh0" name="MainLayer.xml" path="/" exported="true"/>
     <component id="ckxh2" name="AddHeroItemCell.xml" path="/" exported="true"/>
     <component id="iygc3" name="JoyStickLayer.xml" path="/" exported="true"/>
+    <component id="p1ff4" name="HPProgress.xml" path="/" exported="true"/>
+    <component id="4yhj6" name="HPProgressItemCell.xml" path="/" exported="true"/>
   </resources>
   <publish name="MainLayerPackage" path="D:\workspace\ET-EUI\Unity\Assets\Resources\FGUI\MainLayerPackage" packageCount="2" branchPath="D:\workspace\ET-EUI\Unity\Assets\Resources\FGUI\MainLayerPackage"/>
 </packageDescription>

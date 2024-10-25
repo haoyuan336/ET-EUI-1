@@ -12,34 +12,16 @@ namespace ET.Client
             Log.Debug($"start fight {a.Unit.Id}");
 
             Unit unit = a.Unit;
-
-            FightManagerComponent fightManagerComponent = unit.GetComponent<FightManagerComponent>();
-
-            if (fightManagerComponent == null)
-            {
-                fightManagerComponent = unit.AddComponent<FightManagerComponent>();
-            }
-
-            List<HeroCard> heroCards = new List<HeroCard>();
-
             TroopComponent troopComponent = unit.GetComponent<TroopComponent>();
 
             Troop troop = troopComponent.Children.Values.ToList()[0] as Troop;
-
-            HeroCardComponent heroCardComponent = unit.GetComponent<HeroCardComponent>();
 
             for (int i = 0; i < troop.HeroCardIds.Length; i++)
             {
                 long cardId = troop.HeroCardIds[i];
 
-                HeroCard heroCard = heroCardComponent.GetChild<HeroCard>(cardId);
-
-                heroCards.Add(heroCard);
+                EventSystem.Instance.Publish(scene, new CreateFightHero() { Unit = unit, HeroCardId = cardId, Index = i });
             }
-
-            fightManagerComponent.HeroCards = heroCards;
-
-            EventSystem.Instance.Publish(scene, new CreateHeroObjects() { Unit = unit });
 
             await ETTask.CompletedTask;
         }

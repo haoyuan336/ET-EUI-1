@@ -1,6 +1,6 @@
 namespace ET.Client
 {
-    [ChildOf(typeof(EnemyComponent))]
+    [ChildOf(typeof(FightManagerComponent))]
     public class Enemy : Entity, IAwake<int, EnemySpawnPos>
     {
         public int ConfigId;

@@ -1,5 +1,5 @@
 {"dict": [
-[10001, {"_t":"EnemyConfig","_id":10001,"PrefabName":"Mogu","Name":"蘑菇","Level":1}],
-[10002, {"_t":"EnemyConfig","_id":10002,"PrefabName":"Yazi","Name":"兔子","Level":1}],
-[10003, {"_t":"EnemyConfig","_id":10003,"PrefabName":"Tuzi","Name":"鸭子","Level":1}],
+[10001, {"_t":"EnemyConfig","_id":10001,"Name":"蘑菇","HeroConfigId":1005,"Level":1,"Star":1}],
+[10002, {"_t":"EnemyConfig","_id":10002,"Name":"兔子","HeroConfigId":1006,"Level":1,"Star":1}],
+[10003, {"_t":"EnemyConfig","_id":10003,"Name":"鸭子","HeroConfigId":1007,"Level":1,"Star":1}],
 ]}

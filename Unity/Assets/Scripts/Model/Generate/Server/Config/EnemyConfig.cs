@@ -61,12 +61,14 @@ namespace ET
 	{
 		/// <summary>Id</summary>
 		public int Id { get; set; }
-		/// <summary>预制体名字</summary>
-		public string PrefabName { get; set; }
 		/// <summary>英雄名称</summary>
 		public string Name { get; set; }
+		/// <summary>对应模型</summary>
+		public int HeroConfigId { get; set; }
 		/// <summary>等级</summary>
 		public int Level { get; set; }
+		/// <summary>星级</summary>
+		public int Star { get; set; }
 
 	}
 }

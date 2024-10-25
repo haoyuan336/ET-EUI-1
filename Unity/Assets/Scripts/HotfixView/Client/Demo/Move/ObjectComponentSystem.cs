@@ -14,7 +14,7 @@ namespace ET.Client
 
             self.GameObject.transform.position = position;
 
-            self.GameObject.name = prefab.name + self.Parent.Id;
+            self.GameObject.name = "hero" + self.Parent.Id;
         }
     }
 }
