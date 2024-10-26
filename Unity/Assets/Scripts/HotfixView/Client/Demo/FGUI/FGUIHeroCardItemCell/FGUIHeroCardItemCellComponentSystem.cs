@@ -22,7 +22,22 @@ namespace ET.Client
 
         public static void SetInfo(this FGUIHeroCardItemCellComponent self, HeroCard heroCard)
         {
+            self.HeroCard = heroCard;
+
             self.View.HeroName.text = heroCard.Config.HeroName;
+
+            self.View.DestroyButton.SetListener(self.OnDestroyButtonClick);
+        }
+
+        private static async void OnDestroyButtonClick(this FGUIHeroCardItemCellComponent self)
+        {
+            await HeroCardHelper.DestroyHeroCard(self.HeroCard);
+
+            UIComponent uiComponent = self.Root().GetComponent<UIComponent>();
+
+            FGUIHeroCardBagLayerComponent bagLayerComponent = uiComponent.GetDlgLogic<FGUIHeroCardBagLayerComponent>();
+
+            bagLayerComponent.RefreCardList();
         }
     }
 }

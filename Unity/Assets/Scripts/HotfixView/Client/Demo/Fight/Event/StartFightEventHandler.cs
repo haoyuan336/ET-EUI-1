@@ -20,6 +20,11 @@ namespace ET.Client
             {
                 long cardId = troop.HeroCardIds[i];
 
+                if (cardId == 0)
+                {
+                    continue;
+                }
+
                 EventSystem.Instance.Publish(scene, new CreateFightHero() { Unit = unit, HeroCardId = cardId, Index = i });
             }
 

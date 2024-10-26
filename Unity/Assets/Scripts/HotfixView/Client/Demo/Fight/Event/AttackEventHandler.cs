@@ -47,14 +47,8 @@ namespace ET.Client
 
             long heroId = long.Parse(nameString);
 
-            Log.Debug($"hero id {heroId}");
-            
             FightManagerComponent fightManagerComponent = skill.Parent.Parent.GetParent<FightManagerComponent>();
 
-            foreach (var key in fightManagerComponent.Children.Keys)
-            {
-                Log.Debug($"key {key}");
-            }
             Entity entity = fightManagerComponent.GetChild<Entity>(heroId);
 
             FightDataComponent beAttackDataComponent = entity.GetComponent<FightDataComponent>();
@@ -64,7 +58,16 @@ namespace ET.Client
             //首先计算基础伤害
             float damage = FightDataHelper.Fight(fightDataComponent, beAttackDataComponent);
 
+            Log.Debug($"damage {damage}");
+
             beAttackDataComponent.SubHP(damage);
+
+            Log.Debug($"hp {beAttackDataComponent.CurrentHP}");
+
+            foreach (var kv in beAttackDataComponent.Datas)
+            {
+                Log.Debug($"kv {kv.Key} {kv.Value}");
+            }
 
             EventSystem.Instance.Publish(skill.Root(), new PlayDamageAnim()
             {

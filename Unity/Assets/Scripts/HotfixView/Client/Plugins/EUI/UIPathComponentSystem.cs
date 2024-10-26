@@ -9,12 +9,12 @@ namespace ET.Client
         [EntitySystem]
         public static void Awake(this UIPathComponent self)
         {
-            foreach (WindowID windowID in Enum.GetValues(typeof(WindowID)))
-            {
-                // string dlgName = "Dlg" + windowID.ToString().Split('_')[1];
-                // self.WindowPrefabPath.Add((int)windowID, dlgName);
-                // self.WindowTypeIdDict.Add(dlgName, (int)windowID);
-            }
+            // foreach (WindowID windowID in Enum.GetValues(typeof(WindowID)))
+            // {
+            //     string dlgName = "Dlg" + windowID.ToString().Split('_')[1];
+            //     self.WindowPrefabPath.Add((int)windowID, dlgName);
+            //     self.WindowTypeIdDict.Add(dlgName, (int)windowID);
+            // }
         }
         
         

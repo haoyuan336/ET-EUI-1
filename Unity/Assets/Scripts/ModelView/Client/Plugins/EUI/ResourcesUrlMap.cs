@@ -45,6 +45,7 @@ namespace ET
         //---------------HeroCardBagPackage---------------
         public const string HeroCardBagLayer = "ui://1o0rv0gziygc0";
         public const string HeroCardItemCell = "ui://1o0rv0gziygc1";
+        public const string HeroInfoLayer = "ui://1o0rv0gz4yhj2";
         //---------------LoadingPackage---------------
         public const string LoadingLayer = "ui://8l9768khjh1l0";
         //---------------LoginLayerPackage---------------

@@ -6,6 +6,17 @@ namespace ET.Client
     public static partial class ObjectComponentSystem
     {
         [EntitySystem]
+        public static void Destroy(this ObjectComponent self)
+        {
+            if (self.GameObject != null)
+            {
+                GameObject.Destroy(self.GameObject);
+
+                self.GameObject = null;
+            }
+        }
+
+        [EntitySystem]
         public static void Awake(this ObjectComponent self, GameObject prefab, Vector3 position)
         {
             GameObject gameObject = UnityEngine.Object.Instantiate(prefab);

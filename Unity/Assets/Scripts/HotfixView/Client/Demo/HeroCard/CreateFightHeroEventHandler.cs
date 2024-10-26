@@ -25,7 +25,9 @@ namespace ET.Client
                 fightManagerComponent = unit.AddComponent<FightManagerComponent>();
             }
 
-            HeroCard fightHeroCard = fightManagerComponent.AddChildWithId<HeroCard>(a.HeroCardId);
+            HeroCard fightHeroCard = fightManagerComponent.AddChildWithId<HeroCard>(heroCard.Id);
+
+            fightHeroCard.SetInfo(heroCard.GetInfo());
 
             GameObjectComponent gameObjectComponent = unit.GetComponent<GameObjectComponent>();
 
@@ -45,7 +47,7 @@ namespace ET.Client
             fightHeroCard.AddComponent<FightDataComponent, HeroCard>(fightHeroCard);
 
             gameObjectComponent.HeroCards.Add(fightHeroCard);
-            
+
             await ETTask.CompletedTask;
         }
     }

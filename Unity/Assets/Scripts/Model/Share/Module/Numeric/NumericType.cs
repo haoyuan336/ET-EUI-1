@@ -1,11 +1,5 @@
 ﻿namespace ET
 {
-    public enum WordAttributeType
-    {
-        BaseAttribute = 1, //基础属性
-        SpecicalAttribute = 2, //特殊属性
-        ElementAttribute = 3, //元素属性
-    }
 
     // 这个可弄个配置表生成
     public static class NumericType

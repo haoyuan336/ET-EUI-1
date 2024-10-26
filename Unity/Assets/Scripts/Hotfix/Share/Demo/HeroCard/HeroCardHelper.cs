@@ -4,6 +4,8 @@ namespace ET.Client
 {
     public static class HeroCardHelper
     {
+#if UNITY
+
         public static async ETTask<HeroCard> CreateNewHeroCardByConfigId(Scene root, int configId)
         {
             C2M_CreateOneHeroByConfigId request = C2M_CreateOneHeroByConfigId.Create();
@@ -49,6 +51,52 @@ namespace ET.Client
 
             return heroCards;
         }
+
+        public static async ETTask<int> DestroyHeroCard(HeroCard heroCard)
+        {
+            if (heroCard == null)
+            {
+                return 0;
+            }
+
+            C2M_DestroyHeroByIdRequest request = new C2M_DestroyHeroByIdRequest()
+            {
+                HeroId = heroCard.Id
+            };
+
+            M2C_DestroyHeroByIdResponse response =
+                    await heroCard.Root().GetComponent<ClientSenderComponent>().Call(request) as M2C_DestroyHeroByIdResponse;
+
+            Scene scene = heroCard.Root();
+
+            if (response.Error == ErrorCode.ERR_Success)
+            {
+                long heroId = heroCard.Id;
+
+                heroCard.Dispose();
+
+                List<Troop> troops = TroopHelper.GetTroops(scene);
+
+                Troop troop = troops[0];
+
+                int index = 0;
+
+                for (int i = 0; i < troop.HeroCardIds.Length; i++)
+                {
+                    if (troop.HeroCardIds[i] == heroId)
+                    {
+                        index = i;
+
+                        break;
+                    }
+                }
+
+                await TroopHelper.UnSetHeroFormation(scene, troop.Id, index);
+            }
+
+            return response.Error;
+        }
+#endif
 
         /// <summary>
         /// 获取英雄的等级 星级最终值

@@ -3,6 +3,7 @@
   <resources>
     <component id="iygc0" name="HeroCardBagLayer.xml" path="/" exported="true"/>
     <component id="iygc1" name="HeroCardItemCell.xml" path="/" exported="true"/>
+    <component id="4yhj2" name="HeroInfoLayer.xml" path="/" exported="true"/>
   </resources>
   <publish name="" path=".\..\Unity\Assets\Resources\FGUI\HeroCardBagPackage" packageCount="2" branchPath=".\..\Unity\Assets\Resources\FGUI\HeroCardBagPackage"/>
 </packageDescription>

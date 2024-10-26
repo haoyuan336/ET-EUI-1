@@ -10,5 +10,8 @@
     <text id="n2_iygc" name="Level" xy="2,140" size="150,55" fontSize="40" align="center" vAlign="middle" vars="true" autoSize="none" text="Lv:{Level=100}">
       <relation target="" sidePair="width-width,bottom-bottom"/>
     </text>
+    <component id="n3_4yhj" name="DestroyButton" src="jh1l3d" fileName="NButton.xml" pkg="9nomxs01" xy="120,4" size="31,29">
+      <Button title="X" titleFontSize="20"/>
+    </component>
   </displayList>
 </component>

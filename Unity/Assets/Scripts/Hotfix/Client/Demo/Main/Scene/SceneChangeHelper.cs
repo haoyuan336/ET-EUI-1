@@ -52,6 +52,7 @@ namespace ET.Client
 
             foreach (var info in heroCardInfos)
             {
+                Log.Debug($"info hero id {info.HeroId}");
                 HeroCard heroCard = heroCardComponent.AddChildWithId<HeroCard>(info.HeroId);
 
                 heroCard.SetInfo(info);

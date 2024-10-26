@@ -15,9 +15,13 @@ namespace ET.Client
 
                 FGUIMainLayerComponent mainLayerComponent = uiComponent.GetDlgLogic<FGUIMainLayerComponent>();
 
-                mainLayerComponent.ReceiveHPBar(self.CellComponent);
+                Log.Debug($"mainlayer component = {mainLayerComponent == null}");
+                if (mainLayerComponent != null)
+                {
+                    mainLayerComponent.ReceiveHPBar(self.CellComponent);
 
-                self.CellComponent = null;
+                    self.CellComponent = null;
+                }
             }
         }
 
@@ -33,6 +37,8 @@ namespace ET.Client
             FGUIMainLayerComponent mainLayerComponent = uiComponent.GetDlgLogic<FGUIMainLayerComponent>();
 
             self.CellComponent = mainLayerComponent.GetOneHPBar();
+
+            Log.Debug($"awake {self.CellComponent == null}");
 
             if (self.CellComponent == null)
             {
@@ -69,12 +75,15 @@ namespace ET.Client
                 Vector2 pt = GRoot.inst.GlobalToLocal(pos);
 
                 Log.Debug($"pt {pt}");
-                self.CellComponent.View.Progress.position = pt;
+                // self.CellComponent.View.Progress.position = pt;
+
+                self.CellComponent.GetParent<UIBaseWindow>().GComponent.position = pt;
             }
         }
 
         public static void SetBarValue(this HPBarComponent self, float max, float currentValue)
         {
+            Log.Debug($"set bar value {max} {currentValue} {self.OutTime}, {TimeInfo.Instance.ClientNow()}");
             if (self.CellComponent != null)
             {
                 self.CellComponent.View.Progress.max = max;

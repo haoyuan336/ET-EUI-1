@@ -7,10 +7,8 @@ namespace ET.Client
 {
     [ComponentOf(typeof (UIBaseWindow))]
     [ChildOf(typeof(UIBaseWindow))]
-    public class FGUIHeroCardItemCellComponent: Entity, IAwake, IUILogic
+    public class FGUIHPProgressItemCellComponent: Entity, IAwake, IUILogic
     {
-        public FGUIHeroCardItemCellViewComponent View => this.GetParent<UIBaseWindow>().GetComponent<FGUIHeroCardItemCellViewComponent>();
-
-        public HeroCard HeroCard;
+        public FGUIHPProgressItemCellViewComponent View => this.GetParent<UIBaseWindow>().GetComponent<FGUIHPProgressItemCellViewComponent>();
     }
 }

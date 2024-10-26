@@ -4,6 +4,6 @@
 [1003, {"_t":"HeroConfig","_id":1003,"PrefabName":"Hero3","BeAttackAnim":"","HeroName":"英雄3","Hp":864,"HpGrow":42,"Attack":129,"AttackGrow":8}],
 [1004, {"_t":"HeroConfig","_id":1004,"PrefabName":"Hero4","BeAttackAnim":"","HeroName":"英雄4","Hp":864,"HpGrow":43,"Attack":130,"AttackGrow":9}],
 [1005, {"_t":"HeroConfig","_id":1005,"PrefabName":"Mogu","BeAttackAnim":"","HeroName":"蘑菇","Hp":864,"HpGrow":40,"Attack":127,"AttackGrow":6}],
-[1006, {"_t":"HeroConfig","_id":1006,"PrefabName":"Yazi","BeAttackAnim":"","HeroName":"兔子","Hp":864,"HpGrow":41,"Attack":128,"AttackGrow":7}],
-[1007, {"_t":"HeroConfig","_id":1007,"PrefabName":"Tuzi","BeAttackAnim":"","HeroName":"鸭子","Hp":864,"HpGrow":42,"Attack":129,"AttackGrow":8}],
+[1006, {"_t":"HeroConfig","_id":1006,"PrefabName":"Tuzi","BeAttackAnim":"","HeroName":"兔子","Hp":864,"HpGrow":41,"Attack":128,"AttackGrow":7}],
+[1007, {"_t":"HeroConfig","_id":1007,"PrefabName":"Yazi","BeAttackAnim":"","HeroName":"鸭子","Hp":864,"HpGrow":42,"Attack":129,"AttackGrow":8}],
 ]}

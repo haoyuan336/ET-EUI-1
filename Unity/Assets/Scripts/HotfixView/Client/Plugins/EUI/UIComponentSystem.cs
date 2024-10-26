@@ -47,8 +47,27 @@ namespace ET.Client
         /// <returns></returns>
         public static T GetDlgLogic<T>(this UIComponent self, bool isNeedShowState = false) where T : Entity, IUILogic
         {
-            WindowID windowsId = self.GetWindowIdByGeneric<T>();
+            // WindowID windowsId = self.GetWindowIdByGeneric<T>();
+
+            WindowID windowsId = WindowID.WindowID_Invaild;
+
+            foreach (WindowID id in Enum.GetValues(typeof(WindowID)))
+            {
+                string name = "FGUI" + id.ToString() + "Component";
+
+                if (typeof(T).Name == name)
+                {
+                    windowsId = id;
+
+                    break;
+                }
+                // string dlgName = "Dlg" + windowID.ToString().Split('_')[1];
+                // self.WindowPrefabPath.Add((int)windowID, dlgName);
+                // self.WindowTypeIdDict.Add(dlgName, (int)windowID);
+            }
+
             UIBaseWindow baseWindow = self.GetUIBaseWindow(windowsId);
+
             if (null == baseWindow)
             {
                 Log.Warning($"{windowsId} is not created!");
@@ -81,9 +100,14 @@ namespace ET.Client
         /// <returns></returns>
         public static WindowID GetWindowIdByGeneric<T>(this UIComponent self) where T : Entity
         {
-            if (self.Root().GetComponent<UIPathComponent>().WindowTypeIdDict.TryGetValue(typeof(T).Name, out int windowsId))
+            // if (self.Root().GetComponent<UIPathComponent>().WindowTypeIdDict.TryGetValue(typeof(T).Name, out int windowsId))
+            // {
+            //     return (WindowID)windowsId;
+            // }
+            if (self.WindowTypeIdDict.TryGetValue(typeof(T).Name, out WindowID windowId))
             {
-                return (WindowID)windowsId;
+                // return (WindowID)windowID;
+                return windowId;
             }
 
             Log.Error($"{typeof(T).FullName} is not have any windowId!");
@@ -365,7 +389,7 @@ namespace ET.Client
             // baseWindow.UIPrefabGameObject?.SetActive(true);
 
             baseWindow?.SetRoot(EUIRootHelper.GetTargetRoot(self.Root(), baseWindow.windowType));
-            
+
             self.Root().GetComponent<UIEventComponent>().GetUIEventHandler(id).OnShowWindow(baseWindow, contextData);
 
             self.VisibleWindowsDic[(int)id] = baseWindow;
@@ -470,7 +494,7 @@ namespace ET.Client
                 self.UIBaseWindowlistCached.Add((WindowID)windowBase.Key);
                 // window.UIPrefabGameObject?.SetActive(false);
                 window.GComponent.RemoveFromParent();
-                
+
                 self.Root().GetComponent<UIEventComponent>().GetUIEventHandler(window.WindowID).OnHideWindow(window);
             }
 
@@ -528,7 +552,7 @@ namespace ET.Client
             // baseWindow.uiTransform.SetAsLastSibling();
 
             self.Root().GetComponent<UIEventComponent>().GetUIEventHandler(baseWindow.WindowID).OnInitComponent(baseWindow);
-            
+
             self.Root().GetComponent<UIEventComponent>().GetUIEventHandler(baseWindow.WindowID).OnRegisterUIEvent(baseWindow);
 
             self.AllWindowsDic[(int)baseWindow.WindowID] = baseWindow;

@@ -11,9 +11,17 @@ namespace ET.Client
 
             FightManagerComponent fightManagerComponent = unit.GetComponent<FightManagerComponent>();
 
+            if (fightManagerComponent == null)
+            {
+                return;
+            }
+
             HeroCard heroCard = fightManagerComponent.GetChild<HeroCard>(cardId);
 
-            heroCard.Dispose();
+            if (heroCard != null)
+            {
+                heroCard.Dispose();
+            }
 
             await ETTask.CompletedTask;
         }

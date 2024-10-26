@@ -23,5 +23,6 @@ namespace ET.Client
         public Queue<WindowID> StackWindowsQueue               = new Queue<WindowID>();
         public bool IsPopStackWndStatus                        = false;
 
+        public Dictionary<string, WindowID> WindowTypeIdDict = new Dictionary<string, WindowID>();
     }
 }

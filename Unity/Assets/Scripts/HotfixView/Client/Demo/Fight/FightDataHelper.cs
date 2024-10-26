@@ -1,3 +1,5 @@
+using UnityEditor.Rendering.LookDev;
+
 namespace ET.Client
 {
     public static class FightDataHelper
@@ -6,10 +8,14 @@ namespace ET.Client
         {
             float attack = attackDataComponent.GetValueByType(WordBarType.Attack);
 
-            float hp = beAttackDataComponent.GetValueByType(WordBarType.Hp);
+            Log.Debug($"FightDataHelper fight {attack}");
 
-            float damage = 0;
+            float hp = beAttackDataComponent.CurrentHP;
+
+            Log.Debug($"current hp {hp}");
             
+            float damage = 0;
+
             if (hp < attack)
             {
                 damage = hp;

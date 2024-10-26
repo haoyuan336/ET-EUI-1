@@ -13,11 +13,11 @@ namespace ET.Client
         {
             self.View.CloseButton.SetListener(self.OnCloseButtonClick);
 
-            self.View.HeroCardList.SetVirtual();
-
             self.View.HeroCardList.defaultItem = ResourcesUrlMap.HeroCardItemCell;
 
             self.View.HeroCardList.itemRenderer = self.OnItemRenderer;
+
+            self.View.HeroCardList.SetVirtual();
 
             self.UIEventComponent = self.Root().GetComponent<UIEventComponent>();
         }
@@ -42,15 +42,27 @@ namespace ET.Client
             EventSystem.Instance.Publish(self.Root(), new CloseLayerById() { WindowID = WindowID.HeroCardBagLayer });
         }
 
-        public static void ShowWindow(this FGUIHeroCardBagLayerComponent self, Entity contextData = null)
+        public static async void ShowWindow(this FGUIHeroCardBagLayerComponent self, Entity contextData = null)
         {
             self.HeroCards = HeroCardHelper.GetHeroCards(self.Root());
 
             self.AddUIListItems(ref self.UIBaseWindows, self.HeroCards.Count, WindowID.HeroCardItemCell);
 
+            self.View.HeroCardList.defaultItem = ResourcesUrlMap.HeroCardItemCell;
+
+            TimerComponent timerComponent = self.Root().GetComponent<TimerComponent>();
+
             self.View.HeroCardList.numItems = self.HeroCards.Count;
+            
         }
 
+        public static void RefreCardList(this FGUIHeroCardBagLayerComponent self)
+        {
+            self.HeroCards = HeroCardHelper.GetHeroCards(self.Root());
+            
+            self.View.HeroCardList.numItems = self.HeroCards.Count;
+
+        }
         public static void HideWindow(this FGUIHeroCardBagLayerComponent self)
         {
         }

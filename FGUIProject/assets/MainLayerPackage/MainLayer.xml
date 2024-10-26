@@ -10,7 +10,7 @@
     <component id="n3_ckxh" name="HeroBagButton" src="jh1l3d" fileName="NButton.xml" pkg="9nomxs01" xy="609,234" size="117,69">
       <Button title="Hero bg" titleFontSize="20"/>
     </component>
-    <list id="n4_ckxh" name="List" xy="33,216" size="330,470" layout="flow_hz" overflow="scroll" defaultItem="ui://7sxmdg4qckxh2" align="center">
+    <list id="n4_ckxh" name="List" xy="304,54" size="330,172" layout="flow_hz" overflow="scroll" defaultItem="ui://7sxmdg4qckxh2" align="center">
       <relation target="" sidePair="center-center,middle-middle"/>
       <item/>
       <item/>

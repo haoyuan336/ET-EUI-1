@@ -268,6 +268,10 @@ message HeroCardInfo
 	int32 Level = 2;
 
 	int32 ConfigId = 3;
+
+	repeated string DataKeys = 4;
+
+	repeated float DataValues = 5;
 }
 //ResponseType M2C_CreateOneHeroByConfigId
 message C2M_CreateOneHeroByConfigId // ILocationRequest 
@@ -284,6 +288,22 @@ message M2C_CreateOneHeroByConfigId // ILocationResponse
 
 	HeroCardInfo HeroCardInfo = 1;
 }
+
+//ResponseType M2C_DestroyHeroByIdResponse
+message C2M_DestroyHeroByIdRequest //ILocationRequest
+{
+	int32 RpcId = 1;
+
+	int64 HeroId = 2;
+	
+}
+message M2C_DestroyHeroByIdResponse //ILocationResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+}
+
 
 message TroopInfo 
 {

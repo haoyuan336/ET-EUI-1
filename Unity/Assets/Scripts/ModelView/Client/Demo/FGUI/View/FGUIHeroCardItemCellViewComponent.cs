@@ -29,12 +29,25 @@ namespace ET
                 return this._Level;
             }
         }
+        public GButton  DestroyButton
+        {
+            get
+            {
+                if (this._DestroyButton == null)
+                {
+                    this._DestroyButton = this.GetParent<UIBaseWindow>().GComponent.GetChild("DestroyButton").asButton;
+                }
+                return this._DestroyButton;
+            }
+        }
         private GTextField _HeroName = null;
         private GTextField _Level = null;
+        private GButton _DestroyButton = null;
         public void ClearBindCache()
         {
             this._HeroName = null;
             this._Level = null;
+            this._DestroyButton = null;
         }
     }
 }
