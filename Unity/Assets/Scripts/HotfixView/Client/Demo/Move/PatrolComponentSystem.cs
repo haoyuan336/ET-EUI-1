@@ -25,7 +25,7 @@ namespace ET.Client
         [EntitySystem]
         public static void Update(this PatrolComponent self)
         {
-            if (self.AIComponent.CurrentAIState == AIState.Patrol)
+            if (self.AIComponent.GetCurrentState() == AIState.Patrol)
             {
                 ObjectComponent objectComponent = self.Parent.GetComponent<ObjectComponent>();
 
@@ -38,20 +38,33 @@ namespace ET.Client
                     self.MoveToRandomPos();
                 }
 
-                if (self.FindAngle % 10 == 0)
+                if (self.FindAngle % 6 == 0)
                 {
-                    Vector3 forword = Quaternion.Euler(0, self.FindAngle, 0) * objectComponent.GameObject.transform.forward + objectComponent.GameObject.GetComponent<SphereCollider>().center;
+                    Vector3 forword = Quaternion.Euler(0, self.FindAngle, 0) * Vector3.forward;
 
-                    bool isHited = Physics.SphereCast(objectComponent.GameObject.transform.position, 1, forword, out RaycastHit hit, 10.0f,
+                    GameObject gameObject = objectComponent.GameObject;
+
+                    Vector3 sourcePos = gameObject.transform.position + gameObject.GetComponent<Collider>().bounds.size.y * 0.5f * Vector3.up;
+
+                    bool isHited = Physics.SphereCast(sourcePos, 4, forword,
+                        out RaycastHit hit, ConstValue.FindEnemyDistance,
                         self.ColliderLayer);
 
-                    // bool isHited = Physics.SphereCast(objectComponent.GameObject.transform.position, forword, out RaycastHit hit, 10.0f,
-                    // self.ColliderLayer);
-
-                    Log.Debug($"is hited {isHited}");
+                    self.FindAngle %= 360;
 
                     if (isHited)
                     {
+                        long entityId = FightDataHelper.GetIdByGameObjectName(hit.transform.gameObject.name);
+
+                        FightManagerComponent fightManagerComponent = self.GetFightManagerComponent();
+
+                        bool isDead = FightDataHelper.GetIsDead(fightManagerComponent, entityId);
+
+                        if (isDead)
+                        {
+                            return;
+                        }
+
                         Log.Debug($"hit {hit.transform.name}");
                         TrackComponent trackComponent = self.Parent.GetComponent<TrackComponent>();
 
@@ -65,15 +78,21 @@ namespace ET.Client
             }
         }
 
+        private static FightManagerComponent GetFightManagerComponent(this PatrolComponent self)
+        {
+            FightManagerComponent fightManagerComponent = self.Parent.GetParent<FightManagerComponent>();
+
+            return fightManagerComponent;
+        }
+
         private static void OnEnterStateAction(this PatrolComponent self, AIState aiState)
         {
             Log.Debug($"on enter stata action {aiState}");
             if (aiState == AIState.Patrol)
             {
-                MoveObjectComponent moveComponent = self.Parent.GetComponent<MoveObjectComponent>();
+                AnimComponent animComponent = self.Parent.GetComponent<AnimComponent>();
 
-                Log.Debug($"move component {moveComponent == null}");
-                moveComponent.StartMove();
+                animComponent.PlayAnim("move", true).Coroutine();
 
                 self.MoveToRandomPos();
             }
@@ -84,9 +103,9 @@ namespace ET.Client
             Log.Debug($"on out state action {outState}");
             if (outState == AIState.Patrol)
             {
-                MoveObjectComponent moveObjectComponent = self.Parent.GetComponent<MoveObjectComponent>();
+                AnimComponent animComponent = self.Parent.GetComponent<AnimComponent>();
 
-                moveObjectComponent.MoveEnd();
+                animComponent.PlayAnim("idle", true).Coroutine();
             }
         }
 

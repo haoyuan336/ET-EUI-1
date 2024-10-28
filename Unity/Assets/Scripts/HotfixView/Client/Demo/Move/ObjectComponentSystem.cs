@@ -1,3 +1,4 @@
+using System.Drawing;
 using UnityEngine;
 
 namespace ET.Client
@@ -26,6 +27,13 @@ namespace ET.Client
             self.GameObject.transform.position = position;
 
             self.GameObject.name = "hero" + self.Parent.Id;
+        }
+
+        public static Vector3 GetHeadPos(this ObjectComponent self)
+        {
+            Bounds bounds = self.GameObject.GetComponent<Collider>().bounds;
+
+            return self.GameObject.transform.position + bounds.size.y * 1.5f * Vector3.up;
         }
     }
 }

@@ -25,8 +25,6 @@ namespace ET.Client
 
                 bool isHited = Physics.Raycast(ray, out hit, 1000, self.mapMask);
 
-                Log.Warning($"is hited {isHited}");
-
                 if (isHited)
                 {
                     C2M_PathfindingResult c2MPathfindingResult = C2M_PathfindingResult.Create();

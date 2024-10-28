@@ -8,5 +8,6 @@ namespace ET.Client
         public Dictionary<string, float> Datas = new Dictionary<string, float>();
 
         public float CurrentHP;
+
     }
 }

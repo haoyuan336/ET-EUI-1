@@ -1,3 +1,4 @@
+using FairyGUI;
 using UnityEngine;
 
 namespace ET.Client
@@ -9,5 +10,7 @@ namespace ET.Client
         public long OutTime;
 
         public GameObject GameObject;
+
+        public Controller ColorState;
     }
 }

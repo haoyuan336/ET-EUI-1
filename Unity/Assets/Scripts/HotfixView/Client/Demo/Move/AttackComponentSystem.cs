@@ -21,7 +21,7 @@ namespace ET.Client
         {
             if (self.AIComponent != null)
             {
-                if (self.AIComponent.CurrentAIState == AIState.Attacking)
+                if (self.AIComponent.GetCurrentState() == AIState.Attacking)
                 {
                     ObjectComponent objectComponent = self.Parent.GetComponent<ObjectComponent>();
 
@@ -48,6 +48,21 @@ namespace ET.Client
 
                         self.CurrentCastSkill = null;
                     }
+
+                    FightManagerComponent fightManagerComponent = self.Parent.GetParent<FightManagerComponent>();
+
+                    long entityId = FightDataHelper.GetIdByGameObjectName(self.AttackObject.name);
+
+                    bool isDead = FightDataHelper.GetIsDead(fightManagerComponent, entityId);
+
+                    if (isDead)
+                    {
+                        TrackComponent trackComponent = self.Parent.GetComponent<TrackComponent>();
+
+                        trackComponent.SetTrackObject(self.AttackObject);
+
+                        self.AIComponent.EnterAIState(AIState.Patrol);
+                    }
                 }
             }
         }
@@ -59,6 +74,7 @@ namespace ET.Client
 
         private static void OnEnterStateAction(this AttackComponent self, AIState aiState)
         {
+            Log.Debug($"AttackComponent current attack {aiState}");
         }
 
         private static void OnOutStateAction(this AttackComponent self, AIState aiState)

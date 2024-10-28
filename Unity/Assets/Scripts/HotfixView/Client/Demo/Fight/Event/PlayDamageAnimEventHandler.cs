@@ -9,6 +9,8 @@ namespace ET.Client
         {
             float damage = a.Damage;
 
+            float currentHP = a.CurrentHP;
+
             float maxValue = a.MaxHP;
 
             Entity entity = a.Entity;
@@ -24,7 +26,14 @@ namespace ET.Client
                 hpBarComponent = entity.AddComponent<HPBarComponent, GameObject>(objectComponent.GameObject);
             }
 
-            hpBarComponent.SetBarValue(maxValue, damage);
+            hpBarComponent.SetBarValue(currentHP, maxValue);
+
+            Vector3 herdPos = objectComponent.GetHeadPos();
+
+            EventSystem.Instance.Publish(scene, new PlayDamageText()
+            {
+                StartPos = herdPos, Text = damage.ToString()
+            });
 
             await ETTask.CompletedTask;
         }

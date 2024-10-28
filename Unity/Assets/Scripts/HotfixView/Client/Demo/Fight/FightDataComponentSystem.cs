@@ -55,6 +55,8 @@ namespace ET.Client
                     self.Datas[wordBarType] = value;
                 }
             }
+
+            self.CurrentHP = self.GetValueByType(WordBarType.Hp);
         }
 
         [EntitySystem]
@@ -84,6 +86,20 @@ namespace ET.Client
         public static void SubHP(this FightDataComponent self, float damage)
         {
             self.CurrentHP -= damage;
+
+            if (self.CurrentHP <= 0)
+            {
+                // self.Parent.GetParent<MoveObjectComponent>().PlayAnim("death", false);
+
+                EventSystem.Instance.Publish(self.Root(), new PlayDeadAnim()
+                {
+                    Entity = self.GetParent<Entity>()
+                });
+
+                AIComponent aiComponent = self.Parent.GetComponent<AIComponent>();
+                
+                aiComponent.EnterAIState(AIState.Death);
+            }
         }
 
         // public static void SubValue(this FightDataComponent self, WordBarType wordBarType, float damage)

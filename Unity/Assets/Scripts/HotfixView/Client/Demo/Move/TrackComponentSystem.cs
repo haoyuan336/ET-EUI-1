@@ -1,4 +1,5 @@
 using UnityEngine;
+using WeChatWASM;
 
 namespace ET.Client
 {
@@ -19,7 +20,7 @@ namespace ET.Client
         [EntitySystem]
         public static void Update(this TrackComponent self)
         {
-            if (self.AIComponent != null && self.AIComponent.CurrentAIState == AIState.Track)
+            if (self.AIComponent != null && self.AIComponent.GetCurrentState() == AIState.Track)
             {
                 if (self.TrackGameObject == null)
                 {
@@ -45,7 +46,7 @@ namespace ET.Client
                     self.AIComponent.EnterAIState(AIState.Attacking);
                 }
 
-                if (distance > 5)
+                if (distance > ConstValue.FindEnemyDistance)
                 {
                     self.TrackGameObject = null;
                 }
@@ -56,9 +57,9 @@ namespace ET.Client
         {
             if (aiState == AIState.Track)
             {
-                MoveObjectComponent moveObjectComponent = self.Parent.GetComponent<MoveObjectComponent>();
+                AnimComponent animComponent = self.Parent.GetComponent<AnimComponent>();
 
-                moveObjectComponent.StartMove();
+                animComponent.PlayAnim("move", true).Coroutine();
             }
         }
 
@@ -67,9 +68,9 @@ namespace ET.Client
             Log.Debug($"out state action {aiState}");
             if (aiState == AIState.Track)
             {
-                MoveObjectComponent moveObjectComponent = self.Parent.GetComponent<MoveObjectComponent>();
+                AnimComponent animComponent = self.Parent.GetComponent<AnimComponent>();
 
-                moveObjectComponent.MoveEnd();
+                animComponent.PlayAnim("idle", true).Coroutine();
             }
         }
     }

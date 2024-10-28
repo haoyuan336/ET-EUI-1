@@ -21,12 +21,17 @@ namespace ET.Client
             {
                 if (heroCard != null && !heroCard.IsDisposed)
                 {
-                    MoveObjectComponent moveObjectComponent = heroCard.GetComponent<MoveObjectComponent>();
+                    AIComponent aiComponent = heroCard.GetComponent<AIComponent>();
 
-                    if (moveObjectComponent != null && !moveObjectComponent.IsDisposed)
+                    if (aiComponent.GetCurrentState() == AIState.Death)
                     {
-                        moveObjectComponent.StartMove();
+                        continue;
                     }
+                    aiComponent.EnterAIState(AIState.Moveing);
+
+                    AnimComponent animComponent = heroCard.GetComponent<AnimComponent>();
+
+                    animComponent.PlayAnim("move", true).Coroutine();
                 }
             }
 

@@ -12,8 +12,6 @@ namespace ET.Client
     [ComponentOf(typeof(Entity))]
     public class MoveObjectComponent : Entity, IAwake, IDestroy, IUpdate
     {
-        public SkeletonAnimation SkeletonAnimation;
-
         public Vector3 LocalScale;
 
         public Vector3 TargetPos;
@@ -21,5 +19,7 @@ namespace ET.Client
         public NavMeshAgent NavMeshAgent;
 
         public Transform Body;
+
+        public AIComponent AIComponent;
     }
 }

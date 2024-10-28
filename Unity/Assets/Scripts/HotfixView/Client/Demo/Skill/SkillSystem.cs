@@ -72,11 +72,11 @@ namespace ET.Client
             {
                 case "PlayAnim":
 
-                    MoveObjectComponent moveObjectComponent = self.Parent.Parent.GetComponent<MoveObjectComponent>();
+                    AnimComponent animComponent = self.Parent.Parent.GetComponent<AnimComponent>();
 
                     string animName = config.LogicParam1;
 
-                    moveObjectComponent.PlayAnim(animName, false);
+                    animComponent.PlayAnim(animName, false).Coroutine();
 
                     break;
 

@@ -8,12 +8,17 @@ namespace ET
 
         // public const string RouterHttpHost = "192.168.2.18";
         public const int RouterHttpPort = 30300;
+        
         public const int SessionTimeoutTime = 30 * 1000;
 
-        public const float MoveSpeed = 5.0f;
+        public const float MoveSpeed = 5.5f;
 
         public const float MoveDistance = 1.4f;
         
         public const float Acceleration = 1f;
+
+        public const float FindEnemyDistance = 10f;
+        
+        // public const float 
     }
 }

@@ -32,10 +32,18 @@ namespace ET.Client
     //     public string ColliderName;
     // }
 
+    public struct PlayDamageText
+    {
+        public Vector3 StartPos;
+        
+        public string Text;
+    }
+
     public struct HideEnemyObject
     {
         public Enemy Enemy;
     }
+
     public struct ShowEnemyObject
     {
         public Enemy Enemy;
@@ -77,6 +85,11 @@ namespace ET.Client
         public Unit Unit;
     }
 
+    public struct PlayDeadAnim
+    {
+        public Entity Entity;
+    }
+
     public struct CreateFightHero
     {
         public Unit Unit;
@@ -89,7 +102,7 @@ namespace ET.Client
     public struct DisposeHeroObject
     {
         public Unit Unit;
-                
+
         public long CardId;
     }
 

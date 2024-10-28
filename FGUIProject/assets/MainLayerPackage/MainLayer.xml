@@ -20,15 +20,15 @@
     <component id="n9_iygc" name="FormationButton" src="jh1l3d" fileName="NButton.xml" pkg="9nomxs01" xy="609,333" size="117,69">
       <Button title="Formation" titleFontSize="20"/>
     </component>
-    <component id="n10_p1ff" name="HpBar0" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-486,233" size="80,6"/>
-    <component id="n11_p1ff" name="HpBar1" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-486,233" size="80,6"/>
-    <component id="n12_p1ff" name="HpBar2" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-486,233" size="80,6"/>
-    <component id="n13_p1ff" name="HpBar3" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-486,233" size="80,6"/>
-    <component id="n14_p1ff" name="HpBar4" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-486,233" size="80,6"/>
-    <component id="n15_p1ff" name="HpBar5" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-486,233" size="80,6"/>
-    <component id="n16_p1ff" name="HpBar6" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-486,233" size="80,6"/>
-    <component id="n17_p1ff" name="HpBar7" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-486,233" size="80,6"/>
-    <component id="n18_p1ff" name="HpBar8" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-486,233" size="80,6"/>
-    <component id="n19_p1ff" name="HpBar9" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-486,233" size="80,6"/>
+    <component id="n10_p1ff" name="HpBar0" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
+    <component id="n11_p1ff" name="HpBar1" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
+    <component id="n12_p1ff" name="HpBar2" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
+    <component id="n13_p1ff" name="HpBar3" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
+    <component id="n14_p1ff" name="HpBar4" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
+    <component id="n15_p1ff" name="HpBar5" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
+    <component id="n16_p1ff" name="HpBar6" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
+    <component id="n17_p1ff" name="HpBar7" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
+    <component id="n18_p1ff" name="HpBar8" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
+    <component id="n19_p1ff" name="HpBar9" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
   </displayList>
 </component>

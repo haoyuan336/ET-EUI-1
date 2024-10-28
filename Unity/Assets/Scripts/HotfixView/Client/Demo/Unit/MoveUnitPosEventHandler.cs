@@ -30,6 +30,13 @@ namespace ET.Client
             {
                 if (heroCard != null && !heroCard.IsDisposed)
                 {
+                    AIComponent aiComponent = heroCard.GetComponent<AIComponent>();
+
+                    if (aiComponent.GetCurrentState() == AIState.Death)
+                    {
+                        continue;
+                    }
+
                     MoveObjectComponent moveObjectComponent = heroCard.GetComponent<MoveObjectComponent>();
 
                     if (moveObjectComponent != null && !moveObjectComponent.IsDisposed)

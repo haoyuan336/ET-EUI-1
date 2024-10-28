@@ -1,3 +1,4 @@
+using Spine;
 using Spine.Unity;
 using UnityEngine;
 using UnityEngine.AI;
@@ -27,9 +28,9 @@ namespace ET.Client
 
             self.LocalScale = self.Body.localScale;
 
-            self.SkeletonAnimation = self.Body.GetComponent<SkeletonAnimation>();
+            self.AIComponent = self.Parent.GetComponent<AIComponent>();
 
-            self.SkeletonAnimation.state.SetAnimation(0, "idle", true);
+            self.AIComponent.OutStateAction += self.OnOutStateAction;
         }
 
         public static void Move(this MoveObjectComponent self, Vector3 targetPos)
@@ -67,21 +68,19 @@ namespace ET.Client
             }
         }
 
-        public static void StartMove(this MoveObjectComponent self)
+        private static void MoveEnd(this MoveObjectComponent self)
         {
-            self.SkeletonAnimation.state.SetAnimation(0, "move", true);
-        }
-
-        public static void MoveEnd(this MoveObjectComponent self)
-        {
-            self.SkeletonAnimation.state.SetAnimation(0, "idle", true);
-
             self.NavMeshAgent.SetDestination(self.NavMeshAgent.transform.position);
         }
 
-        public static void PlayAnim(this MoveObjectComponent self, string animName, bool isLoop)
+        public static void OnOutStateAction(this MoveObjectComponent self, AIState aiState)
         {
-            self.SkeletonAnimation.state.SetAnimation(0, animName, isLoop);
+            Log.Debug($"MoveObjectComponent on out state action {aiState}");
+            
+            if (aiState == AIState.Moveing)
+            {
+                self.MoveEnd();
+            }
         }
     }
 }

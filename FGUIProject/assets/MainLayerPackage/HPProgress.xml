@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="80,10" extention="ProgressBar">
+  <controller name="ColorState" pages="0,,1," selected="1"/>
   <displayList>
-    <graph id="n0_p1ff" name="n0" xy="0,0" size="80,10" type="rect" lineSize="0" lineColor="#ffa0a0a0" fillColor="#00f0f0f0">
+    <graph id="n0_p1ff" name="n0" xy="0,0" size="80,10" type="rect" lineSize="0" lineColor="#ffffffff" fillColor="#fff0f0f0">
       <relation target="" sidePair="width-width,height-height"/>
     </graph>
-    <graph id="n1_p1ff" name="bar" xy="0,0" size="80,10" type="rect" lineSize="0" fillColor="#ff00ff00">
+    <graph id="n1_p1ff" name="bar" xy="0,0" size="80,10" type="rect" lineSize="0" fillColor="#ffff0000">
+      <gearColor controller="ColorState" pages="0" values="#00ff00" default="#ff0000"/>
       <relation target="" sidePair="width-width,height-height"/>
     </graph>
   </displayList>

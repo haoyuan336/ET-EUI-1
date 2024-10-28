@@ -26,7 +26,6 @@ namespace ET.Client
             
             self.GameObject = GameObject.Instantiate(prefab, unitInitPos.transform.position, prefab.transform.rotation);
             //
-            
             self.GameObject.transform.position = unitInitPos.transform.position;
             
             self.CharacterController = self.GameObject.GetComponent<CharacterController>();

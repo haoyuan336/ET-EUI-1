@@ -42,10 +42,23 @@ namespace ET.Client
 
             fightHeroCard.AddComponent<ObjectComponent, GameObject, Vector3>(prefab, pos);
 
-            fightHeroCard.AddComponent<MoveObjectComponent>();
 
             fightHeroCard.AddComponent<FightDataComponent, HeroCard>(fightHeroCard);
 
+            fightHeroCard.AddComponent<AIComponent>();
+
+            fightHeroCard.AddComponent<AttackComponent>();
+
+            fightHeroCard.AddComponent<TrackComponent>();
+
+            int maskCode = LayerMask.GetMask("Enemy");
+
+            fightHeroCard.AddComponent<FindEnemyComponent, int>(maskCode);
+
+            fightHeroCard.AddComponent<AnimComponent>();
+
+            fightHeroCard.AddComponent<MoveObjectComponent>();
+            
             gameObjectComponent.HeroCards.Add(fightHeroCard);
 
             await ETTask.CompletedTask;

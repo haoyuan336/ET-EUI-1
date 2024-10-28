@@ -25,8 +25,6 @@ namespace ET.Client
 
             enemy.AddComponent<ObjectComponent, GameObject, Vector3>(prefab, endPos);
 
-            enemy.AddComponent<MoveObjectComponent>();
-
             int layer = LayerMask.GetMask("Hero");
 
             TimerComponent timerComponent = scene.Root().GetComponent<TimerComponent>();
@@ -44,6 +42,11 @@ namespace ET.Client
             int level = enemy.Config.Level;
 
             enemy.AddComponent<SkillComponent, int, int>(enemy.ConfigId, level);
+
+            enemy.AddComponent<AnimComponent>();
+            
+            enemy.AddComponent<MoveObjectComponent>();
+
 
             await timerComponent.WaitAsync(1000);
 

@@ -17,6 +17,10 @@ namespace ET.Client
 
             foreach (var enemy in self.Enemies)
             {
+                if (enemy.Value == null)
+                {
+                    continue;
+                }
                 enemy.Value.Hide();
             }
         }

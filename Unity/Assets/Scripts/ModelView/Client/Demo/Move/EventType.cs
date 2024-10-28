@@ -15,6 +15,8 @@ namespace ET.Client
 
         public float MaxHP;
 
+        public float CurrentHP;
+
         public SkillConfig SkillConfig;
     }
 }

@@ -19,6 +19,8 @@ namespace ET.Client
             EventSystem.Instance.Publish(scene.Root(), new AfterUnitCreate() { Unit = myUnit });
 
             EventSystem.Instance.Publish(scene.Root(), new ShowLayerById() { WindowID = WindowID.MainLayer });
+            
+            EventSystem.Instance.Publish(scene.Root(), new ShowLayerById(){WindowID = WindowID.FightTextLayer});
 
             GameObjectComponent gameObjectComponent = myUnit.GetComponent<GameObjectComponent>();
 

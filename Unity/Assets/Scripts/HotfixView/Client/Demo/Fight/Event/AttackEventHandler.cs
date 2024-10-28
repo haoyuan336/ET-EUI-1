@@ -1,3 +1,4 @@
+using SharpCompress.Common;
 using UnityEngine;
 
 namespace ET.Client
@@ -41,11 +42,7 @@ namespace ET.Client
 
             string name = attackObject.name;
 
-            string pattern = @"[^0-9]+";
-
-            string nameString = System.Text.RegularExpressions.Regex.Replace(name, pattern, "");
-
-            long heroId = long.Parse(nameString);
+            long heroId = FightDataHelper.GetIdByGameObjectName(name);
 
             FightManagerComponent fightManagerComponent = skill.Parent.Parent.GetParent<FightManagerComponent>();
 
@@ -58,20 +55,12 @@ namespace ET.Client
             //首先计算基础伤害
             float damage = FightDataHelper.Fight(fightDataComponent, beAttackDataComponent);
 
-            Log.Debug($"damage {damage}");
-
             beAttackDataComponent.SubHP(damage);
-
-            Log.Debug($"hp {beAttackDataComponent.CurrentHP}");
-
-            foreach (var kv in beAttackDataComponent.Datas)
-            {
-                Log.Debug($"kv {kv.Key} {kv.Value}");
-            }
 
             EventSystem.Instance.Publish(skill.Root(), new PlayDamageAnim()
             {
-                Entity = entity, SkillConfig = skill.Config, Damage = damage, MaxHP = beAttackDataComponent.GetValueByType(WordBarType.Hp)
+                Entity = entity, SkillConfig = skill.Config, CurrentHP = beAttackDataComponent.CurrentHP, Damage = damage,
+                MaxHP = beAttackDataComponent.GetValueByType(WordBarType.Hp)
             });
         }
     }

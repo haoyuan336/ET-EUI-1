@@ -22,11 +22,20 @@ namespace ET.Client
             {
                 if (heroCard != null && !heroCard.IsDisposed)
                 {
-                    MoveObjectComponent moveObjectComponent = heroCard.GetComponent<MoveObjectComponent>();
+                    AIComponent aiComponent = heroCard.GetComponent<AIComponent>();
 
-                    if (moveObjectComponent != null && !moveObjectComponent.IsDisposed)
+                    if (aiComponent != null && !aiComponent.IsDisposed)
                     {
-                        moveObjectComponent.MoveEnd();
+                        if (aiComponent.GetCurrentState() == AIState.Death)
+                        {
+                            continue;
+                        }
+
+                        aiComponent.EnterAIState(AIState.FindEnemy);
+
+                        AnimComponent animComponent = heroCard.GetComponent<AnimComponent>();
+
+                        animComponent.PlayAnim("idle", true).Coroutine();
                     }
                 }
                 else

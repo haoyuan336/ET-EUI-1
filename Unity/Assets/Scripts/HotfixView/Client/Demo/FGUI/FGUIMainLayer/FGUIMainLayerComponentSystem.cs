@@ -53,7 +53,7 @@ namespace ET.Client
         {
             self.FguihpProgressItemCellComponents.Push(cellComponent);
 
-            cellComponent.View.Progress.x = -1000;
+            cellComponent.View.GetParent<UIBaseWindow>().GComponent.x = -1000;
         }
 
         private static void OnEndJoyAction(this FGUIMainLayerComponent self)

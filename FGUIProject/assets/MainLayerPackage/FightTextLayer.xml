@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,1334" opaque="false">
+  <displayList>
+    <component id="n3_sdia" name="DamageTextItemCell0" src="sdia8" fileName="DamageTextItemCell.xml" xy="-196,724" pivot="0.5,0.5" anchor="true" size="10,10"/>
+    <component id="n4_sdia" name="DamageTextItemCell1" src="sdia8" fileName="DamageTextItemCell.xml" xy="-196,724" pivot="0.5,0.5" anchor="true"/>
+    <component id="n5_sdia" name="DamageTextItemCell2" src="sdia8" fileName="DamageTextItemCell.xml" xy="-196,724" pivot="0.5,0.5" anchor="true"/>
+    <component id="n6_sdia" name="DamageTextItemCell3" src="sdia8" fileName="DamageTextItemCell.xml" xy="-196,724" pivot="0.5,0.5" anchor="true"/>
+    <component id="n7_sdia" name="DamageTextItemCell4" src="sdia8" fileName="DamageTextItemCell.xml" xy="-196,724" pivot="0.5,0.5" anchor="true"/>
+    <component id="n8_sdia" name="DamageTextItemCell5" src="sdia8" fileName="DamageTextItemCell.xml" xy="-196,724" pivot="0.5,0.5" anchor="true"/>
+    <component id="n9_sdia" name="DamageTextItemCell6" src="sdia8" fileName="DamageTextItemCell.xml" xy="-196,724" pivot="0.5,0.5" anchor="true"/>
+    <component id="n10_sdia" name="DamageTextItemCell7" src="sdia8" fileName="DamageTextItemCell.xml" xy="-196,724" pivot="0.5,0.5" anchor="true"/>
+    <component id="n11_sdia" name="DamageTextItemCell8" src="sdia8" fileName="DamageTextItemCell.xml" xy="-196,724" pivot="0.5,0.5" anchor="true"/>
+    <component id="n12_sdia" name="DamageTextItemCell9" src="sdia8" fileName="DamageTextItemCell.xml" xy="-196,724" pivot="0.5,0.5" anchor="true"/>
+    <component id="n13_sdia" name="DamageTextItemCell10" src="sdia8" fileName="DamageTextItemCell.xml" xy="-196,724" pivot="0.5,0.5" anchor="true"/>
+    <component id="n14_sdia" name="DamageTextItemCell11" src="sdia8" fileName="DamageTextItemCell.xml" xy="-196,724" pivot="0.5,0.5" anchor="true"/>
+  </displayList>
+</component>
