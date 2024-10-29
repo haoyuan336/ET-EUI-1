@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 476537099585258372}
   - component: {fileID: 2057097028039174899}
   - component: {fileID: 6780656230737436327}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Yazi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,10 +64,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6632644421256464085}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0.42, z: 0}
 --- !u!1 &8740164555050811092
 GameObject:
@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 8126903808234679015}
   - component: {fileID: 3391166619165992016}
   - component: {fileID: 1805566570610796334}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -31,7 +31,7 @@ namespace ET.Client
                             continue;
                         }
 
-                        aiComponent.EnterAIState(AIState.FindEnemy);
+                        aiComponent.EnterAIState(AIState.Patrol);
 
                         AnimComponent animComponent = heroCard.GetComponent<AnimComponent>();
 

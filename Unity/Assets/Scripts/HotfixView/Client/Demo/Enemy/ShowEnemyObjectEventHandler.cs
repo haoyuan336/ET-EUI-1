@@ -44,9 +44,10 @@ namespace ET.Client
             enemy.AddComponent<SkillComponent, int, int>(enemy.ConfigId, level);
 
             enemy.AddComponent<AnimComponent>();
-            
+
             enemy.AddComponent<MoveObjectComponent>();
 
+            // enemy.AddComponent<FindEnemyComponent, int>(layer);
 
             await timerComponent.WaitAsync(1000);
 

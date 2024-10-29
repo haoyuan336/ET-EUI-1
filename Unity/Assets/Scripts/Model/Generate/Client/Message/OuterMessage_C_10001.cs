@@ -1207,6 +1207,9 @@ namespace ET
         [MemoryPackOrder(4)]
         public List<float> DataValues { get; set; } = new();
 
+        [MemoryPackOrder(5)]
+        public int Star { get; set; }
+
         public override void Dispose()
         {
             if (!this.IsFromPool)
@@ -1219,6 +1222,7 @@ namespace ET
             this.ConfigId = default;
             this.DataKeys.Clear();
             this.DataValues.Clear();
+            this.Star = default;
 
             ObjectPool.Instance.Recycle(this);
         }

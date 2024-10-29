@@ -42,10 +42,9 @@ namespace ET.Client
 
             fightHeroCard.AddComponent<ObjectComponent, GameObject, Vector3>(prefab, pos);
 
-
             fightHeroCard.AddComponent<FightDataComponent, HeroCard>(fightHeroCard);
 
-            fightHeroCard.AddComponent<AIComponent>();
+            AIComponent aiComponent = fightHeroCard.AddComponent<AIComponent>();
 
             fightHeroCard.AddComponent<AttackComponent>();
 
@@ -58,8 +57,12 @@ namespace ET.Client
             fightHeroCard.AddComponent<AnimComponent>();
 
             fightHeroCard.AddComponent<MoveObjectComponent>();
-            
+
+            fightHeroCard.AddComponent<SkillComponent, int, int>(fightHeroCard.HeroConfigId, fightHeroCard.Level);
+
             gameObjectComponent.HeroCards.Add(fightHeroCard);
+
+            aiComponent.EnterAIState(AIState.Patrol);
 
             await ETTask.CompletedTask;
         }

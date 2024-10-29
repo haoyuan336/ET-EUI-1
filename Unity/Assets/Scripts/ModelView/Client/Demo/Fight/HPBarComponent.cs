@@ -1,4 +1,6 @@
 using FairyGUI;
+using Spine;
+using Spine.Unity;
 using UnityEngine;
 
 namespace ET.Client
@@ -12,5 +14,9 @@ namespace ET.Client
         public GameObject GameObject;
 
         public Controller ColorState;
+
+        public SkeletonAnimation SkeletonAnimation;
+
+        public Bone Bone;
     }
 }

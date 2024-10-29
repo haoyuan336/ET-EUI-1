@@ -3,8 +3,8 @@ using Microsoft.CodeAnalysis;
 
 namespace ET
 {
-    [EntitySystemOf(typeof (HeroCard))]
-    [FriendOfAttribute(typeof (ET.HeroCard))]
+    [EntitySystemOf(typeof(HeroCard))]
+    [FriendOfAttribute(typeof(ET.HeroCard))]
     public static partial class HeroCardSystem
     {
         [EntitySystem]
@@ -20,7 +20,7 @@ namespace ET
         public static void SetInfo(this HeroCard self, HeroCardInfo info)
         {
             self.HeroConfigId = info.ConfigId;
-            
+
             for (int i = 0; i < info.DataKeys.Count; i++)
             {
                 string key = info.DataKeys[i];
@@ -29,6 +29,10 @@ namespace ET
 
                 self.Datas[key] = value;
             }
+
+            self.Level = info.Level;
+
+            self.Star = info.Star;
         }
 
         public static HeroCardInfo GetInfo(this HeroCard self)
@@ -45,6 +49,10 @@ namespace ET
 
                 info.DataValues.Add(kv.Value);
             }
+
+            info.Level = self.Level;
+
+            info.Star = self.Star;
 
             return info;
         }

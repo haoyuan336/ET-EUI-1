@@ -272,6 +272,8 @@ message HeroCardInfo
 	repeated string DataKeys = 4;
 
 	repeated float DataValues = 5;
+
+	int32 Star = 6;
 }
 //ResponseType M2C_CreateOneHeroByConfigId
 message C2M_CreateOneHeroByConfigId // ILocationRequest 

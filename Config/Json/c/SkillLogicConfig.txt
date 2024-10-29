@@ -1,6 +1,6 @@
 {"dict": [
 [10001, {"_t":"SkillLogicConfig","_id":10001,"OwnerRole":"英雄1","OwnerSkillConfigId":1001,"DelayTime":0,"LogicCode":"PlayAnim","LogicParam1":"attack0","DataParam1":10000,"Level":1}],
-[10002, {"_t":"SkillLogicConfig","_id":10002,"OwnerRole":"英雄1","OwnerSkillConfigId":1001,"DelayTime":500,"LogicCode":"PlayAnim","LogicParam1":"SingleTarget","DataParam1":10000,"Level":1}],
+[10002, {"_t":"SkillLogicConfig","_id":10002,"OwnerRole":"英雄1","OwnerSkillConfigId":1001,"DelayTime":500,"LogicCode":"Damage","LogicParam1":"SingleTarget","DataParam1":10000,"Level":1}],
 [10003, {"_t":"SkillLogicConfig","_id":10003,"OwnerRole":"英雄1","OwnerSkillConfigId":1002,"DelayTime":0,"LogicCode":"PlayAnim","LogicParam1":"attack0","DataParam1":10000,"Level":1}],
 [10004, {"_t":"SkillLogicConfig","_id":10004,"OwnerRole":"英雄1","OwnerSkillConfigId":1002,"DelayTime":500,"LogicCode":"Damage","LogicParam1":"SingleTarget","DataParam1":10000,"Level":1}],
 [10005, {"_t":"SkillLogicConfig","_id":10005,"OwnerRole":"英雄2","OwnerSkillConfigId":1003,"DelayTime":0,"LogicCode":"PlayAnim","LogicParam1":"attack0","DataParam1":10000,"Level":1}],

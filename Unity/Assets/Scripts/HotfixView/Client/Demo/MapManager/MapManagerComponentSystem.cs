@@ -15,7 +15,7 @@ namespace ET.Client
 
             foreach (var gameObject in gameObjects)
             {
-                MapCollider mapCollider = gameObject.GetComponent<MapCollider>();
+                ColliderAction mapCollider = gameObject.GetComponent<ColliderAction>();
 
                 mapCollider.OnTriggerEnterAction = self.OnColliderEnter;
 

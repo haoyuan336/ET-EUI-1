@@ -8,7 +8,7 @@ namespace ET.Client
         Invalide = 1,
         MoveToUnit = 2,
         Moveing = 3,
-        FindEnemy = 4,
+        // FindEnemy = 4,
         Attacking = 5,
         Patrol = 6, //巡逻
         Track = 7, //跟踪

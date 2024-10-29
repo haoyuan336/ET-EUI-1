@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ET
 {
-    public class MapCollider : MonoBehaviour
+    public class ColliderAction : MonoBehaviour
     {
         public Action<GameObject> OnTriggerEnterAction;
 
@@ -20,7 +20,7 @@ namespace ET
                 this.OnTriggerEnterAction.Invoke(this.gameObject);
             }
 
-            Log.Debug($"OnTriggerEnter {other.gameObject.name}");
+            Log.Debug($"OnTriggerEnter {this.gameObject.name}, {other.gameObject.name}");
         }
 
         public void OnTriggerStay(Collider other)

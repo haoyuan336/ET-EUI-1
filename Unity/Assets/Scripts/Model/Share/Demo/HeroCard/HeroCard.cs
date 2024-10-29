@@ -17,5 +17,9 @@ namespace ET
         public HeroConfig Config => HeroConfigCategory.Instance.Get(this.HeroConfigId);
 
         public Dictionary<string, float> Datas = new Dictionary<string, float>();
+
+        public int Level = 1;
+
+        public int Star = 0;
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7772352470464088100}
   - component: {fileID: 7094110080862503597}
   - component: {fileID: 5442684754336438479}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 4161007156228946771}
   - component: {fileID: 5617422204329031347}
   - component: {fileID: 6534175320783670071}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Tuzi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,8 +185,8 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9033057438150323736}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.62
+  m_Radius: 1
   m_Center: {x: 0, y: 0.6, z: 0}

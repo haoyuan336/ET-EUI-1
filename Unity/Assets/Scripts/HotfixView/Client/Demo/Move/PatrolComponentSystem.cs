@@ -38,49 +38,50 @@ namespace ET.Client
                     self.MoveToRandomPos();
                 }
 
-                if (self.FindAngle % 6 == 0)
-                {
-                    Vector3 forword = Quaternion.Euler(0, self.FindAngle, 0) * Vector3.forward;
-
-                    GameObject gameObject = objectComponent.GameObject;
-
-                    Vector3 sourcePos = gameObject.transform.position + gameObject.GetComponent<Collider>().bounds.size.y * 0.5f * Vector3.up;
-
-                    bool isHited = Physics.SphereCast(sourcePos, 4, forword,
-                        out RaycastHit hit, ConstValue.FindEnemyDistance,
-                        self.ColliderLayer);
-
-                    self.FindAngle %= 360;
-
-                    if (isHited)
-                    {
-                        long entityId = FightDataHelper.GetIdByGameObjectName(hit.transform.gameObject.name);
-
-                        FightManagerComponent fightManagerComponent = self.GetFightManagerComponent();
-
-                        bool isDead = FightDataHelper.GetIsDead(fightManagerComponent, entityId);
-
-                        if (isDead)
-                        {
-                            return;
-                        }
-
-                        Log.Debug($"hit {hit.transform.name}");
-                        TrackComponent trackComponent = self.Parent.GetComponent<TrackComponent>();
-
-                        trackComponent.SetTrackObject(hit.transform.gameObject);
-
-                        self.AIComponent.EnterAIState(AIState.Track);
-                    }
-                }
+                // if (self.FindAngle % 5 == 0)
+                // {
+                //     Vector3 forword = Quaternion.Euler(0, self.FindAngle, 0) * Vector3.forward;
+                //
+                //     GameObject gameObject = objectComponent.GameObject;
+                //
+                //     // Vector3 startPos = gameObject.transform.position;
+                //     Vector3 sourcePos = gameObject.transform.position + gameObject.GetComponent<Collider>().bounds.size.y * 0.5f * Vector3.up;
+                //
+                //     bool isHited = Physics.SphereCast(sourcePos, 3, forword,
+                //         out RaycastHit hit, ConstValue.FindEnemyDistance,
+                //         self.ColliderLayer);
+                //
+                //     self.FindAngle %= 360;
+                //
+                //     if (isHited)
+                //     {
+                //         long entityId = FightDataHelper.GetIdByGameObjectName(hit.transform.gameObject.name);
+                //
+                //         FightManagerComponent fightManagerComponent = self.GetFightManagerComponent(self.Parent);
+                //
+                //         bool isDead = FightDataHelper.GetIsDead(fightManagerComponent, entityId);
+                //
+                //         if (isDead)
+                //         {
+                //             return;
+                //         }
+                //
+                //         Log.Debug($"hit {hit.transform.name}");
+                //         TrackComponent trackComponent = self.Parent.GetComponent<TrackComponent>();
+                //
+                //         trackComponent.SetTrackObject(hit.transform.gameObject);
+                //
+                //         self.AIComponent.EnterAIState(AIState.Track);
+                //     }
+                // }
 
                 self.FindAngle++;
             }
         }
 
-        private static FightManagerComponent GetFightManagerComponent(this PatrolComponent self)
+        private static FightManagerComponent GetFightManagerComponent(this PatrolComponent self, Entity entity)
         {
-            FightManagerComponent fightManagerComponent = self.Parent.GetParent<FightManagerComponent>();
+            FightManagerComponent fightManagerComponent = entity.GetParent<FightManagerComponent>();
 
             return fightManagerComponent;
         }

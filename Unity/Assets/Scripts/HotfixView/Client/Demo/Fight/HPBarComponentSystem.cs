@@ -1,4 +1,5 @@
 using FairyGUI;
+using Spine.Unity;
 using UnityEngine;
 
 namespace ET.Client
@@ -49,6 +50,14 @@ namespace ET.Client
 
             self.ColorState = self.CellComponent.View.Progress.GetController("ColorState");
 
+            GameObject body = self.GameObject.transform.GetChild(0).gameObject;
+
+            self.SkeletonAnimation = body.GetComponent<SkeletonAnimation>();
+
+            self.Bone = self.SkeletonAnimation.skeleton.FindBone("bone6");
+
+            Log.Debug($"boneHPBarComponent {self.Bone == null}");
+
             TimerComponent timerComponent = self.Root().GetComponent<TimerComponent>();
 
             while (!self.IsDisposed)
@@ -67,11 +76,10 @@ namespace ET.Client
         {
             if (self.CellComponent != null)
             {
-                Vector3 headPos = self.Parent.GetComponent<ObjectComponent>().GetHeadPos();
-                // Collider sphereCollider = self.GameObject.GetComponent<Collider>();
-                //
-                // Vector3 position = self.GameObject.transform.position + Vector3.up * 1.5f * sphereCollider.bounds.size.y;
+                Vector3 headPos = Vector3.zero;
 
+                headPos = self.Parent.GetComponent<ObjectComponent>().GetHeadPos();
+                
                 //3D视图下的位置，转化到屏幕上之后的位置
                 Vector3 pos = Camera.main.WorldToScreenPoint(headPos);
                 //Unity初始位置在左下角，FGUI在左上角，所以需要取反

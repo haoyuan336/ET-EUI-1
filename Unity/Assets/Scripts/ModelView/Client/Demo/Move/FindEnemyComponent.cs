@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace ET.Client
 {
     public class FindEnemyComponent : Entity, IAwake<int>, IUpdate
@@ -7,8 +9,9 @@ namespace ET.Client
         public AIComponent AIComponent;
 
         public int FindAngle;
-        
-        
+
+        public GameObject GameObject;
+
     }
     
 }

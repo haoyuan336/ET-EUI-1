@@ -27,7 +27,41 @@ namespace ET.Client
             self.GameObject.transform.position = position;
 
             self.GameObject.name = "hero" + self.Parent.Id;
+
+            // ColliderAction colliderAction = self.GameObject.GetComponent<ColliderAction>();
+            //
+            // colliderAction.OnTriggerEnterAction = self.OnTriggerEnter;
+            //
+            // colliderAction.OnTriggerStayAction = self.OnTriggerStay;
+            //
+            // colliderAction.OnTriggerExitAction = self.OnTriggerExit;
         }
+
+        // public static void OnTriggerEnter(this ObjectComponent self, GameObject gameObject)
+        // {
+        //     Log.Debug($"OnTriggerEnter {gameObject.name}");
+        //     // EventSystem.Instance.Publish(self.Root(), new );
+        //     EventSystem.Instance.Publish(self.Root(), new ColliderEnter()
+        //     {
+        //         Entity = self.Parent,
+        //
+        //         ColliderObject = gameObject
+        //     });
+        // }
+        //
+        // public static void OnTriggerStay(this ObjectComponent self, GameObject gameObject)
+        // {
+        // }
+        //
+        // public static void OnTriggerExit(this ObjectComponent self, GameObject gameObject)
+        // {
+        //     EventSystem.Instance.Publish(self.Root(), new ColliderExit()
+        //     {
+        //         Entity = self.Parent,
+        //
+        //         ColliderObject = gameObject
+        //     });
+        // }
 
         public static Vector3 GetHeadPos(this ObjectComponent self)
         {

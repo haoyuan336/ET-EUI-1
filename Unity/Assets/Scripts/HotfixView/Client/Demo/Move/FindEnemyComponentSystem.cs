@@ -1,4 +1,5 @@
 using UnityEngine;
+using WeChatWASM;
 
 namespace ET.Client
 {
@@ -15,6 +16,8 @@ namespace ET.Client
             self.AIComponent.EnterStateAction += self.OnEnterStateAction;
 
             self.AIComponent.OutStateAction += self.OnOutStateAction;
+
+            self.GameObject = self.Parent.GetComponent<ObjectComponent>().GameObject;
         }
 
         [EntitySystem]
@@ -24,21 +27,18 @@ namespace ET.Client
             {
                 if (self.AIComponent.GetCurrentState() == AIState.Patrol)
                 {
-                    if (self.FindAngle % 6 == 0)
+                    if (self.FindAngle % 2 == 0)
                     {
                         Vector3 forword = Quaternion.Euler(0, self.FindAngle, 0) * Vector3.forward;
 
-                        ObjectComponent objectComponent = self.Parent.GetComponent<ObjectComponent>();
+                        GameObject gameObject = self.GameObject;
 
-                        GameObject gameObject = objectComponent.GameObject;
-
+                        // Vector3 startPos = gameObject.transform.position;
                         Vector3 sourcePos = gameObject.transform.position + gameObject.GetComponent<Collider>().bounds.size.y * 0.5f * Vector3.up;
 
-                        bool isHited = Physics.SphereCast(sourcePos, 4, forword,
+                        bool isHited = Physics.SphereCast(sourcePos, 1, forword,
                             out RaycastHit hit, ConstValue.FindEnemyDistance,
                             self.ColliderLayer);
-
-                        self.FindAngle %= 360;
 
                         if (isHited)
                         {

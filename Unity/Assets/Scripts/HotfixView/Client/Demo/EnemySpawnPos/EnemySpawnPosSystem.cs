@@ -21,6 +21,12 @@ namespace ET.Client
                 {
                     continue;
                 }
+
+                if (enemy.Value.IsDisposed)
+                {
+                    continue;
+                }
+
                 enemy.Value.Hide();
             }
         }
