@@ -27,11 +27,9 @@ namespace ET.Client
         }
 
         [EntitySystem]
-        public static async void Awake(this HPBarComponent self, GameObject gameObject)
+        public static async void Awake(this HPBarComponent self)
         {
             //取出来一个
-
-            self.GameObject = gameObject;
 
             UIComponent uiComponent = self.Root().GetComponent<UIComponent>();
 
@@ -50,13 +48,9 @@ namespace ET.Client
 
             self.ColorState = self.CellComponent.View.Progress.GetController("ColorState");
 
-            GameObject body = self.GameObject.transform.GetChild(0).gameObject;
+            AIComponent aiComponent = self.Parent.GetComponent<AIComponent>();
 
-            self.SkeletonAnimation = body.GetComponent<SkeletonAnimation>();
-
-            self.Bone = self.SkeletonAnimation.skeleton.FindBone("bone6");
-
-            Log.Debug($"boneHPBarComponent {self.Bone == null}");
+            aiComponent.EnterStateAction += self.OnStateEnter;
 
             TimerComponent timerComponent = self.Root().GetComponent<TimerComponent>();
 
@@ -71,6 +65,14 @@ namespace ET.Client
             }
         }
 
+        private static void OnStateEnter(this HPBarComponent self, AIState aiState)
+        {
+            if (aiState == AIState.Death)
+            {
+                self.Dispose();
+            }
+        }
+
         [EntitySystem]
         public static void Update(this HPBarComponent self)
         {
@@ -79,7 +81,7 @@ namespace ET.Client
                 Vector3 headPos = Vector3.zero;
 
                 headPos = self.Parent.GetComponent<ObjectComponent>().GetHeadPos();
-                
+
                 //3D视图下的位置，转化到屏幕上之后的位置
                 Vector3 pos = Camera.main.WorldToScreenPoint(headPos);
                 //Unity初始位置在左下角，FGUI在左上角，所以需要取反

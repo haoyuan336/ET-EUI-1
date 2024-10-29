@@ -27,7 +27,7 @@ namespace ET.Client
                     {
                         continue;
                     }
-                    aiComponent.EnterAIState(AIState.Moveing);
+                    aiComponent.EnterAIState(AIState.Moving);
 
                     AnimComponent animComponent = heroCard.GetComponent<AnimComponent>();
 

@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 namespace ET.Client
 {
     [Event(SceneType.Demo)]
-    public class HideEnemySpawnPosEventHandler : AEvent<Scene, HideEnemySpawnPos>
+    public class UnBindEnemySpawnPosEventHandler : AEvent<Scene, UnBindEnemySpawnPos>
     {
-        protected override async ETTask Run(Scene scene, HideEnemySpawnPos a)
+        protected override async ETTask Run(Scene scene, UnBindEnemySpawnPos a)
         {
             Unit unit = a.Unit;
 

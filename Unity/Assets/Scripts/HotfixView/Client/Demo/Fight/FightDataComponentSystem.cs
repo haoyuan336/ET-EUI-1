@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using ET;
+using UnityEditor.PackageManager;
 
 namespace ET.Client
 {
@@ -99,6 +100,8 @@ namespace ET.Client
                 AIComponent aiComponent = self.Parent.GetComponent<AIComponent>();
                 
                 aiComponent.EnterAIState(AIState.Death);
+                
+                EventSystem.Instance.Publish(self.Root(), new CheckGameLoseLogic());
             }
         }
 

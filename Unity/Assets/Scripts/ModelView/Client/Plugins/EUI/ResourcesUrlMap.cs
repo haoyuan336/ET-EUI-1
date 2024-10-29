@@ -60,6 +60,7 @@ namespace ET
         public const string HPProgressItemCell = "ui://7sxmdg4q4yhj6";
         public const string FightTextLayer = "ui://7sxmdg4qsdia7";
         public const string DamageTextItemCell = "ui://7sxmdg4qsdia8";
+        public const string GameLoseLayer = "ui://7sxmdg4qsc409";
         //---------------RootPackage---------------
         public const string RootLayer = "ui://9nomxs01i2d80";
         public const string EmptyLayer = "ui://9nomxs01i2d81";
@@ -187,5 +188,6 @@ namespace ET
         public const string AButton = "ui://9nomxs01jh1l3e";
         public const string CloseButton = "ui://9nomxs01iygc3f";
         public const string WindowBox = "ui://9nomxs01iygc3h";
+        public const string BButton = "ui://9nomxs01sc403i";
     }
 }

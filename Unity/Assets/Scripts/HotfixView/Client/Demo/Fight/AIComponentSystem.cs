@@ -11,7 +11,7 @@ namespace ET.Client
 
         public static void EnterAIState(this AIComponent self, AIState aiState)
         {
-            Log.Debug($"enter ai state {aiState} {self.GetCurrentState()}");
+            Log.Debug($"enter ai state  {self.Id},{aiState} {self.GetCurrentState()}");
 
             if (self.OutStateAction != null)
             {

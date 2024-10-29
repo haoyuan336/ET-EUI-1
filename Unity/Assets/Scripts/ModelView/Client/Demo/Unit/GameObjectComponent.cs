@@ -36,5 +36,7 @@ namespace ET.Client
         public Vector3 TargetPos;
 
         public List<HeroCard> HeroCards = new List<HeroCard>();
+
+        public float SpeedValue = 1;
     }
 }

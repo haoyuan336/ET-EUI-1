@@ -32,19 +32,27 @@ namespace ET.Client
     //     public string ColliderName;
     // }
 
+    public struct MoveUnitToMainCity
+    {
+    }
+
+    public struct CheckGameLoseLogic
+    {
+    }
+
     public struct PlayDamageText
     {
         public Vector3 StartPos;
-        
+
         public string Text;
     }
 
-    public struct HideEnemyObject
+    public struct MakeEnemySleep
     {
         public Enemy Enemy;
     }
 
-    public struct ShowEnemyObject
+    public struct MakeEnemyRunning
     {
         public Enemy Enemy;
     }
@@ -56,14 +64,14 @@ namespace ET.Client
         public EnemySpawnPos EnemySpawnPos;
     }
 
-    public struct ShowEnemySpawnPos
+    public struct BindEnemySpawnPos
     {
         public Unit Unit;
 
         public MapConfig MapConfig;
     }
 
-    public struct HideEnemySpawnPos
+    public struct UnBindEnemySpawnPos
     {
         public Unit Unit;
 

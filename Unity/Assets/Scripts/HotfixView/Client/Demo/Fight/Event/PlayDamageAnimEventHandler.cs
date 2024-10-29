@@ -23,7 +23,7 @@ namespace ET.Client
 
             if (hpBarComponent == null)
             {
-                hpBarComponent = entity.AddComponent<HPBarComponent, GameObject>(objectComponent.GameObject);
+                hpBarComponent = entity.AddComponent<HPBarComponent>();
             }
 
             hpBarComponent.SetBarValue(currentHP, maxValue);

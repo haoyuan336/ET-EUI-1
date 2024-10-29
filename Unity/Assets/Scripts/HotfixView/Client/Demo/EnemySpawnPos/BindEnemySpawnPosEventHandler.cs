@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 namespace ET.Client
 {
     [Event(SceneType.Demo)]
-    public class ShowEnemySpawnPosEventHandler : AEvent<Scene, ShowEnemySpawnPos>
+    public class BindEnemySpawnPosEventHandler : AEvent<Scene, BindEnemySpawnPos>
     {
-        protected override async ETTask Run(Scene scene, ShowEnemySpawnPos a)
+        protected override async ETTask Run(Scene scene, BindEnemySpawnPos a)
         {
             Unit unit = a.Unit;
 
@@ -16,11 +16,7 @@ namespace ET.Client
 
             UnityEngine.SceneManagement.Scene gameScene = SceneManager.GetSceneByName(mapConfig.SceneName);
 
-            Log.Debug($"game scene name {gameScene.name}");
-
             GameObject[] gameObjects = gameScene.GetRootGameObjects();
-
-            Log.Debug($"game object {gameObjects.Length}");
 
             List<GameObject> list = new List<GameObject>();
 
@@ -60,7 +56,7 @@ namespace ET.Client
                     enemySpawnPos = enemySpawnPosComponent.AddChildWithId<EnemySpawnPos, string>(number, name);
                 }
 
-                enemySpawnPos.Show();
+                enemySpawnPos.BindObject(gameObject);
             }
         }
     }

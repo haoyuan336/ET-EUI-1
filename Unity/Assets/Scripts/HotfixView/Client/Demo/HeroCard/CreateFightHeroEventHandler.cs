@@ -40,11 +40,11 @@ namespace ET.Client
             Vector3 pos = unitObject.transform.position + Quaternion.Euler(0, index * RandomGenerator.RandomNumber(30, 50), 0) * Vector3.forward *
                     (RandomGenerator.RandFloat01() * 2 + 1);
 
+            AIComponent aiComponent = fightHeroCard.AddComponent<AIComponent>();
+            
             fightHeroCard.AddComponent<ObjectComponent, GameObject, Vector3>(prefab, pos);
 
             fightHeroCard.AddComponent<FightDataComponent, HeroCard>(fightHeroCard);
-
-            AIComponent aiComponent = fightHeroCard.AddComponent<AIComponent>();
 
             fightHeroCard.AddComponent<AttackComponent>();
 

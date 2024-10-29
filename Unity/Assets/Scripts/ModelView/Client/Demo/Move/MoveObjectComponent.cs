@@ -7,8 +7,6 @@ using UnityEngine.PlayerLoop;
 
 namespace ET.Client
 {
-  
-
     [ComponentOf(typeof(Entity))]
     public class MoveObjectComponent : Entity, IAwake, IDestroy, IUpdate
     {
@@ -16,10 +14,7 @@ namespace ET.Client
 
         public Vector3 TargetPos;
 
-        public NavMeshAgent NavMeshAgent;
-
-        public Transform Body;
-
         public AIComponent AIComponent;
+
     }
 }

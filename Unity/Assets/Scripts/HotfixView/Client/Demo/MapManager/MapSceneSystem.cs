@@ -13,7 +13,7 @@ namespace ET.Client
 
             Unit unit = self.Parent.GetParent<Unit>();
 
-            EventSystem.Instance.Publish(self.Root(), new HideEnemySpawnPos() { Unit = unit, MapConfig = mapConfig });
+            EventSystem.Instance.Publish(self.Root(), new UnBindEnemySpawnPos() { Unit = unit, MapConfig = mapConfig });
 
             SceneManager.UnloadSceneAsync(mapConfig.SceneName);
         }
@@ -29,7 +29,7 @@ namespace ET.Client
 
             Unit unit = self.Parent.GetParent<Unit>();
 
-            EventSystem.Instance.Publish(self.Root(), new ShowEnemySpawnPos() { Unit = unit, MapConfig = mapConfig });
+            EventSystem.Instance.Publish(self.Root(), new BindEnemySpawnPos() { Unit = unit, MapConfig = mapConfig });
         }
     }
 }

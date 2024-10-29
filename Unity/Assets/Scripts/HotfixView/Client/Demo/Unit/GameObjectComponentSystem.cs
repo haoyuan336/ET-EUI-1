@@ -23,21 +23,18 @@ namespace ET.Client
             GameObject prefab = globalComponent.ReferenceCollector.Get<GameObject>("Unit");
 
             GameObject unitInitPos = GameObject.Find("UnitInitPos");
-            
+
             self.GameObject = GameObject.Instantiate(prefab, unitInitPos.transform.position, prefab.transform.rotation);
             //
             self.GameObject.transform.position = unitInitPos.transform.position;
-            
+
             self.CharacterController = self.GameObject.GetComponent<CharacterController>();
-            
+
             self.TargetPos = self.GameObject.transform.position;
         }
 
         public static void BindCM(this GameObjectComponent self)
         {
-            // self.Camera = Camera.main;
-
-            // self.GameObject.transform.rotation = Camera.main.transform.rotation;
         }
 
         public static void Move(this GameObjectComponent self, Vector3 targetPos)
@@ -47,17 +44,10 @@ namespace ET.Client
 
         public static void StartMove(this GameObjectComponent self)
         {
-            // self.TargetPower = 1;
-
-            // self.Animation.state.SetAnimation(0, "move", true);
         }
 
         public static void EndMove(this GameObjectComponent self)
         {
-            // self.TargetPower = 0;
-
-            // self.Animation.state.SetAnimation(0, "idle", true);
-
             self.TargetPos = self.GameObject.transform.position;
         }
 
@@ -70,17 +60,40 @@ namespace ET.Client
 
                 moveSpeed = new Vector3(moveSpeed.x, 0, moveSpeed.z).normalized;
 
-                self.CharacterController.Move(moveSpeed * ConstValue.MoveSpeed * Time.deltaTime);
+                self.CharacterController.Move(moveSpeed * ConstValue.MoveSpeed * Time.deltaTime * self.SpeedValue);
 
                 self.GameObject.transform.position = new Vector3(self.GameObject.transform.position.x, 0, self.GameObject.transform.position.z);
-
-                if (moveSpeed.x != 0)
-                {
-                    // self.GameObject.transform.localScale = new Vector3(self.LocalScale.x * moveSpeed.x / Math.Abs(moveSpeed.x) * -1,
-                    //     self.LocalScale.y,
-                    //     self.LocalScale.z);
-                }
             }
+        }
+
+        public static async ETTask MoveUnitToMainCity(this GameObjectComponent self)
+        {
+            GameObject unitInitPos = GameObject.Find("UnitInitPos");
+
+            self.TargetPos = unitInitPos.transform.position;
+
+            self.GameObject.transform.position = self.TargetPos;
+
+            float time = 0;
+
+            Vector3 startPos = self.GameObject.transform.position;
+
+            TimerComponent timerComponent = self.Root().GetComponent<TimerComponent>();
+
+            while (time < 1)
+            {
+                Vector3 pos = Vector3.Lerp(startPos, unitInitPos.transform.position, time);
+
+                self.GameObject.transform.position = pos;
+
+                self.TargetPos = pos;
+
+                time += Time.deltaTime;
+
+                await timerComponent.WaitFrameAsync();
+            }
+
+            // self.GameObject.transform.position = unitInitPos.transform.position;
         }
     }
 }

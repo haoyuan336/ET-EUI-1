@@ -7,12 +7,14 @@ namespace ET.Client
     {
         Invalide = 1,
         MoveToUnit = 2,
-        Moveing = 3,
+        Moving = 3,
+
         // FindEnemy = 4,
-        Attacking = 5,
-        Patrol = 6, //巡逻
-        Track = 7, //跟踪
-        Death = 8, // 死亡
+        Attacking = 4,
+        Patrol = 5, //巡逻
+        Track = 6, //跟踪
+        Death = 7, // 死亡
+        Sleep = 8, //睡眠状态 
     }
 
     [ComponentOf(typeof(Entity))]

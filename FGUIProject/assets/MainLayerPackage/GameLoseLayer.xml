@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,1334">
+  <displayList>
+    <component id="n5_sc40" name="n5" src="sc403i" fileName="BButton.xml" pkg="9nomxs01" xy="0,0" size="750,1334">
+      <relation target="" sidePair="width-width,height-height"/>
+    </component>
+    <graph id="n1_sc40" name="n1" xy="134,437" size="481,356" type="rect">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </graph>
+    <component id="n2_sc40" name="BackMainButton" src="jh1l3d" fileName="NButton.xml" pkg="9nomxs01" xy="416,866" size="155,66">
+      <relation target="" sidePair="center-center,middle-middle"/>
+      <Button title="回到主城" titleFontSize="30"/>
+    </component>
+    <text id="n3_sc40" name="n3" xy="236,492" size="277,107" fontSize="50" align="center" vAlign="middle" autoSize="none" text="游戏失败">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </text>
+    <component id="n6_sc40" name="RetryButton" src="jh1l3d" fileName="NButton.xml" pkg="9nomxs01" xy="207,866" size="155,66">
+      <relation target="" sidePair="center-center,middle-middle"/>
+      <Button title="重试" titleFontSize="30"/>
+    </component>
+  </displayList>
+</component>
