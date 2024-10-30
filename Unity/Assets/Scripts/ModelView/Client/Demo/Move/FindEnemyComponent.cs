@@ -10,8 +10,6 @@ namespace ET.Client
 
         public int FindAngle;
 
-        public GameObject GameObject;
-
     }
     
 }

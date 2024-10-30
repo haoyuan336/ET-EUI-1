@@ -30,5 +30,9 @@
     <component id="n17_p1ff" name="HpBar7" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
     <component id="n18_p1ff" name="HpBar8" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
     <component id="n19_p1ff" name="HpBar9" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
+    <component id="n20_sc40" name="BackMainCityButton" src="jh1l3d" fileName="NButton.xml" pkg="9nomxs01" xy="567,1206" size="137,78">
+      <relation target="" sidePair="bottom-bottom"/>
+      <Button title="回城" titleFontSize="40"/>
+    </component>
   </displayList>
 </component>

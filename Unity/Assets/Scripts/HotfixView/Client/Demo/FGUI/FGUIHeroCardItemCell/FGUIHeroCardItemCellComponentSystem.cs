@@ -1,6 +1,8 @@
 /** This is an automatically generated class by FairyGUI. Please do not modify it. **/
 
 using FairyGUI;
+using UnityEditor.UI;
+using UnityEngine;
 
 namespace ET.Client
 {
@@ -27,6 +29,22 @@ namespace ET.Client
             self.View.HeroName.text = heroCard.Config.HeroName;
 
             self.View.DestroyButton.SetListener(self.OnDestroyButtonClick);
+
+            self.View.ClickButton.SetListener(self.OnButtonClick);
+        }
+
+        private static void OnButtonClick(this FGUIHeroCardItemCellComponent self)
+        {
+            ShowWindowData data = new ShowWindowData() { Entity = self.HeroCard };
+
+            EventSystem.Instance.Publish(self.Root(),
+                new PushLayerById() { WindowID = WindowID.HeroInfoLayer, ShowWindowData = data });
+
+            // UIComponent uiComponent = self.Root().GetComponent<UIComponent>();
+            //
+            // FGUIHeroInfoLayerComponent heroInfoLayerComponent = uiComponent.GetDlgLogic<FGUIHeroInfoLayerComponent>();
+            //
+            // heroInfoLayerComponent.SetHeroInfo(self.HeroCard);
         }
 
         private static async void OnDestroyButtonClick(this FGUIHeroCardItemCellComponent self)

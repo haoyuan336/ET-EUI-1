@@ -79,6 +79,15 @@ namespace ET.Client
 
         private static void OnOutStateAction(this AttackComponent self, AIState aiState)
         {
+            // if (aiState == AIState.Attacking)
+            // {
+            //     AnimComponent animComponent = self.Parent.GetComponent<AnimComponent>();
+            //
+            //     if (animComponent != null)
+            //     {
+            //         animComponent.PlayAnim("idle");
+            //     }
+            // }
         }
     }
 }

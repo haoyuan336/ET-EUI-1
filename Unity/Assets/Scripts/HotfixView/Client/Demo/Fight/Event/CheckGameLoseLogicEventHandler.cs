@@ -7,6 +7,15 @@ namespace ET.Client
     {
         protected override async ETTask Run(Scene scene, CheckGameLoseLogic a)
         {
+            bool isHero = a.Entity is HeroCard;
+
+            if (!isHero)
+            {
+                await this.RemoveEnemyFromSpawn(a.Entity);
+
+                return;
+            }
+
             Unit unit = UnitHelper.GetMyUnit(scene);
 
             FightManagerComponent fightManagerComponent = unit.GetComponent<FightManagerComponent>();
@@ -42,6 +51,26 @@ namespace ET.Client
             if (isAllDead)
             {
                 EventSystem.Instance.Publish(scene, new ShowLayerById() { WindowID = WindowID.GameLoseLayer });
+            }
+        }
+
+        public async ETTask RemoveEnemyFromSpawn(Entity entity)
+        {
+            Enemy enemy = entity as Enemy;
+
+            long enemyId = enemy.Id;
+
+            TimerComponent timerComponent = entity.Root().GetComponent<TimerComponent>();
+
+            await timerComponent.WaitAsync(1000);
+
+            enemy.Dispose();
+
+            EnemySpawnPos enemySpawnPos = enemy.EnemySpawnPos;
+
+            if (enemySpawnPos != null && !enemySpawnPos.IsDisposed)
+            {
+                enemySpawnPos.Remove(enemyId);
             }
         }
     }

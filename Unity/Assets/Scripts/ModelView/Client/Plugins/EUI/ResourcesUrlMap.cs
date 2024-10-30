@@ -46,6 +46,7 @@ namespace ET
         public const string HeroCardBagLayer = "ui://1o0rv0gziygc0";
         public const string HeroCardItemCell = "ui://1o0rv0gziygc1";
         public const string HeroInfoLayer = "ui://1o0rv0gz4yhj2";
+        public const string HeroWordBarItemCell = "ui://1o0rv0gzjdez3s";
         //---------------LoadingPackage---------------
         public const string LoadingLayer = "ui://8l9768khjh1l0";
         //---------------LoginLayerPackage---------------
@@ -61,6 +62,7 @@ namespace ET
         public const string FightTextLayer = "ui://7sxmdg4qsdia7";
         public const string DamageTextItemCell = "ui://7sxmdg4qsdia8";
         public const string GameLoseLayer = "ui://7sxmdg4qsc409";
+        public const string MoveingLayer = "ui://7sxmdg4qsc40a";
         //---------------RootPackage---------------
         public const string RootLayer = "ui://9nomxs01i2d80";
         public const string EmptyLayer = "ui://9nomxs01i2d81";

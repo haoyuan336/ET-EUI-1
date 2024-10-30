@@ -65,11 +65,7 @@ namespace ET.Client
         {
             Log.Debug($"data count {heroCard.Datas.Count}");
 
-            foreach (var kv in heroCard.Datas)
-            {
-                Log.Debug($"kv kye {kv.Key} {kv.Value}");
-                self.Datas[kv.Key] = kv.Value;
-            }
+            self.Datas = heroCard.Datas;
 
             self.CurrentHP = self.GetValueByType(WordBarType.Hp);
         }
@@ -98,10 +94,13 @@ namespace ET.Client
                 });
 
                 AIComponent aiComponent = self.Parent.GetComponent<AIComponent>();
-                
+
                 aiComponent.EnterAIState(AIState.Death);
-                
-                EventSystem.Instance.Publish(self.Root(), new CheckGameLoseLogic());
+
+                EventSystem.Instance.Publish(self.Root(), new CheckGameLoseLogic()
+                {
+                    Entity = self.Parent
+                });
             }
         }
 

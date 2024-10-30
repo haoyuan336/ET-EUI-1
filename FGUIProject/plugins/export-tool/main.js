@@ -17,6 +17,7 @@ let MemberTypeList = [
     "GRichTextField",
     "GTextInput",
     "GLoader",
+    "GLoader3D",
     "GList",
     "GGraph",
     "GGroup",

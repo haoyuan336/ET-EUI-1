@@ -11,7 +11,6 @@ namespace ET.Client
         [EntitySystem]
         public static void Destroy(this AnimComponent self)
         {
-            self.SkeletonAnimation = null;
         }
 
         [EntitySystem]
@@ -20,21 +19,24 @@ namespace ET.Client
             GameObject gameObject = self.Parent.GetComponent<ObjectComponent>().GameObject;
 
             GameObject body = gameObject.transform.GetChild(0).gameObject;
+        }
 
-            self.SkeletonAnimation = gameObject.GetComponent<SkeletonAnimation>();
+        public static void PlayAnim(this AnimComponent self, string animName)
+        {
+            ObjectComponent objectComponent = self.Parent.GetComponent<ObjectComponent>();
 
-            self.SkeletonAnimation = body.GetComponent<SkeletonAnimation>();
-
-            self.SkeletonAnimation.state.SetAnimation(0, "idle", true);
+            objectComponent.SkeletonAnimation.state.SetAnimation(0, animName, true);
         }
 
         public static async ETTask PlayAnim(this AnimComponent self, string animName, bool isLoop)
         {
-            self.SkeletonAnimation.state.SetAnimation(0, animName, isLoop);
+            ObjectComponent objectComponent = self.Parent.GetComponent<ObjectComponent>();
+
+            objectComponent.SkeletonAnimation.state.SetAnimation(0, animName, isLoop);
 
             self.AnimTask = ETTask.Create();
 
-            self.SkeletonAnimation.state.Complete += self.OnAnimComplete;
+            objectComponent.SkeletonAnimation.state.Complete += self.OnAnimComplete;
 
             await self.AnimTask.GetAwaiter();
         }

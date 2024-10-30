@@ -6,5 +6,7 @@ namespace ET.Client
         public int ConfigId;
 
         public int Level;
+
+        public int OwnerConfigId;
     }
 }

@@ -1,3 +1,4 @@
+using Spine.Unity;
 using UnityEngine;
 
 namespace ET.Client
@@ -14,5 +15,7 @@ namespace ET.Client
         public GameObject Body;
 
         public Vector3 InitPos;
+
+        public SkeletonAnimation SkeletonAnimation;
     }
 }

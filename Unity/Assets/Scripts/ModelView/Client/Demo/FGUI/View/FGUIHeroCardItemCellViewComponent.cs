@@ -29,6 +29,17 @@ namespace ET
                 return this._Level;
             }
         }
+        public GButton  ClickButton
+        {
+            get
+            {
+                if (this._ClickButton == null)
+                {
+                    this._ClickButton = this.GetParent<UIBaseWindow>().GComponent.GetChild("ClickButton").asButton;
+                }
+                return this._ClickButton;
+            }
+        }
         public GButton  DestroyButton
         {
             get
@@ -42,11 +53,13 @@ namespace ET
         }
         private GTextField _HeroName = null;
         private GTextField _Level = null;
+        private GButton _ClickButton = null;
         private GButton _DestroyButton = null;
         public void ClearBindCache()
         {
             this._HeroName = null;
             this._Level = null;
+            this._ClickButton = null;
             this._DestroyButton = null;
         }
     }

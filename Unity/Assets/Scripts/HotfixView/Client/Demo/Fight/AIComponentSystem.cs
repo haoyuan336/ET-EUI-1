@@ -36,7 +36,7 @@ namespace ET.Client
             return AIState.Invalide;
         }
 
-        public static void OutAIState(this AIComponent self)
+        public static void PopAIState(this AIComponent self)
         {
             Log.Debug($"out ai state {self.StateStack.Count}");
 

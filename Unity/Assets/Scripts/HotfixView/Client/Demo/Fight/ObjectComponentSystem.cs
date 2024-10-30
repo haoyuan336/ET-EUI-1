@@ -1,4 +1,5 @@
 using System.Drawing;
+using Spine.Unity;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -52,6 +53,8 @@ namespace ET.Client
             self.Body = self.GameObject.transform.GetChild(0).gameObject;
 
             self.Body.transform.rotation = Camera.main.transform.rotation;
+
+            self.SkeletonAnimation = self.Body.GetComponent<SkeletonAnimation>();
         }
 
         [EntitySystem]

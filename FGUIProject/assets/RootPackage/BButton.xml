@@ -2,7 +2,7 @@
 <component size="100,20" extention="Button">
   <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
   <displayList>
-    <graph id="n0_jh1l" name="n0" xy="0,0" size="100,20" touchable="false" type="rect" lineSize="0" fillColor="#80000000">
+    <graph id="n0_jh1l" name="n0" xy="0,0" size="100,20" touchable="false" type="rect" lineSize="0" fillColor="#cc000000">
       <relation target="" sidePair="width-width,height-height"/>
     </graph>
   </displayList>

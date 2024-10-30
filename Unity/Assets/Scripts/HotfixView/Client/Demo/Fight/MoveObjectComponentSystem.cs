@@ -87,7 +87,7 @@ namespace ET.Client
 
         public static void OnEnterState(this MoveObjectComponent self, AIState aiState)
         {
-            if (aiState == AIState.Death)
+            if (aiState == AIState.Death || aiState == AIState.Attacking)
             {
                 self.MoveEnd();
             }

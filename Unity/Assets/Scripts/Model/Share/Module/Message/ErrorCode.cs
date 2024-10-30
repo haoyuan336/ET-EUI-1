@@ -19,5 +19,8 @@ namespace ET
         public const int Not_Found_Account = 200002;
 
         public const int SceneType_Error = 200003;
+
+        public const int Not_Found_HeroCard = 200004;
+
     }
 }

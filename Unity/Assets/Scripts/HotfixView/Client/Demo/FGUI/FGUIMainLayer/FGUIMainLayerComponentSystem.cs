@@ -37,6 +37,13 @@ namespace ET.Client
 
                 self.FguihpProgressItemCellComponents.Push(itemCellComponent);
             }
+
+            self.View.BackMainCityButton.SetListener(self.OnBackMainButtonClick);
+        }
+
+        private static void OnBackMainButtonClick(this FGUIMainLayerComponent self)
+        {
+            EventSystem.Instance.Publish(self.Root(), new MoveUnitToMainCity());
         }
 
         public static FGUIHPProgressItemCellComponent GetOneHPBar(this FGUIMainLayerComponent self)
@@ -78,7 +85,7 @@ namespace ET.Client
 
         private static void OnHeroBagButtonClick(this FGUIMainLayerComponent self)
         {
-            EventSystem.Instance.Publish(self.Root(), new ShowLayerById() { WindowID = WindowID.HeroCardBagLayer });
+            EventSystem.Instance.Publish(self.Root(), new PushLayerById() { WindowID = WindowID.HeroCardBagLayer });
         }
 
         public static void ShowWindow(this FGUIMainLayerComponent self, Entity contextData = null)

@@ -1,10 +1,13 @@
+using System;
+using System.Reflection;
 using System.Runtime.CompilerServices;
+using ET.Client;
 using Microsoft.CodeAnalysis;
 
 namespace ET
 {
-    [EntitySystemOf(typeof(HeroCard))]
-    [FriendOfAttribute(typeof(ET.HeroCard))]
+    [EntitySystemOf(typeof (HeroCard))]
+    [FriendOfAttribute(typeof (ET.HeroCard))]
     public static partial class HeroCardSystem
     {
         [EntitySystem]
@@ -12,9 +15,33 @@ namespace ET
         {
             self.HeroConfigId = heroConfigId;
 
-            self.Datas[WordBarType.Hp.ToString()] = self.Config.Hp;
+            self.UpdateValueData();
+        }
 
-            self.Datas[WordBarType.Attack.ToString()] = self.Config.Attack;
+        public static void UpdateValueData(this HeroCard self)
+        {
+            Type type = self.Config.GetType();
+
+            WordBarType[] wordBarTypes = new[] { WordBarType.Hp, WordBarType.Attack };
+
+            foreach (var wordBarType in wordBarTypes)
+            {
+                string baseName = wordBarType.ToString();
+
+                string growName = baseName + "Grow";
+
+                PropertyInfo propertyInfo = type.GetProperty(baseName);
+
+                PropertyInfo growPInfo = type.GetProperty(growName);
+
+                int baseValue = Convert.ToInt32(propertyInfo.GetValue(self.Config));
+
+                int growValue = Convert.ToInt32(growPInfo.GetValue(self.Config));
+
+                int value = HeroCardHelper.GetHeroBaseDataValue(baseValue, growValue, self.Level, self.Star);
+
+                self.Datas[baseName] = value;
+            }
         }
 
         public static void SetInfo(this HeroCard self, HeroCardInfo info)

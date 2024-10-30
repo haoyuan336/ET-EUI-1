@@ -9,6 +9,7 @@
     <component id="sdia7" name="FightTextLayer.xml" path="/" exported="true"/>
     <component id="sdia8" name="DamageTextItemCell.xml" path="/" exported="true"/>
     <component id="sc409" name="GameLoseLayer.xml" path="/" exported="true"/>
+    <component id="sc40a" name="MoveingLayer.xml" path="/" exported="true"/>
   </resources>
   <publish name="MainLayerPackage" path="D:\workspace\ET-EUI\Unity\Assets\Resources\FGUI\MainLayerPackage" packageCount="2" branchPath="D:\workspace\ET-EUI\Unity\Assets\Resources\FGUI\MainLayerPackage"/>
 </packageDescription>

@@ -67,6 +67,8 @@ namespace ET.Client
 
         private static void OnStateEnter(this HPBarComponent self, AIState aiState)
         {
+            Log.Debug($"HPBarComponent {aiState}");
+            
             if (aiState == AIState.Death)
             {
                 self.Dispose();

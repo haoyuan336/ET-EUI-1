@@ -31,7 +31,9 @@ namespace ET.Client
                             continue;
                         }
 
-                        aiComponent.EnterAIState(AIState.Patrol);
+                        // aiComponent.EnterAIState(AIState.Patrol);
+
+                        aiComponent.PopAIState();
 
                         AnimComponent animComponent = heroCard.GetComponent<AnimComponent>();
 

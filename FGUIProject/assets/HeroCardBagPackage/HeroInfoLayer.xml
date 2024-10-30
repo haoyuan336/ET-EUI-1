@@ -1,2 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="750,1334"/>
+<component size="750,1334">
+  <displayList>
+    <component id="n4_sc40" name="n4" src="sc403i" fileName="BButton.xml" pkg="9nomxs01" xy="0,0" size="750,1334">
+      <relation target="" sidePair="width-width,height-height"/>
+    </component>
+    <graph id="n1_sc40" name="n1" xy="204,133" size="341,100" type="rect">
+      <relation target="" sidePair="center-center,top-top"/>
+    </graph>
+    <text id="n0_sc40" name="HeroName" xy="258,145" size="234,75" fontSize="40" align="center" vAlign="middle" autoSize="none" text="英雄名字">
+      <relation target="" sidePair="center-center,top-top"/>
+    </text>
+    <loader3D id="n7_sc40" name="HeroLoader" xy="381,563" size="1,1" url="ui://1o0rv0gzsc403p" animation="" skin="" loop="true">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </loader3D>
+    <graph id="n2_sc40" name="n2" xy="257,265" size="235,48" type="rect">
+      <relation target="" sidePair="center-center,bottom-top"/>
+    </graph>
+    <text id="n3_sc40" name="Level" xy="258,264" size="234,54" fontSize="40" align="center" vAlign="middle" vars="true" autoSize="none" text="Lv{Level=999}">
+      <relation target="" sidePair="center-center,top-top"/>
+    </text>
+    <component id="n8_jdez" name="UpLevelButton" src="jh1l3d" fileName="NButton.xml" pkg="9nomxs01" xy="272,895" size="206,77">
+      <relation target="" sidePair="center-center,bottom-bottom"/>
+      <Button title="升级" titleFontSize="50"/>
+    </component>
+    <graph id="n9_jdez" name="n9" xy="153,801" size="444,66" type="rect">
+      <relation target="" sidePair="center-center,bottom-bottom"/>
+    </graph>
+    <component id="n10_jdez" name="AttackBar" src="jdez3s" fileName="HeroWordBarItemCell.xml" xy="170,814">
+      <relation target="" sidePair="center-center,bottom-bottom"/>
+    </component>
+    <component id="n11_jdez" name="HPBar" src="jdez3s" fileName="HeroWordBarItemCell.xml" xy="387,814">
+      <relation target="" sidePair="center-center,bottom-bottom"/>
+    </component>
+    <component id="n12_jdez" name="CloseButton" src="iygc3f" fileName="CloseButton.xml" pkg="9nomxs01" xy="611,57">
+      <relation target="" sidePair="top-top"/>
+    </component>
+  </displayList>
+</component>

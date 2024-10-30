@@ -125,6 +125,39 @@ namespace ET.Client
             self.ShowStackWindow(id);
         }
 
+        public static void ShowStackWindowWithId(this UIComponent self, WindowID id,ShowWindowData showData = null)
+        {
+            if (self.StackWindow.Count > 0)
+            {
+                WindowID windowID = self.StackWindow.Peek();
+
+                self.CloseWindow(windowID);
+            }
+
+            self.ShowWindow(id, showData);
+
+            self.StackWindow.Push(id);
+        }
+
+        public static void PopStackWindow(this UIComponent self)
+        {
+            Log.Debug($"stack window  {self.StackWindow.Count}");
+
+            if (self.StackWindow.Count > 0)
+            {
+                WindowID windowID = self.StackWindow.Pop();
+
+                self.CloseWindow(windowID);
+            }
+
+            if (self.StackWindow.Count > 0)
+            {
+                WindowID beforId = self.StackWindow.Peek();
+
+                self.ShowWindow(beforId);
+            }
+        }
+
         /// <summary>
         /// 压入一个进栈队列界面
         /// </summary>
@@ -132,6 +165,15 @@ namespace ET.Client
         /// <param name="id"></param>
         public static void ShowStackWindow(this UIComponent self, WindowID id)
         {
+            // if (self.StackWindowsQueue.Count > 0)
+            // {
+            //     WindowID beforWindowID = self.StackWindowsQueue.Peek();
+            //
+            //     self.HideWindow(beforWindowID);
+            // }
+
+            Log.Debug($"IsPopStackWndStatus {self.IsPopStackWndStatus}");
+
             self.StackWindowsQueue.Enqueue(id);
 
             if (self.IsPopStackWndStatus)

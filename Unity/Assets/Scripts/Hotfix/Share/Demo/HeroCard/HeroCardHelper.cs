@@ -6,6 +6,24 @@ namespace ET.Client
     {
 #if UNITY
 
+        public static async ETTask<int> UpLevel(HeroCard heroCard)
+        {
+            C2M_UpHeroLevelRequest request = C2M_UpHeroLevelRequest.Create();
+
+            request.HeroId = heroCard.Id;
+
+            M2C_UpHeroLevelResponse response = await heroCard.Root().GetComponent<ClientSenderComponent>().Call(request) as M2C_UpHeroLevelResponse;
+
+            if (response.Error == ErrorCode.ERR_Success)
+            {
+                heroCard.SetInfo(response.HeroCardInfo);
+
+                EventSystem.Instance.Publish(heroCard.Root(), new HeroLevelUp() { HeroCard = heroCard });
+            }
+
+            return response.Error;
+        }
+
         public static async ETTask<HeroCard> CreateNewHeroCardByConfigId(Scene root, int configId)
         {
             C2M_CreateOneHeroByConfigId request = C2M_CreateOneHeroByConfigId.Create();
@@ -110,5 +128,7 @@ namespace ET.Client
         {
             return baseValue + grow * level + grow * star * 10;
         }
+
+
     }
 }

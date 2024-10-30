@@ -1525,6 +1525,73 @@ namespace ET
         }
     }
 
+    [MemoryPackable]
+    [Message(OuterMessage.C2M_UpHeroLevelRequest)]
+    [ResponseType(nameof(M2C_UpHeroLevelResponse))]
+    public partial class C2M_UpHeroLevelRequest : MessageObject, ILocationRequest
+    {
+        public static C2M_UpHeroLevelRequest Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(C2M_UpHeroLevelRequest), isFromPool) as C2M_UpHeroLevelRequest;
+        }
+
+        [MemoryPackOrder(0)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public long HeroId { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.HeroId = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.M2C_UpHeroLevelResponse)]
+    public partial class M2C_UpHeroLevelResponse : MessageObject, ILocationResponse
+    {
+        public static M2C_UpHeroLevelResponse Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(M2C_UpHeroLevelResponse), isFromPool) as M2C_UpHeroLevelResponse;
+        }
+
+        [MemoryPackOrder(0)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(2)]
+        public string Message { get; set; }
+
+        [MemoryPackOrder(3)]
+        public HeroCardInfo HeroCardInfo { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+            this.HeroCardInfo = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
     public static class OuterMessage
     {
         public const ushort HttpGetRouterResponse = 10002;
@@ -1573,5 +1640,7 @@ namespace ET
         public const ushort M2C_SetHeroFormation = 10045;
         public const ushort C2M_UnSetHeroFromation = 10046;
         public const ushort M2C_UnSetHeroFormation = 10047;
+        public const ushort C2M_UpHeroLevelRequest = 10048;
+        public const ushort M2C_UpHeroLevelResponse = 10049;
     }
 }

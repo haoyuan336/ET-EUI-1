@@ -12,6 +12,8 @@ namespace ET.Client
         {
             self.Level = level;
 
+            self.OwnerConfigId = ownerConfigId;
+
             List<SkillConfig> skillConfigs = SkillConfigCategory.Instance.GetByOnwerConfigs(ownerConfigId);
 
             for (int i = 0; i < skillConfigs.Count; i++)
@@ -19,6 +21,27 @@ namespace ET.Client
                 SkillConfig skillConfig = skillConfigs[i];
 
                 Skill skill = self.AddChild<Skill, int>(skillConfig.Id);
+
+                skill.Level = self.GetCurrentSkillLevel(i);
+            }
+        }
+
+        public static void UpdateLevel(this SkillComponent self, int level)
+        {
+            self.Level = level;
+
+            List<SkillConfig> skillConfigs = SkillConfigCategory.Instance.GetByOnwerConfigs(self.OwnerConfigId);
+
+            for (int i = 0; i < skillConfigs.Count; i++)
+            {
+                SkillConfig skillConfig = skillConfigs[i];
+
+                Skill skill = self.GetChild<Skill>(skillConfig.Id);
+
+                if (skill == null)
+                {
+                    continue;
+                }
 
                 skill.Level = self.GetCurrentSkillLevel(i);
             }

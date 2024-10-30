@@ -315,6 +315,17 @@ namespace ET
                 return this._HpBar9Component;
             }
         }
+        public GButton  BackMainCityButton
+        {
+            get
+            {
+                if (this._BackMainCityButton == null)
+                {
+                    this._BackMainCityButton = this.GetParent<UIBaseWindow>().GComponent.GetChild("BackMainCityButton").asButton;
+                }
+                return this._BackMainCityButton;
+            }
+        }
         private FGUIJoyStickLayerComponent _JoyStickLayerComponent = null;
         private GButton _HeroBagButton = null;
         private GList _List = null;
@@ -329,6 +340,7 @@ namespace ET
         private FGUIHPProgressItemCellComponent _HpBar7Component = null;
         private FGUIHPProgressItemCellComponent _HpBar8Component = null;
         private FGUIHPProgressItemCellComponent _HpBar9Component = null;
+        private GButton _BackMainCityButton = null;
         public void ClearBindCache()
         {
             this._JoyStickLayerComponent = null;
@@ -345,6 +357,7 @@ namespace ET
             this._HpBar7Component = null;
             this._HpBar8Component = null;
             this._HpBar9Component = null;
+            this._BackMainCityButton = null;
         }
     }
 }

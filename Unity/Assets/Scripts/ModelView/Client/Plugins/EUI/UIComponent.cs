@@ -24,5 +24,7 @@ namespace ET.Client
         public bool IsPopStackWndStatus                        = false;
 
         public Dictionary<string, WindowID> WindowTypeIdDict = new Dictionary<string, WindowID>();
+
+        public Stack<WindowID> StackWindow = new Stack<WindowID>();
     }
 }

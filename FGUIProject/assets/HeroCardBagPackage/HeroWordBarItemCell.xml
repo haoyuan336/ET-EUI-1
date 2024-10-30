@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="193,40">
+  <displayList>
+    <loader id="n0_jdez" name="IconLoader" xy="0,6" size="29,30" url="ui://9nomxs01k7it2" fill="scale"/>
+    <text id="n1_jdez" name="CurrentValue" xy="29,3" size="100,36" fontSize="26" color="#ffffff" vAlign="middle" autoSize="none" strokeColor="#000000" text="999999"/>
+    <text id="n3_jdez" name="NextAddValue" xy="131,3" size="62,36" fontSize="26" color="#66ff00" vAlign="bottom" vars="true" autoSize="none" strokeColor="#000000" text="+{value=999}"/>
+  </displayList>
+</component>

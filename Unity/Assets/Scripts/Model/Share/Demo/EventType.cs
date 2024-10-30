@@ -38,6 +38,7 @@ namespace ET.Client
 
     public struct CheckGameLoseLogic
     {
+        public Entity Entity;
     }
 
     public struct PlayDamageText
@@ -120,6 +121,22 @@ namespace ET.Client
     //
     //     public List<long> CardIds;
     // }
+
+    public struct HeroLevelUp
+    {
+        public HeroCard HeroCard;
+    }
+
+    public struct PopLayer
+    {
+        
+    }
+    public struct PushLayerById
+    {
+        public WindowID WindowID;
+
+        public ShowWindowData ShowWindowData;
+    }
 
     public struct ShowLayerById
     {

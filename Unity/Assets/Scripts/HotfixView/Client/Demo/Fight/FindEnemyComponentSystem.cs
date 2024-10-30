@@ -16,8 +16,6 @@ namespace ET.Client
             self.AIComponent.EnterStateAction += self.OnEnterStateAction;
 
             self.AIComponent.OutStateAction += self.OnOutStateAction;
-
-            self.GameObject = self.Parent.GetComponent<ObjectComponent>().GameObject;
         }
 
         [EntitySystem]
@@ -29,16 +27,25 @@ namespace ET.Client
                 {
                     if (self.FindAngle % 2 == 0)
                     {
-                        Vector3 forword = Quaternion.Euler(0, self.FindAngle, 0) * Vector3.forward;
+                        // Vector3 forword = Quaternion.Euler(0, self.FindAngle, 0) * Vector3.forward;
 
-                        GameObject gameObject = self.GameObject;
+                        GameObject gameObject = self.Parent.GetComponent<ObjectComponent>().GameObject;
+
+                        if (gameObject == null)
+                        {
+                            return;
+                        }
 
                         // Vector3 startPos = gameObject.transform.position;
-                        Vector3 sourcePos = gameObject.transform.position + gameObject.GetComponent<Collider>().bounds.size.y * 0.5f * Vector3.up;
+                        // Vector3 sourcePos = gameObject.transform.position + gameObject.GetComponent<Collider>().bounds.size.y * 0.5f * Vector3.up;
 
-                        bool isHited = Physics.SphereCast(sourcePos, 1, forword,
-                            out RaycastHit hit, ConstValue.FindEnemyDistance,
-                            self.ColliderLayer);
+                        Vector3 sourcePos = gameObject.transform.position + Vector3.up * 15;
+
+                        // bool isHited = Physics.SphereCast(sourcePos, 1, forword,
+                        //     out RaycastHit hit, ConstValue.FindEnemyDistance,
+                        //     self.ColliderLayer);
+
+                        bool isHited = Physics.SphereCast(sourcePos, 10, Vector3.down, out RaycastHit hit, 20, self.ColliderLayer);
 
                         if (isHited)
                         {
@@ -69,10 +76,21 @@ namespace ET.Client
         public static void OnEnterStateAction(this FindEnemyComponent self, AIState aiState)
         {
             Log.Debug($"find enemy coponent {aiState}");
+
+            if (aiState == AIState.Patrol)
+            {
+                AnimComponent animComponent = self.Parent.GetComponent<AnimComponent>();
+
+                if (animComponent != null)
+                {
+                    animComponent.PlayAnim("idle");
+                }
+            }
         }
 
         public static void OnOutStateAction(this FindEnemyComponent self, AIState aiState)
         {
+            
         }
 
         private static FightManagerComponent GetFightManagerComponent(this FindEnemyComponent self)

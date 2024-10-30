@@ -37,7 +37,7 @@ namespace ET.Client
 
                 float distance = (objectComponent.GameObject.transform.position - self.TrackGameObject.transform.position).magnitude;
 
-                if (distance < 1.5f)
+                if (distance < 2f)
                 {
                     AttackComponent attackComponent = self.Parent.GetComponent<AttackComponent>();
 

@@ -345,3 +345,18 @@ message M2C_UnSetHeroFormation // ILocationResponse
 	int32 Error = 2;
 	string Message = 3;
 }
+
+//ResponseType M2C_UpHeroLevelResponse
+message C2M_UpHeroLevelRequest //ILocationRequest
+{
+	int32 RpcId = 1;
+	int64 HeroId = 2;
+}
+
+message M2C_UpHeroLevelResponse //ILocationResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+	HeroCardInfo HeroCardInfo = 4;
+}
