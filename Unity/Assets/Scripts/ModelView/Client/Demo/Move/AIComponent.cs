@@ -15,10 +15,13 @@ namespace ET.Client
         Track = 6, //跟踪
         Death = 7, // 死亡
         Sleep = 8, //睡眠状态 
+        Rise = 9, //复活
+        FindEnemy = 10, //寻找英雄
+        Transfer = 11, //传送中
     }
 
     [ComponentOf(typeof(Entity))]
-    public class AIComponent : Entity, IAwake
+    public class AIComponent : Entity, IAwake, IDestroy
     {
         public Action<AIState> EnterStateAction;
 

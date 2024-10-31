@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,1334" opaque="false">
+  <displayList>
+    <component id="n2_jdez" name="DiamondItem" src="jdezc" fileName="ItemBarItemCell.xml" xy="306,46" size="167,34">
+      <relation target="" sidePair="top-top"/>
+    </component>
+    <component id="n3_jdez" name="GoldItem" src="jdezc" fileName="ItemBarItemCell.xml" xy="491,46" size="167,34">
+      <relation target="" sidePair="top-top"/>
+    </component>
+    <component id="n4_jdez" name="MeatItem" src="jdezc" fileName="ItemBarItemCell.xml" xy="122,99" size="167,34">
+      <relation target="" sidePair="top-top"/>
+    </component>
+    <component id="n5_jdez" name="WoodItem" src="jdezc" fileName="ItemBarItemCell.xml" xy="309,99" size="167,34">
+      <relation target="" sidePair="top-top"/>
+    </component>
+    <component id="n6_jdez" name="BlueStoneItem" src="jdezc" fileName="ItemBarItemCell.xml" xy="496,99" size="167,34">
+      <relation target="" sidePair="top-top"/>
+    </component>
+    <graph id="n7_jdez" name="n7" xy="30,18" size="74,74" type="rect"/>
+  </displayList>
+</component>

@@ -39,7 +39,7 @@ namespace ET.Client
 
         private static void OnCloseButtonClick(this FGUIHeroCardBagLayerComponent self)
         {
-            EventSystem.Instance.Publish(self.Root(), new CloseLayerById() { WindowID = WindowID.HeroCardBagLayer });
+            EventSystem.Instance.Publish(self.Root(), new PopLayer());
         }
 
         public static async void ShowWindow(this FGUIHeroCardBagLayerComponent self, Entity contextData = null)
@@ -53,16 +53,15 @@ namespace ET.Client
             TimerComponent timerComponent = self.Root().GetComponent<TimerComponent>();
 
             self.View.HeroCardList.numItems = self.HeroCards.Count;
-            
         }
 
         public static void RefreCardList(this FGUIHeroCardBagLayerComponent self)
         {
             self.HeroCards = HeroCardHelper.GetHeroCards(self.Root());
-            
-            self.View.HeroCardList.numItems = self.HeroCards.Count;
 
+            self.View.HeroCardList.numItems = self.HeroCards.Count;
         }
+
         public static void HideWindow(this FGUIHeroCardBagLayerComponent self)
         {
         }

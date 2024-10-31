@@ -2,9 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using ET;
-using UnityEditor.PackageManager;
+
 
 namespace ET.Client
 {
@@ -16,13 +14,13 @@ namespace ET.Client
         {
             EnemyConfig enemyConfig = enemy.Config;
 
-            HeroConfig heroConfig = HeroConfigCategory.Instance.Get(enemyConfig.HeroConfigId);
+            self.HeroConfig = HeroConfigCategory.Instance.Get(enemyConfig.HeroConfigId);
 
             int level = enemyConfig.Level;
 
             int star = enemyConfig.Star;
 
-            Type heroConfigType = heroConfig.GetType();
+            Type heroConfigType = self.HeroConfig.GetType();
 
             List<WordBarConfig> configs = WordBarConfigCategory.Instance.GetAll().Values.ToList();
 
@@ -34,11 +32,11 @@ namespace ET.Client
                 {
                     PropertyInfo info = heroConfigType.GetProperty($"{wordBarType}");
 
-                    int value = Convert.ToInt32(info.GetValue(heroConfig));
+                    int value = Convert.ToInt32(info.GetValue(self.HeroConfig));
 
                     PropertyInfo baseInfo = heroConfigType.GetProperty($"{wordBarType}Grow");
 
-                    int valueGrow = Convert.ToInt32(baseInfo.GetValue(heroConfig));
+                    int valueGrow = Convert.ToInt32(baseInfo.GetValue(self.HeroConfig));
 
                     self.Datas[wordBarType] = HeroCardHelper.GetHeroBaseDataValue(value, valueGrow, level, star);
                 }
@@ -58,16 +56,35 @@ namespace ET.Client
             }
 
             self.CurrentHP = self.GetValueByType(WordBarType.Hp);
+
+            self.InitAIComponent();
+        }
+
+        private static void OnEnterStateAction(this FightDataComponent self, AIState aiState)
+        {
+            Log.Debug($"FightDataComponent OnEnterStateAction {aiState}");
+
+            if (aiState == AIState.Rise)
+            {
+                self.CurrentHP = self.GetValueByType(WordBarType.Hp);
+            }
         }
 
         [EntitySystem]
         public static void Awake(this FightDataComponent self, HeroCard heroCard)
         {
-            Log.Debug($"data count {heroCard.Datas.Count}");
-
             self.Datas = heroCard.Datas;
 
             self.CurrentHP = self.GetValueByType(WordBarType.Hp);
+
+            self.InitAIComponent();
+        }
+
+        private static void InitAIComponent(this FightDataComponent self)
+        {
+            AIComponent aiComponent = self.Parent.GetComponent<AIComponent>();
+
+            aiComponent.EnterStateAction += self.OnEnterStateAction;
         }
 
         public static float GetValueByType(this FightDataComponent self, WordBarType wordBarType)
@@ -103,14 +120,5 @@ namespace ET.Client
                 });
             }
         }
-
-        // public static void SubValue(this FightDataComponent self, WordBarType wordBarType, float damage)
-        // {
-        //     float value = self.GetValueByType(wordBarType);
-        //
-        //     value -= damage;
-        //
-        //     self.Datas[wordBarType.ToString()] = value;
-        // }
     }
 }

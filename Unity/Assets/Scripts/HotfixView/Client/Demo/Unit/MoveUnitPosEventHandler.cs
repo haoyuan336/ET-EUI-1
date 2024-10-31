@@ -32,7 +32,7 @@ namespace ET.Client
                 {
                     AIComponent aiComponent = heroCard.GetComponent<AIComponent>();
 
-                    if (aiComponent.GetCurrentState() == AIState.Death)
+                    if (aiComponent.GetCurrentState() != AIState.Moving)
                     {
                         continue;
                     }

@@ -1,4 +1,5 @@
 using UnityEditor.Rendering.LookDev;
+using WeChatWASM;
 
 namespace ET.Client
 {
@@ -26,6 +27,13 @@ namespace ET.Client
             }
 
             return damage;
+        }
+
+        public static bool GetIsDead(Entity entity)
+        {
+            AIComponent aiComponent = entity.GetComponent<AIComponent>();
+
+            return aiComponent.GetCurrentState() == AIState.Death;
         }
 
         public static bool GetIsDead(FightManagerComponent fightManagerComponent, long entityId)

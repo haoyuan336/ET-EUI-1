@@ -69,6 +69,10 @@ namespace ET
 		public int Level { get; set; }
 		/// <summary>星级</summary>
 		public int Star { get; set; }
+		/// <summary>奖励经验值</summary>
+		public int Exp { get; set; }
+		/// <summary>奖励肉</summary>
+		public int Meat { get; set; }
 
 	}
 }

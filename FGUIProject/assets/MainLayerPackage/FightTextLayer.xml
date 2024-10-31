@@ -13,5 +13,29 @@
     <component id="n12_sdia" name="DamageTextItemCell9" src="sdia8" fileName="DamageTextItemCell.xml" xy="-196,724" pivot="0.5,0.5" anchor="true"/>
     <component id="n13_sdia" name="DamageTextItemCell10" src="sdia8" fileName="DamageTextItemCell.xml" xy="-196,724" pivot="0.5,0.5" anchor="true"/>
     <component id="n14_sdia" name="DamageTextItemCell11" src="sdia8" fileName="DamageTextItemCell.xml" xy="-196,724" pivot="0.5,0.5" anchor="true"/>
+    <component id="n15_jdez" name="AddExpTextItemCell0" src="jdezd" fileName="AddExpTextItemCell.xml" xy="-204,805"/>
+    <component id="n16_jdez" name="AddExpTextItemCell1" src="jdezd" fileName="AddExpTextItemCell.xml" xy="-204,835"/>
+    <component id="n17_jdez" name="AddExpTextItemCell2" src="jdezd" fileName="AddExpTextItemCell.xml" xy="-204,865"/>
+    <component id="n18_jdez" name="AddExpTextItemCell3" src="jdezd" fileName="AddExpTextItemCell.xml" xy="-204,895"/>
+    <component id="n19_jdez" name="AddExpTextItemCell4" src="jdezd" fileName="AddExpTextItemCell.xml" xy="-204,925"/>
+    <component id="n20_jdez" name="AddExpTextItemCell5" src="jdezd" fileName="AddExpTextItemCell.xml" xy="-204,955"/>
+    <component id="n21_jdez" name="AddExpTextItemCell6" src="jdezd" fileName="AddExpTextItemCell.xml" xy="-204,985"/>
+    <component id="n22_jdez" name="AddExpTextItemCell7" src="jdezd" fileName="AddExpTextItemCell.xml" xy="-204,1015"/>
+    <component id="n23_jdez" name="AddExpTextItemCell8" src="jdezd" fileName="AddExpTextItemCell.xml" xy="-204,1045"/>
+    <component id="n24_jdez" name="AddExpTextItemCell9" src="jdezd" fileName="AddExpTextItemCell.xml" xy="-204,1075"/>
+    <component id="n25_jdez" name="AddExpTextItemCell10" src="jdezd" fileName="AddExpTextItemCell.xml" xy="-204,1105"/>
+    <component id="n26_jdez" name="AddExpTextItemCell11" src="jdezd" fileName="AddExpTextItemCell.xml" xy="-204,1135"/>
+    <component id="n27_jdez" name="AddExpTextItemCell12" src="jdezd" fileName="AddExpTextItemCell.xml" xy="-204,1165"/>
+    <component id="n28_jdez" name="AddExpTextItemCell13" src="jdezd" fileName="AddExpTextItemCell.xml" xy="-204,1195"/>
+    <component id="n29_jdez" name="AddMeatTextItemCell0" src="jdezh" fileName="AddMeatTextItemCell.xml" xy="-181,1246"/>
+    <component id="n30_jdez" name="AddMeatTextItemCell1" src="jdezh" fileName="AddMeatTextItemCell.xml" xy="-181,1246"/>
+    <component id="n31_jdez" name="AddMeatTextItemCell2" src="jdezh" fileName="AddMeatTextItemCell.xml" xy="-181,1246"/>
+    <component id="n32_jdez" name="AddMeatTextItemCell3" src="jdezh" fileName="AddMeatTextItemCell.xml" xy="-181,1246"/>
+    <component id="n33_jdez" name="AddMeatTextItemCell4" src="jdezh" fileName="AddMeatTextItemCell.xml" xy="-181,1246"/>
+    <component id="n34_jdez" name="AddMeatTextItemCell5" src="jdezh" fileName="AddMeatTextItemCell.xml" xy="-181,1246"/>
+    <component id="n35_jdez" name="AddMeatTextItemCell6" src="jdezh" fileName="AddMeatTextItemCell.xml" xy="-181,1246"/>
+    <component id="n36_jdez" name="AddMeatTextItemCell7" src="jdezh" fileName="AddMeatTextItemCell.xml" xy="-181,1246"/>
+    <component id="n37_jdez" name="AddMeatTextItemCell8" src="jdezh" fileName="AddMeatTextItemCell.xml" xy="-181,1246"/>
+    <component id="n38_jdez" name="AddMeatTextItemCell9" src="jdezh" fileName="AddMeatTextItemCell.xml" xy="-181,1246"/>
   </displayList>
 </component>

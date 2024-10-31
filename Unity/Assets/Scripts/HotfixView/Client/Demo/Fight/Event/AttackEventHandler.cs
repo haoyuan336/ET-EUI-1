@@ -1,4 +1,3 @@
-using SharpCompress.Common;
 using UnityEngine;
 
 namespace ET.Client
@@ -38,17 +37,9 @@ namespace ET.Client
             //找到目标对象
             AttackComponent objectComponent = skill.Parent.Parent.GetComponent<AttackComponent>();
 
-            GameObject attackObject = objectComponent.AttackObject;
+            Entity targetEntity = objectComponent.TargetEntity;
 
-            string name = attackObject.name;
-
-            long heroId = FightDataHelper.GetIdByGameObjectName(name);
-
-            FightManagerComponent fightManagerComponent = skill.Parent.Parent.GetParent<FightManagerComponent>();
-
-            Entity entity = fightManagerComponent.GetChild<Entity>(heroId);
-
-            FightDataComponent beAttackDataComponent = entity.GetComponent<FightDataComponent>();
+            FightDataComponent beAttackDataComponent = targetEntity.GetComponent<FightDataComponent>();
 
             FightDataComponent fightDataComponent = skill.Parent.Parent.GetComponent<FightDataComponent>();
 
@@ -57,9 +48,19 @@ namespace ET.Client
 
             beAttackDataComponent.SubHP(damage);
 
+            if (beAttackDataComponent.CurrentHP <= 0)
+            {
+                Entity entity = skill.Parent.Parent;
+
+                EventSystem.Instance.Publish(skill.Root(), new KilledEntity()
+                {
+                    AttackEntity = entity, BeAttackEntity = targetEntity
+                });
+            }
+
             EventSystem.Instance.Publish(skill.Root(), new PlayDamageAnim()
             {
-                Entity = entity, SkillConfig = skill.Config, CurrentHP = beAttackDataComponent.CurrentHP, Damage = damage,
+                Entity = targetEntity, SkillConfig = skill.Config, CurrentHP = beAttackDataComponent.CurrentHP, Damage = damage,
                 MaxHP = beAttackDataComponent.GetValueByType(WordBarType.Hp)
             });
         }

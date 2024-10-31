@@ -35,10 +35,14 @@ namespace ET.Client
         DamageTextItemCell = 18,
         GameLoseLayer = 19,
         MoveingLayer = 20,
+        HeadItemBarLayer = 21,
+        ItemBarItemCell = 22,
+        AddExpTextItemCell = 23,
+        AddMeatTextItemCell = 24,
         //----------------------RootPackage---------------------
-        RootLayer = 21,
-        EmptyLayer = 22,
-        SpalshLayer = 23,
+        RootLayer = 25,
+        EmptyLayer = 26,
+        SpalshLayer = 27,
     }
     public class ComponentPackageMap
     {
@@ -89,12 +93,12 @@ namespace ET.Client
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "LoginLayerPackage");
             }
-            for (int j = 13; j < 21; j++)
+            for (int j = 13; j < 25; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "MainLayerPackage");
             }
-            for (int j = 21; j < 24; j++)
+            for (int j = 25; j < 28; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "RootPackage");

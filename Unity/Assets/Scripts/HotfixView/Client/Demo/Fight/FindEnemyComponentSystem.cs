@@ -23,7 +23,7 @@ namespace ET.Client
         {
             if (self.AIComponent != null)
             {
-                if (self.AIComponent.GetCurrentState() == AIState.Patrol)
+                if (self.AIComponent.GetCurrentState() == AIState.Patrol || self.AIComponent.GetCurrentState() == AIState.FindEnemy)
                 {
                     if (self.FindAngle % 2 == 0)
                     {
@@ -53,7 +53,14 @@ namespace ET.Client
 
                             FightManagerComponent fightManagerComponent = self.GetFightManagerComponent();
 
-                            bool isDead = FightDataHelper.GetIsDead(fightManagerComponent, entityId);
+                            Entity entity = fightManagerComponent.GetChild<Entity>(entityId);
+
+                            if (entity == null || entity.IsDisposed)
+                            {
+                                return;
+                            }
+
+                            bool isDead = FightDataHelper.GetIsDead(entity);
 
                             if (isDead)
                             {
@@ -62,7 +69,7 @@ namespace ET.Client
 
                             TrackComponent trackComponent = self.Parent.GetComponent<TrackComponent>();
 
-                            trackComponent.SetTrackObject(hit.transform.gameObject);
+                            trackComponent.SetTrackObject(entity);
 
                             self.AIComponent.EnterAIState(AIState.Track);
                         }
@@ -79,18 +86,17 @@ namespace ET.Client
 
             if (aiState == AIState.Patrol)
             {
-                AnimComponent animComponent = self.Parent.GetComponent<AnimComponent>();
-
-                if (animComponent != null)
-                {
-                    animComponent.PlayAnim("idle");
-                }
+                // AnimComponent animComponent = self.Parent.GetComponent<AnimComponent>();
+                //
+                // if (animComponent != null)
+                // {
+                //     animComponent.PlayAnim("idle");
+                // }
             }
         }
 
         public static void OnOutStateAction(this FindEnemyComponent self, AIState aiState)
         {
-            
         }
 
         private static FightManagerComponent GetFightManagerComponent(this FindEnemyComponent self)

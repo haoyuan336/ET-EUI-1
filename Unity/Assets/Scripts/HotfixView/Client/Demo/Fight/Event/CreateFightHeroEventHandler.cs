@@ -62,7 +62,7 @@ namespace ET.Client
 
             gameObjectComponent.HeroCards.Add(fightHeroCard);
 
-            aiComponent.EnterAIState(AIState.Patrol);
+            aiComponent.EnterAIState(AIState.FindEnemy);
 
             await ETTask.CompletedTask;
         }

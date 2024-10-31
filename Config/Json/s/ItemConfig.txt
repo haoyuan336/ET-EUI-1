@@ -1,0 +1,8 @@
+{"dict": [
+[10001, {"_t":"ItemConfig","_id":10001,"Name":"金币","DefaultCount":1000,"MaxLimited":0,"ItemType":"Gold","ColorType":""}],
+[10002, {"_t":"ItemConfig","_id":10002,"Name":"钻石","DefaultCount":1000,"MaxLimited":0,"ItemType":"Diamond","ColorType":""}],
+[10003, {"_t":"ItemConfig","_id":10003,"Name":"肉","DefaultCount":1000,"MaxLimited":5000,"ItemType":"Meat","ColorType":"yellow"}],
+[10004, {"_t":"ItemConfig","_id":10004,"Name":"木头","DefaultCount":1000,"MaxLimited":5000,"ItemType":"Wood","ColorType":"green"}],
+[10005, {"_t":"ItemConfig","_id":10005,"Name":"篮矿石","DefaultCount":1000,"MaxLimited":5000,"ItemType":"BlueStone","ColorType":"blue"}],
+[10006, {"_t":"ItemConfig","_id":10006,"Name":"红矿石","DefaultCount":1000,"MaxLimited":0,"ItemType":"RedStone","ColorType":""}],
+]}

@@ -22,9 +22,9 @@ namespace ET.Client
             EventSystem.Instance.Publish(root, new SceneChangeStart());
             // 等待CreateMyUnit的消息
             Wait_CreateMyUnit waitCreateMyUnit = await root.GetComponent<ObjectWait>().Wait<Wait_CreateMyUnit>();
-            
+
             M2C_CreateMyUnit m2CCreateMyUnit = waitCreateMyUnit.Message;
-            
+
             Unit unit = UnitFactory.Create(currentScene, m2CCreateMyUnit.Unit);
             unitComponent.Add(unit);
             unitComponent.MyUnit = unit;
@@ -56,6 +56,22 @@ namespace ET.Client
                 HeroCard heroCard = heroCardComponent.AddChildWithId<HeroCard>(info.HeroId);
 
                 heroCard.SetInfo(info);
+            }
+
+            ItemComponent itemComponent = unit.GetComponent<ItemComponent>();
+
+            if (itemComponent == null)
+            {
+                itemComponent = unit.AddComponent<ItemComponent>();
+            }
+
+            for (int i = 0; i < createMyUnit.ItemKeys.Count; i++)
+            {
+                string key = createMyUnit.ItemKeys[i];
+
+                int count = createMyUnit.ItemCounts[i];
+
+                itemComponent.Items[key] = count;
             }
         }
 

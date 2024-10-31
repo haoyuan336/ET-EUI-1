@@ -18,7 +18,7 @@ namespace ET
 
             self.UnitObject = gameObjectComponent.GameObject;
 
-            self.Camera.transform.position = self.UnitObject.transform.position + new Vector3(-6, 10, -6);
+            self.Camera.transform.position = self.UnitObject.transform.position + new Vector3(-8, 14, -8);
         }
 
         [EntitySystem]

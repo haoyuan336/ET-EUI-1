@@ -37,9 +37,24 @@ namespace ET.Client
 
                 await timerComponent.WaitAsync(500);
 
-                AnimComponent animComponent = heroCard.GetComponent<AnimComponent>();
+                AIComponent aiComponent = heroCard.GetComponent<AIComponent>();
 
-                animComponent.PlayAnim("idle", true).Coroutine();
+                Log.Debug($"ai component {aiComponent.GetCurrentState()}");
+                
+                if (aiComponent.GetCurrentState() == AIState.Death)
+                {
+                    aiComponent.EnterAIState(AIState.Rise);
+                }
+                
+
+                HPBarComponent hpBarComponent = heroCard.GetComponent<HPBarComponent>();
+
+                if (hpBarComponent != null)
+                {
+                    hpBarComponent.Dispose();
+                }
+                
+                aiComponent.EnterAIState(AIState.Transfer);
             }
 
             await gameObjectComponent.MoveUnitToMainCity();
@@ -68,7 +83,7 @@ namespace ET.Client
 
                 moveObjectComponent.SetPos(pos);
 
-                aiComponent.EnterAIState(AIState.Patrol);
+                aiComponent.EnterAIState(AIState.FindEnemy);
             }
 
             EventSystem.Instance.Publish(scene, new CloseLayerById() { WindowID = WindowID.MoveingLayer });

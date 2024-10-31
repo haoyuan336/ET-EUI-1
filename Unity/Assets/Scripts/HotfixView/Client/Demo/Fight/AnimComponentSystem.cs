@@ -16,9 +16,13 @@ namespace ET.Client
         [EntitySystem]
         public static void Awake(this AnimComponent self)
         {
-            GameObject gameObject = self.Parent.GetComponent<ObjectComponent>().GameObject;
+            self.PlayAnim("idle");
 
-            GameObject body = gameObject.transform.GetChild(0).gameObject;
+            AIComponent aiComponent = self.Parent.GetComponent<AIComponent>();
+
+            aiComponent.EnterStateAction += self.OnEnterState;
+
+            aiComponent.OutStateAction += self.OutEnterState;
         }
 
         public static void PlayAnim(this AnimComponent self, string animName)
@@ -39,6 +43,28 @@ namespace ET.Client
             objectComponent.SkeletonAnimation.state.Complete += self.OnAnimComplete;
 
             await self.AnimTask.GetAwaiter();
+        }
+
+        private static void OnEnterState(this AnimComponent self, AIState aiState)
+        {
+            if (aiState == AIState.Rise)
+            {
+                self.PlayAnim("idle");
+            }
+
+            if (aiState == AIState.Moving || aiState == AIState.Track)
+            {
+                self.PlayAnim("move");
+            }
+            
+        }
+
+        private static void OutEnterState(this AnimComponent self, AIState aiState)
+        {
+            if (aiState == AIState.Moving)
+            {
+                self.PlayAnim("idle");
+            }
         }
 
         public static void OnAnimComplete(this AnimComponent self, TrackEntry trackEntry)

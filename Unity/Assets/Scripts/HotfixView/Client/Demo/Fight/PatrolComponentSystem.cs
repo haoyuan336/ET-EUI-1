@@ -7,13 +7,11 @@ namespace ET.Client
     public static partial class PatrolComponentSystem
     {
         [EntitySystem]
-        public static void Awake(this PatrolComponent self, Vector3 initPos, int colliderLayer)
+        public static void Awake(this PatrolComponent self, Vector3 initPos)
         {
             self.InitPos = initPos;
 
             self.TargetPos = self.InitPos;
-
-            self.ColliderLayer = colliderLayer;
 
             self.AIComponent = self.Parent.GetComponent<AIComponent>();
 
@@ -29,6 +27,12 @@ namespace ET.Client
             {
                 ObjectComponent objectComponent = self.Parent.GetComponent<ObjectComponent>();
 
+                if (objectComponent.GameObject == null)
+                {
+                    
+                    return;
+                }
+
                 Vector3 currentPos = objectComponent.GameObject.transform.position;
 
                 float distance = (self.TargetPos - currentPos).magnitude;
@@ -38,44 +42,6 @@ namespace ET.Client
                     self.MoveToRandomPos();
                 }
 
-                // if (self.FindAngle % 5 == 0)
-                // {
-                //     Vector3 forword = Quaternion.Euler(0, self.FindAngle, 0) * Vector3.forward;
-                //
-                //     GameObject gameObject = objectComponent.GameObject;
-                //
-                //     // Vector3 startPos = gameObject.transform.position;
-                //     Vector3 sourcePos = gameObject.transform.position + gameObject.GetComponent<Collider>().bounds.size.y * 0.5f * Vector3.up;
-                //
-                //     bool isHited = Physics.SphereCast(sourcePos, 3, forword,
-                //         out RaycastHit hit, ConstValue.FindEnemyDistance,
-                //         self.ColliderLayer);
-                //
-                //     self.FindAngle %= 360;
-                //
-                //     if (isHited)
-                //     {
-                //         long entityId = FightDataHelper.GetIdByGameObjectName(hit.transform.gameObject.name);
-                //
-                //         FightManagerComponent fightManagerComponent = self.GetFightManagerComponent(self.Parent);
-                //
-                //         bool isDead = FightDataHelper.GetIsDead(fightManagerComponent, entityId);
-                //
-                //         if (isDead)
-                //         {
-                //             return;
-                //         }
-                //
-                //         Log.Debug($"hit {hit.transform.name}");
-                //         TrackComponent trackComponent = self.Parent.GetComponent<TrackComponent>();
-                //
-                //         trackComponent.SetTrackObject(hit.transform.gameObject);
-                //
-                //         self.AIComponent.EnterAIState(AIState.Track);
-                //     }
-                // }
-
-                self.FindAngle++;
             }
         }
 
@@ -88,26 +54,20 @@ namespace ET.Client
 
         private static void OnEnterStateAction(this PatrolComponent self, AIState aiState)
         {
-            Log.Debug($"on enter stata action {aiState}");
             if (aiState == AIState.Patrol)
             {
-                AnimComponent animComponent = self.Parent.GetComponent<AnimComponent>();
-
-                animComponent.PlayAnim("move", true).Coroutine();
-
                 self.MoveToRandomPos();
             }
         }
 
         private static void OnOutStateAction(this PatrolComponent self, AIState outState)
         {
-            Log.Debug($"on out state action {outState}");
-            if (outState == AIState.Patrol)
-            {
-                AnimComponent animComponent = self.Parent.GetComponent<AnimComponent>();
-
-                animComponent.PlayAnim("idle", true).Coroutine();
-            }
+            // if (outState == AIState.Patrol)
+            // {
+            //     AnimComponent animComponent = self.Parent.GetComponent<AnimComponent>();
+            //
+            //     animComponent.PlayAnim("idle", true).Coroutine();
+            // }
         }
 
         private static void MoveToRandomPos(this PatrolComponent self)
@@ -116,8 +76,6 @@ namespace ET.Client
                     (4 + RandomGenerator.RandFloat01() * 4) + self.InitPos;
 
             MoveObjectComponent moveComponent = self.Parent.GetComponent<MoveObjectComponent>();
-
-            Log.Debug($"move component {moveComponent == null}");
 
             moveComponent.Move(self.TargetPos);
         }

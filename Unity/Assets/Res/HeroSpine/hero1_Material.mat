@@ -33,7 +33,7 @@ Material:
     - _OutlineSmoothness: 1
     - _OutlineWidth: 3
     - _StencilComp: 8
-    - _StencilRef: 1
+    - _StencilRef: 0
     - _StraightAlphaInput: 0
     - _ThresholdEnd: 0.25
     - _Use8Neighbourhood: 1

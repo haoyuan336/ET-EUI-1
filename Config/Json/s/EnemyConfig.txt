@@ -1,5 +1,5 @@
 {"dict": [
-[10001, {"_t":"EnemyConfig","_id":10001,"Name":"蘑菇","HeroConfigId":1005,"Level":1,"Star":1}],
-[10002, {"_t":"EnemyConfig","_id":10002,"Name":"兔子","HeroConfigId":1006,"Level":1,"Star":1}],
-[10003, {"_t":"EnemyConfig","_id":10003,"Name":"鸭子","HeroConfigId":1007,"Level":1,"Star":1}],
+[10001, {"_t":"EnemyConfig","_id":10001,"Name":"蘑菇","HeroConfigId":1005,"Level":1,"Star":1,"Exp":1,"Meat":1}],
+[10002, {"_t":"EnemyConfig","_id":10002,"Name":"兔子","HeroConfigId":1006,"Level":1,"Star":1,"Exp":2,"Meat":2}],
+[10003, {"_t":"EnemyConfig","_id":10003,"Name":"鸭子","HeroConfigId":1007,"Level":1,"Star":1,"Exp":3,"Meat":3}],
 ]}

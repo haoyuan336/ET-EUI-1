@@ -16,7 +16,6 @@ namespace ET.Client
 
                 FGUIMainLayerComponent mainLayerComponent = uiComponent.GetDlgLogic<FGUIMainLayerComponent>();
 
-                Log.Debug($"mainlayer component = {mainLayerComponent == null}");
                 if (mainLayerComponent != null)
                 {
                     mainLayerComponent.ReceiveHPBar(self.CellComponent);
@@ -24,6 +23,10 @@ namespace ET.Client
                     self.CellComponent = null;
                 }
             }
+
+            AIComponent aiComponent = self.Parent.GetComponent<AIComponent>();
+
+            aiComponent.EnterStateAction -= self.OnStateEnter;
         }
 
         [EntitySystem]
@@ -37,8 +40,6 @@ namespace ET.Client
 
             self.CellComponent = mainLayerComponent.GetOneHPBar();
 
-            Log.Debug($"awake {self.CellComponent == null}");
-
             if (self.CellComponent == null)
             {
                 self.Dispose();
@@ -46,8 +47,12 @@ namespace ET.Client
                 return;
             }
 
+            bool isSampCamp = self.Parent is HeroCard;
+            
             self.ColorState = self.CellComponent.View.Progress.GetController("ColorState");
 
+            self.ColorState.selectedIndex = isSampCamp ? 0 : 1;
+            
             AIComponent aiComponent = self.Parent.GetComponent<AIComponent>();
 
             aiComponent.EnterStateAction += self.OnStateEnter;
@@ -67,8 +72,6 @@ namespace ET.Client
 
         private static void OnStateEnter(this HPBarComponent self, AIState aiState)
         {
-            Log.Debug($"HPBarComponent {aiState}");
-            
             if (aiState == AIState.Death)
             {
                 self.Dispose();
@@ -99,8 +102,7 @@ namespace ET.Client
 
         public static void SetBarValue(this HPBarComponent self, float currentValue, float maxValue)
         {
-            Log.Debug($"set bar value {currentValue} {maxValue} {self.OutTime}, {TimeInfo.Instance.ClientNow()}");
-            if (self.CellComponent != null)
+            if (self.CellComponent != null) 
             {
                 self.CellComponent.View.Progress.min = 0;
 
@@ -110,7 +112,6 @@ namespace ET.Client
 
                 self.OutTime = TimeInfo.Instance.ClientNow() + 5000;
 
-                self.ColorState.selectedIndex = currentValue >= maxValue / 2.0f ? 0 : 1;
             }
             else
             {

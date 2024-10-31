@@ -14,7 +14,9 @@ namespace ET.Client
 
         public GameObject Body;
 
-        public Vector3 InitPos;
+        // public Vector3 InitPos;
+
+        public Vector3 LastPos;
 
         public SkeletonAnimation SkeletonAnimation;
     }

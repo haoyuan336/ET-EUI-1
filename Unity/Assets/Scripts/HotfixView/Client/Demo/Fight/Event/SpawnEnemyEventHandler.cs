@@ -48,7 +48,7 @@ namespace ET.Client
             //
             TimerComponent timerComponent = scene.Root().GetComponent<TimerComponent>();
             //
-            enemy.AddComponent<PatrolComponent, Vector3, int>(endPos, layer);
+            enemy.AddComponent<PatrolComponent, Vector3>(endPos);
             //
             enemy.AddComponent<TrackComponent>();
             //
@@ -65,8 +65,6 @@ namespace ET.Client
             enemy.AddComponent<MoveObjectComponent>();
             //
             enemy.AddComponent<FindEnemyComponent, int>(layer);
-            //
-            await timerComponent.WaitAsync(1000);
             //
             aiComponent.EnterAIState(AIState.Patrol);
 

@@ -14,8 +14,6 @@ namespace ET.Client
 
             gameObjectComponent.EndMove();
 
-            // FightManagerComponent fightManagerComponent = unit.GetComponent<FightManagerComponent>();
-
             List<HeroCard> remnoveCard = new List<HeroCard>();
 
             foreach (var heroCard in gameObjectComponent.HeroCards)
@@ -26,18 +24,12 @@ namespace ET.Client
 
                     if (aiComponent != null && !aiComponent.IsDisposed)
                     {
-                        if (aiComponent.GetCurrentState() == AIState.Death)
+                        if (aiComponent.GetCurrentState() != AIState.Moving)
                         {
                             continue;
                         }
 
-                        // aiComponent.EnterAIState(AIState.Patrol);
-
                         aiComponent.PopAIState();
-
-                        AnimComponent animComponent = heroCard.GetComponent<AnimComponent>();
-
-                        animComponent.PlayAnim("idle", true).Coroutine();
                     }
                 }
                 else

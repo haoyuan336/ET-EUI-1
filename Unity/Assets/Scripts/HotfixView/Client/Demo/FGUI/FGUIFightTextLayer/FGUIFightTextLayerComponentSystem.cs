@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using FairyGUI;
+using UnityEditor.Media;
 using UnityEngine;
 
 namespace ET.Client
@@ -16,7 +17,11 @@ namespace ET.Client
         {
             Type type = self.View.GetType();
 
-            List<string> typeNames = new List<string>() { typeof(FGUIDamageTextItemCellComponent).Name };
+            List<string> typeNames = new List<string>()
+            {
+                typeof(FGUIDamageTextItemCellComponent).Name, typeof(FGUIAddExpTextItemCellComponent).Name,
+                typeof(FGUIAddMeatTextItemCellComponent).Name
+            };
 
             for (int i = 0; i < 50; i++)
             {
@@ -56,12 +61,12 @@ namespace ET.Client
         {
             string typeName = typeof(T).Name;
 
-            Log.Debug($"type name {typeName}");
-
-            foreach (var kv in self.TextItemCellComponents)
-            {
-                Log.Debug($"kv {kv.Key} {kv.Value.Count}");
-            }
+            // Log.Debug($"type name {typeName}");
+            //
+            // foreach (var kv in self.TextItemCellComponents)
+            // {
+            //     Log.Debug($"kv {kv.Key} {kv.Value.Count}");
+            // }
 
             if (self.TextItemCellComponents.ContainsKey(typeName))
             {
@@ -100,11 +105,57 @@ namespace ET.Client
         {
         }
 
+        public static async void PlayAddMeatText(this FGUIFightTextLayerComponent self, Vector3 startPos, string text)
+        {
+            FGUIAddMeatTextItemCellComponent addMeatTextItemCellComponent = self.GetPoolObjectByType<FGUIAddMeatTextItemCellComponent>();
+
+            if (addMeatTextItemCellComponent == null)
+            {
+                return;
+            }
+
+            Vector2 pos = self.ConvertToPos(startPos);
+
+            addMeatTextItemCellComponent.GetParent<UIBaseWindow>().GComponent.position = pos;
+
+            addMeatTextItemCellComponent.View.Label.text = text.ToString();
+
+            addMeatTextItemCellComponent.View.ShowAnim.Play();
+
+            await self.Root().GetComponent<TimerComponent>().WaitAsync(1000);
+
+            self.ReceiveObjectToPool(addMeatTextItemCellComponent);
+        }
+
+        public static async void PlayAddExpText(this FGUIFightTextLayerComponent self, Vector3 startPos, string text)
+        {
+            Log.Debug($"play add exp text {text}");
+            FGUIAddExpTextItemCellComponent addExpTextItemCellComponent = self.GetPoolObjectByType<FGUIAddExpTextItemCellComponent>();
+
+            if (addExpTextItemCellComponent == null)
+            {
+                Log.Debug($"add exp text item cell is null");
+
+                return;
+            }
+
+            Vector2 pos = self.ConvertToPos(startPos);
+
+            addExpTextItemCellComponent.GetParent<UIBaseWindow>().GComponent.position = pos;
+
+            addExpTextItemCellComponent.View.Label.SetVar("Value", text).FlushVars();
+
+            addExpTextItemCellComponent.View.ShowAnim.Play();
+
+            await self.Root().GetComponent<TimerComponent>().WaitAsync(1000);
+
+            self.ReceiveObjectToPool(addExpTextItemCellComponent);
+        }
+
         public static async void PlayDamageText(this FGUIFightTextLayerComponent self, Vector3 startPos, string text)
         {
             FGUIDamageTextItemCellComponent damageTextItemCellComponent = self.GetPoolObjectByType<FGUIDamageTextItemCellComponent>();
 
-            Log.Debug($"play damage text {damageTextItemCellComponent == null}");
             if (damageTextItemCellComponent == null)
             {
                 return;
@@ -113,7 +164,7 @@ namespace ET.Client
             Vector2 pos = self.ConvertToPos(startPos);
 
             damageTextItemCellComponent.GetParent<UIBaseWindow>().GComponent.position = pos;
-            
+
             damageTextItemCellComponent.View.Label.text = text;
 
             damageTextItemCellComponent.View.ShowAnim.Play();
@@ -121,8 +172,6 @@ namespace ET.Client
             await self.Root().GetComponent<TimerComponent>().WaitAsync(1000);
 
             self.ReceiveObjectToPool(damageTextItemCellComponent);
-
-            Log.Debug("anim play over");
         }
 
         public static Vector2 ConvertToPos(this FGUIFightTextLayerComponent self, Vector3 startPos)

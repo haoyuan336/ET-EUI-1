@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="50,10" extention="ProgressBar">
+  <controller name="ColorState" pages="0,yellow,1,green,2,blue" selected="1"/>
+  <displayList>
+    <graph id="n1_jdez" name="bar" xy="0,0" size="50,10" type="rect" lineSize="0" fillColor="#ff6e9f4e">
+      <gearColor controller="ColorState" pages="0,1,2" values="#bdbd45|#6e9f4e|#5dacac"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+  </displayList>
+  <ProgressBar/>
+</component>

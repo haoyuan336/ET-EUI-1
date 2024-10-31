@@ -73,6 +73,11 @@ message M2C_CreateMyUnit // IMessage
 	repeated HeroCardInfo HeroCardInfos = 2;
 
 	repeated TroopInfo TroopInfos = 3;
+
+	repeated string ItemKeys = 4;
+
+	repeated int32 ItemCounts = 5;
+
 }
 
 message M2C_StartSceneChange // IMessage
@@ -359,4 +364,21 @@ message M2C_UpHeroLevelResponse //ILocationResponse
 	int32 Error = 2;
 	string Message = 3;
 	HeroCardInfo HeroCardInfo = 4;
+}
+
+//ResponseType M2C_AddItemCountResponse
+message C2M_AddItemCountRequest //ILocationRequest
+{
+	int32 RpcId = 1;
+	int32 ItemConfigId = 2;
+	int32 ItemCount = 3;
+}
+
+message M2C_AddItemCountResponse //ILocationResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+	int32 ItemCount = 4;
+	
 }

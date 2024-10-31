@@ -319,6 +319,12 @@ namespace ET
         [MemoryPackOrder(2)]
         public List<TroopInfo> TroopInfos { get; set; } = new();
 
+        [MemoryPackOrder(3)]
+        public List<string> ItemKeys { get; set; } = new();
+
+        [MemoryPackOrder(4)]
+        public List<int> ItemCounts { get; set; } = new();
+
         public override void Dispose()
         {
             if (!this.IsFromPool)
@@ -329,6 +335,8 @@ namespace ET
             this.Unit = default;
             this.HeroCardInfos.Clear();
             this.TroopInfos.Clear();
+            this.ItemKeys.Clear();
+            this.ItemCounts.Clear();
 
             ObjectPool.Instance.Recycle(this);
         }
@@ -1592,6 +1600,77 @@ namespace ET
         }
     }
 
+    [MemoryPackable]
+    [Message(OuterMessage.C2M_AddItemCountRequest)]
+    [ResponseType(nameof(M2C_AddItemCountResponse))]
+    public partial class C2M_AddItemCountRequest : MessageObject, ILocationRequest
+    {
+        public static C2M_AddItemCountRequest Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(C2M_AddItemCountRequest), isFromPool) as C2M_AddItemCountRequest;
+        }
+
+        [MemoryPackOrder(0)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public int ItemConfigId { get; set; }
+
+        [MemoryPackOrder(2)]
+        public int ItemCount { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.ItemConfigId = default;
+            this.ItemCount = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.M2C_AddItemCountResponse)]
+    public partial class M2C_AddItemCountResponse : MessageObject, ILocationResponse
+    {
+        public static M2C_AddItemCountResponse Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(M2C_AddItemCountResponse), isFromPool) as M2C_AddItemCountResponse;
+        }
+
+        [MemoryPackOrder(0)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(2)]
+        public string Message { get; set; }
+
+        [MemoryPackOrder(3)]
+        public int ItemCount { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+            this.ItemCount = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
     public static class OuterMessage
     {
         public const ushort HttpGetRouterResponse = 10002;
@@ -1642,5 +1721,7 @@ namespace ET
         public const ushort M2C_UnSetHeroFormation = 10047;
         public const ushort C2M_UpHeroLevelRequest = 10048;
         public const ushort M2C_UpHeroLevelResponse = 10049;
+        public const ushort C2M_AddItemCountRequest = 10050;
+        public const ushort M2C_AddItemCountResponse = 10051;
     }
 }

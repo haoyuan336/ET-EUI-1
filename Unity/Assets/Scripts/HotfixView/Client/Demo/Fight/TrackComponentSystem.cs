@@ -6,10 +6,9 @@ namespace ET.Client
     [ComponentOf(typeof(TrackComponent))]
     public static partial class TrackComponentSystem
     {
-        public static void SetTrackObject(this TrackComponent self, GameObject targetObject)
+        [EntitySystem]
+        public static void Awake(this TrackComponent self)
         {
-            self.TrackGameObject = targetObject;
-
             self.AIComponent = self.Parent.GetComponent<AIComponent>();
 
             self.AIComponent.EnterStateAction += self.OnEnterStateAction;
@@ -17,12 +16,17 @@ namespace ET.Client
             self.AIComponent.OutStateAction += self.OnOutStateAction;
         }
 
+        public static void SetTrackObject(this TrackComponent self, Entity targetEntity)
+        {
+            self.TargetEntity = targetEntity;
+        }
+
         [EntitySystem]
         public static void Update(this TrackComponent self)
         {
             if (self.AIComponent != null && self.AIComponent.GetCurrentState() == AIState.Track)
             {
-                if (self.TrackGameObject == null)
+                if (self.TargetEntity == null)
                 {
                     self.AIComponent.EnterAIState(AIState.Patrol);
 
@@ -31,47 +35,44 @@ namespace ET.Client
 
                 MoveObjectComponent moveObjectComponent = self.Parent.GetComponent<MoveObjectComponent>();
 
-                moveObjectComponent.Move(self.TrackGameObject.transform.position);
+                GameObject gameObject = self.TargetEntity.GetComponent<ObjectComponent>().GameObject;
+
+                if (gameObject == null)
+                {
+                    self.AIComponent.EnterAIState(AIState.Patrol);
+
+                    return;
+                }
+
+                moveObjectComponent.Move(gameObject.transform.position);
 
                 ObjectComponent objectComponent = self.Parent.GetComponent<ObjectComponent>();
 
-                float distance = (objectComponent.GameObject.transform.position - self.TrackGameObject.transform.position).magnitude;
+                float distance = (objectComponent.GameObject.transform.position - gameObject.transform.position).magnitude;
 
                 if (distance < 2f)
                 {
                     AttackComponent attackComponent = self.Parent.GetComponent<AttackComponent>();
 
-                    attackComponent.SetAttackTarget(self.TrackGameObject);
+                    attackComponent.SetAttackTarget(self.TargetEntity);
 
                     self.AIComponent.EnterAIState(AIState.Attacking);
                 }
 
-                if (distance > ConstValue.FindEnemyDistance)
+                if (distance > ConstValue.FindEnemyDistance + 1)
                 {
-                    self.TrackGameObject = null;
+                    self.TargetEntity = null;
                 }
             }
         }
 
         public static void OnEnterStateAction(this TrackComponent self, AIState aiState)
         {
-            if (aiState == AIState.Track)
-            {
-                AnimComponent animComponent = self.Parent.GetComponent<AnimComponent>();
-
-                animComponent.PlayAnim("move", true).Coroutine();
-            }
         }
 
         public static void OnOutStateAction(this TrackComponent self, AIState aiState)
         {
-            Log.Debug($"out state action {aiState}");
-            if (aiState == AIState.Track)
-            {
-                AnimComponent animComponent = self.Parent.GetComponent<AnimComponent>();
-
-                animComponent.PlayAnim("idle", true).Coroutine();
-            }
+            
         }
     }
 }

@@ -3,6 +3,15 @@ namespace ET.Client
     [EntitySystemOf(typeof(AIComponent))]
     public static partial class AIComponentSystem
     {
+        public static void Destroy(this AIComponent self)
+        {
+            self.EnterStateAction = null;
+
+            self.OutStateAction = null;
+
+            self.StateStack = null;
+        }
+
         [EntitySystem]
         public static void Awake(this AIComponent self)
         {
@@ -11,8 +20,6 @@ namespace ET.Client
 
         public static void EnterAIState(this AIComponent self, AIState aiState)
         {
-            Log.Debug($"enter ai state  {self.Id},{aiState} {self.GetCurrentState()}");
-
             if (self.OutStateAction != null)
             {
                 self.OutStateAction.Invoke(self.GetCurrentState());
@@ -38,13 +45,9 @@ namespace ET.Client
 
         public static void PopAIState(this AIComponent self)
         {
-            Log.Debug($"out ai state {self.StateStack.Count}");
-
             if (self.StateStack.Count > 1)
             {
                 AIState oldState = self.StateStack.Pop();
-
-                Log.Debug($"old state {oldState}");
 
                 AIState state = self.StateStack.Peek();
 

@@ -63,6 +63,11 @@ namespace ET
         public const string DamageTextItemCell = "ui://7sxmdg4qsdia8";
         public const string GameLoseLayer = "ui://7sxmdg4qsc409";
         public const string MoveingLayer = "ui://7sxmdg4qsc40a";
+        public const string HeadItemBarLayer = "ui://7sxmdg4qjdezb";
+        public const string ItemBarItemCell = "ui://7sxmdg4qjdezc";
+        public const string AddExpTextItemCell = "ui://7sxmdg4qjdezd";
+        public const string ItemBarProgress = "ui://7sxmdg4qjdezg";
+        public const string AddMeatTextItemCell = "ui://7sxmdg4qjdezh";
         //---------------RootPackage---------------
         public const string RootLayer = "ui://9nomxs01i2d80";
         public const string EmptyLayer = "ui://9nomxs01i2d81";

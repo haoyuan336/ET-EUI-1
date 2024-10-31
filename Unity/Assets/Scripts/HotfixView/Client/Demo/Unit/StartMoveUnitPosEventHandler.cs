@@ -23,15 +23,14 @@ namespace ET.Client
                 {
                     AIComponent aiComponent = heroCard.GetComponent<AIComponent>();
 
-                    if (aiComponent.GetCurrentState() == AIState.Death)
+                    AIState state = aiComponent.GetCurrentState();
+
+                    if (state == AIState.Death || state == AIState.Transfer)
                     {
                         continue;
                     }
+
                     aiComponent.EnterAIState(AIState.Moving);
-
-                    AnimComponent animComponent = heroCard.GetComponent<AnimComponent>();
-
-                    animComponent.PlayAnim("move", true).Coroutine();
                 }
             }
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="215,34">
+  <displayList>
+    <graph id="n1_jdez" name="n1" xy="0,0" size="215,34" type="rect" lineSize="0" fillColor="#99000000">
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <component id="n6_jdez" name="Progress" src="jdezg" fileName="ItemBarProgress.xml" xy="0,0" size="215,34">
+      <relation target="" sidePair="width-width,height-height"/>
+      <ProgressBar max="100"/>
+    </component>
+    <text id="n2_jdez" name="Title" xy="2,3" size="45,29" fontSize="20" color="#ffffff" bold="true" strokeColor="#000000" text="钻石"/>
+    <text id="n4_jdez" name="Value" xy="47,-1" size="160,36" fontSize="26" color="#ffffff" align="right" vAlign="middle" autoSize="none" bold="true" strokeColor="#000000" text="999999">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+    <component id="n5_jdez" name="ClickButton" src="jh1l3e" fileName="AButton.xml" pkg="9nomxs01" xy="-1,-2" size="47,39">
+      <relation target="" sidePair="left-left"/>
+    </component>
+  </displayList>
+</component>

@@ -65,8 +65,13 @@ namespace ET.Server
 
                 m2CCreateUnits.TroopInfos = this.GetTroopInfos(unit);
 
-                MapMessageHelper.SendToClient(unit, m2CCreateUnits);
+                (List<string> itemKeys, List<int> itemCounts) = this.GetItemsInfo(unit);
 
+                m2CCreateUnits.ItemKeys = itemKeys;
+
+                m2CCreateUnits.ItemCounts = itemCounts;
+
+                MapMessageHelper.SendToClient(unit, m2CCreateUnits);
                 // 加入aoi
                 unit.AddComponent<AOIEntity, int, float3>(9 * 1000, unit.Position);
 
@@ -106,7 +111,7 @@ namespace ET.Server
             HeroCardComponent heroCardComponent = unit.GetComponent<HeroCardComponent>();
 
             Log.Debug($"hero card component is null {heroCardComponent == null}");
-            
+
             if (heroCardComponent == null)
             {
                 heroCardComponent = unit.AddComponent<HeroCardComponent>();
@@ -122,6 +127,18 @@ namespace ET.Server
             }
 
             return heroCardInfos;
+        }
+
+        private (List<String>, List<int>) GetItemsInfo(Unit unit)
+        {
+            ItemComponent itemComponent = unit.GetComponent<ItemComponent>();
+
+            if (itemComponent == null)
+            {
+                itemComponent = unit.AddComponent<ItemComponent>();
+            }
+
+            return itemComponent.GetItemsInfo();
         }
     }
 }

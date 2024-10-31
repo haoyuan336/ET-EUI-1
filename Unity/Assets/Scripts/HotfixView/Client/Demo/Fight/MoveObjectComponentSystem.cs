@@ -47,6 +47,11 @@ namespace ET.Client
 
             NavMeshAgent navMeshAgent = self.Parent.GetComponent<ObjectComponent>().NavMeshAgent;
 
+            if (navMeshAgent == null)
+            {
+                return;
+            }
+
             navMeshAgent.SetDestination(targetPos);
 
             Vector3 direction = self.TargetPos - navMeshAgent.transform.position;
@@ -72,15 +77,24 @@ namespace ET.Client
         [EntitySystem]
         public static void Update(this MoveObjectComponent self)
         {
-            // if (self.Body != null)
-            // {
-            //     self.Body.rotation = Camera.main.transform.rotation;
-            // }
+     
         }
 
         private static void MoveEnd(this MoveObjectComponent self)
         {
+            ObjectComponent objectComponent = self.Parent.GetComponent<ObjectComponent>();
+
+            if (objectComponent == null || objectComponent.IsDisposed)
+            {
+                return;
+            }
+
             NavMeshAgent navMeshAgent = self.Parent.GetComponent<ObjectComponent>().NavMeshAgent;
+
+            if (navMeshAgent == null)
+            {
+                return;
+            }
 
             navMeshAgent.SetDestination(self.Parent.GetComponent<ObjectComponent>().GameObject.transform.position);
         }

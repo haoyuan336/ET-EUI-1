@@ -24,27 +24,29 @@ namespace ET.Client
         {
             self.Prefab = prefab;
 
-            self.InitPos = position;
-
             self.CreateObject();
+
+            self.LastPos = position;
+
+            self.GameObject.transform.position = position;
 
             AIComponent aiComponent = self.Parent.GetComponent<AIComponent>();
 
             aiComponent.EnterStateAction += self.OnEnterState;
         }
 
-        private static void CreateObject(this ObjectComponent self)
+        private static bool CreateObject(this ObjectComponent self)
         {
             if (self.GameObject != null)
             {
-                return;
+                return false;
             }
 
             GameObject gameObject = UnityEngine.Object.Instantiate(self.Prefab);
 
             self.GameObject = gameObject;
 
-            self.GameObject.transform.position = self.InitPos;
+            // self.GameObject.transform.position = self.InitPos;
 
             self.GameObject.name = "hero" + self.Parent.Id;
 
@@ -55,6 +57,8 @@ namespace ET.Client
             self.Body.transform.rotation = Camera.main.transform.rotation;
 
             self.SkeletonAnimation = self.Body.GetComponent<SkeletonAnimation>();
+
+            return true;
         }
 
         [EntitySystem]
@@ -88,12 +92,26 @@ namespace ET.Client
 
         public static void MakeRunning(this ObjectComponent self)
         {
-            self.CreateObject();
+            bool isNew = self.CreateObject();
+
+            if (isNew)
+            {
+                self.GameObject.transform.position = self.LastPos;
+            }
+
+            AnimComponent animComponent = self.Parent.GetComponent<AnimComponent>();
+
+            animComponent.PlayAnim("move");
         }
 
         public static void MakeSleep(this ObjectComponent self)
         {
-            GameObject.Destroy(self.GameObject);
+            if (self.GameObject != null)
+            {
+                self.LastPos = self.GameObject.transform.position;
+
+                GameObject.Destroy(self.GameObject);
+            }
         }
     }
 }

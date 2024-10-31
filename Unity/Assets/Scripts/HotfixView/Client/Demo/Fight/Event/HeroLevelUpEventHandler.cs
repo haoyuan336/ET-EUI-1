@@ -1,3 +1,5 @@
+using UnityEditor.UI;
+
 namespace ET.Client
 {
     [Event(SceneType.Demo)]
@@ -18,6 +20,11 @@ namespace ET.Client
             FightDataComponent fightDataComponent = fightCard.GetComponent<FightDataComponent>();
 
             fightDataComponent.Datas = fightCard.Datas;
+
+            foreach (var kv in fightDataComponent.Datas)
+            {
+                Log.Debug($"kv {kv.Key}, {kv.Value}");
+            }
 
             SkillComponent skillComponent = fightCard.GetComponent<SkillComponent>();
 

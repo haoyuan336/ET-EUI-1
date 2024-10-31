@@ -24,7 +24,7 @@ namespace ET.Client
 
             colliderAction.OnTriggerExitAction = self.OnTriggerExit;
 
-            self.EnterState(EnemySpawnState.Running);
+            self.EnterState(EnemySpawnState.Sleep);
         }
 
         public static void EnterState(this EnemySpawnPos self, EnemySpawnState state)

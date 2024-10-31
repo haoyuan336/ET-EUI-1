@@ -25,13 +25,31 @@ namespace ET.Client
                 {
                     ObjectComponent objectComponent = self.Parent.GetComponent<ObjectComponent>();
 
-                    float distance = (objectComponent.GameObject.transform.position - self.AttackObject.transform.position).magnitude;
+                    if (self.TargetEntity == null || self.TargetEntity.IsDisposed)
+                    {
+                        self.AIComponent.EnterAIState(AIState.Patrol);
+
+                        return;
+                    }
+
+                    AIState targetState = self.TargetEntity.GetComponent<AIComponent>().GetCurrentState();
+
+                    if (targetState == AIState.Sleep || targetState == AIState.Death)
+                    {
+                        self.AIComponent.EnterAIState(AIState.Patrol);
+
+                        return;
+                    }
+
+                    GameObject gameObject = self.TargetEntity.GetComponent<ObjectComponent>().GameObject;
+
+                    float distance = (objectComponent.GameObject.transform.position - gameObject.transform.position).magnitude;
 
                     if (distance > 2f)
                     {
                         TrackComponent trackComponent = self.Parent.GetComponent<TrackComponent>();
 
-                        trackComponent.SetTrackObject(self.AttackObject);
+                        trackComponent.SetTrackObject(self.TargetEntity);
 
                         self.AIComponent.EnterAIState(AIState.Track);
 
@@ -51,7 +69,7 @@ namespace ET.Client
 
                     FightManagerComponent fightManagerComponent = self.Parent.GetParent<FightManagerComponent>();
 
-                    long entityId = FightDataHelper.GetIdByGameObjectName(self.AttackObject.name);
+                    long entityId = self.TargetEntity.Id;
 
                     bool isDead = FightDataHelper.GetIsDead(fightManagerComponent, entityId);
 
@@ -59,7 +77,7 @@ namespace ET.Client
                     {
                         TrackComponent trackComponent = self.Parent.GetComponent<TrackComponent>();
 
-                        trackComponent.SetTrackObject(self.AttackObject);
+                        trackComponent.SetTrackObject(self.TargetEntity);
 
                         self.AIComponent.EnterAIState(AIState.Patrol);
                     }
@@ -67,27 +85,17 @@ namespace ET.Client
             }
         }
 
-        public static void SetAttackTarget(this AttackComponent self, GameObject targetObject)
+        public static void SetAttackTarget(this AttackComponent self, Entity entity)
         {
-            self.AttackObject = targetObject;
+            self.TargetEntity = entity;
         }
 
         private static void OnEnterStateAction(this AttackComponent self, AIState aiState)
         {
-            Log.Debug($"AttackComponent current attack {aiState}");
         }
 
         private static void OnOutStateAction(this AttackComponent self, AIState aiState)
         {
-            // if (aiState == AIState.Attacking)
-            // {
-            //     AnimComponent animComponent = self.Parent.GetComponent<AnimComponent>();
-            //
-            //     if (animComponent != null)
-            //     {
-            //         animComponent.PlayAnim("idle");
-            //     }
-            // }
         }
     }
 }
