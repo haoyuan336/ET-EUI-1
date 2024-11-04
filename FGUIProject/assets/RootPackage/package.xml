@@ -129,5 +129,5 @@
     <component id="iygc3h" name="WindowBox.xml" path="/" exported="true"/>
     <component id="sc403i" name="BButton.xml" path="/" exported="true"/>
   </resources>
-  <publish name="RootPackage" path="D:\workspace\ET-EUI\Unity\Assets\Resources\FGUI\RootPackage" packageCount="2" branchPath="D:\workspace\ET-EUI\Unity\Assets\Resources\FGUI\RootPackage"/>
+  <publish name="RootPackage" path=".\..\Unity\Assets\Resources\FGUI\RootPackage" packageCount="2" branchPath=".\..\Unity\Assets\Resources\FGUI\RootPackage"/>
 </packageDescription>

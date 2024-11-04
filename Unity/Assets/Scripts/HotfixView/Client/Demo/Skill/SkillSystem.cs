@@ -30,8 +30,6 @@ namespace ET.Client
         {
             List<SkillLogicConfig> logicConfigs = SkillLogicConfigCategory.Instance.GetLogicConfigs(self.ConfigId, self.Level);
 
-            Log.Debug($"cast skill {logicConfigs.Count}");
-
             if (logicConfigs.Count == 0)
             {
                 return;
@@ -57,16 +55,12 @@ namespace ET.Client
 
             bool isCancel = await skillTimeComponent.WaitAsync(config.DelayTime, token);
 
-            Log.Debug($"is cancel {isCancel}");
-
             if (isCancel)
             {
                 return;
             }
 
             string logic = config.LogicCode;
-
-            Log.Debug($"logic {logic}");
 
             switch (logic)
             {

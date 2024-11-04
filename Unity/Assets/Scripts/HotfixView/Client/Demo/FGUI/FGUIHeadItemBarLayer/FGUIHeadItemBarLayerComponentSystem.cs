@@ -49,6 +49,8 @@ namespace ET.Client
 
                 itemCellComponent.SetInfo(itemConfig.Id, count);
             }
+
+            self.SetUnitInfo(unit);
         }
 
         public static void UpdateItemCount(this FGUIHeadItemBarLayerComponent self, string key, int count)
@@ -64,6 +66,21 @@ namespace ET.Client
             FGUIItemBarItemCellComponent itemBarLayerComponent = propertyInfo.GetValue(self.View) as FGUIItemBarItemCellComponent;
 
             itemBarLayerComponent.SetInfo(int.Parse(key), count);
+        }
+
+        public static void SetUnitInfo(this FGUIHeadItemBarLayerComponent self, Unit unit)
+        {
+            self.View.UnitLevel.SetVar("level", unit.Level.ToString()).FlushVars();
+
+            UnitUpLevelExpConfig unitUpLevelExpConfig = UnitUpLevelExpConfigCategory.Instance.GetByLevel(unit.Level + 1);
+
+            self.View.ExpProgress.min = 0;
+
+            self.View.ExpProgress.value = unit.CurrentExp;
+
+            self.View.ExpProgress.max = unitUpLevelExpConfig.NeedExp;
+
+            self.View.FightPower.text = unit.FightPower.ToString();
         }
 
         public static void HideWindow(this FGUIHeadItemBarLayerComponent self)

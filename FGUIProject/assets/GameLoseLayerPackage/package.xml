@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="1mnhkir8">
+  <resources>
+    <component id="sc409" name="GameLoseLayer.xml" path="/" exported="true"/>
+  </resources>
+  <publish name="GameLoseLayerPackage" path=".\..\Unity\Assets\Resources\FGUI\GameLoseLayerPackage" packageCount="2" branchPath=".\..\Unity\Assets\Resources\FGUI\GameLoseLayerPackage"/>
+</packageDescription>

@@ -22,5 +22,8 @@ namespace ET
 
         public const int Not_Found_HeroCard = 200004;
 
+        public const int Sign_Error = 200005; //签名错误
+
+        public const int Sign_TimeOut = 200006; //签名时间超时
     }
 }

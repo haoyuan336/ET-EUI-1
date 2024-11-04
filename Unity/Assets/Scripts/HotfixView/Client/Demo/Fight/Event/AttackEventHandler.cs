@@ -18,8 +18,6 @@ namespace ET.Client
 
             AttackLogicType logicType = EnumHelper.FromString<AttackLogicType>(skillLogicConfig.LogicParam1);
 
-            Log.Debug($"logic type {logicType}");
-
             switch (logicType)
             {
                 case AttackLogicType.SingleTarget:

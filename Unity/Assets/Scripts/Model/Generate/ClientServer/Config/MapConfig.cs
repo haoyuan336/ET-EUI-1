@@ -65,6 +65,10 @@ namespace ET
 		public string MapName { get; set; }
 		/// <summary>所属场景名字</summary>
 		public string SceneName { get; set; }
+		/// <summary>传送点名字</summary>
+		public string Teleport { get; set; }
+		/// <summary>章节名字</summary>
+		public string ChapterName { get; set; }
 
 	}
 }

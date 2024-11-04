@@ -72,8 +72,6 @@ namespace ET.Client
 
             self.TargetPos = unitInitPos.transform.position;
 
-            self.GameObject.transform.position = self.TargetPos;
-
             float time = 0;
 
             Vector3 startPos = self.GameObject.transform.position;

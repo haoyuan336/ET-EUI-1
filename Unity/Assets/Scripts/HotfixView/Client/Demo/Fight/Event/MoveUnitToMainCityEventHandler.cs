@@ -35,7 +35,7 @@ namespace ET.Client
                     continue;
                 }
 
-                await timerComponent.WaitAsync(500);
+                // await timerComponent.WaitAsync(500);
 
                 AIComponent aiComponent = heroCard.GetComponent<AIComponent>();
 

@@ -6,6 +6,17 @@ namespace ET.Server
     {
         protected override async ETTask Run(Unit unit, C2M_AddItemCountRequest request, M2C_AddItemCountResponse response)
         {
+            bool checkSign = SignHelper.CheckSign(request);
+
+            Log.Debug($"check sign {checkSign}");
+
+            if (!checkSign)
+            {
+                response.Error = ErrorCode.Sign_Error;
+
+                return;
+            }
+
             ItemComponent itemComponent = unit.GetComponent<ItemComponent>();
 
             if (itemComponent == null)

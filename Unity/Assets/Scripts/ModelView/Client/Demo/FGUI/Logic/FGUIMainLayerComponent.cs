@@ -13,6 +13,5 @@ namespace ET.Client
 
         public Dictionary<int, UIBaseWindow> BaseWindows = new Dictionary<int, UIBaseWindow>();
 
-        public Stack<FGUIHPProgressItemCellComponent> FguihpProgressItemCellComponents = new Stack<FGUIHPProgressItemCellComponent>();
     }
 }

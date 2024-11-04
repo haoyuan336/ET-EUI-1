@@ -19,10 +19,10 @@ namespace ET.Client
             EventSystem.Instance.Publish(scene.Root(), new AfterUnitCreate() { Unit = myUnit });
 
             EventSystem.Instance.Publish(scene.Root(), new PushLayerById() { WindowID = WindowID.MainLayer });
-            
-            EventSystem.Instance.Publish(scene.Root(), new ShowLayerById(){WindowID = WindowID.FightTextLayer});
-            
-            EventSystem.Instance.Publish(scene.Root(), new ShowLayerById(){WindowID = WindowID.HeadItemBarLayer});
+
+            EventSystem.Instance.Publish(scene.Root(), new ShowLayerById() { WindowID = WindowID.FightTextLayer });
+
+            EventSystem.Instance.Publish(scene.Root(), new ShowLayerById() { WindowID = WindowID.HeadItemBarLayer });
 
             GameObjectComponent gameObjectComponent = myUnit.GetComponent<GameObjectComponent>();
 
@@ -35,6 +35,8 @@ namespace ET.Client
             EventSystem.Instance.Publish(scene.Root(), new ShowLoadingLayer() { IsShow = false });
 
             scene.Root().AddComponent<CameraComponent>();
+
+            EventSystem.Instance.Publish(scene.Root(), new ChangeMapSceneFinish() { SceneName = "MainCity" });
         }
     }
 }

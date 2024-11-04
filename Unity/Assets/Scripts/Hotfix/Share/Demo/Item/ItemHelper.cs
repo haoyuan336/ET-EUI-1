@@ -15,6 +15,8 @@ namespace ET
 
             request.ItemCount = addCount;
 
+            request.Sign = SignHelper.GetSign(request, TimeInfo.Instance.ServerNow());
+
             M2C_AddItemCountResponse response = await scene.GetComponent<ClientSenderComponent>().Call(request) as M2C_AddItemCountResponse;
 
             if (response.Error == ErrorCode.ERR_Success)

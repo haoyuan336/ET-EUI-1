@@ -3,13 +3,16 @@ using Unity.Mathematics;
 
 namespace ET.Server
 {
-    [FriendOf(typeof(MoveComponent))]
-    [FriendOf(typeof(NumericComponent))]
+    [FriendOf(typeof (MoveComponent))]
+    [FriendOf(typeof (NumericComponent))]
     public static partial class UnitHelper
     {
         public static UnitInfo CreateUnitInfo(Unit unit)
         {
-            UnitInfo unitInfo = UnitInfo.Create();
+            // UnitInfo unitInfo = UnitInfo.Create();
+
+            UnitInfo unitInfo = unit.GetUnitInfo();
+
             // NumericComponent nc = unit.GetComponent<NumericComponent>();
             // unitInfo.UnitId = unit.Id;
             // unitInfo.ConfigId = unit.ConfigId;
@@ -39,7 +42,7 @@ namespace ET.Server
 
             return unitInfo;
         }
-        
+
         // 获取看见unit的玩家，主要用于广播
         public static Dictionary<long, EntityRef<AOIEntity>> GetBeSeePlayers(this Unit self)
         {

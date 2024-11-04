@@ -82,7 +82,6 @@ namespace ET.Client
 
         public static void OnEnterStateAction(this FindEnemyComponent self, AIState aiState)
         {
-            Log.Debug($"find enemy coponent {aiState}");
 
             if (aiState == AIState.Patrol)
             {

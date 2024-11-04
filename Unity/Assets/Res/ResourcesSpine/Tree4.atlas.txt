@@ -1,0 +1,27 @@
+
+Tree4.png
+size: 426,238
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+yqzd0
+  rotate: true
+  xy: 349, 14
+  size: 80, 75
+  orig: 82, 76
+  offset: 1, 1
+  index: -1
+yqzd1
+  rotate: true
+  xy: 2, 2
+  size: 234, 345
+  orig: 234, 345
+  offset: 0, 0
+  index: -1
+yz
+  rotate: true
+  xy: 349, 96
+  size: 140, 70
+  orig: 140, 70
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,6 @@
+{"dict": [
+[1000, {"_t":"InteractivePointConfig","_id":1000,"InteractivePointName":"传送点","InteractveType":"Teleport"}],
+[1001, {"_t":"InteractivePointConfig","_id":1001,"InteractivePointName":"招募大厅","InteractveType":"Call"}],
+[1002, {"_t":"InteractivePointConfig","_id":1002,"InteractivePointName":"女神","InteractveType":"Goddless"}],
+[1003, {"_t":"InteractivePointConfig","_id":1003,"InteractivePointName":"训练营","InteractveType":"TrainingCamp"}],
+]}

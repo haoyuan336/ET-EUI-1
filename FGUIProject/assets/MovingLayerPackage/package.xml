@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="1l8s8vx0">
+  <resources>
+    <component id="sc40a" name="MoveingLayer.xml" path="/" exported="true"/>
+  </resources>
+  <publish name="MovingLayerPackage" path=".\..\Unity\Assets\Resources\FGUI\MovingLayerPackage" packageCount="2" branchPath=".\..\Unity\Assets\Resources\FGUI\MovingLayerPackage"/>
+</packageDescription>

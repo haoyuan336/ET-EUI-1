@@ -64,7 +64,6 @@ namespace ET
 
                 TextAsset v = Resources.Load<TextAsset>($"Config/{type.Name}");
 
-                Log.Debug($"v{v}");
                 output[type] = v.bytes;
             }
             // }

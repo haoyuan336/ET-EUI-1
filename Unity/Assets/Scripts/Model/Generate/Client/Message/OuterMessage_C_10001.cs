@@ -245,17 +245,26 @@ namespace ET
         [MemoryPackOrder(2)]
         public int Type { get; set; }
 
+        /// <summary>
+        /// Unity.Mathematics.float3 Position = 4;
+        /// </summary>
+        /// <summary>
+        /// Unity.Mathematics.float3 Forward = 5;
+        /// </summary>
+        /// <summary>
+        /// map<int32, int64> KV = 6;
+        /// </summary>
+        /// <summary>
+        /// MoveInfo MoveInfo = 7;
+        /// </summary>
         [MemoryPackOrder(3)]
-        public Unity.Mathematics.float3 Position { get; set; }
+        public int Level { get; set; }
 
         [MemoryPackOrder(4)]
-        public Unity.Mathematics.float3 Forward { get; set; }
+        public int CurrentExp { get; set; }
 
-        [MongoDB.Bson.Serialization.Attributes.BsonDictionaryOptions(MongoDB.Bson.Serialization.Options.DictionaryRepresentation.ArrayOfArrays)]
         [MemoryPackOrder(5)]
-        public Dictionary<int, long> KV { get; set; } = new();
-        [MemoryPackOrder(6)]
-        public MoveInfo MoveInfo { get; set; }
+        public int FightPower { get; set; }
 
         public override void Dispose()
         {
@@ -267,10 +276,9 @@ namespace ET
             this.UnitId = default;
             this.ConfigId = default;
             this.Type = default;
-            this.Position = default;
-            this.Forward = default;
-            this.KV.Clear();
-            this.MoveInfo = default;
+            this.Level = default;
+            this.CurrentExp = default;
+            this.FightPower = default;
 
             ObjectPool.Instance.Recycle(this);
         }
@@ -1671,6 +1679,77 @@ namespace ET
         }
     }
 
+    [MemoryPackable]
+    [Message(OuterMessage.C2M_AddExpCountRequest)]
+    [ResponseType(nameof(M2C_AddExpCountResponse))]
+    public partial class C2M_AddExpCountRequest : MessageObject, ILocationRequest
+    {
+        public static C2M_AddExpCountRequest Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(C2M_AddExpCountRequest), isFromPool) as C2M_AddExpCountRequest;
+        }
+
+        [MemoryPackOrder(0)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public int ExpCount { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.ExpCount = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.M2C_AddExpCountResponse)]
+    public partial class M2C_AddExpCountResponse : MessageObject, ILocationResponse
+    {
+        public static M2C_AddExpCountResponse Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(M2C_AddExpCountResponse), isFromPool) as M2C_AddExpCountResponse;
+        }
+
+        [MemoryPackOrder(0)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(2)]
+        public string Message { get; set; }
+
+        [MemoryPackOrder(3)]
+        public int UnitLevel { get; set; }
+
+        [MemoryPackOrder(4)]
+        public int Exp { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+            this.UnitLevel = default;
+            this.Exp = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
     public static class OuterMessage
     {
         public const ushort HttpGetRouterResponse = 10002;
@@ -1723,5 +1802,7 @@ namespace ET
         public const ushort M2C_UpHeroLevelResponse = 10049;
         public const ushort C2M_AddItemCountRequest = 10050;
         public const ushort M2C_AddItemCountResponse = 10051;
+        public const ushort C2M_AddExpCountRequest = 10052;
+        public const ushort M2C_AddExpCountResponse = 10053;
     }
 }

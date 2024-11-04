@@ -5,6 +5,7 @@ namespace ET.Client
     {
         protected override async ETTask Run(Scene scene, PushLayerById a)
         {
+            Log.Debug($"push layer by id {a.WindowID}");
             UIComponent uiComponent = scene.GetComponent<UIComponent>();
 
             uiComponent.ShowStackWindowWithId(a.WindowID, a.ShowWindowData);

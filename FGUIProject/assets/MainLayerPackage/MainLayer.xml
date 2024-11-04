@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="750,1334">
   <displayList>
-    <text id="n0_ckxh" name="n0" xy="34,41" size="246,124" fontSize="40" autoSize="none" text="MainLayer&#xA;">
-      <relation target="" sidePair="center-center,middle-middle"/>
-    </text>
     <component id="n8_iygc" name="JoyStickLayer" src="iygc3" fileName="JoyStickLayer.xml" xy="0,0">
       <relation target="" sidePair="width-width,height-height"/>
     </component>
@@ -20,16 +17,6 @@
     <component id="n9_iygc" name="FormationButton" src="jh1l3d" fileName="NButton.xml" pkg="9nomxs01" xy="609,333" size="117,69">
       <Button title="Formation" titleFontSize="20"/>
     </component>
-    <component id="n10_p1ff" name="HpBar0" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
-    <component id="n11_p1ff" name="HpBar1" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
-    <component id="n12_p1ff" name="HpBar2" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
-    <component id="n13_p1ff" name="HpBar3" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
-    <component id="n14_p1ff" name="HpBar4" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
-    <component id="n15_p1ff" name="HpBar5" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
-    <component id="n16_p1ff" name="HpBar6" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
-    <component id="n17_p1ff" name="HpBar7" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
-    <component id="n18_p1ff" name="HpBar8" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
-    <component id="n19_p1ff" name="HpBar9" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-446,236" pivot="0.5,0.5" anchor="true" size="50,6"/>
     <component id="n20_sc40" name="BackMainCityButton" src="jh1l3d" fileName="NButton.xml" pkg="9nomxs01" xy="567,1206" size="137,78">
       <relation target="" sidePair="bottom-bottom"/>
       <Button title="回城" titleFontSize="40"/>

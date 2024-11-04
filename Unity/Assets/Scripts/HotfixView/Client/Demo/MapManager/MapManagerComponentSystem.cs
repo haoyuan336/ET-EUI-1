@@ -27,11 +27,7 @@ namespace ET.Client
         {
             string name = gameObject.name;
 
-            string pattern = @"[^0-9]+";
-
-            string nameString = System.Text.RegularExpressions.Regex.Replace(name, pattern, "");
-
-            int number = int.Parse(nameString);
+            int number = GetStringNumberHelper.GetNumber(name);
 
             Log.Debug($"show map scene {number}");
 
@@ -49,11 +45,7 @@ namespace ET.Client
         {
             string name = gameObject.name;
 
-            string pattern = @"[^0-9]+";
-
-            string nameString = System.Text.RegularExpressions.Regex.Replace(name, pattern, "");
-
-            int number = int.Parse(nameString);
+            int number = GetStringNumberHelper.GetNumber(name);
 
             Log.Debug($"dispose map scene {number}");
 

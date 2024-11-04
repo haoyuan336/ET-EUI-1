@@ -108,12 +108,10 @@ namespace ET.Client
 
         public static void SpawnEnemy(this EnemySpawnPos self)
         {
-            Log.Debug("spawn enemy");
             EnemySpawnPosConfig config = EnemySpawnPosConfigCategory.Instance.Get((int)self.Id);
 
             int spawnCount = config.SpawnCount - self.Enemies.Count;
 
-            Log.Debug($"spawn count {spawnCount}");
             Unit unit = self.Parent.GetParent<Unit>();
 
             for (int i = 0; i < spawnCount; i++)

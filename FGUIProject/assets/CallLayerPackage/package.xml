@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="1y9fiiis">
+  <resources>
+    <component id="jdez0" name="CallLayer.xml" path="/" exported="true"/>
+  </resources>
+  <publish name="CallLayerPackage" path=".\..\Unity\Assets\Resources\FGUI\CallLayerPackage" packageCount="2" branchPath=".\..\Unity\Assets\Resources\FGUI\CallLayerPackage"/>
+</packageDescription>

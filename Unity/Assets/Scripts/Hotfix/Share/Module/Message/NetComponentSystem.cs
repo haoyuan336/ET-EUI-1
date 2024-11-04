@@ -88,16 +88,14 @@ namespace ET
             (ActorId _, object message) = MessageSerializeHelper.ToMessage(self.AService, memoryBuffer);
             self.AService.Recycle(memoryBuffer);
 
-            LogMsg.Instance.Debug(self.Fiber(), message);
+            // LogMsg.Instance.Debug(self.Fiber(), message);
 
             EventSystem.Instance.Invoke((long)self.IScene.SceneType, new NetComponentOnRead() { Session = session, Message = message });
         }
 
         public static Session Create(this NetComponent self, IPEndPoint realIPEndPoint)
         {
-            Log.Warning($"net component create {realIPEndPoint}");
             long channelId = NetServices.Instance.CreateConnectChannelId();
-            Log.Warning($"channel id {channelId}");
             Session session = self.AddChildWithId<Session, AService>(channelId, self.AService);
             session.RemoteAddress = realIPEndPoint;
             if (self.IScene.SceneType != SceneType.BenchmarkClient)
@@ -112,7 +110,6 @@ namespace ET
 
         public static Session Create(this NetComponent self, IPEndPoint routerIPEndPoint, IPEndPoint realIPEndPoint, uint localConn)
         {
-            Log.Warning($"net component create {localConn} {routerIPEndPoint} {realIPEndPoint}");
             long channelId = localConn;
             Session session = self.AddChildWithId<Session, AService>(channelId, self.AService);
             session.RemoteAddress = realIPEndPoint;

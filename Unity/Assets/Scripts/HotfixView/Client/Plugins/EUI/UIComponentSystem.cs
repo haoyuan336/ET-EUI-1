@@ -125,7 +125,7 @@ namespace ET.Client
             self.ShowStackWindow(id);
         }
 
-        public static void ShowStackWindowWithId(this UIComponent self, WindowID id,ShowWindowData showData = null)
+        public static void ShowStackWindowWithId(this UIComponent self, WindowID id, ShowWindowData showData = null)
         {
             if (self.StackWindow.Count > 0)
             {
@@ -334,6 +334,9 @@ namespace ET.Client
             }
 
             self.Root().GetComponent<UIEventComponent>().GetUIEventHandler(id).BeforeUnload(baseWindow);
+
+            Log.Debug($"un load window {id} {baseWindow.IsPreLoad}");
+
             if (baseWindow.IsPreLoad)
             {
                 // self.Scene().GetComponent<ResourcesLoaderComponent>().UnLoadAssetSync(baseWindow.UIPrefabGameObject.name.StringToAB());

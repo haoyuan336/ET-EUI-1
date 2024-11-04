@@ -8,41 +8,49 @@ namespace ET.Client
     public enum WindowID
     {
         WindowID_Invaild = 0,
+        //----------------------CallLayerPackage---------------------
+        CallLayer = 1,
         //----------------------ChooseServerPackage---------------------
-        ChooseServerLayer = 1,
-        ServerItemCell = 2,
-        LoginServerLayer = 3,
+        ChooseServerLayer = 2,
+        ServerItemCell = 3,
+        LoginServerLayer = 4,
+        //----------------------FightTextLayerPackage---------------------
+        FightTextLayer = 5,
+        AddExpTextItemCell = 6,
+        AddMeatTextItemCell = 7,
+        DamageTextItemCell = 8,
+        HPProgressItemCell = 9,
+        InteractivePointItemCell = 10,
         //----------------------FormationPackage---------------------
-        FormationLayer = 4,
-        FormationCardItemCell = 5,
+        FormationLayer = 11,
+        FormationCardItemCell = 12,
+        //----------------------GameLoseLayerPackage---------------------
+        GameLoseLayer = 13,
         //----------------------GameUIPackage---------------------
-        GameUILayer = 6,
+        GameUILayer = 14,
         //----------------------HeroCardBagPackage---------------------
-        HeroCardBagLayer = 7,
-        HeroCardItemCell = 8,
-        HeroInfoLayer = 9,
-        HeroWordBarItemCell = 10,
+        HeroCardBagLayer = 15,
+        HeroCardItemCell = 16,
+        HeroInfoLayer = 17,
+        HeroWordBarItemCell = 18,
         //----------------------LoadingPackage---------------------
-        LoadingLayer = 11,
+        LoadingLayer = 19,
         //----------------------LoginLayerPackage---------------------
-        LoginLayer = 12,
+        LoginLayer = 20,
         //----------------------MainLayerPackage---------------------
-        MainLayer = 13,
-        AddHeroItemCell = 14,
-        JoyStickLayer = 15,
-        HPProgressItemCell = 16,
-        FightTextLayer = 17,
-        DamageTextItemCell = 18,
-        GameLoseLayer = 19,
-        MoveingLayer = 20,
-        HeadItemBarLayer = 21,
-        ItemBarItemCell = 22,
-        AddExpTextItemCell = 23,
-        AddMeatTextItemCell = 24,
+        MainLayer = 21,
+        JoyStickLayer = 22,
+        HeadItemBarLayer = 23,
+        ItemBarItemCell = 24,
+        AddHeroItemCell = 25,
+        //----------------------MovingLayerPackage---------------------
+        MoveingLayer = 26,
         //----------------------RootPackage---------------------
-        RootLayer = 25,
-        EmptyLayer = 26,
-        SpalshLayer = 27,
+        RootLayer = 27,
+        EmptyLayer = 28,
+        SpalshLayer = 29,
+        //----------------------TeleportPackage---------------------
+        TeleportLayer = 30,
     }
     public class ComponentPackageMap
     {
@@ -63,45 +71,70 @@ namespace ET.Client
         }
         private void InitData()
         {
-            for (int j = 1; j < 4; j++)
+            for (int j = 1; j < 2; j++)
+            {
+                WindowID windowID = (WindowID)j;
+                 this.Maps.Add(windowID, "CallLayerPackage");
+            }
+            for (int j = 2; j < 5; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "ChooseServerPackage");
             }
-            for (int j = 4; j < 6; j++)
+            for (int j = 5; j < 11; j++)
+            {
+                WindowID windowID = (WindowID)j;
+                 this.Maps.Add(windowID, "FightTextLayerPackage");
+            }
+            for (int j = 11; j < 13; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "FormationPackage");
             }
-            for (int j = 6; j < 7; j++)
+            for (int j = 13; j < 14; j++)
+            {
+                WindowID windowID = (WindowID)j;
+                 this.Maps.Add(windowID, "GameLoseLayerPackage");
+            }
+            for (int j = 14; j < 15; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "GameUIPackage");
             }
-            for (int j = 7; j < 11; j++)
+            for (int j = 15; j < 19; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "HeroCardBagPackage");
             }
-            for (int j = 11; j < 12; j++)
+            for (int j = 19; j < 20; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "LoadingPackage");
             }
-            for (int j = 12; j < 13; j++)
+            for (int j = 20; j < 21; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "LoginLayerPackage");
             }
-            for (int j = 13; j < 25; j++)
+            for (int j = 21; j < 26; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "MainLayerPackage");
             }
-            for (int j = 25; j < 28; j++)
+            for (int j = 26; j < 27; j++)
+            {
+                WindowID windowID = (WindowID)j;
+                 this.Maps.Add(windowID, "MovingLayerPackage");
+            }
+            for (int j = 27; j < 30; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "RootPackage");
+            }
+            for (int j = 30; j < 31; j++)
+            {
+                WindowID windowID = (WindowID)j;
+                 this.Maps.Add(windowID, "TeleportPackage");
             }
         }
         public static string[] GetPackNames()

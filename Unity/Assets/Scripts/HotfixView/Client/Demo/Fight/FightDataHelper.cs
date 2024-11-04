@@ -9,11 +9,7 @@ namespace ET.Client
         {
             float attack = attackDataComponent.GetValueByType(WordBarType.Attack);
 
-            Log.Debug($"FightDataHelper fight {attack}");
-
             float hp = beAttackDataComponent.CurrentHP;
-
-            Log.Debug($"current hp {hp}");
 
             float damage = 0;
 
@@ -52,11 +48,7 @@ namespace ET.Client
 
         public static long GetIdByGameObjectName(string name)
         {
-            string pattern = @"[^0-9]+";
-
-            string nameString = System.Text.RegularExpressions.Regex.Replace(name, pattern, "");
-
-            long heroId = long.Parse(nameString);
+            long heroId = GetStringNumberHelper.GetLong(name);
 
             return heroId;
         }

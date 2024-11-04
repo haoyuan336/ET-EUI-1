@@ -33,13 +33,26 @@ namespace ET
                 this.Maps.Add(name, value);
             }
         }
+        //---------------CallLayerPackage---------------
+        public const string CallLayer = "ui://1y9fiiisjdez0";
         //---------------ChooseServerPackage---------------
         public const string ChooseServerLayer = "ui://8qgfwpa8jh1l0";
         public const string ServerItemCell = "ui://8qgfwpa8jh1l1";
         public const string LoginServerLayer = "ui://8qgfwpa8jh1l2";
+        //---------------FightTextLayerPackage---------------
+        public const string FightTextLayer = "ui://1v2ce2x0sdia7";
+        public const string AddExpTextItemCell = "ui://1v2ce2x0jdezd";
+        public const string AddMeatTextItemCell = "ui://1v2ce2x0jdezh";
+        public const string DamageTextItemCell = "ui://1v2ce2x0sdia8";
+        public const string HPProgress = "ui://1v2ce2x0p1ff4";
+        public const string HPProgressItemCell = "ui://1v2ce2x04yhj6";
+        public const string InteractivePointButton = "ui://1v2ce2x0jdez2";
+        public const string InteractivePointItemCell = "ui://1v2ce2x0jdez4";
         //---------------FormationPackage---------------
         public const string FormationLayer = "ui://1rgdxzmjiygc0";
         public const string FormationCardItemCell = "ui://1rgdxzmjiygc2";
+        //---------------GameLoseLayerPackage---------------
+        public const string GameLoseLayer = "ui://1mnhkir8sc409";
         //---------------GameUIPackage---------------
         public const string GameUILayer = "ui://24bwjhhnk7it0";
         //---------------HeroCardBagPackage---------------
@@ -55,19 +68,14 @@ namespace ET
         public const string LoginButton = "ui://9sdsckomigda4";
         //---------------MainLayerPackage---------------
         public const string MainLayer = "ui://7sxmdg4qckxh0";
-        public const string AddHeroItemCell = "ui://7sxmdg4qckxh2";
         public const string JoyStickLayer = "ui://7sxmdg4qiygc3";
-        public const string HPProgress = "ui://7sxmdg4qp1ff4";
-        public const string HPProgressItemCell = "ui://7sxmdg4q4yhj6";
-        public const string FightTextLayer = "ui://7sxmdg4qsdia7";
-        public const string DamageTextItemCell = "ui://7sxmdg4qsdia8";
-        public const string GameLoseLayer = "ui://7sxmdg4qsc409";
-        public const string MoveingLayer = "ui://7sxmdg4qsc40a";
         public const string HeadItemBarLayer = "ui://7sxmdg4qjdezb";
         public const string ItemBarItemCell = "ui://7sxmdg4qjdezc";
-        public const string AddExpTextItemCell = "ui://7sxmdg4qjdezd";
         public const string ItemBarProgress = "ui://7sxmdg4qjdezg";
-        public const string AddMeatTextItemCell = "ui://7sxmdg4qjdezh";
+        public const string EXpProgress = "ui://7sxmdg4qjdezi";
+        public const string AddHeroItemCell = "ui://7sxmdg4qckxh2";
+        //---------------MovingLayerPackage---------------
+        public const string MoveingLayer = "ui://1l8s8vx0sc40a";
         //---------------RootPackage---------------
         public const string RootLayer = "ui://9nomxs01i2d80";
         public const string EmptyLayer = "ui://9nomxs01i2d81";
@@ -196,5 +204,7 @@ namespace ET
         public const string CloseButton = "ui://9nomxs01iygc3f";
         public const string WindowBox = "ui://9nomxs01iygc3h";
         public const string BButton = "ui://9nomxs01sc403i";
+        //---------------TeleportPackage---------------
+        public const string TeleportLayer = "ui://1ft4j7eejdez0";
     }
 }

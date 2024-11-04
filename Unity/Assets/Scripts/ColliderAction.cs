@@ -20,7 +20,6 @@ namespace ET
                 this.OnTriggerEnterAction.Invoke(this.gameObject);
             }
 
-            Log.Debug($"OnTriggerEnter {this.gameObject.name}, {other.gameObject.name}");
         }
 
         public void OnTriggerStay(Collider other)

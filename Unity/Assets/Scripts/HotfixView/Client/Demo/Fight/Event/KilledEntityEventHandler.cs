@@ -35,6 +35,8 @@ namespace ET.Client
 
                 ItemHelper.AddItemCount(scene, itemConfig.Id, meat).Coroutine();
 
+                UnitHelper.AddExp(scene, exp).Coroutine();
+
                 EventSystem.Instance.Publish(scene, new PlayAddExpText() { BeAttackEntity = beAttackEntity, Exp = exp });
 
                 await timerComponent.WaitFrameAsync();

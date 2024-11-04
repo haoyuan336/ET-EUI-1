@@ -13,5 +13,9 @@ namespace ET
 
         [BsonIgnore]
         public bool IsFromPool { get; set; }
+
+        public string Sign { get; set; }
+
+        public long SignTimeStamp { get; set; }
     }
 }

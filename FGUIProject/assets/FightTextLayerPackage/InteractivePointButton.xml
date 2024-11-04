@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="150,150" extention="Button">
+  <controller name="button" pages="0,up,1,down" selected="0"/>
+  <displayList>
+    <image id="n3_jdez" name="n3" src="k7it2" fileName="Texture/Add2.png" pkg="9nomxs01" xy="36,36" pivot="0.5,0.5" size="77,77">
+      <gearSize controller="button" pages="1" values="60,60,1,1" default="77,77,1,1" tween="true" duration=".1"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+  </displayList>
+  <Button/>
+</component>

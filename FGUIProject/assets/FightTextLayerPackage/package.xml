@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="1v2ce2x0">
+  <resources>
+    <component id="sdia7" name="FightTextLayer.xml" path="/" exported="true"/>
+    <component id="jdezd" name="AddExpTextItemCell.xml" path="/" exported="true"/>
+    <component id="jdezh" name="AddMeatTextItemCell.xml" path="/" exported="true"/>
+    <component id="sdia8" name="DamageTextItemCell.xml" path="/" exported="true"/>
+    <component id="p1ff4" name="HPProgress.xml" path="/" exported="true"/>
+    <component id="4yhj6" name="HPProgressItemCell.xml" path="/" exported="true"/>
+    <component id="jdez2" name="InteractivePointButton.xml" path="/" exported="true"/>
+    <component id="jdez4" name="InteractivePointItemCell.xml" path="/" exported="true"/>
+  </resources>
+  <publish name="FightTextLayerPackage" path=".\..\Unity\Assets\Resources\FGUI\FightTextLayerPackage" packageCount="2" branchPath=".\..\Unity\Assets\Resources\FGUI\FightTextLayerPackage"/>
+</packageDescription>

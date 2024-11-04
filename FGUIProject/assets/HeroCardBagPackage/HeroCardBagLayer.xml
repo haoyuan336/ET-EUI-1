@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="750,1334">
   <displayList>
-    <component id="n5_iygc" name="n5" src="iygc3h" fileName="WindowBox.xml" pkg="9nomxs01" xy="35,89"/>
-    <component id="n0_iygc" name="CloseButton" src="iygc3f" fileName="CloseButton.xml" pkg="9nomxs01" xy="645,63">
-      <relation target="" sidePair="center-center,top-top"/>
+    <component id="n5_iygc" name="n5" src="iygc3h" fileName="WindowBox.xml" pkg="9nomxs01" xy="35,142" size="679,1034">
+      <relation target="" sidePair="topext-top,bottomext-bottom"/>
     </component>
-    <list id="n2_iygc" name="HeroCardList" xy="54,193" size="642,1038" layout="flow_hz" overflow="scroll" lineGap="6" colGap="6" lineItemCount="4" defaultItem="ui://1o0rv0gziygc1" autoClearItems="true">
-      <relation target="" sidePair="height-height,center-center"/>
+    <component id="n0_iygc" name="CloseButton" src="iygc3f" fileName="CloseButton.xml" pkg="9nomxs01" xy="33,1195">
+      <relation target="" sidePair="center-center,bottom-bottom"/>
+    </component>
+    <list id="n2_iygc" name="HeroCardList" xy="54,248" size="642,911" layout="flow_hz" overflow="scroll" lineGap="6" colGap="6" lineItemCount="4" defaultItem="ui://1o0rv0gziygc1" autoClearItems="true">
+      <relation target="" sidePair="center-center,topext-top,bottomext-bottom"/>
       <item/>
       <item/>
       <item/>

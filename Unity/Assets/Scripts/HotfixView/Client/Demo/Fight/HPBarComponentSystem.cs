@@ -14,7 +14,7 @@ namespace ET.Client
             {
                 UIComponent uiComponent = self.Root().GetComponent<UIComponent>();
 
-                FGUIMainLayerComponent mainLayerComponent = uiComponent.GetDlgLogic<FGUIMainLayerComponent>();
+                FGUIFightTextLayerComponent mainLayerComponent = uiComponent.GetDlgLogic<FGUIFightTextLayerComponent>();
 
                 if (mainLayerComponent != null)
                 {
@@ -36,7 +36,7 @@ namespace ET.Client
 
             UIComponent uiComponent = self.Root().GetComponent<UIComponent>();
 
-            FGUIMainLayerComponent mainLayerComponent = uiComponent.GetDlgLogic<FGUIMainLayerComponent>();
+            FGUIFightTextLayerComponent mainLayerComponent = uiComponent.GetDlgLogic<FGUIFightTextLayerComponent>();
 
             self.CellComponent = mainLayerComponent.GetOneHPBar();
 

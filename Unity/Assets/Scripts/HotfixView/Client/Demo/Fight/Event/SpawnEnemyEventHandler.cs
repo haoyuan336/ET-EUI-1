@@ -7,7 +7,6 @@ namespace ET.Client
     {
         protected override async ETTask Run(Scene scene, SpawnOneEnemy a)
         {
-            Log.Debug("spawn one enemy }");
             
             Unit unit = a.Unit;
 

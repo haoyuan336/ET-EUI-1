@@ -27,17 +27,6 @@ namespace ET.Client
 
             self.View.FormationButton.SetListener(self.OnFormationButtonClick);
 
-            Type type = self.View.GetType();
-
-            for (int i = 0; i < 10; i++)
-            {
-                PropertyInfo info = type.GetProperty($"HpBar{i}Component");
-
-                FGUIHPProgressItemCellComponent itemCellComponent = info.GetValue(self.View) as FGUIHPProgressItemCellComponent;
-
-                self.FguihpProgressItemCellComponents.Push(itemCellComponent);
-            }
-
             self.View.BackMainCityButton.SetListener(self.OnBackMainButtonClick);
         }
 
@@ -46,22 +35,7 @@ namespace ET.Client
             EventSystem.Instance.Publish(self.Root(), new MoveUnitToMainCity());
         }
 
-        public static FGUIHPProgressItemCellComponent GetOneHPBar(this FGUIMainLayerComponent self)
-        {
-            if (self.FguihpProgressItemCellComponents.Count > 0)
-            {
-                return self.FguihpProgressItemCellComponents.Pop();
-            }
-
-            return null;
-        }
-
-        public static void ReceiveHPBar(this FGUIMainLayerComponent self, FGUIHPProgressItemCellComponent cellComponent)
-        {
-            self.FguihpProgressItemCellComponents.Push(cellComponent);
-
-            cellComponent.View.GetParent<UIBaseWindow>().GComponent.x = -1000;
-        }
+     
 
         private static void OnEndJoyAction(this FGUIMainLayerComponent self)
         {

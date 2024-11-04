@@ -55,10 +55,14 @@ message UnitInfo
 	int64 UnitId = 1;
 	int32 ConfigId = 2;
 	int32 Type = 3;
-	Unity.Mathematics.float3 Position = 4;
-	Unity.Mathematics.float3 Forward = 5;
-	map<int32, int64> KV = 6;
-	MoveInfo MoveInfo = 7;
+	// Unity.Mathematics.float3 Position = 4;
+	// Unity.Mathematics.float3 Forward = 5;
+	// map<int32, int64> KV = 6;
+	// MoveInfo MoveInfo = 7;
+	int32 Level = 4;
+	int32 CurrentExp = 5;
+	int32 FightPower = 6;
+
 }
 
 message M2C_CreateUnits // IMessage
@@ -381,4 +385,21 @@ message M2C_AddItemCountResponse //ILocationResponse
 	string Message = 3;
 	int32 ItemCount = 4;
 	
+}
+
+//ResponseType M2C_AddExpCountResponse
+message C2M_AddExpCountRequest //ILocationRequest
+{
+	int32 RpcId = 1;
+	int32 ExpCount = 2;
+}
+
+message M2C_AddExpCountResponse //ILocationResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+	int32 UnitLevel = 4;
+	int32 Exp = 5;
+
 }

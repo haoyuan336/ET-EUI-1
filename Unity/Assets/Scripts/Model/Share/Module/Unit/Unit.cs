@@ -14,48 +14,53 @@ namespace ET
     {
         public int ConfigId { get; set; } //配置表id
 
-        [BsonIgnore]
-        private float3 position; //坐标
+        public int Level = 1;
 
-        [BsonIgnore]
-        public float3 Position
-        {
-            get => this.position;
-            set
-            {
-                float3 oldPos = this.position;
-                this.position = value;
-                // EventSystem.Instance.Publish(this.Scene(), new ChangePosition() { Unit = this, OldPos = oldPos });
-            }
-        }
+        public int CurrentExp;
 
-        [BsonIgnore]
-        public float3 Forward
-        {
-            get => math.mul(this.Rotation, math.forward());
-            set => this.Rotation = quaternion.LookRotation(value, math.up());
-        }
+        public int FightPower = 0;
+        // [BsonIgnore]
+        // private float3 position; //坐标
 
-        [BsonIgnore]
-        private quaternion rotation;
+        // [BsonIgnore]
+        // public float3 Position
+        // {
+        //     get => this.position;
+        //     set
+        //     {
+        //         float3 oldPos = this.position;
+        //         this.position = value;
+        //         // EventSystem.Instance.Publish(this.Scene(), new ChangePosition() { Unit = this, OldPos = oldPos });
+        //     }
+        // }
 
-        [BsonIgnore]
-        public quaternion Rotation
-        {
-            get => this.rotation;
-            set
-            {
-                this.rotation = value;
-                EventSystem.Instance.Publish(this.Scene(), new ChangeRotation() { Unit = this });
-            }
-        }
+        // [BsonIgnore]
+        // public float3 Forward
+        // {
+        //     get => math.mul(this.Rotation, math.forward());
+        //     set => this.Rotation = quaternion.LookRotation(value, math.up());
+        // }
 
-        protected override string ViewName
-        {
-            get
-            {
-                return $"{this.GetType().FullName} ({this.Id})";
-            }
-        }
+        // [BsonIgnore]
+        // private quaternion rotation;
+
+        // [BsonIgnore]
+        // public quaternion Rotation
+        // {
+        //     get => this.rotation;
+        //     set
+        //     {
+        //         this.rotation = value;
+        //         EventSystem.Instance.Publish(this.Scene(), new ChangeRotation() { Unit = this });
+        //     }
+        // }
+
+        // protected override string ViewName
+        // {
+        //     get
+        //     {
+        //         return $"{this.GetType().FullName} ({this.Id})";
+        //     }
+        // }
     }
 }

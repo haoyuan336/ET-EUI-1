@@ -1,0 +1,6 @@
+{"dict": [
+[1001, {"_t":"CallPoolConfig","_id":1001,"Rate":1000,"HeroName":"英雄1"}],
+[1002, {"_t":"CallPoolConfig","_id":1002,"Rate":1000,"HeroName":"英雄2"}],
+[1003, {"_t":"CallPoolConfig","_id":1003,"Rate":1000,"HeroName":"英雄3"}],
+[1004, {"_t":"CallPoolConfig","_id":1004,"Rate":1000,"HeroName":"英雄4"}],
+]}

@@ -907,6 +907,306 @@ namespace ET
                 return this._AddMeatTextItemCell9Component;
             }
         }
+        public  FGUIHPProgressItemCellComponent HPProgressItemCell0Component
+        {
+            get
+            {
+                if (this._HPProgressItemCell0Component== null)
+                {
+                    UIBaseWindow fguiBaseWindow = this.GetParent<UIBaseWindow>();
+
+                    GComponent gComponent = fguiBaseWindow.GComponent;
+
+                    UIBaseWindow childBaseWindow = this.AddChild<UIBaseWindow>();
+
+                    childBaseWindow.WindowID = WindowID.HPProgressItemCell;
+
+                    childBaseWindow.GComponent = gComponent.GetChild("HPProgressItemCell0").asCom;
+
+                    childBaseWindow.AddComponent<FGUIHPProgressItemCellViewComponent>();
+
+                    this._HPProgressItemCell0Component = childBaseWindow.AddComponent<FGUIHPProgressItemCellComponent>();
+
+
+                }
+                return this._HPProgressItemCell0Component;
+            }
+        }
+        public  FGUIHPProgressItemCellComponent HPProgressItemCell1Component
+        {
+            get
+            {
+                if (this._HPProgressItemCell1Component== null)
+                {
+                    UIBaseWindow fguiBaseWindow = this.GetParent<UIBaseWindow>();
+
+                    GComponent gComponent = fguiBaseWindow.GComponent;
+
+                    UIBaseWindow childBaseWindow = this.AddChild<UIBaseWindow>();
+
+                    childBaseWindow.WindowID = WindowID.HPProgressItemCell;
+
+                    childBaseWindow.GComponent = gComponent.GetChild("HPProgressItemCell1").asCom;
+
+                    childBaseWindow.AddComponent<FGUIHPProgressItemCellViewComponent>();
+
+                    this._HPProgressItemCell1Component = childBaseWindow.AddComponent<FGUIHPProgressItemCellComponent>();
+
+
+                }
+                return this._HPProgressItemCell1Component;
+            }
+        }
+        public  FGUIHPProgressItemCellComponent HPProgressItemCell2Component
+        {
+            get
+            {
+                if (this._HPProgressItemCell2Component== null)
+                {
+                    UIBaseWindow fguiBaseWindow = this.GetParent<UIBaseWindow>();
+
+                    GComponent gComponent = fguiBaseWindow.GComponent;
+
+                    UIBaseWindow childBaseWindow = this.AddChild<UIBaseWindow>();
+
+                    childBaseWindow.WindowID = WindowID.HPProgressItemCell;
+
+                    childBaseWindow.GComponent = gComponent.GetChild("HPProgressItemCell2").asCom;
+
+                    childBaseWindow.AddComponent<FGUIHPProgressItemCellViewComponent>();
+
+                    this._HPProgressItemCell2Component = childBaseWindow.AddComponent<FGUIHPProgressItemCellComponent>();
+
+
+                }
+                return this._HPProgressItemCell2Component;
+            }
+        }
+        public  FGUIHPProgressItemCellComponent HPProgressItemCell3Component
+        {
+            get
+            {
+                if (this._HPProgressItemCell3Component== null)
+                {
+                    UIBaseWindow fguiBaseWindow = this.GetParent<UIBaseWindow>();
+
+                    GComponent gComponent = fguiBaseWindow.GComponent;
+
+                    UIBaseWindow childBaseWindow = this.AddChild<UIBaseWindow>();
+
+                    childBaseWindow.WindowID = WindowID.HPProgressItemCell;
+
+                    childBaseWindow.GComponent = gComponent.GetChild("HPProgressItemCell3").asCom;
+
+                    childBaseWindow.AddComponent<FGUIHPProgressItemCellViewComponent>();
+
+                    this._HPProgressItemCell3Component = childBaseWindow.AddComponent<FGUIHPProgressItemCellComponent>();
+
+
+                }
+                return this._HPProgressItemCell3Component;
+            }
+        }
+        public  FGUIHPProgressItemCellComponent HPProgressItemCell4Component
+        {
+            get
+            {
+                if (this._HPProgressItemCell4Component== null)
+                {
+                    UIBaseWindow fguiBaseWindow = this.GetParent<UIBaseWindow>();
+
+                    GComponent gComponent = fguiBaseWindow.GComponent;
+
+                    UIBaseWindow childBaseWindow = this.AddChild<UIBaseWindow>();
+
+                    childBaseWindow.WindowID = WindowID.HPProgressItemCell;
+
+                    childBaseWindow.GComponent = gComponent.GetChild("HPProgressItemCell4").asCom;
+
+                    childBaseWindow.AddComponent<FGUIHPProgressItemCellViewComponent>();
+
+                    this._HPProgressItemCell4Component = childBaseWindow.AddComponent<FGUIHPProgressItemCellComponent>();
+
+
+                }
+                return this._HPProgressItemCell4Component;
+            }
+        }
+        public  FGUIHPProgressItemCellComponent HPProgressItemCell5Component
+        {
+            get
+            {
+                if (this._HPProgressItemCell5Component== null)
+                {
+                    UIBaseWindow fguiBaseWindow = this.GetParent<UIBaseWindow>();
+
+                    GComponent gComponent = fguiBaseWindow.GComponent;
+
+                    UIBaseWindow childBaseWindow = this.AddChild<UIBaseWindow>();
+
+                    childBaseWindow.WindowID = WindowID.HPProgressItemCell;
+
+                    childBaseWindow.GComponent = gComponent.GetChild("HPProgressItemCell5").asCom;
+
+                    childBaseWindow.AddComponent<FGUIHPProgressItemCellViewComponent>();
+
+                    this._HPProgressItemCell5Component = childBaseWindow.AddComponent<FGUIHPProgressItemCellComponent>();
+
+
+                }
+                return this._HPProgressItemCell5Component;
+            }
+        }
+        public  FGUIHPProgressItemCellComponent HPProgressItemCell6Component
+        {
+            get
+            {
+                if (this._HPProgressItemCell6Component== null)
+                {
+                    UIBaseWindow fguiBaseWindow = this.GetParent<UIBaseWindow>();
+
+                    GComponent gComponent = fguiBaseWindow.GComponent;
+
+                    UIBaseWindow childBaseWindow = this.AddChild<UIBaseWindow>();
+
+                    childBaseWindow.WindowID = WindowID.HPProgressItemCell;
+
+                    childBaseWindow.GComponent = gComponent.GetChild("HPProgressItemCell6").asCom;
+
+                    childBaseWindow.AddComponent<FGUIHPProgressItemCellViewComponent>();
+
+                    this._HPProgressItemCell6Component = childBaseWindow.AddComponent<FGUIHPProgressItemCellComponent>();
+
+
+                }
+                return this._HPProgressItemCell6Component;
+            }
+        }
+        public  FGUIHPProgressItemCellComponent HPProgressItemCell7Component
+        {
+            get
+            {
+                if (this._HPProgressItemCell7Component== null)
+                {
+                    UIBaseWindow fguiBaseWindow = this.GetParent<UIBaseWindow>();
+
+                    GComponent gComponent = fguiBaseWindow.GComponent;
+
+                    UIBaseWindow childBaseWindow = this.AddChild<UIBaseWindow>();
+
+                    childBaseWindow.WindowID = WindowID.HPProgressItemCell;
+
+                    childBaseWindow.GComponent = gComponent.GetChild("HPProgressItemCell7").asCom;
+
+                    childBaseWindow.AddComponent<FGUIHPProgressItemCellViewComponent>();
+
+                    this._HPProgressItemCell7Component = childBaseWindow.AddComponent<FGUIHPProgressItemCellComponent>();
+
+
+                }
+                return this._HPProgressItemCell7Component;
+            }
+        }
+        public  FGUIHPProgressItemCellComponent HPProgressItemCell8Component
+        {
+            get
+            {
+                if (this._HPProgressItemCell8Component== null)
+                {
+                    UIBaseWindow fguiBaseWindow = this.GetParent<UIBaseWindow>();
+
+                    GComponent gComponent = fguiBaseWindow.GComponent;
+
+                    UIBaseWindow childBaseWindow = this.AddChild<UIBaseWindow>();
+
+                    childBaseWindow.WindowID = WindowID.HPProgressItemCell;
+
+                    childBaseWindow.GComponent = gComponent.GetChild("HPProgressItemCell8").asCom;
+
+                    childBaseWindow.AddComponent<FGUIHPProgressItemCellViewComponent>();
+
+                    this._HPProgressItemCell8Component = childBaseWindow.AddComponent<FGUIHPProgressItemCellComponent>();
+
+
+                }
+                return this._HPProgressItemCell8Component;
+            }
+        }
+        public  FGUIHPProgressItemCellComponent HPProgressItemCell9Component
+        {
+            get
+            {
+                if (this._HPProgressItemCell9Component== null)
+                {
+                    UIBaseWindow fguiBaseWindow = this.GetParent<UIBaseWindow>();
+
+                    GComponent gComponent = fguiBaseWindow.GComponent;
+
+                    UIBaseWindow childBaseWindow = this.AddChild<UIBaseWindow>();
+
+                    childBaseWindow.WindowID = WindowID.HPProgressItemCell;
+
+                    childBaseWindow.GComponent = gComponent.GetChild("HPProgressItemCell9").asCom;
+
+                    childBaseWindow.AddComponent<FGUIHPProgressItemCellViewComponent>();
+
+                    this._HPProgressItemCell9Component = childBaseWindow.AddComponent<FGUIHPProgressItemCellComponent>();
+
+
+                }
+                return this._HPProgressItemCell9Component;
+            }
+        }
+        public  FGUIInteractivePointItemCellComponent InteractivePointItemCell0Component
+        {
+            get
+            {
+                if (this._InteractivePointItemCell0Component== null)
+                {
+                    UIBaseWindow fguiBaseWindow = this.GetParent<UIBaseWindow>();
+
+                    GComponent gComponent = fguiBaseWindow.GComponent;
+
+                    UIBaseWindow childBaseWindow = this.AddChild<UIBaseWindow>();
+
+                    childBaseWindow.WindowID = WindowID.InteractivePointItemCell;
+
+                    childBaseWindow.GComponent = gComponent.GetChild("InteractivePointItemCell0").asCom;
+
+                    childBaseWindow.AddComponent<FGUIInteractivePointItemCellViewComponent>();
+
+                    this._InteractivePointItemCell0Component = childBaseWindow.AddComponent<FGUIInteractivePointItemCellComponent>();
+
+
+                }
+                return this._InteractivePointItemCell0Component;
+            }
+        }
+        public  FGUIInteractivePointItemCellComponent InteractivePointItemCell1Component
+        {
+            get
+            {
+                if (this._InteractivePointItemCell1Component== null)
+                {
+                    UIBaseWindow fguiBaseWindow = this.GetParent<UIBaseWindow>();
+
+                    GComponent gComponent = fguiBaseWindow.GComponent;
+
+                    UIBaseWindow childBaseWindow = this.AddChild<UIBaseWindow>();
+
+                    childBaseWindow.WindowID = WindowID.InteractivePointItemCell;
+
+                    childBaseWindow.GComponent = gComponent.GetChild("InteractivePointItemCell1").asCom;
+
+                    childBaseWindow.AddComponent<FGUIInteractivePointItemCellViewComponent>();
+
+                    this._InteractivePointItemCell1Component = childBaseWindow.AddComponent<FGUIInteractivePointItemCellComponent>();
+
+
+                }
+                return this._InteractivePointItemCell1Component;
+            }
+        }
         private FGUIDamageTextItemCellComponent _DamageTextItemCell0Component = null;
         private FGUIDamageTextItemCellComponent _DamageTextItemCell1Component = null;
         private FGUIDamageTextItemCellComponent _DamageTextItemCell2Component = null;
@@ -943,6 +1243,18 @@ namespace ET
         private FGUIAddMeatTextItemCellComponent _AddMeatTextItemCell7Component = null;
         private FGUIAddMeatTextItemCellComponent _AddMeatTextItemCell8Component = null;
         private FGUIAddMeatTextItemCellComponent _AddMeatTextItemCell9Component = null;
+        private FGUIHPProgressItemCellComponent _HPProgressItemCell0Component = null;
+        private FGUIHPProgressItemCellComponent _HPProgressItemCell1Component = null;
+        private FGUIHPProgressItemCellComponent _HPProgressItemCell2Component = null;
+        private FGUIHPProgressItemCellComponent _HPProgressItemCell3Component = null;
+        private FGUIHPProgressItemCellComponent _HPProgressItemCell4Component = null;
+        private FGUIHPProgressItemCellComponent _HPProgressItemCell5Component = null;
+        private FGUIHPProgressItemCellComponent _HPProgressItemCell6Component = null;
+        private FGUIHPProgressItemCellComponent _HPProgressItemCell7Component = null;
+        private FGUIHPProgressItemCellComponent _HPProgressItemCell8Component = null;
+        private FGUIHPProgressItemCellComponent _HPProgressItemCell9Component = null;
+        private FGUIInteractivePointItemCellComponent _InteractivePointItemCell0Component = null;
+        private FGUIInteractivePointItemCellComponent _InteractivePointItemCell1Component = null;
         public void ClearBindCache()
         {
             this._DamageTextItemCell0Component = null;
@@ -981,6 +1293,18 @@ namespace ET
             this._AddMeatTextItemCell7Component = null;
             this._AddMeatTextItemCell8Component = null;
             this._AddMeatTextItemCell9Component = null;
+            this._HPProgressItemCell0Component = null;
+            this._HPProgressItemCell1Component = null;
+            this._HPProgressItemCell2Component = null;
+            this._HPProgressItemCell3Component = null;
+            this._HPProgressItemCell4Component = null;
+            this._HPProgressItemCell5Component = null;
+            this._HPProgressItemCell6Component = null;
+            this._HPProgressItemCell7Component = null;
+            this._HPProgressItemCell8Component = null;
+            this._HPProgressItemCell9Component = null;
+            this._InteractivePointItemCell0Component = null;
+            this._InteractivePointItemCell1Component = null;
         }
     }
 }

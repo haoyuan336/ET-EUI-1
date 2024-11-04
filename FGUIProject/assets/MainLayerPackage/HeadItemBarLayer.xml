@@ -1,21 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="750,1334" opaque="false">
   <displayList>
-    <component id="n2_jdez" name="DiamondItem" src="jdezc" fileName="ItemBarItemCell.xml" xy="306,46" size="167,34">
+    <component id="n2_jdez" name="DiamondItem" src="jdezc" fileName="ItemBarItemCell.xml" xy="346,46" size="167,34">
       <relation target="" sidePair="top-top"/>
     </component>
-    <component id="n3_jdez" name="GoldItem" src="jdezc" fileName="ItemBarItemCell.xml" xy="491,46" size="167,34">
+    <component id="n3_jdez" name="GoldItem" src="jdezc" fileName="ItemBarItemCell.xml" xy="531,46" size="167,34">
       <relation target="" sidePair="top-top"/>
     </component>
-    <component id="n4_jdez" name="MeatItem" src="jdezc" fileName="ItemBarItemCell.xml" xy="122,99" size="167,34">
+    <component id="n4_jdez" name="MeatItem" src="jdezc" fileName="ItemBarItemCell.xml" xy="162,99" size="167,34">
       <relation target="" sidePair="top-top"/>
     </component>
-    <component id="n5_jdez" name="WoodItem" src="jdezc" fileName="ItemBarItemCell.xml" xy="309,99" size="167,34">
+    <component id="n5_jdez" name="WoodItem" src="jdezc" fileName="ItemBarItemCell.xml" xy="349,99" size="167,34">
       <relation target="" sidePair="top-top"/>
     </component>
-    <component id="n6_jdez" name="BlueStoneItem" src="jdezc" fileName="ItemBarItemCell.xml" xy="496,99" size="167,34">
+    <component id="n6_jdez" name="BlueStoneItem" src="jdezc" fileName="ItemBarItemCell.xml" xy="536,99" size="167,34">
       <relation target="" sidePair="top-top"/>
     </component>
-    <graph id="n7_jdez" name="n7" xy="30,18" size="74,74" type="rect"/>
+    <graph id="n10_jdez" name="FightImage" xy="122,44" size="213,40" type="rect">
+      <relation target="" sidePair="top-top"/>
+    </graph>
+    <text id="n11_jdez" name="FightPower" xy="168,43" size="167,42" fontSize="30" color="#ffffff" vAlign="middle" autoSize="none" bold="true" strokeColor="#000000" strokeSize="2" text="9999999">
+      <relation target="" sidePair="top-top"/>
+    </text>
+    <graph id="n7_jdez" name="HeadImage" xy="50,38" size="74,74" type="rect">
+      <relation target="" sidePair="top-top"/>
+    </graph>
+    <text id="n8_jdez" name="n8" xy="51,31" size="76,50" fontSize="26" align="center" vAlign="middle" autoSize="none" text="头像">
+      <relation target="" sidePair="top-top"/>
+    </text>
+    <component id="n9_jdez" name="ExpProgress" src="jdezi" fileName="EXpProgress.xml" xy="25,119">
+      <relation target="" sidePair="top-top"/>
+      <ProgressBar value="100" max="100"/>
+    </component>
+    <text id="n12_jdez" name="n12" xy="120,41" size="46,46" fontSize="30" align="center" vAlign="middle" autoSize="none" text="战">
+      <relation target="" sidePair="top-top"/>
+    </text>
+    <text id="n13_jdez" name="UnitLevel" xy="42,70" size="94,52" fontSize="24" color="#ffffff" align="center" vAlign="middle" vars="true" autoSize="none" bold="true" strokeColor="#000000" strokeSize="2" text="{level=999}级">
+      <relation target="" sidePair="top-top"/>
+    </text>
   </displayList>
 </component>

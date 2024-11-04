@@ -2,19 +2,12 @@
 <packageDescription id="7sxmdg4q">
   <resources>
     <component id="ckxh0" name="MainLayer.xml" path="/" exported="true"/>
-    <component id="ckxh2" name="AddHeroItemCell.xml" path="/" exported="true"/>
     <component id="iygc3" name="JoyStickLayer.xml" path="/" exported="true"/>
-    <component id="p1ff4" name="HPProgress.xml" path="/" exported="true"/>
-    <component id="4yhj6" name="HPProgressItemCell.xml" path="/" exported="true"/>
-    <component id="sdia7" name="FightTextLayer.xml" path="/" exported="true"/>
-    <component id="sdia8" name="DamageTextItemCell.xml" path="/" exported="true"/>
-    <component id="sc409" name="GameLoseLayer.xml" path="/" exported="true"/>
-    <component id="sc40a" name="MoveingLayer.xml" path="/" exported="true"/>
     <component id="jdezb" name="HeadItemBarLayer.xml" path="/" exported="true"/>
     <component id="jdezc" name="ItemBarItemCell.xml" path="/" exported="true"/>
-    <component id="jdezd" name="AddExpTextItemCell.xml" path="/" exported="true"/>
     <component id="jdezg" name="ItemBarProgress.xml" path="/" exported="true"/>
-    <component id="jdezh" name="AddMeatTextItemCell.xml" path="/" exported="true"/>
+    <component id="jdezi" name="EXpProgress.xml" path="/" exported="true"/>
+    <component id="ckxh2" name="AddHeroItemCell.xml" path="/" exported="true"/>
   </resources>
-  <publish name="MainLayerPackage" path="D:\workspace\ET-EUI\Unity\Assets\Resources\FGUI\MainLayerPackage" packageCount="2" branchPath="D:\workspace\ET-EUI\Unity\Assets\Resources\FGUI\MainLayerPackage"/>
+  <publish name="MainLayerPackage" path=".\..\Unity\Assets\Resources\FGUI\MainLayerPackage" packageCount="2" branchPath=".\..\Unity\Assets\Resources\FGUI\MainLayerPackage"/>
 </packageDescription>

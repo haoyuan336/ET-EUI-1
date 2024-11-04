@@ -29,6 +29,11 @@ namespace ET.Client
                 return;
             }
 
+            if (objectComponent.GameObject == null)
+            {
+                return;
+            }
+
             Vector3 position = objectComponent.GameObject.transform.position;
 
             fightTextLayerComponent.PlayAddExpText(position, a.Exp.ToString());

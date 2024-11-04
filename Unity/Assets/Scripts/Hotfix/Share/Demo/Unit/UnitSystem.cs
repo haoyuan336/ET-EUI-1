@@ -3,7 +3,8 @@ using ET.Server;
 
 namespace ET
 {
-    [EntitySystemOf(typeof (Unit))]
+    [EntitySystemOf(typeof(Unit))]
+    [FriendOfAttribute(typeof(ET.Unit))]
     public static partial class UnitSystem
     {
         // [EntitySystem]
@@ -43,7 +44,7 @@ namespace ET
         private static void GetComponentSys(this Unit self, System.Type args2)
         {
 #if !UNITY
-            if (!(typeof (IUnitCache).IsAssignableFrom(args2)))
+            if (!(typeof(IUnitCache).IsAssignableFrom(args2)))
             {
                 return;
             }
@@ -53,30 +54,29 @@ namespace ET
             dbManagerComponent.AddChange(args2);
 #endif
         }
-        // public class UnitAddComponentSystem : AddComponentSystem<Unit>
-        // {
-        //     public override void AddComponent(Unit unit, Entity component)
-        //     {
-        //         Type type = component.GetType();
-        //         if (!(typeof (IUnitCache).IsAssignableFrom(type)) )
-        //         {
-        //             return;
-        //         }
-        //         unit.GetComponent<UnitDBSaveComponent>()?.AddChange(type);
-        //     }
-        // }
-        // //
-        // public class UnitGetComponentSystem : GetComponentSystem<Unit>
-        // {
-        //     public override void GetComponent(Unit unit, Entity component)
-        //     {
-        //         Type type = component.GetType();
-        //         if (!(typeof (IUnitCache).IsAssignableFrom(type)) )
-        //         {
-        //             return;
-        //         }
-        //         unit.GetComponent<UnitDBSaveComponent>()?.AddChange(type);
-        //     }
-        // }
+
+        public static UnitInfo GetUnitInfo(this Unit self)
+        {
+            UnitInfo unitInfo = UnitInfo.Create();
+
+            unitInfo.UnitId = self.Id;
+
+            unitInfo.Level = self.Level;
+
+            unitInfo.FightPower = self.FightPower;
+
+            unitInfo.CurrentExp = self.CurrentExp;
+
+            return unitInfo;
+        }
+
+        public static void SetUnitInfo(this Unit self, UnitInfo unitInfo)
+        {
+            self.Level = unitInfo.Level;
+
+            self.FightPower = unitInfo.FightPower;
+
+            self.CurrentExp = unitInfo.CurrentExp;
+        }
     }
 }

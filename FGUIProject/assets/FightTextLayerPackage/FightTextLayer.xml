@@ -37,5 +37,17 @@
     <component id="n36_jdez" name="AddMeatTextItemCell7" src="jdezh" fileName="AddMeatTextItemCell.xml" xy="-181,1246"/>
     <component id="n37_jdez" name="AddMeatTextItemCell8" src="jdezh" fileName="AddMeatTextItemCell.xml" xy="-181,1246"/>
     <component id="n38_jdez" name="AddMeatTextItemCell9" src="jdezh" fileName="AddMeatTextItemCell.xml" xy="-181,1246"/>
+    <component id="n39_jdez" name="HPProgressItemCell0" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-209,660" pivot="0.5,0.5" anchor="true" size="50,6"/>
+    <component id="n40_jdez" name="HPProgressItemCell1" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-209,660" pivot="0.5,0.5" anchor="true" size="50,6"/>
+    <component id="n41_jdez" name="HPProgressItemCell2" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-209,660" pivot="0.5,0.5" anchor="true" size="50,6"/>
+    <component id="n42_jdez" name="HPProgressItemCell3" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-209,660" pivot="0.5,0.5" anchor="true" size="50,6"/>
+    <component id="n43_jdez" name="HPProgressItemCell4" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-209,660" pivot="0.5,0.5" anchor="true" size="50,6"/>
+    <component id="n44_jdez" name="HPProgressItemCell5" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-209,660" pivot="0.5,0.5" anchor="true" size="50,6"/>
+    <component id="n45_jdez" name="HPProgressItemCell6" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-209,660" pivot="0.5,0.5" anchor="true" size="50,6"/>
+    <component id="n46_jdez" name="HPProgressItemCell7" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-209,660" pivot="0.5,0.5" anchor="true" size="50,6"/>
+    <component id="n47_jdez" name="HPProgressItemCell8" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-209,660" pivot="0.5,0.5" anchor="true" size="50,6"/>
+    <component id="n48_jdez" name="HPProgressItemCell9" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-209,660" pivot="0.5,0.5" anchor="true" size="50,6"/>
+    <component id="n50_jdez" name="InteractivePointItemCell0" src="jdez4" fileName="InteractivePointItemCell.xml" xy="-442,618" pivot="0.5,0.5" anchor="true"/>
+    <component id="n49_jdez" name="InteractivePointItemCell1" src="jdez4" fileName="InteractivePointItemCell.xml" xy="-442,338" pivot="0.5,0.5" anchor="true"/>
   </displayList>
 </component>

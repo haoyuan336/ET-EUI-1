@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MapManager
   - EnemySpawnPos
+  - InteractivePoint
   layers:
   - Default
   - TransparentFX
@@ -22,8 +23,8 @@ TagManager:
   - Unit
   - EnemySpawnPos
   - Enemy
-  - 
-  - 
+  - MainCamera
+  - InteractivePoint
   - 
   - 
   - 

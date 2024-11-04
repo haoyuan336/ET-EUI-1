@@ -62,8 +62,6 @@ namespace ET.Client
 
         private static void OnEnterStateAction(this FightDataComponent self, AIState aiState)
         {
-            Log.Debug($"FightDataComponent OnEnterStateAction {aiState}");
-
             if (aiState == AIState.Rise)
             {
                 self.CurrentHP = self.GetValueByType(WordBarType.Hp);

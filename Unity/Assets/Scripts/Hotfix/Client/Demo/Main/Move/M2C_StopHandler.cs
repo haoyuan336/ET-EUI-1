@@ -14,9 +14,9 @@ namespace ET.Client
 			}
 
 			MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
-			moveComponent.Stop(message.Error == 0);
-			unit.Position = message.Position;
-			unit.Rotation = message.Rotation;
+			// moveComponent.Stop(message.Error == 0);
+			// unit.Position = message.Position;
+			// unit.Rotation = message.Rotation;
 			unit.GetComponent<ObjectWait>()?.Notify(new Wait_UnitStop() {Error = message.Error});
 			await ETTask.CompletedTask;
 		}

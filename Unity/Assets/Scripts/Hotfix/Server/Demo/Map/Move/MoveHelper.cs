@@ -37,22 +37,22 @@ namespace ET.Server
         //     }
         // }
 
-        public static void Stop(this Unit unit, int error)
-        {
-            unit.GetComponent<MoveComponent>().Stop(error == 0);
-            unit.SendStop(error);
-        }
+        // public static void Stop(this Unit unit, int error)
+        // {
+        //     unit.GetComponent<MoveComponent>().Stop(error == 0);
+        //     unit.SendStop(error);
+        // }
 
         // error: 0表示协程走完正常停止
-        public static void SendStop(this Unit unit, int error)
-        {
-            M2C_Stop m2CStop = M2C_Stop.Create();
-            m2CStop.Error = error;
-            m2CStop.Id = unit.Id;
-            m2CStop.Position = unit.Position;
-            m2CStop.Rotation = unit.Rotation;
-            
-            MapMessageHelper.Broadcast(unit, m2CStop);
-        }
+        // public static void SendStop(this Unit unit, int error)
+        // {
+        //     M2C_Stop m2CStop = M2C_Stop.Create();
+        //     m2CStop.Error = error;
+        //     m2CStop.Id = unit.Id;
+        //     m2CStop.Position = unit.Position;
+        //     m2CStop.Rotation = unit.Rotation;
+        //     
+        //     MapMessageHelper.Broadcast(unit, m2CStop);
+        // }
     }
 }

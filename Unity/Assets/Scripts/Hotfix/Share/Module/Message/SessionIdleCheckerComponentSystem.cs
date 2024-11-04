@@ -40,6 +40,7 @@ namespace ET
         {
             Session session = self.GetParent<Session>();
             long timeNow = TimeInfo.Instance.ClientNow();
+            
 
             if (timeNow - session.LastRecvTime < ConstValue.SessionTimeoutTime && timeNow - session.LastSendTime < ConstValue.SessionTimeoutTime)
             {

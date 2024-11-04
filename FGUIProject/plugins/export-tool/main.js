@@ -459,8 +459,11 @@ function PublishViewCode(handler, codeWriter, classInfo, exportCodePath) {
         // if (!item.exported){
         // continue
         // }
-        console.log("memner type " + member.type + ',' + member.name)
+     
+        console.log("PublishViewCode memner type " + member.type + ',' + member.name + "-" + member.GetType())
         // let res = member.res;
+
+
 
         if (member.name.match(".*(?:Button)$")) {
 

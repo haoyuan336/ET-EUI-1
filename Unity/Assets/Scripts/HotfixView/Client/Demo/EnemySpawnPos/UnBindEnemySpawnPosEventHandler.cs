@@ -43,11 +43,7 @@ namespace ET.Client
             {
                 string name = gameObject.name;
 
-                string pattern = @"[^0-9]+";
-
-                string nameString = System.Text.RegularExpressions.Regex.Replace(name, pattern, "");
-
-                int number = int.Parse(nameString);
+                int number = GetStringNumberHelper.GetNumber(name);
 
                 EnemySpawnPos enemySpawnPos = enemySpawnPosComponent.GetChild<EnemySpawnPos>(number);
 

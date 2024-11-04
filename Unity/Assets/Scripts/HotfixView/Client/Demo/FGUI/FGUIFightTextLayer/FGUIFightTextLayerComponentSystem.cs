@@ -20,7 +20,8 @@ namespace ET.Client
             List<string> typeNames = new List<string>()
             {
                 typeof(FGUIDamageTextItemCellComponent).Name, typeof(FGUIAddExpTextItemCellComponent).Name,
-                typeof(FGUIAddMeatTextItemCellComponent).Name
+                typeof(FGUIAddMeatTextItemCellComponent).Name, typeof(FGUIHPProgressItemCellComponent).Name,
+                typeof(FGUIInteractivePointItemCellComponent).Name
             };
 
             for (int i = 0; i < 50; i++)
@@ -29,13 +30,13 @@ namespace ET.Client
                 {
                     string name = typeName.Replace("FGUI", "").Replace("Component", "") + i + "Component";
 
-                    Log.Debug($"RegisterUIEvent name {name}");
-
+                    Log.Debug($"name {name}");
+                    
                     PropertyInfo info = type.GetProperty(name);
 
                     if (info == null)
                     {
-                        Log.Debug("info is null");
+                        // Log.Debug("info is null");
                         continue;
                     }
 
@@ -57,16 +58,16 @@ namespace ET.Client
             }
         }
 
-        private static T GetPoolObjectByType<T>(this FGUIFightTextLayerComponent self) where T : Entity
+        public static T GetPoolObjectByType<T>(this FGUIFightTextLayerComponent self) where T : Entity
         {
             string typeName = typeof(T).Name;
 
-            // Log.Debug($"type name {typeName}");
-            //
-            // foreach (var kv in self.TextItemCellComponents)
-            // {
-            //     Log.Debug($"kv {kv.Key} {kv.Value.Count}");
-            // }
+            Log.Debug($"type name {typeName}");
+            
+            foreach (var kv in self.TextItemCellComponents)
+            {
+                Log.Debug($"kv {kv.Key} {kv.Value.Count}");
+            }
 
             if (self.TextItemCellComponents.ContainsKey(typeName))
             {
@@ -79,14 +80,16 @@ namespace ET.Client
             }
             else
             {
-                Log.Debug("get pool object by trype is null");
+                Log.Debug($"get pool object by type is null {typeName}");
             }
 
             return null;
         }
 
-        private static void ReceiveObjectToPool(this FGUIFightTextLayerComponent self, Entity entity)
+        public static void ReceiveObjectToPool(this FGUIFightTextLayerComponent self, Entity entity)
         {
+            entity.GetParent<UIBaseWindow>().GComponent.x = -1000;
+
             string typeName = entity.GetType().Name;
 
             if (self.TextItemCellComponents.ContainsKey(typeName))
@@ -105,6 +108,16 @@ namespace ET.Client
         {
         }
 
+        public static FGUIHPProgressItemCellComponent GetOneHPBar(this FGUIFightTextLayerComponent self)
+        {
+            return self.GetPoolObjectByType<FGUIHPProgressItemCellComponent>();
+        }
+
+        public static void ReceiveHPBar(this FGUIFightTextLayerComponent self, FGUIHPProgressItemCellComponent cellComponent)
+        {
+            self.ReceiveObjectToPool(cellComponent);
+        }
+
         public static async void PlayAddMeatText(this FGUIFightTextLayerComponent self, Vector3 startPos, string text)
         {
             FGUIAddMeatTextItemCellComponent addMeatTextItemCellComponent = self.GetPoolObjectByType<FGUIAddMeatTextItemCellComponent>();
@@ -114,7 +127,7 @@ namespace ET.Client
                 return;
             }
 
-            Vector2 pos = self.ConvertToPos(startPos);
+            Vector2 pos = ConvertToPosHelper.ConvertToPos(startPos);
 
             addMeatTextItemCellComponent.GetParent<UIBaseWindow>().GComponent.position = pos;
 
@@ -139,7 +152,7 @@ namespace ET.Client
                 return;
             }
 
-            Vector2 pos = self.ConvertToPos(startPos);
+            Vector2 pos = ConvertToPosHelper.ConvertToPos(startPos);
 
             addExpTextItemCellComponent.GetParent<UIBaseWindow>().GComponent.position = pos;
 
@@ -161,7 +174,7 @@ namespace ET.Client
                 return;
             }
 
-            Vector2 pos = self.ConvertToPos(startPos);
+            Vector2 pos = ConvertToPosHelper.ConvertToPos(startPos);
 
             damageTextItemCellComponent.GetParent<UIBaseWindow>().GComponent.position = pos;
 
@@ -174,16 +187,6 @@ namespace ET.Client
             self.ReceiveObjectToPool(damageTextItemCellComponent);
         }
 
-        public static Vector2 ConvertToPos(this FGUIFightTextLayerComponent self, Vector3 startPos)
-        {
-            //3D视图下的位置，转化到屏幕上之后的位置
-            Vector3 pos = Camera.main.WorldToScreenPoint(startPos);
-            //Unity初始位置在左下角，FGUI在左上角，所以需要取反
-            pos.y = Screen.height - pos.y;
-            //
-            Vector2 pt = GRoot.inst.GlobalToLocal(pos);
-
-            return pt;
-        }
+      
     }
 }
