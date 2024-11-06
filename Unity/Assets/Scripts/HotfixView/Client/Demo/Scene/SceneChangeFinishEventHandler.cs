@@ -30,13 +30,13 @@ namespace ET.Client
 
             EventSystem.Instance.Publish(scene.Root(), new StartFight() { Unit = myUnit });
 
-            EventSystem.Instance.Publish(scene.Root(), new InitMapManager() { Unit = myUnit });
+            EventSystem.Instance.Publish(scene.Root(), new InitMapManager());
 
             EventSystem.Instance.Publish(scene.Root(), new ShowLoadingLayer() { IsShow = false });
 
             scene.Root().AddComponent<CameraComponent>();
 
-            EventSystem.Instance.Publish(scene.Root(), new ChangeMapSceneFinish() { SceneName = "MainCity" });
+            EventSystem.Instance.Publish(scene.Root(), new LoadMapSceneFinish() { MapConfigId = MapConfigCategory.Instance.GetMainCity().Id });
         }
     }
 }

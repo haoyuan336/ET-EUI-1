@@ -1,0 +1,15 @@
+{"dict": [
+[1001, {"_t":"TreeConfig","_id":1001,"AwardConfigId":10004,"AwardCount":1,"HP":5}],
+[1002, {"_t":"TreeConfig","_id":1002,"AwardConfigId":10004,"AwardCount":2,"HP":6}],
+[1003, {"_t":"TreeConfig","_id":1003,"AwardConfigId":10004,"AwardCount":3,"HP":7}],
+[1004, {"_t":"TreeConfig","_id":1004,"AwardConfigId":10004,"AwardCount":4,"HP":8}],
+[1005, {"_t":"TreeConfig","_id":1005,"AwardConfigId":10004,"AwardCount":5,"HP":9}],
+[1006, {"_t":"TreeConfig","_id":1006,"AwardConfigId":10004,"AwardCount":6,"HP":10}],
+[1007, {"_t":"TreeConfig","_id":1007,"AwardConfigId":10004,"AwardCount":7,"HP":11}],
+[1008, {"_t":"TreeConfig","_id":1008,"AwardConfigId":10004,"AwardCount":8,"HP":12}],
+[1009, {"_t":"TreeConfig","_id":1009,"AwardConfigId":10004,"AwardCount":9,"HP":13}],
+[1010, {"_t":"TreeConfig","_id":1010,"AwardConfigId":10004,"AwardCount":10,"HP":14}],
+[1011, {"_t":"TreeConfig","_id":1011,"AwardConfigId":10004,"AwardCount":11,"HP":15}],
+[1012, {"_t":"TreeConfig","_id":1012,"AwardConfigId":10004,"AwardCount":12,"HP":16}],
+[1013, {"_t":"TreeConfig","_id":1013,"AwardConfigId":10004,"AwardCount":13,"HP":17}],
+]}

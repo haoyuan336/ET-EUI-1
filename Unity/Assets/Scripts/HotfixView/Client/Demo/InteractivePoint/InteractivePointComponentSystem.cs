@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace ET.Client
 {
-    [EntitySystemOf(typeof(InteractionObject))]
     public static partial class InteractivePointComponentSystem
     {
         [EntitySystem]
@@ -14,27 +13,13 @@ namespace ET.Client
         {
         }
 
-        public static async void ChangeMapScene(this InteractivePointComponent self)
+        public static void ChangeMapScene(this InteractivePointComponent self)
         {
             TimerComponent timerComponent = self.Root().GetComponent<TimerComponent>();
 
             List<GameObject> gameObjects = GameObject.FindGameObjectsWithTag("InteractivePoint").ToList();
 
             Log.Debug($"Gameobejcts {gameObjects.Count}");
-
-            foreach (var kv in self.Children)
-            {
-                await timerComponent.WaitFrameAsync();
-
-                long key = kv.Key;
-
-                if (gameObjects.Exists(a => a.name.IndexOf(key.ToString(), StringComparison.Ordinal) > 0))
-                {
-                    continue;
-                }
-
-                self.RemoveChild(key);
-            }
 
             foreach (var gameObject in gameObjects)
             {

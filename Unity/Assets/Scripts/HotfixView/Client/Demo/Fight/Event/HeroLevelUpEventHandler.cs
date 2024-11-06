@@ -21,11 +21,6 @@ namespace ET.Client
 
             fightDataComponent.Datas = fightCard.Datas;
 
-            foreach (var kv in fightDataComponent.Datas)
-            {
-                Log.Debug($"kv {kv.Key}, {kv.Value}");
-            }
-
             SkillComponent skillComponent = fightCard.GetComponent<SkillComponent>();
 
             skillComponent.UpdateLevel(heroCard.Level);

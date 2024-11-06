@@ -1,6 +1,6 @@
 namespace ET.Client
 {
-    [ComponentOf(typeof(Unit))]
+    [ComponentOf(typeof(Scene))]
     public class MapManagerComponent : Entity, IAwake
     {
         

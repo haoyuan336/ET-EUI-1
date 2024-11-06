@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="319,120" pivot="0.5,0.5">
+  <controller name="IsCurrentMap" pages="0,,1," selected="0"/>
+  <controller name="button" pages="0,up,1,down" selected="0"/>
+  <displayList>
+    <graph id="n10_jdez" name="n10" xy="0,0" size="319,120" type="rect" fillColor="#ff436443">
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <graph id="n11_jdez" name="n11" xy="3,3" size="91,31" type="rect" fillColor="#ffffcc33">
+      <gearDisplay controller="IsCurrentMap" pages="1"/>
+      <relation target="" sidePair="left-left,top-top"/>
+    </graph>
+    <text id="n12_jdez" name="n12" xy="3,3" size="90,31" fontSize="20" color="#ffffff" autoSize="none" bold="true" strokeColor="#000000" text="当前位置">
+      <gearDisplay controller="IsCurrentMap" pages="1"/>
+      <relation target="" sidePair="left-left,top-top"/>
+    </text>
+    <graph id="n13_jdez" name="n13" xy="0,91" size="319,30" type="rect">
+      <relation target="" sidePair="width-width"/>
+    </graph>
+    <text id="n14_jdez" name="MapTitle" xy="3,94" size="143,29" fontSize="20" color="#ffffff" autoSize="none" bold="true" strokeColor="#000000" text="起始城镇">
+      <relation target="" sidePair="width-width,bottom-bottom"/>
+    </text>
+    <text id="n15_jdez" name="n15" xy="159,94" size="31,29" fontSize="20" color="#ffffff" autoSize="none" bold="true" strokeColor="#000000" text="战">
+      <relation target="" sidePair="width-width,bottom-bottom"/>
+      <relation target="n16_jdez" sidePair="right-left"/>
+    </text>
+    <text id="n16_jdez" name="FightPower" xy="194,94" pivot="1,0" size="125,29" fontSize="20" color="#ffffff" align="right" autoSize="none" bold="true" strokeColor="#000000" text="999999977">
+      <relation target="" sidePair="width-width,bottom-bottom"/>
+    </text>
+    <component id="n17_jdez" name="ClickButton" src="jh1l3e" fileName="AButton.xml" pkg="9nomxs01" xy="0,0" size="319,120"/>
+  </displayList>
+</component>

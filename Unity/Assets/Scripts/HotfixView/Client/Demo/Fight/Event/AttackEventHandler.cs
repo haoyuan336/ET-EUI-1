@@ -41,6 +41,7 @@ namespace ET.Client
 
             FightDataComponent fightDataComponent = skill.Parent.Parent.GetComponent<FightDataComponent>();
 
+            
             //首先计算基础伤害
             float damage = FightDataHelper.Fight(fightDataComponent, beAttackDataComponent);
 

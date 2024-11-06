@@ -4,10 +4,10 @@
     <component id="n0_i2d8" name="NormalRootLayer" src="i2d81" fileName="EmptyLayer.xml" xy="0,0" size="750,1334">
       <relation target="" sidePair="width-width,height-height,center-center,middle-middle"/>
     </component>
-    <component id="n1_i2d8" name="PopUpRootLayer" src="i2d81" fileName="EmptyLayer.xml" xy="0,0" size="750,1334">
+    <component id="n2_i2d8" name="FixedRootLayer" src="i2d81" fileName="EmptyLayer.xml" xy="0,0" size="750,1334">
       <relation target="" sidePair="width-width,height-height,center-center,middle-middle"/>
     </component>
-    <component id="n2_i2d8" name="FixedRootLayer" src="i2d81" fileName="EmptyLayer.xml" xy="0,0" size="750,1334">
+    <component id="n1_i2d8" name="PopUpRootLayer" src="i2d81" fileName="EmptyLayer.xml" xy="0,0" size="750,1334">
       <relation target="" sidePair="width-width,height-height,center-center,middle-middle"/>
     </component>
     <component id="n3_i2d8" name="OtherRootLayer" src="i2d81" fileName="EmptyLayer.xml" xy="0,0" size="750,1334">

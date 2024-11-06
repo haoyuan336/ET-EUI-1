@@ -32,9 +32,7 @@ namespace ET.Client
     //     public string ColliderName;
     // }
 
-    public struct MoveUnitToMainCity
-    {
-    }
+  
 
     public struct CheckGameLoseLogic
     {
@@ -48,10 +46,7 @@ namespace ET.Client
         public string Text;
     }
 
-    public struct MakeEnemySleep
-    {
-        public Enemy Enemy;
-    }
+   
 
     public struct MakeEnemyRunning
     {
@@ -72,16 +67,10 @@ namespace ET.Client
         public MapConfig MapConfig;
     }
 
-    public struct UnBindEnemySpawnPos
-    {
-        public Unit Unit;
-
-        public MapConfig MapConfig;
-    }
+  
 
     public struct InitMapManager
     {
-        public Unit Unit;
     }
 
     public struct StartFight

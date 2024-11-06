@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="750,1334">
+  <controller name="IsMainCity" pages="0,,1," selected="1"/>
   <displayList>
     <component id="n8_iygc" name="JoyStickLayer" src="iygc3" fileName="JoyStickLayer.xml" xy="0,0">
       <relation target="" sidePair="width-width,height-height"/>
@@ -18,6 +19,7 @@
       <Button title="Formation" titleFontSize="20"/>
     </component>
     <component id="n20_sc40" name="BackMainCityButton" src="jh1l3d" fileName="NButton.xml" pkg="9nomxs01" xy="567,1206" size="137,78">
+      <gearDisplay controller="IsMainCity" pages="0"/>
       <relation target="" sidePair="bottom-bottom"/>
       <Button title="回城" titleFontSize="40"/>
     </component>

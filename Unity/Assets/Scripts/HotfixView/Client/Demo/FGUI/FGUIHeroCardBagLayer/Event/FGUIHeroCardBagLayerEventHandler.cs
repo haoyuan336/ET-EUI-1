@@ -10,7 +10,7 @@ namespace ET.Client
     {
         public void OnInitWindowCoreData(UIBaseWindow uiBaseWindow)
         {
-            uiBaseWindow.windowType = UIWindowType.PopUp;
+            uiBaseWindow.windowType = UIWindowType.Fixed;
         }
         public void OnInitComponent(UIBaseWindow uiBaseWindow)
         {

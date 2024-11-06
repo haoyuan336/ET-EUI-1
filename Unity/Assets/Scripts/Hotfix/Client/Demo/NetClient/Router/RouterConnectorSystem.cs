@@ -27,7 +27,6 @@ namespace ET.Client
 
         public static void Connect(this RouterConnector self, byte[] bytes, int index, int length, IPEndPoint ipEndPoint)
         {
-            Log.Warning("RouterConnector Connect");
             NetComponent netComponent = self.GetParent<NetComponent>();
             KSService kService = (KSService)netComponent.AService;
             kService.Transport.Send(bytes, index, length, ipEndPoint);

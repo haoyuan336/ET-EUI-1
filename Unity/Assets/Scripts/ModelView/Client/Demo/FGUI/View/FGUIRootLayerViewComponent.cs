@@ -32,31 +32,6 @@ namespace ET
                 return this._NormalRootLayerComponent;
             }
         }
-        public  FGUIEmptyLayerComponent PopUpRootLayerComponent
-        {
-            get
-            {
-                if (this._PopUpRootLayerComponent== null)
-                {
-                    UIBaseWindow fguiBaseWindow = this.GetParent<UIBaseWindow>();
-
-                    GComponent gComponent = fguiBaseWindow.GComponent;
-
-                    UIBaseWindow childBaseWindow = this.AddChild<UIBaseWindow>();
-
-                    childBaseWindow.WindowID = WindowID.EmptyLayer;
-
-                    childBaseWindow.GComponent = gComponent.GetChild("PopUpRootLayer").asCom;
-
-                    childBaseWindow.AddComponent<FGUIEmptyLayerViewComponent>();
-
-                    this._PopUpRootLayerComponent = childBaseWindow.AddComponent<FGUIEmptyLayerComponent>();
-
-
-                }
-                return this._PopUpRootLayerComponent;
-            }
-        }
         public  FGUIEmptyLayerComponent FixedRootLayerComponent
         {
             get
@@ -80,6 +55,31 @@ namespace ET
 
                 }
                 return this._FixedRootLayerComponent;
+            }
+        }
+        public  FGUIEmptyLayerComponent PopUpRootLayerComponent
+        {
+            get
+            {
+                if (this._PopUpRootLayerComponent== null)
+                {
+                    UIBaseWindow fguiBaseWindow = this.GetParent<UIBaseWindow>();
+
+                    GComponent gComponent = fguiBaseWindow.GComponent;
+
+                    UIBaseWindow childBaseWindow = this.AddChild<UIBaseWindow>();
+
+                    childBaseWindow.WindowID = WindowID.EmptyLayer;
+
+                    childBaseWindow.GComponent = gComponent.GetChild("PopUpRootLayer").asCom;
+
+                    childBaseWindow.AddComponent<FGUIEmptyLayerViewComponent>();
+
+                    this._PopUpRootLayerComponent = childBaseWindow.AddComponent<FGUIEmptyLayerComponent>();
+
+
+                }
+                return this._PopUpRootLayerComponent;
             }
         }
         public  FGUIEmptyLayerComponent OtherRootLayerComponent
@@ -108,14 +108,14 @@ namespace ET
             }
         }
         private FGUIEmptyLayerComponent _NormalRootLayerComponent = null;
-        private FGUIEmptyLayerComponent _PopUpRootLayerComponent = null;
         private FGUIEmptyLayerComponent _FixedRootLayerComponent = null;
+        private FGUIEmptyLayerComponent _PopUpRootLayerComponent = null;
         private FGUIEmptyLayerComponent _OtherRootLayerComponent = null;
         public void ClearBindCache()
         {
             this._NormalRootLayerComponent = null;
-            this._PopUpRootLayerComponent = null;
             this._FixedRootLayerComponent = null;
+            this._PopUpRootLayerComponent = null;
             this._OtherRootLayerComponent = null;
         }
     }

@@ -1207,6 +1207,53 @@ namespace ET
                 return this._InteractivePointItemCell1Component;
             }
         }
+        public  FGUIInteractivePointItemCellComponent InteractivePointItemCell2Component
+        {
+            get
+            {
+                if (this._InteractivePointItemCell2Component== null)
+                {
+                    UIBaseWindow fguiBaseWindow = this.GetParent<UIBaseWindow>();
+
+                    GComponent gComponent = fguiBaseWindow.GComponent;
+
+                    UIBaseWindow childBaseWindow = this.AddChild<UIBaseWindow>();
+
+                    childBaseWindow.WindowID = WindowID.InteractivePointItemCell;
+
+                    childBaseWindow.GComponent = gComponent.GetChild("InteractivePointItemCell2").asCom;
+
+                    childBaseWindow.AddComponent<FGUIInteractivePointItemCellViewComponent>();
+
+                    this._InteractivePointItemCell2Component = childBaseWindow.AddComponent<FGUIInteractivePointItemCellComponent>();
+
+
+                }
+                return this._InteractivePointItemCell2Component;
+            }
+        }
+        public GTextField  MapName
+        {
+            get
+            {
+                if (this._MapName == null)
+                {
+                    this._MapName = this.GetParent<UIBaseWindow>().GComponent.GetChild("MapName").asTextField;
+                }
+                return this._MapName;
+            }
+        }
+        public Transition  ShowMapNameAnim
+        {
+            get
+            {
+                if (this._ShowMapNameAnim == null)
+                {
+                    this._ShowMapNameAnim = this.GetParent<UIBaseWindow>().GComponent.GetTransition("ShowMapNameAnim");
+                }
+                return this._ShowMapNameAnim;
+            }
+        }
         private FGUIDamageTextItemCellComponent _DamageTextItemCell0Component = null;
         private FGUIDamageTextItemCellComponent _DamageTextItemCell1Component = null;
         private FGUIDamageTextItemCellComponent _DamageTextItemCell2Component = null;
@@ -1255,6 +1302,9 @@ namespace ET
         private FGUIHPProgressItemCellComponent _HPProgressItemCell9Component = null;
         private FGUIInteractivePointItemCellComponent _InteractivePointItemCell0Component = null;
         private FGUIInteractivePointItemCellComponent _InteractivePointItemCell1Component = null;
+        private FGUIInteractivePointItemCellComponent _InteractivePointItemCell2Component = null;
+        private GTextField _MapName = null;
+        private Transition _ShowMapNameAnim = null;
         public void ClearBindCache()
         {
             this._DamageTextItemCell0Component = null;
@@ -1305,6 +1355,9 @@ namespace ET
             this._HPProgressItemCell9Component = null;
             this._InteractivePointItemCell0Component = null;
             this._InteractivePointItemCell1Component = null;
+            this._InteractivePointItemCell2Component = null;
+            this._MapName = null;
+            this._ShowMapNameAnim = null;
         }
     }
 }

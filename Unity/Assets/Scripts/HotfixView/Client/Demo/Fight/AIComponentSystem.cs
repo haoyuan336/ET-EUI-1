@@ -17,7 +17,6 @@ namespace ET.Client
         {
             self.StateStack.Push(AIState.Invalide);
         }
-
         public static void EnterAIState(this AIComponent self, AIState aiState)
         {
             if (self.OutStateAction != null)

@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using MongoDB.Bson.Serialization.IdGenerators;
 
 namespace ET.Client
 {
@@ -13,5 +14,7 @@ namespace ET.Client
 
         public Dictionary<string, Stack<Entity>> TextItemCellComponents =
                 new Dictionary<string, Stack<Entity>>();
+
+        public int CurrentMapConfigId = MapConfigCategory.Instance.GetMainCity().Id;
     }
 }

@@ -58,7 +58,42 @@ namespace ET.Client
 
             self.SkeletonAnimation = self.Body.GetComponent<SkeletonAnimation>();
 
+            ColliderAction colliderAction = gameObject.GetComponent<ColliderAction>();
+
+            if (colliderAction != null)
+            {
+                colliderAction.OnTriggerEnterAction = self.OnTriggerEnter;
+
+                colliderAction.OnTriggerExitAction = self.OnTriggerExit;
+            }
+
             return true;
+        }
+
+        private static void OnTriggerEnter(this ObjectComponent self, GameObject gameObject, GameObject otherObject)
+        {
+            Log.Debug($"object component enter {otherObject.name}");
+            if (otherObject.CompareTag("TeleportFence"))
+            {
+                AIComponent aiComponent = self.Parent.GetComponent<AIComponent>();
+
+                aiComponent.InSafeArea = true;
+            }
+
+            Log.Debug($"object component enter {self.Parent.GetComponent<AIComponent>().InSafeArea}");
+        }
+
+        private static void OnTriggerExit(this ObjectComponent self, GameObject gameObject, GameObject otherObject)
+        {
+            Log.Debug($"object component exit {otherObject.name}");
+            if (otherObject.CompareTag("TeleportFence"))
+            {
+                AIComponent aiComponent = self.Parent.GetComponent<AIComponent>();
+
+                aiComponent.InSafeArea = false;
+                
+                
+            }
         }
 
         [EntitySystem]

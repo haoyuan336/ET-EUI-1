@@ -1,16 +1,16 @@
 namespace ET.Client
 {
-    public struct ChangeMapSceneFinish
+    public struct LoadMapSceneFinish
     {
-        public string SceneName;
+        public int MapConfigId;
     }
 
     [Event(SceneType.Demo)]
-    public class ChangeMapSceneFinishEventHandler : AEvent<Scene, ChangeMapSceneFinish>
+    public class LoadMapSceneFinishEventHandler : AEvent<Scene, LoadMapSceneFinish>
     {
-        protected override async ETTask Run(Scene scene, ChangeMapSceneFinish a)
+        protected override async ETTask Run(Scene scene, LoadMapSceneFinish a)
         {
-            Log.Debug($"Change map scene finish {a.SceneName}");
+            Log.Debug($"LoadMapSceneFinish scene finish {a.MapConfigId}");
 
             InteractivePointComponent interactivePointComponent = scene.GetComponent<InteractivePointComponent>();
 

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using WeChatWASM;
 
@@ -24,45 +25,163 @@ namespace ET.Client
         [EntitySystem]
         public static void Update(this TrackComponent self)
         {
-            if (self.AIComponent != null && self.AIComponent.GetCurrentState() == AIState.Track)
+            if (self.AIComponent == null)
             {
-                if (self.TargetEntity == null)
+                return;
+            }
+
+            AIState aiState = self.AIComponent.GetCurrentState();
+
+            if (aiState == AIState.TrackTree)
+            {
+                self.TrackTree();
+            }
+
+            if (aiState == AIState.Track)
+            {
+                self.TrackTarget();
+            }
+        }
+
+        private static void TrackTarget(this TrackComponent self)
+        {
+            if (self.AIComponent.InSafeArea)
+            {
+                self.AIComponent.EnterAIState(AIState.Idle);
+
+                return;
+            }
+
+            if (self.TargetEntity == null)
+            {
+                self.AIComponent.EnterAIState(AIState.Patrol);
+
+                return;
+            }
+
+            MoveObjectComponent moveObjectComponent = self.Parent.GetComponent<MoveObjectComponent>();
+
+            ObjectComponent beAttackObjectComponent = self.TargetEntity.GetComponent<ObjectComponent>();
+
+            if (beAttackObjectComponent == null)
+            {
+                self.AIComponent.EnterAIState(AIState.Patrol);
+
+                return;
+            }
+
+            GameObject beGameObejct = beAttackObjectComponent.GameObject;
+
+            if (beGameObejct == null)
+            {
+                self.AIComponent.EnterAIState(AIState.Patrol);
+
+                return;
+            }
+
+            bool isCanAttack = FightDataHelper.GetCanAttack(self.TargetEntity);
+
+            if (!isCanAttack)
+            {
+                self.AIComponent.EnterAIState(AIState.Patrol);
+
+                return;
+            }
+
+            moveObjectComponent.Move(beGameObejct.transform.position);
+
+            ObjectComponent myObjectComponent = self.Parent.GetComponent<ObjectComponent>();
+
+            GameObject myGameObject = myObjectComponent.GameObject;
+
+            float distance = (myGameObject.transform.position - beGameObejct.transform.position).magnitude;
+
+            if (distance < 2f)
+            {
+                AttackComponent attackComponent = self.Parent.GetComponent<AttackComponent>();
+
+                attackComponent.SetAttackTarget(self.TargetEntity);
+
+                self.AIComponent.EnterAIState(AIState.Attacking);
+            }
+
+            if (distance > ConstValue.FindEnemyDistance + 1)
+            {
+                self.TargetEntity = null;
+            }
+        }
+
+        private static void TrackTree(this TrackComponent self)
+        {
+            if (self.AIComponent.InSafeArea)
+            {
+                self.AIComponent.EnterAIState(AIState.Idle);
+
+                return;
+            }
+
+            if (self.TargetEntity == null)
+            {
+                self.AIComponent.EnterAIState(AIState.Patrol);
+
+                return;
+            }
+
+            ObjectComponent myObjectComponent = self.Parent.GetComponent<ObjectComponent>();
+
+            GameObject myGameObject = myObjectComponent.GameObject;
+
+            MoveObjectComponent moveObjectComponent = self.Parent.GetComponent<MoveObjectComponent>();
+
+            GameObject beGameObejct = null;
+
+            Tree tree = null;
+
+            try
+            {
+                tree = self.TargetEntity as Tree;
+
+                beGameObejct = tree.TreeObject;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+
+                self.AIComponent.EnterAIState(AIState.Patrol);
+
+                return;
+            }
+
+            if (beGameObejct == null)
+            {
+                self.AIComponent.EnterAIState(AIState.Patrol);
+
+                return;
+            }
+
+            moveObjectComponent.Move(beGameObejct.transform.position);
+
+            float distance = (myGameObject.transform.position - beGameObejct.transform.position).magnitude;
+
+            if (distance < 2f)
+            {
+                CutTreeComponent cutTreeComponent = self.Parent.GetComponent<CutTreeComponent>();
+
+                if (self.TargetEntity is not Tree)
                 {
                     self.AIComponent.EnterAIState(AIState.Patrol);
 
                     return;
                 }
 
-                MoveObjectComponent moveObjectComponent = self.Parent.GetComponent<MoveObjectComponent>();
+                cutTreeComponent.SetTarget(self.TargetEntity as Tree);
 
-                GameObject gameObject = self.TargetEntity.GetComponent<ObjectComponent>().GameObject;
+                self.AIComponent.EnterAIState(AIState.CutTree);
+            }
 
-                if (gameObject == null)
-                {
-                    self.AIComponent.EnterAIState(AIState.Patrol);
-
-                    return;
-                }
-
-                moveObjectComponent.Move(gameObject.transform.position);
-
-                ObjectComponent objectComponent = self.Parent.GetComponent<ObjectComponent>();
-
-                float distance = (objectComponent.GameObject.transform.position - gameObject.transform.position).magnitude;
-
-                if (distance < 2f)
-                {
-                    AttackComponent attackComponent = self.Parent.GetComponent<AttackComponent>();
-
-                    attackComponent.SetAttackTarget(self.TargetEntity);
-
-                    self.AIComponent.EnterAIState(AIState.Attacking);
-                }
-
-                if (distance > ConstValue.FindEnemyDistance + 1)
-                {
-                    self.TargetEntity = null;
-                }
+            if (distance > ConstValue.FindEnemyDistance + 1)
+            {
+                self.TargetEntity = null;
             }
         }
 
@@ -72,7 +191,6 @@ namespace ET.Client
 
         public static void OnOutStateAction(this TrackComponent self, AIState aiState)
         {
-            
         }
     }
 }

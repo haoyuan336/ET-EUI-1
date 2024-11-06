@@ -41,7 +41,7 @@ namespace ET.Client
                     (RandomGenerator.RandFloat01() * 2 + 1);
 
             AIComponent aiComponent = fightHeroCard.AddComponent<AIComponent>();
-            
+
             fightHeroCard.AddComponent<ObjectComponent, GameObject, Vector3>(prefab, pos);
 
             fightHeroCard.AddComponent<FightDataComponent, HeroCard>(fightHeroCard);
@@ -52,7 +52,9 @@ namespace ET.Client
 
             int maskCode = LayerMask.GetMask("Enemy");
 
-            fightHeroCard.AddComponent<FindEnemyComponent, int>(maskCode);
+            Log.Debug($"mask code {maskCode}");
+
+            fightHeroCard.AddComponent<FindEnemyOrTreeComponent, int>(maskCode);
 
             fightHeroCard.AddComponent<AnimComponent>();
 
@@ -60,9 +62,11 @@ namespace ET.Client
 
             fightHeroCard.AddComponent<SkillComponent, int, int>(fightHeroCard.HeroConfigId, fightHeroCard.Level);
 
+            fightHeroCard.AddComponent<CutTreeComponent>();
+
             gameObjectComponent.HeroCards.Add(fightHeroCard);
 
-            aiComponent.EnterAIState(AIState.FindEnemy);
+            aiComponent.EnterAIState(AIState.Idle);
 
             await ETTask.CompletedTask;
         }

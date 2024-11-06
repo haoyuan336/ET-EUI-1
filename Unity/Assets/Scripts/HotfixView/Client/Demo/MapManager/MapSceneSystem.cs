@@ -7,29 +7,73 @@ namespace ET.Client
     public static partial class MapSceneSystem
     {
         [EntitySystem]
-        public static void Destroy(this MapScene self)
+        public static void Awake(this MapScene self, GameObject gameObject)
         {
-            MapConfig mapConfig = MapConfigCategory.Instance.Get((int)self.Id);
+            ColliderAction colliderAction = gameObject.GetComponent<ColliderAction>();
 
-            Unit unit = self.Parent.GetParent<Unit>();
+            colliderAction.OnTriggerEnterAction = self.OnTriggerEnter;
 
-            EventSystem.Instance.Publish(self.Root(), new UnBindEnemySpawnPos() { Unit = unit, MapConfig = mapConfig });
+            colliderAction.OnTriggerExitAction = self.OnTriggerExit;
+        }
 
-            SceneManager.UnloadSceneAsync(mapConfig.SceneName);
+        public static async void OnTriggerEnter(this MapScene self, GameObject gameObject, GameObject otherObject)
+        {
+            Log.Debug($"on trigger enter {self.Id}");
+
+            await self.LoadScene();
+        }
+
+        public static void OnTriggerExit(this MapScene self, GameObject gameObject, GameObject otherObject)
+        {
+            self.UnLoadScene();
         }
 
         [EntitySystem]
-        public static async void Awake(this MapScene self)
+        public static void Destroy(this MapScene self)
         {
+        }
+
+        public static async ETTask LoadScene(this MapScene self)
+        {
+            if (self.IsLoaded)
+            {
+                return;
+            }
+
+            self.IsLoaded = true;
+
             MapConfig mapConfig = MapConfigCategory.Instance.Get((int)self.Id);
 
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(mapConfig.SceneName, LoadSceneMode.Additive);
 
             await asyncOperation.GetAwaiter();
 
-            Unit unit = self.Parent.GetParent<Unit>();
+            Unit unit = UnitHelper.GetMyUnit(self.Root());
 
             EventSystem.Instance.Publish(self.Root(), new BindEnemySpawnPos() { Unit = unit, MapConfig = mapConfig });
+
+            EventSystem.Instance.Publish(self.Root(), new BindTreeObject()
+            {
+                MapConfig = mapConfig
+            });
+
+            EventSystem.Instance.Publish(self.Root(), new LoadMapSceneFinish() { MapConfigId = mapConfig.Id });
+        }
+
+        public static void UnLoadScene(this MapScene self)
+        {
+            if (!self.IsLoaded)
+            {
+                return;
+            }
+
+            self.IsLoaded = false;
+
+            MapConfig mapConfig = MapConfigCategory.Instance.Get((int)self.Id);
+
+            Log.Debug($"unload scene {mapConfig.SceneName}");
+
+            SceneManager.UnloadSceneAsync(mapConfig.SceneName);
         }
     }
 }

@@ -31,6 +31,29 @@ namespace ET.Client
             self.CharacterController = self.GameObject.GetComponent<CharacterController>();
 
             self.TargetPos = self.GameObject.transform.position;
+
+            ColliderAction colliderAction = self.GameObject.GetComponent<ColliderAction>();
+
+            colliderAction.OnTriggerEnterAction = self.OnTriggerEnter;
+
+            colliderAction.OnTriggerExitAction = self.OnTriggerExit;
+        }
+
+        private static void OnTriggerEnter(this GameObjectComponent self, GameObject gameObject, GameObject otherGameobject)
+        {
+            if (otherGameobject.CompareTag("EnterMapCollider"))
+            {
+                Log.Debug($"GameObjectComponent OnTriggerEnter {otherGameobject.name} ");
+                string name = otherGameobject.name;
+
+                int number = GetStringNumberHelper.GetNumber(name);
+
+                EventSystem.Instance.Publish(self.Root(), new EnteredMapScene() { MapConfigId = number });
+            }
+        }
+
+        private static void OnTriggerExit(this GameObjectComponent self, GameObject gameObject, GameObject otherObject)
+        {
         }
 
         public static void BindCM(this GameObjectComponent self)
@@ -66,11 +89,34 @@ namespace ET.Client
             }
         }
 
-        public static async ETTask MoveUnitToMainCity(this GameObjectComponent self)
+        public static async ETTask MoveUnitToTeleport(this GameObjectComponent self, int mapConfigId)
         {
-            GameObject unitInitPos = GameObject.Find("UnitInitPos");
+            MapConfig mapConfig = MapConfigCategory.Instance.Get(mapConfigId);
 
-            self.TargetPos = unitInitPos.transform.position;
+            int interactivePointConfigId = mapConfig.TeleportConfigId;
+
+            string interactivePointName = "InteractivePoint" + interactivePointConfigId;
+
+            Log.Debug($"MoveUnitToTeleport InteractivePoint {interactivePointName}");
+
+            GameObject taregtObject = GameObject.Find(interactivePointName);
+
+            if (taregtObject == null)
+            {
+                Log.Debug("target object is null");
+                await EventSystem.Instance.PublishAsync(self.Root(), new LoadMapScene() { MapConfigId = mapConfigId });
+
+                taregtObject = GameObject.Find(interactivePointName);
+
+                Log.Debug($"MoveUnitToTeleport load map scene {interactivePointName} {taregtObject == null}");
+
+                if (taregtObject == null)
+                {
+                    return;
+                }
+            }
+
+            self.TargetPos = taregtObject.transform.position;
 
             float time = 0;
 
@@ -80,7 +126,7 @@ namespace ET.Client
 
             while (time < 1)
             {
-                Vector3 pos = Vector3.Lerp(startPos, unitInitPos.transform.position, time);
+                Vector3 pos = Vector3.Lerp(startPos, taregtObject.transform.position, time);
 
                 self.GameObject.transform.position = pos;
 

@@ -5,9 +5,7 @@ namespace ET.Client
     {
         protected override async ETTask Run(Scene scene, InitMapManager a)
         {
-            Unit unit = a.Unit;
-
-            MapManagerComponent managerComponent = unit.AddComponent<MapManagerComponent>();
+            MapManagerComponent managerComponent = scene.AddComponent<MapManagerComponent>();
 
             await ETTask.CompletedTask;
         }

@@ -33,9 +33,9 @@ namespace ET.Client
 
             ColliderAction colliderAction = self.BindObject.GetComponent<ColliderAction>();
 
-            colliderAction.OnTriggerEnterAction += self.OnEnterInteractivePointRange;
+            colliderAction.OnTriggerEnterAction = self.OnEnterInteractivePointRange;
 
-            colliderAction.OnTriggerExitAction += self.OnExitInteractivePointRange;
+            colliderAction.OnTriggerExitAction = self.OnExitInteractivePointRange;
 
             self.ColliderAction = colliderAction;
         }
@@ -53,7 +53,7 @@ namespace ET.Client
             }
         }
 
-        public static async void OnEnterInteractivePointRange(this InteractivePoint self, GameObject collider)
+        public static void OnEnterInteractivePointRange(this InteractivePoint self, GameObject collider, GameObject otherObject)
         {
             UIComponent uiComponent = self.Root().GetComponent<UIComponent>();
 
@@ -75,10 +75,6 @@ namespace ET.Client
 
             interactivePointItemCellComponent.View.EnterAnim.Play();
 
-            TimerComponent timerComponent = self.Root().GetComponent<TimerComponent>();
-
-            await timerComponent.WaitAsync(200);
-
             interactivePointItemCellComponent.View.ClickButton.SetListener(self.OnButtonClick);
         }
 
@@ -91,13 +87,14 @@ namespace ET.Client
             switch (interactivePointConfig.InteractveType)
             {
                 case "Teleport":
-                    
-                    
+
+                    EventSystem.Instance.Publish(self.Root(),
+                        new PushLayerById() { WindowID = WindowID.TeleportLayer, ShowWindowData = new ShowWindowData() { Entity = self } });
                     break;
             }
         }
 
-        private static async void OnExitInteractivePointRange(this InteractivePoint self, GameObject collider)
+        private static async void OnExitInteractivePointRange(this InteractivePoint self, GameObject collider, GameObject otherObject)
         {
             if (self.FightTextLayerComponent != null)
             {

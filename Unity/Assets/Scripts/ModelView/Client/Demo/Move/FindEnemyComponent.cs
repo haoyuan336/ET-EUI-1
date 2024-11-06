@@ -10,6 +10,8 @@ namespace ET.Client
 
         public int FindAngle;
 
+        public RaycastHit[] RaycastHits = new RaycastHit[10];
+
     }
     
 }

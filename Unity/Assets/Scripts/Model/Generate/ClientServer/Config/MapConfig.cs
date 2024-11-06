@@ -69,6 +69,10 @@ namespace ET
 		public string Teleport { get; set; }
 		/// <summary>章节名字</summary>
 		public string ChapterName { get; set; }
+		/// <summary>推荐战力</summary>
+		public int FightPower { get; set; }
+		/// <summary>传送点Id</summary>
+		public int TeleportConfigId { get; set; }
 
 	}
 }

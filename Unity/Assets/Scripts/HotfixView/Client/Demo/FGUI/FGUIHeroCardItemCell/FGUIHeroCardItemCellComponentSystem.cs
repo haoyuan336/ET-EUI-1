@@ -31,6 +31,9 @@ namespace ET.Client
             self.View.DestroyButton.SetListener(self.OnDestroyButtonClick);
 
             self.View.ClickButton.SetListener(self.OnButtonClick);
+            
+            self.View.Level.SetVar("Level", self.HeroCard.Level.ToString()).FlushVars();
+            
         }
 
         private static void OnButtonClick(this FGUIHeroCardItemCellComponent self)

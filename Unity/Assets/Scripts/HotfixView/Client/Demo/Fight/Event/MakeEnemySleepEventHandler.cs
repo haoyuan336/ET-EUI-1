@@ -1,5 +1,10 @@
 namespace ET.Client
 {
+    public struct MakeEnemySleep
+    {
+        public Enemy Enemy;
+    }
+
     [Event(SceneType.Demo)]
     public class MakeEnemySleepEventHandler : AEvent<Scene, MakeEnemySleep>
     {

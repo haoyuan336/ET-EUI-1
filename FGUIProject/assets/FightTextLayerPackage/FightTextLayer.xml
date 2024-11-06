@@ -49,5 +49,13 @@
     <component id="n48_jdez" name="HPProgressItemCell9" src="4yhj6" fileName="HPProgressItemCell.xml" xy="-209,660" pivot="0.5,0.5" anchor="true" size="50,6"/>
     <component id="n50_jdez" name="InteractivePointItemCell0" src="jdez4" fileName="InteractivePointItemCell.xml" xy="-442,618" pivot="0.5,0.5" anchor="true"/>
     <component id="n49_jdez" name="InteractivePointItemCell1" src="jdez4" fileName="InteractivePointItemCell.xml" xy="-442,338" pivot="0.5,0.5" anchor="true"/>
+    <component id="n57_jdez" name="InteractivePointItemCell2" src="jdez4" fileName="InteractivePointItemCell.xml" xy="-431,863" pivot="0.5,0.5" anchor="true"/>
+    <text id="n58_jdez" name="MapName" xy="0,125" size="750,110" visible="false" fontSize="50" color="#ffffff" align="center" vAlign="middle" vars="true" autoSize="none" bold="true" strokeColor="#000000" strokeSize="5" text="{Chapter=初始之地}-{Map=地图1}">
+      <relation target="" sidePair="center-center,top-top"/>
+    </text>
   </displayList>
+  <transition name="ShowMapNameAnim">
+    <item time="0" type="Visible" target="n58_jdez" value="true"/>
+    <item time="48" type="Visible" target="n58_jdez" value="false"/>
+  </transition>
 </component>

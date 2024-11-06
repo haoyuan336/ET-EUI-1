@@ -11,54 +11,45 @@ namespace ET.Client
         {
             //找出地图里面所有的场景碰撞器
 
-            GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("MapManager");
+            GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("MapCollider");
 
-            foreach (var gameObject in gameObjects)
+            // foreach (var gameObject in gameObjects)
+            // {
+            //     ColliderAction mapCollider = gameObject.GetComponent<ColliderAction>();
+            //
+            //     mapCollider.OnTriggerEnterAction = self.OnColliderEnter;
+            //
+            //     mapCollider.OnTriggerExitAction = self.OnColliderExit;
+            // }
+
+            for (int i = 0; i < gameObjects.Length; i++)
             {
-                ColliderAction mapCollider = gameObject.GetComponent<ColliderAction>();
+                GameObject gameObject = gameObjects[i];
 
-                mapCollider.OnTriggerEnterAction = self.OnColliderEnter;
+                long number = GetStringNumberHelper.GetLong(gameObject.name);
 
-                mapCollider.OnTriggerExitAction = self.OnColliderExit;
+                self.AddChildWithId<MapScene, GameObject>(number, gameObject);
             }
         }
 
-        public static void OnColliderEnter(this MapManagerComponent self, GameObject gameObject)
-        {
-            string name = gameObject.name;
-
-            int number = GetStringNumberHelper.GetNumber(name);
-
-            Log.Debug($"show map scene {number}");
-
-            MapConfig mapConfig = MapConfigCategory.Instance.Get(number);
-
-            if (mapConfig == null)
-            {
-                return;
-            }
-
-            self.AddChildWithId<MapScene>(mapConfig.Id);
-        }
-
-        public static void OnColliderExit(this MapManagerComponent self, GameObject gameObject)
-        {
-            string name = gameObject.name;
-
-            int number = GetStringNumberHelper.GetNumber(name);
-
-            Log.Debug($"dispose map scene {number}");
-
-            MapConfig mapConfig = MapConfigCategory.Instance.Get(number);
-
-            if (mapConfig != null)
-            {
-                MapScene mapScene = self.GetChild<MapScene>(mapConfig.Id);
-
-                mapScene.Dispose();
-            }
-
-            // EventSystem.Instance.Publish(self.Root(), new ExitMapCollider() { Unit = unit, ColliderName = collider.gameObject.name });
-        }
+        // public static async void OnColliderEnter(this MapManagerComponent self, GameObject gameObject)
+        // {
+        //     string name = gameObject.name;
+        //
+        //     int number = GetStringNumberHelper.GetNumber(name);
+        //
+        //     Log.Debug($"show map scene {number}");
+        //
+        //     await EventSystem.Instance.PublishAsync(self.Root(), new LoadMapScene() { MapConfigId = number });
+        // }
+        //
+        // public static void OnColliderExit(this MapManagerComponent self, GameObject gameObject)
+        // {
+        //     string name = gameObject.name;
+        //
+        //     int number = GetStringNumberHelper.GetNumber(name);
+        //
+        //     EventSystem.Instance.Publish(self.Root(), new UnLoadMapScene() { MapConfigId = number });
+        // }
     }
 }

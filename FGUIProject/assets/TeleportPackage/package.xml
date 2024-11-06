@@ -2,6 +2,8 @@
 <packageDescription id="1ft4j7ee">
   <resources>
     <component id="jdez0" name="TeleportLayer.xml" path="/" exported="true"/>
+    <component id="jdez1" name="ChapterButton.xml" path="/" exported="true"/>
+    <component id="jdez2" name="TeleportMapItemCell.xml" path="/" exported="true"/>
   </resources>
   <publish name="TeleportPackage" path=".\..\Unity\Assets\Resources\FGUI\TeleportPackage" packageCount="2" branchPath=".\..\Unity\Assets\Resources\FGUI\TeleportPackage"/>
 </packageDescription>

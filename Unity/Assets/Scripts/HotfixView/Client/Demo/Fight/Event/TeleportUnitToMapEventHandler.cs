@@ -3,10 +3,15 @@ using UnityEngine;
 
 namespace ET.Client
 {
-    [Event(SceneType.Demo)]
-    public class MoveUnitToMainCityEventHandler : AEvent<Scene, MoveUnitToMainCity>
+    public struct TeleportUnitToMap
     {
-        protected override async ETTask Run(Scene scene, MoveUnitToMainCity a)
+        public int MapConfigId;
+    }
+
+    [Event(SceneType.Demo)]
+    public class TeleportUnitToMainCityEventHandler : AEvent<Scene, TeleportUnitToMap>
+    {
+        protected override async ETTask Run(Scene scene, TeleportUnitToMap a)
         {
             Log.Debug("move unit to main city ");
 
@@ -21,8 +26,6 @@ namespace ET.Client
             List<Troop> troops = TroopHelper.GetTroops(scene);
 
             Troop troop = troops[0];
-
-            TimerComponent timerComponent = scene.GetComponent<TimerComponent>();
 
             for (int i = 0; i < troop.HeroCardIds.Length; i++)
             {
@@ -39,13 +42,10 @@ namespace ET.Client
 
                 AIComponent aiComponent = heroCard.GetComponent<AIComponent>();
 
-                Log.Debug($"ai component {aiComponent.GetCurrentState()}");
-                
                 if (aiComponent.GetCurrentState() == AIState.Death)
                 {
                     aiComponent.EnterAIState(AIState.Rise);
                 }
-                
 
                 HPBarComponent hpBarComponent = heroCard.GetComponent<HPBarComponent>();
 
@@ -53,11 +53,9 @@ namespace ET.Client
                 {
                     hpBarComponent.Dispose();
                 }
-                
-                aiComponent.EnterAIState(AIState.Transfer);
             }
 
-            await gameObjectComponent.MoveUnitToMainCity();
+            await gameObjectComponent.MoveUnitToTeleport(a.MapConfigId);
 
             GameObject unitObject = gameObjectComponent.GameObject;
 
@@ -83,10 +81,12 @@ namespace ET.Client
 
                 moveObjectComponent.SetPos(pos);
 
-                aiComponent.EnterAIState(AIState.FindEnemy);
+                aiComponent.EnterAIState(AIState.Patrol);
             }
 
             EventSystem.Instance.Publish(scene, new CloseLayerById() { WindowID = WindowID.MoveingLayer });
+
+            EventSystem.Instance.Publish(scene, new EnteredMapScene() { MapConfigId = a.MapConfigId });
 
             await ETTask.CompletedTask;
         }

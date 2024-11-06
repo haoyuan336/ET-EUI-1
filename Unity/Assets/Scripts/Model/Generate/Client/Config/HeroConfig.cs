@@ -75,6 +75,8 @@ namespace ET
 		public int Attack { get; set; }
 		/// <summary>攻击力成长系数</summary>
 		public int AttackGrow { get; set; }
+		/// <summary>移动速度</summary>
+		public int MoveSpeed { get; set; }
 
 	}
 }

@@ -1,6 +1,9 @@
 {"dict": [
-[1000, {"_t":"InteractivePointConfig","_id":1000,"InteractivePointName":"传送点","InteractveType":"Teleport"}],
-[1001, {"_t":"InteractivePointConfig","_id":1001,"InteractivePointName":"招募大厅","InteractveType":"Call"}],
-[1002, {"_t":"InteractivePointConfig","_id":1002,"InteractivePointName":"女神","InteractveType":"Goddless"}],
-[1003, {"_t":"InteractivePointConfig","_id":1003,"InteractivePointName":"训练营","InteractveType":"TrainingCamp"}],
+[1000, {"_t":"InteractivePointConfig","_id":1000,"InteractivePointName":"主城传送点","InteractveType":"Teleport"}],
+[1001, {"_t":"InteractivePointConfig","_id":1001,"InteractivePointName":"地图1传送点","InteractveType":"Teleport"}],
+[1002, {"_t":"InteractivePointConfig","_id":1002,"InteractivePointName":"地图2传送点","InteractveType":"Teleport"}],
+[1003, {"_t":"InteractivePointConfig","_id":1003,"InteractivePointName":"地图3传送点","InteractveType":"Teleport"}],
+[1004, {"_t":"InteractivePointConfig","_id":1004,"InteractivePointName":"招募大厅","InteractveType":"Call"}],
+[1005, {"_t":"InteractivePointConfig","_id":1005,"InteractivePointName":"女神","InteractveType":"Goddless"}],
+[1006, {"_t":"InteractivePointConfig","_id":1006,"InteractivePointName":"训练营","InteractveType":"TrainingCamp"}],
 ]}

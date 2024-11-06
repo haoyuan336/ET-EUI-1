@@ -72,40 +72,17 @@ namespace ET.Client
             }
         }
 
-        private static void OnTriggerEnter(this EnemySpawnPos self, GameObject gameObject)
+        private static void OnTriggerEnter(this EnemySpawnPos self, GameObject gameObject, GameObject otherObject)
         {
             Log.Debug($"OnTriggerEnter {gameObject.name}");
 
             self.EnterState(EnemySpawnState.Running);
         }
 
-        private static void OnTriggerExit(this EnemySpawnPos self, GameObject gameObject)
+        private static void OnTriggerExit(this EnemySpawnPos self, GameObject gameObject, GameObject otherObject)
         {
-            Log.Debug($"OnTriggerExit {gameObject.name}");
-
             self.EnterState(EnemySpawnState.Sleep);
         }
-
-        public static void Hide(this EnemySpawnPos self)
-        {
-            // self.IsShow = false;
-            //
-            // foreach (var enemy in self.Enemies)
-            // {
-            //     if (enemy.Value == null)
-            //     {
-            //         continue;
-            //     }
-            //
-            //     if (enemy.Value.IsDisposed)
-            //     {
-            //         continue;
-            //     }
-            //
-            //     enemy.Value.Hide();
-            // }
-        }
-
         public static void SpawnEnemy(this EnemySpawnPos self)
         {
             EnemySpawnPosConfig config = EnemySpawnPosConfigCategory.Instance.Get((int)self.Id);

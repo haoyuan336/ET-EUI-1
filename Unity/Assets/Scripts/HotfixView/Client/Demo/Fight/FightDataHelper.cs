@@ -32,6 +32,15 @@ namespace ET.Client
             return aiComponent.GetCurrentState() == AIState.Death;
         }
 
+        public static bool GetCanAttack(Entity entity)
+        {
+            AIComponent aiComponent = entity.GetComponent<AIComponent>();
+
+            AIState aiState = aiComponent.GetCurrentState();
+
+            return !(aiState == AIState.Death || aiState == AIState.Transfer || aiComponent.InSafeArea);
+        }
+
         public static bool GetIsDead(FightManagerComponent fightManagerComponent, long entityId)
         {
             Entity entity = fightManagerComponent.GetChild<Entity>(entityId);

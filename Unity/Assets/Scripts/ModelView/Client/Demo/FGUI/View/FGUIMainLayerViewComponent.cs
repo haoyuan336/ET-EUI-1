@@ -7,6 +7,17 @@ namespace ET
     [FriendOf(typeof(ET.Client.UIBaseWindow)), EnableMethod, ComponentOf(typeof(ET.Client.UIBaseWindow))]
     public class FGUIMainLayerViewComponent: Entity, IAwake
     {
+        public Controller  IsMainCity
+        {
+            get
+            {
+                if (this._IsMainCity == null)
+                {
+                    this._IsMainCity = this.GetParent<UIBaseWindow>().GComponent.GetController("IsMainCity");
+                }
+                return this._IsMainCity;
+            }
+        }
         public  FGUIJoyStickLayerComponent JoyStickLayerComponent
         {
             get
@@ -76,6 +87,7 @@ namespace ET
                 return this._BackMainCityButton;
             }
         }
+        private Controller _IsMainCity = null;
         private FGUIJoyStickLayerComponent _JoyStickLayerComponent = null;
         private GButton _HeroBagButton = null;
         private GList _List = null;
@@ -83,6 +95,7 @@ namespace ET
         private GButton _BackMainCityButton = null;
         public void ClearBindCache()
         {
+            this._IsMainCity = null;
             this._JoyStickLayerComponent = null;
             this._HeroBagButton = null;
             this._List = null;

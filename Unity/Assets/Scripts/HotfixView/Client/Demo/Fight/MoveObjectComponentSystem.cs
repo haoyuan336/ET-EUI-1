@@ -49,6 +49,7 @@ namespace ET.Client
 
             if (navMeshAgent == null)
             {
+                Log.Debug("navMeshAgent is null");
                 return;
             }
 
@@ -77,7 +78,6 @@ namespace ET.Client
         [EntitySystem]
         public static void Update(this MoveObjectComponent self)
         {
-     
         }
 
         private static void MoveEnd(this MoveObjectComponent self)
@@ -97,11 +97,18 @@ namespace ET.Client
             }
 
             navMeshAgent.SetDestination(self.Parent.GetComponent<ObjectComponent>().GameObject.transform.position);
+
+            AIComponent aiComponent = self.Parent.GetComponent<AIComponent>();
+
+            if (aiComponent.GetCurrentState() == AIState.Idle && !aiComponent.InSafeArea)
+            {
+                aiComponent.EnterAIState(AIState.Patrol);
+            }
         }
 
         public static void OnEnterState(this MoveObjectComponent self, AIState aiState)
         {
-            if (aiState == AIState.Death || aiState == AIState.Attacking)
+            if (aiState == AIState.Death || aiState == AIState.Attacking || aiState == AIState.Idle || aiState == AIState.CutTree)
             {
                 self.MoveEnd();
             }

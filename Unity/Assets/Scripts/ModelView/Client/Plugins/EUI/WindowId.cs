@@ -51,6 +51,7 @@ namespace ET.Client
         SpalshLayer = 29,
         //----------------------TeleportPackage---------------------
         TeleportLayer = 30,
+        TeleportMapItemCell = 31,
     }
     public class ComponentPackageMap
     {
@@ -131,7 +132,7 @@ namespace ET.Client
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "RootPackage");
             }
-            for (int j = 30; j < 31; j++)
+            for (int j = 30; j < 32; j++)
             {
                 WindowID windowID = (WindowID)j;
                  this.Maps.Add(windowID, "TeleportPackage");

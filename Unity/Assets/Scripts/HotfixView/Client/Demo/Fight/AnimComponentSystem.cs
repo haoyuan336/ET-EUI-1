@@ -47,16 +47,15 @@ namespace ET.Client
 
         private static void OnEnterState(this AnimComponent self, AIState aiState)
         {
-            if (aiState == AIState.Rise)
+            if (aiState == AIState.Rise || aiState == AIState.Idle || aiState == AIState.Patrol)
             {
                 self.PlayAnim("idle");
             }
 
-            if (aiState == AIState.Moving || aiState == AIState.Track)
+            if (aiState == AIState.Moving || aiState == AIState.Track || aiState == AIState.TrackTree)
             {
                 self.PlayAnim("move");
             }
-            
         }
 
         private static void OutEnterState(this AnimComponent self, AIState aiState)

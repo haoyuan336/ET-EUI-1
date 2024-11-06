@@ -32,10 +32,8 @@ namespace ET.Client
 
         private static void OnBackMainButtonClick(this FGUIMainLayerComponent self)
         {
-            EventSystem.Instance.Publish(self.Root(), new MoveUnitToMainCity());
+            EventSystem.Instance.Publish(self.Root(), new TeleportUnitToMap() { MapConfigId = MapConfigCategory.Instance.GetMainCity().Id });
         }
-
-     
 
         private static void OnEndJoyAction(this FGUIMainLayerComponent self)
         {
@@ -86,6 +84,15 @@ namespace ET.Client
 
                 itemCellComponent.SetInfo(heroConfig);
             }
+
+            self.ChangedMap();
+        }
+
+        public static void ChangedMap(this FGUIMainLayerComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnit(self.Root());
+            
+            self.View.IsMainCity.selectedIndex = unit.CurrentMapConfigId == MapConfigCategory.Instance.GetMainCity().Id ? 1 : 0;
         }
 
         public static void HideWindow(this FGUIMainLayerComponent self)

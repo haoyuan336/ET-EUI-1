@@ -206,5 +206,7 @@ namespace ET
         public const string BButton = "ui://9nomxs01sc403i";
         //---------------TeleportPackage---------------
         public const string TeleportLayer = "ui://1ft4j7eejdez0";
+        public const string ChapterButton = "ui://1ft4j7eejdez1";
+        public const string TeleportMapItemCell = "ui://1ft4j7eejdez2";
     }
 }

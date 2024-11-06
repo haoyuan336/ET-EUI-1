@@ -116,8 +116,6 @@ namespace ET.Client
 
             foreach (var cardId in troop.HeroCardIds)
             {
-                Log.Debug($"card id {cardId}");
-
                 HeroCard heroCard = heroCardComponent.GetChild<HeroCard>(cardId);
 
                 heroCards.Add(heroCard);

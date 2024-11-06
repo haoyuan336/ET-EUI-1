@@ -1,12 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="750,1334">
   <displayList>
+    <component id="n7_jdez" name="BgButton" src="sc403i" fileName="BButton.xml" pkg="9nomxs01" xy="0,0" size="750,1334">
+      <relation target="" sidePair="width-width,height-height"/>
+    </component>
     <component id="n0_jdez" name="n0" src="iygc3h" fileName="WindowBox.xml" pkg="9nomxs01" xy="35,200" size="679,961">
       <relation target="" sidePair="width-width,height-height"/>
       <Label title="传送列表"/>
     </component>
-    <component id="n1_jdez" name="n1" src="iygc3f" fileName="CloseButton.xml" pkg="9nomxs01" xy="325,1188">
+    <component id="n1_jdez" name="CloseButton" src="iygc3f" fileName="CloseButton.xml" pkg="9nomxs01" xy="325,1188">
       <relation target="" sidePair="bottom-bottom"/>
     </component>
+    <graph id="n2_jdez" name="n2" xy="66,322" size="238,804" type="rect">
+      <relation target="" sidePair="height-height"/>
+    </graph>
+    <graph id="n3_jdez" name="n3" xy="328,322" size="355,804" type="rect">
+      <relation target="" sidePair="height-height"/>
+    </graph>
+    <list id="n5_jdez" name="ChapterList" xy="85,343" size="200,765" overflow="scroll" lineGap="17" defaultItem="ui://1ft4j7eejdez1" align="center">
+      <relation target="" sidePair="height-height"/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+    </list>
+    <list id="n6_jdez" name="MapList" xy="347,342" size="319,765" overflow="scroll" lineGap="17" defaultItem="ui://1ft4j7eejdez2" align="center">
+      <relation target="" sidePair="height-height"/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+    </list>
   </displayList>
 </component>

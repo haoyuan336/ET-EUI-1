@@ -16,8 +16,11 @@ namespace ET.Client
         Death = 7, // 死亡
         Sleep = 8, //睡眠状态 
         Rise = 9, //复活
-        FindEnemy = 10, //寻找英雄
+        // FindEnemy = 10, //寻找英雄
         Transfer = 11, //传送中
+        Idle = 12, //等待状态，此状态 
+        CutTree = 13, //砍树
+        TrackTree = 14, //追踪树
     }
 
     [ComponentOf(typeof(Entity))]
@@ -28,5 +31,8 @@ namespace ET.Client
         public Action<AIState> OutStateAction;
 
         public Stack<AIState> StateStack = new Stack<AIState>();
+
+        // public bool IsCanBeAttack = false;
+        public bool InSafeArea = false;
     }
 }

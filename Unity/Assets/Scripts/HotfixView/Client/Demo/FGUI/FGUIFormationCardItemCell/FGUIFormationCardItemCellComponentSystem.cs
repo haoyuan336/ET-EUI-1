@@ -25,6 +25,8 @@ namespace ET.Client
             if (heroCard != null)
             {
                 self.View.HeroName.text = heroCard.Config.HeroName;
+                
+                self.View.Level.SetVar("Level", heroCard.Level.ToString()).FlushVars();
             }
             else
             {

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using FairyGUI;
+using MongoDB.Bson.Serialization.IdGenerators;
 using UnityEditor.Media;
 using UnityEngine;
 
@@ -30,8 +31,6 @@ namespace ET.Client
                 {
                     string name = typeName.Replace("FGUI", "").Replace("Component", "") + i + "Component";
 
-                    Log.Debug($"name {name}");
-                    
                     PropertyInfo info = type.GetProperty(name);
 
                     if (info == null)
@@ -61,14 +60,7 @@ namespace ET.Client
         public static T GetPoolObjectByType<T>(this FGUIFightTextLayerComponent self) where T : Entity
         {
             string typeName = typeof(T).Name;
-
-            Log.Debug($"type name {typeName}");
             
-            foreach (var kv in self.TextItemCellComponents)
-            {
-                Log.Debug($"kv {kv.Key} {kv.Value.Count}");
-            }
-
             if (self.TextItemCellComponents.ContainsKey(typeName))
             {
                 var stack = self.TextItemCellComponents[typeName];
@@ -88,6 +80,11 @@ namespace ET.Client
 
         public static void ReceiveObjectToPool(this FGUIFightTextLayerComponent self, Entity entity)
         {
+            if (entity.IsDisposed)
+            {
+                return;
+            }
+
             entity.GetParent<UIBaseWindow>().GComponent.x = -1000;
 
             string typeName = entity.GetType().Name;
@@ -187,6 +184,20 @@ namespace ET.Client
             self.ReceiveObjectToPool(damageTextItemCellComponent);
         }
 
-      
+        public static void ShowMapName(this FGUIFightTextLayerComponent self, int configId)
+        {
+            if (self.CurrentMapConfigId == configId)
+            {
+                return;
+            }
+
+            self.CurrentMapConfigId = configId;
+
+            MapConfig mapConfig = MapConfigCategory.Instance.Get(configId);
+
+            self.View.MapName.SetVar("Chapter", mapConfig.ChapterName).SetVar("Map", mapConfig.MapName).FlushVars();
+
+            self.View.ShowMapNameAnim.Play();
+        }
     }
 }

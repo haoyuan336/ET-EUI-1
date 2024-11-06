@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace ET.Client
 {
@@ -19,6 +20,22 @@ namespace ET.Client
             Vector3 targetPos = gameObjectComponent.GameObject.transform.position + new Vector3(direction.x, 0, -direction.y) * 10;
 
             Vector3 drawPos = gameObjectComponent.GameObject.transform.position + new Vector3(direction.x, 0, -direction.y) * 4;
+
+            int wall = LayerMask.GetMask("Wall");
+
+            Vector3 startPos = gameObjectComponent.GameObject.transform.position;
+
+            Vector3 origin = new Vector3(startPos.x, 0.5f, startPos.z);
+
+            bool isHited = Physics.Raycast(origin, new Vector3(direction.x, 0, -direction.y).normalized, out RaycastHit hitInfo,
+                10, wall);
+
+            if (isHited)
+            {
+                targetPos = new Vector3(hitInfo.point.x, targetPos.y, hitInfo.point.z);
+
+                drawPos = targetPos;
+            }
 
             GlobalComponent globalComponent = scene.Root().GetComponent<GlobalComponent>();
 

@@ -7,7 +7,6 @@ namespace ET.Client
     {
         protected override async ETTask Run(Scene unit, Main2ViewClient_HttpHelper request, View2MainClient_HttpHelper response)
         {
-            Log.Warning($"main2view client request {request.Url}");
             string url = request.Url;
 
             using (UnityWebRequest unityWebRequest = UnityWebRequest.Get(url))
@@ -18,13 +17,11 @@ namespace ET.Client
                 
                 asyncOperation.completed += (result) =>
                 {
-                    Log.Warning("async operation completed");
                     etTask.SetResult();
                 };
 
                 await etTask.GetAwaiter();
 
-                Log.Warning($"main 2 view client httphelper {unityWebRequest.downloadHandler.text}");
                 response.Text = unityWebRequest.downloadHandler.text;
             }
         }

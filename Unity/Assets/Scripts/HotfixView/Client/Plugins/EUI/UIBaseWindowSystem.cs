@@ -46,11 +46,6 @@ namespace ET.Client
 
             self.GComponent.size = gComponent.size;
             
-            Log.Debug($"size {gComponent.size.x}, {gComponent.size.y} {gComponent.name}, {gComponent.gameObjectName}");
-
-            
-            Log.Debug($"size {self.GComponent.size.x}, {self.GComponent.size.y}");
-
             // self.GComponent
 
             self.GComponent.position = Vector3.zero;

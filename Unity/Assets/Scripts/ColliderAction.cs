@@ -7,19 +7,18 @@ namespace ET
 {
     public class ColliderAction : MonoBehaviour
     {
-        public Action<GameObject> OnTriggerEnterAction;
+        public Action<GameObject, GameObject> OnTriggerEnterAction;
 
-        public Action<GameObject> OnTriggerStayAction;
+        public Action<GameObject, GameObject> OnTriggerStayAction;
 
-        public Action<GameObject> OnTriggerExitAction;
+        public Action<GameObject, GameObject> OnTriggerExitAction;
 
         public void OnTriggerEnter(Collider other)
         {
             if (this.OnTriggerEnterAction != null)
             {
-                this.OnTriggerEnterAction.Invoke(this.gameObject);
+                this.OnTriggerEnterAction.Invoke(this.gameObject, other.gameObject);
             }
-
         }
 
         public void OnTriggerStay(Collider other)
@@ -28,11 +27,9 @@ namespace ET
 
         public void OnTriggerExit(Collider other)
         {
-            Log.Debug($"OnTriggerExit {other.gameObject.name}");
-
             if (this.OnTriggerExitAction != null)
             {
-                this.OnTriggerExitAction.Invoke(this.gameObject);
+                this.OnTriggerExitAction.Invoke(this.gameObject, other.gameObject);
             }
         }
     }

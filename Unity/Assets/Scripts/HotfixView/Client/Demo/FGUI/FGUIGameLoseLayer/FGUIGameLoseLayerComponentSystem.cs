@@ -23,7 +23,7 @@ namespace ET.Client
 
             EventSystem.Instance.Publish(root, new CloseLayerById() { WindowID = WindowID.GameLoseLayer });
             Log.Debug("back button click");
-            EventSystem.Instance.Publish(root, new MoveUnitToMainCity());
+            EventSystem.Instance.Publish(root, new TeleportUnitToMap() { MapConfigId = MapConfigCategory.Instance.GetMainCity().Id });
         }
 
         public static void OnRetryButtonClick(this FGUIGameLoseLayerComponent self)
