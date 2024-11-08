@@ -1,15 +1,4 @@
 {"dict": [
-[1001, {"_t":"TreeConfig","_id":1001,"AwardConfigId":10004,"AwardCount":10,"HP":5,"RiseTime":10000}],
-[1002, {"_t":"TreeConfig","_id":1002,"AwardConfigId":10004,"AwardCount":20,"HP":6,"RiseTime":10000}],
-[1003, {"_t":"TreeConfig","_id":1003,"AwardConfigId":10004,"AwardCount":30,"HP":7,"RiseTime":10000}],
-[1004, {"_t":"TreeConfig","_id":1004,"AwardConfigId":10004,"AwardCount":40,"HP":8,"RiseTime":10000}],
-[1005, {"_t":"TreeConfig","_id":1005,"AwardConfigId":10004,"AwardCount":50,"HP":9,"RiseTime":10000}],
-[1006, {"_t":"TreeConfig","_id":1006,"AwardConfigId":10004,"AwardCount":60,"HP":10,"RiseTime":10000}],
-[1007, {"_t":"TreeConfig","_id":1007,"AwardConfigId":10004,"AwardCount":70,"HP":11,"RiseTime":10000}],
-[1008, {"_t":"TreeConfig","_id":1008,"AwardConfigId":10004,"AwardCount":80,"HP":12,"RiseTime":10000}],
-[1009, {"_t":"TreeConfig","_id":1009,"AwardConfigId":10004,"AwardCount":90,"HP":13,"RiseTime":10000}],
-[1010, {"_t":"TreeConfig","_id":1010,"AwardConfigId":10004,"AwardCount":100,"HP":14,"RiseTime":10000}],
-[1011, {"_t":"TreeConfig","_id":1011,"AwardConfigId":10004,"AwardCount":110,"HP":15,"RiseTime":10000}],
-[1012, {"_t":"TreeConfig","_id":1012,"AwardConfigId":10004,"AwardCount":120,"HP":16,"RiseTime":10000}],
-[1013, {"_t":"TreeConfig","_id":1013,"AwardConfigId":10004,"AwardCount":130,"HP":17,"RiseTime":10000}],
+[1001, {"_t":"TreeConfig","_id":1001,"Name":"Tree1","AwardConfigId":10004,"AwardCount":10,"HP":5,"RiseTime":10000,"IdleAnim":"sm1","BeAttackAnim":"sm2","DeathAnim":"sm3"}],
+[1002, {"_t":"TreeConfig","_id":1002,"Name":"Stone1","AwardConfigId":10005,"AwardCount":20,"HP":6,"RiseTime":10000,"IdleAnim":"ks1","BeAttackAnim":"ks2","DeathAnim":"ks3"}],
 ]}

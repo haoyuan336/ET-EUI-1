@@ -61,6 +61,8 @@ namespace ET
 	{
 		/// <summary>Id</summary>
 		public int Id { get; set; }
+		/// <summary>名称</summary>
+		public string Name { get; set; }
 		/// <summary>奖励道具类型</summary>
 		public int AwardConfigId { get; set; }
 		/// <summary>奖励道具数量</summary>
@@ -69,6 +71,12 @@ namespace ET
 		public int HP { get; set; }
 		/// <summary>复活时间</summary>
 		public int RiseTime { get; set; }
+		/// <summary>Idle动作</summary>
+		public string IdleAnim { get; set; }
+		/// <summary>BeAttack动作</summary>
+		public string BeAttackAnim { get; set; }
+		/// <summary>Death动作</summary>
+		public string DeathAnim { get; set; }
 
 	}
 }

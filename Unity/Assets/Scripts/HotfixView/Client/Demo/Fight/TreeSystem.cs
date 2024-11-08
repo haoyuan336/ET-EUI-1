@@ -25,11 +25,11 @@ namespace ET.Client
 
             if (self.HP <= 0)
             {
-                self.SkeletonAnimation.state.SetAnimation(0, "sm3", true);
+                self.SkeletonAnimation.state.SetAnimation(0, self.TreeConfig.DeathAnim, true);
             }
             else
             {
-                self.SkeletonAnimation.state.SetAnimation(0, "sm1", true);
+                self.SkeletonAnimation.state.SetAnimation(0, self.TreeConfig.IdleAnim, true);
             }
         }
 
@@ -54,7 +54,7 @@ namespace ET.Client
 
                 if (self.SkeletonAnimation != null)
                 {
-                    self.SkeletonAnimation.state.SetAnimation(0, "sm1", true);
+                    self.SkeletonAnimation.state.SetAnimation(0, self.TreeConfig.IdleAnim, true);
                 }
             }
             else
@@ -72,7 +72,7 @@ namespace ET.Client
         {
             if (self.SkeletonAnimation != null)
             {
-                self.SkeletonAnimation.state.SetAnimation(0, "sm3", false);
+                self.SkeletonAnimation.state.SetAnimation(0, self.TreeConfig.DeathAnim, false);
             }
         }
 
@@ -80,7 +80,7 @@ namespace ET.Client
         {
             if (self.SkeletonAnimation != null)
             {
-                self.SkeletonAnimation.state.SetAnimation(0, "sm2", false);
+                self.SkeletonAnimation.state.SetAnimation(0, self.TreeConfig.BeAttackAnim, false);
             }
         }
     }

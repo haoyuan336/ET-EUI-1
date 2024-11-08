@@ -1,0 +1,27 @@
+
+stone1.png
+size: 262,110
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ks1
+  rotate: true
+  xy: 2, 2
+  size: 106, 104
+  orig: 106, 106
+  offset: 0, 1
+  index: -1
+ks1b
+  rotate: true
+  xy: 108, 2
+  size: 106, 104
+  orig: 106, 106
+  offset: 0, 1
+  index: -1
+ks2
+  rotate: true
+  xy: 214, 2
+  size: 106, 46
+  orig: 106, 47
+  offset: 0, 1
+  index: -1
