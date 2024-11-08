@@ -37,7 +37,7 @@ namespace ET.Client
             //
             GameObject enemySpawnObject = enemySpawnPos.GameObject;
             //
-            Vector3 endPos = enemySpawnObject.transform.position + Quaternion.Euler(0, RandomGenerator.RandomNumber(0, 360), 0) * Vector3.forward;
+            Vector3 endPos = enemySpawnObject.transform.position + Quaternion.Euler(0, RandomGenerator.RandomNumber(0, 360), 0) * Vector3.forward * (RandomGenerator.RandFloat01() * 5);
             //
             AIComponent aiComponent = enemy.AddComponent<AIComponent>();
             //
@@ -64,6 +64,8 @@ namespace ET.Client
             enemy.AddComponent<MoveObjectComponent>();
             //
             enemy.AddComponent<FindEnemyComponent, int>(layer);
+
+            enemy.AddComponent<WaitComponent>();
             //
             aiComponent.EnterAIState(AIState.Patrol);
 

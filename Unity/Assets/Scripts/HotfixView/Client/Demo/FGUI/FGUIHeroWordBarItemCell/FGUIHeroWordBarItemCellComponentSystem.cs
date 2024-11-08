@@ -44,9 +44,9 @@ namespace ET.Client
 
                 int growValue = Convert.ToInt32(growInfo.GetValue(heroCard.Config));
 
-                int nextValue = HeroCardHelper.GetHeroBaseDataValue(baseValue, growValue, heroCard.Level + 1, heroCard.Star);
+                float nextValue = HeroCardHelper.GetHeroBaseDataValue(baseValue, growValue, heroCard.Level + 1, heroCard.Star);
 
-                int addValue = nextValue - (int)value;
+                float addValue = nextValue - value;
 
                 self.View.NextAddValue.SetVar("value", addValue.ToString()).FlushVars();
             }

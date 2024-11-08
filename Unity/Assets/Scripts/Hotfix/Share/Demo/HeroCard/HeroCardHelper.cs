@@ -124,11 +124,9 @@ namespace ET.Client
         /// <param name="level">等级</param>
         /// <param name="star">星级</param>
         /// <returns></returns>
-        public static int GetHeroBaseDataValue(int baseValue, int grow, int level, int star)
+        public static float GetHeroBaseDataValue(float baseValue, float grow, int level, int star)
         {
             return baseValue + grow * level + grow * star * 10;
         }
-
-
     }
 }

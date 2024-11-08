@@ -5,12 +5,12 @@ namespace ET
         BaseAttribute = 1, //基础属性
         SpecicalAttribute = 2, //特殊属性
         ElementAttribute = 3, //元素属性
+        FixedValueAttribute = 4, //固定属性
     }
 
     // 这个可弄个配置表生成
     public enum WordBarType
     {
-
         Hp = 101,
         Attack = 102,
         BaoJiLv = 103,
@@ -32,5 +32,7 @@ namespace ET
         AnXiQiangDu = 119,
         AnXiKangXing = 120,
         XueXiKangXing = 121,
+        MaxAttackDistance = 122, //攻击距离
+        MaxTrackDistance = 123, //追踪距离
     }
 }

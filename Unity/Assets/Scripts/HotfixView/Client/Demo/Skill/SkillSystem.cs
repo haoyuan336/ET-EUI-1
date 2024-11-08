@@ -55,6 +55,11 @@ namespace ET.Client
 
             bool isCancel = await skillTimeComponent.WaitAsync(config.DelayTime, token);
 
+            if (self.IsDisposed)
+            {
+                return;
+            }
+
             if (isCancel)
             {
                 return;

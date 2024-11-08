@@ -1,5 +1,6 @@
 using Spine.Unity;
 using UnityEngine;
+using WeChatWASM;
 
 namespace ET.Client
 {
@@ -22,10 +23,17 @@ namespace ET.Client
 
             self.SkeletonAnimation = body.GetComponent<SkeletonAnimation>();
 
-            self.SkeletonAnimation.state.SetAnimation(0, "sm1", true);
+            if (self.HP <= 0)
+            {
+                self.SkeletonAnimation.state.SetAnimation(0, "sm3", true);
+            }
+            else
+            {
+                self.SkeletonAnimation.state.SetAnimation(0, "sm1", true);
+            }
         }
 
-        public static void BeAttack(this Tree self)
+        public static async void BeAttack(this Tree self)
         {
             self.HP--;
 
@@ -33,6 +41,21 @@ namespace ET.Client
             if (self.HP <= 0)
             {
                 self.PlayDeathAnim();
+
+                TimerComponent timerComponent = self.Root().GetComponent<TimerComponent>();
+
+                int time = self.TreeConfig.RiseTime;
+
+                await timerComponent.WaitAsync(time);
+
+                self.HP = self.TreeConfig.HP;
+
+                self.IsAwardItem = false;
+
+                if (self.SkeletonAnimation != null)
+                {
+                    self.SkeletonAnimation.state.SetAnimation(0, "sm1", true);
+                }
             }
             else
             {

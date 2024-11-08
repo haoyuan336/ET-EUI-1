@@ -6,6 +6,13 @@ namespace ET
     public static class ItemHelper
     {
 #if UNITY
+        /// <summary>
+        /// 增加道具数量
+        /// </summary>
+        /// <param name="scene"></param>
+        /// <param name="itemConfigId">需要增加的道具配置id</param>
+        /// <param name="addCount">需要增加的道具数量</param>
+        /// <returns></returns>
 
         public static async ETTask<int> AddItemCount(Scene scene, int itemConfigId, int addCount)
         {

@@ -20,4 +20,6 @@
 [119, {"_t":"WordBarConfig","_id":119,"WordBarType":"AnXiQiangDu","NumberType":"Number","WordAttributeType":"ElementAttribute"}],
 [120, {"_t":"WordBarConfig","_id":120,"WordBarType":"AnXiKangXing","NumberType":"Number","WordAttributeType":"ElementAttribute"}],
 [121, {"_t":"WordBarConfig","_id":121,"WordBarType":"XueXiKangXing","NumberType":"Number","WordAttributeType":"ElementAttribute"}],
+[122, {"_t":"WordBarConfig","_id":122,"WordBarType":"MaxAttackDistance","NumberType":"Number","WordAttributeType":"FixedValueAttribute"}],
+[123, {"_t":"WordBarConfig","_id":123,"WordBarType":"MaxTrackDistance","NumberType":"Number","WordAttributeType":"FixedValueAttribute"}],
 ]}

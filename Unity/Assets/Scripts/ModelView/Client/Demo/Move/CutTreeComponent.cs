@@ -1,7 +1,7 @@
 namespace ET.Client
 {
     [ComponentOf(typeof(HeroCard))]
-    public class CutTreeComponent : Entity, IAwake, IUpdate
+    public class CutTreeComponent : Entity, IAwake
     {
         public AIComponent AIComponent;
 

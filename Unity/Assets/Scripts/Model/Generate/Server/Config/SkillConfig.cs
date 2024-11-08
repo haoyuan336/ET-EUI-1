@@ -69,6 +69,8 @@ namespace ET
 		public int OwnerRoleConfigId { get; set; }
 		/// <summary>恢复时间</summary>
 		public int CDTime { get; set; }
+		/// <summary>目标数量</summary>
+		public int TargetCount { get; set; }
 
 	}
 }

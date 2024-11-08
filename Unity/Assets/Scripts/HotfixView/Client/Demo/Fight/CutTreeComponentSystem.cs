@@ -10,18 +10,20 @@ namespace ET.Client
         public static void Awake(this CutTreeComponent self)
         {
             self.AIComponent = self.Parent.GetComponent<AIComponent>();
+
+            self.AIComponent.EnterStateAction += self.OnEnterState;
         }
 
-        [EntitySystem]
-        public static async void Update(this CutTreeComponent self)
+        public static async void OnEnterState(this CutTreeComponent self, AIState aiState)
         {
-            if (self.AIComponent != null)
+            if (aiState == AIState.CutTree)
             {
-                Log.Debug($"cut tree {self.AIComponent.GetCurrentState()}");
-             
-                if (self.AIComponent.GetCurrentState() == AIState.CutTree)
+                while (true)
                 {
-                    ObjectComponent objectComponent = self.Parent.GetComponent<ObjectComponent>();
+                    if (self.AIComponent.GetCurrentState() != AIState.CutTree)
+                    {
+                        return;
+                    }
 
                     if (self.TargetTree == null || self.TargetTree.IsDisposed)
                     {
@@ -37,30 +39,6 @@ namespace ET.Client
                         return;
                     }
 
-                    GameObject gameObject = self.TargetTree.TreeObject;
-
-                    float distance = (objectComponent.GameObject.transform.position - gameObject.transform.position).magnitude;
-
-                    if (distance > 2f)
-                    {
-                        TrackComponent trackComponent = self.Parent.GetComponent<TrackComponent>();
-
-                        trackComponent.SetTrackObject(self.TargetTree);
-
-                        self.AIComponent.EnterAIState(AIState.TrackTree);
-
-                        return;
-                    }
-
-                    Log.Debug($"is cuting {self.IsCuting}");
-                    
-                    if (self.IsCuting)
-                    {
-                        return;
-                    }
-
-                    self.IsCuting = true;
-
                     List<ETTask> tasks = new List<ETTask>();
 
                     tasks.Add(self.Attack());
@@ -68,8 +46,6 @@ namespace ET.Client
                     tasks.Add(self.PlayAttackAnim());
 
                     await ETTaskHelper.WaitAll(tasks);
-
-                    self.IsCuting = false;
 
                     if (!self.TargetTree.GetIsCanCut())
                     {
@@ -87,11 +63,19 @@ namespace ET.Client
 
             self.TargetTree.BeAttack();
 
-            EventSystem.Instance.Publish(self.Root(), new PlayAddWood()
+            EventSystem.Instance.Publish(self.Root(), new PlayCutWoodDamage()
             {
-                Count = 1,
+                Damage = 1,
                 Tree = self.TargetTree
             });
+
+            if (self.TargetTree.HP <= 0)
+            {
+                EventSystem.Instance.Publish(self.Root(), new PlayAddWoodCountAnim()
+                {
+                    Tree = self.TargetTree
+                });
+            }
         }
 
         public static async ETTask PlayAttackAnim(this CutTreeComponent self)
@@ -104,6 +88,8 @@ namespace ET.Client
         public static void SetTarget(this CutTreeComponent self, Tree tree)
         {
             self.TargetTree = tree;
+
+            self.AIComponent.EnterAIState(AIState.CutTree);
         }
     }
 }

@@ -47,7 +47,7 @@ namespace ET.Client
 
         private static void OnEnterState(this AnimComponent self, AIState aiState)
         {
-            if (aiState == AIState.Rise || aiState == AIState.Idle || aiState == AIState.Patrol)
+            if (aiState == AIState.Rise || aiState == AIState.Idle || aiState == AIState.MovEnd || aiState == AIState.Patrol)
             {
                 self.PlayAnim("idle");
             }
@@ -60,10 +60,10 @@ namespace ET.Client
 
         private static void OutEnterState(this AnimComponent self, AIState aiState)
         {
-            if (aiState == AIState.Moving)
-            {
-                self.PlayAnim("idle");
-            }
+            // if (aiState == AIState.Moving)
+            // {
+            //     self.PlayAnim("idle");
+            // }
         }
 
         public static void OnAnimComplete(this AnimComponent self, TrackEntry trackEntry)

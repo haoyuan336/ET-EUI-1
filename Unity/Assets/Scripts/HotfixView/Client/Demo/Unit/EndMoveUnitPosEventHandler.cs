@@ -24,12 +24,13 @@ namespace ET.Client
 
                     if (aiComponent != null && !aiComponent.IsDisposed)
                     {
+                        Log.Debug($"EndMoveUnitPos ai component {aiComponent.GetCurrentState()}");
                         if (aiComponent.GetCurrentState() != AIState.Moving)
                         {
                             continue;
                         }
 
-                        aiComponent.PopAIState();
+                        aiComponent.EnterAIState(AIState.MovEnd);
                     }
                 }
                 else

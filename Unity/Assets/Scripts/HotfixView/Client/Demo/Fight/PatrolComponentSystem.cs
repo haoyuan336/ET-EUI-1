@@ -23,26 +23,6 @@ namespace ET.Client
         [EntitySystem]
         public static void Update(this PatrolComponent self)
         {
-            if (self.AIComponent.GetCurrentState() == AIState.Patrol)
-            {
-                ObjectComponent objectComponent = self.Parent.GetComponent<ObjectComponent>();
-
-                if (objectComponent.GameObject == null)
-                {
-                    
-                    return;
-                }
-
-                Vector3 currentPos = objectComponent.GameObject.transform.position;
-
-                float distance = (self.TargetPos - currentPos).magnitude;
-
-                if (distance < 0.5f)
-                {
-                    self.MoveToRandomPos();
-                }
-
-            }
         }
 
         private static FightManagerComponent GetFightManagerComponent(this PatrolComponent self, Entity entity)
@@ -52,32 +32,75 @@ namespace ET.Client
             return fightManagerComponent;
         }
 
-        private static void OnEnterStateAction(this PatrolComponent self, AIState aiState)
+        private static async void OnEnterStateAction(this PatrolComponent self, AIState aiState)
         {
             if (aiState == AIState.Patrol)
             {
-                self.MoveToRandomPos();
+                bool isMoveSuccess = await self.MoveToRandomPos();
+
+                if (self.IsDisposed)
+                {
+                    return;
+                }
+
+                if (isMoveSuccess)
+                {
+                    self.AIComponent.EnterAIState(AIState.Wait);
+                }
+                else
+                {
+                    self.AIComponent.EnterAIState(AIState.Sleep);
+                }
             }
         }
 
         private static void OnOutStateAction(this PatrolComponent self, AIState outState)
         {
-            // if (outState == AIState.Patrol)
-            // {
-            //     AnimComponent animComponent = self.Parent.GetComponent<AnimComponent>();
-            //
-            //     animComponent.PlayAnim("idle", true).Coroutine();
-            // }
         }
 
-        private static void MoveToRandomPos(this PatrolComponent self)
+        private static async ETTask<bool> MoveToRandomPos(this PatrolComponent self)
         {
             self.TargetPos = Quaternion.Euler(0, RandomGenerator.RandomNumber(0, 360), 0) * Vector3.forward *
-                    (4 + RandomGenerator.RandFloat01() * 4) + self.InitPos;
+                    (2 + RandomGenerator.RandFloat01() * 4) + self.InitPos;
 
             MoveObjectComponent moveComponent = self.Parent.GetComponent<MoveObjectComponent>();
 
             moveComponent.Move(self.TargetPos);
+
+            AnimComponent animComponent = self.Parent.GetComponent<AnimComponent>();
+
+
+            TimerComponent timerComponent = self.Root().GetComponent<TimerComponent>();
+
+            GameObject gameObject = self.Parent.GetComponent<ObjectComponent>().GameObject;
+
+            if (gameObject == null)
+            {
+                return false;
+            }
+
+            await timerComponent.WaitFrameAsync();
+            
+            animComponent.PlayAnim("move");
+
+            while (true)
+            {
+                if (gameObject == null)
+                {
+                    return false;
+                }
+
+                float distance = Vector3.Distance(gameObject.transform.position, self.TargetPos);
+
+                if (distance < 0.5f)
+                {
+                    break;
+                }
+
+                await timerComponent.WaitFrameAsync();
+            }
+
+            return true;
         }
     }
 }

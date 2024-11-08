@@ -17,7 +17,7 @@ namespace ET
         
         public const float Acceleration = 1f;
 
-        public const float FindEnemyDistance = 10f;
+        // public const float FindEnemyDistance = 5f;
         
         // public const float 
     }

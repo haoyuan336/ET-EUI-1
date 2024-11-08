@@ -1,9 +1,9 @@
 {"dict": [
-[1001, {"_t":"HeroConfig","_id":1001,"PrefabName":"Hero1","BeAttackAnim":"","HeroName":"英雄1","Hp":2000,"HpGrow":40,"Attack":127,"AttackGrow":6,"MoveSpeed":6}],
-[1002, {"_t":"HeroConfig","_id":1002,"PrefabName":"Hero2","BeAttackAnim":"","HeroName":"英雄2","Hp":2000,"HpGrow":41,"Attack":128,"AttackGrow":7,"MoveSpeed":6}],
-[1003, {"_t":"HeroConfig","_id":1003,"PrefabName":"Hero3","BeAttackAnim":"","HeroName":"英雄3","Hp":2000,"HpGrow":42,"Attack":129,"AttackGrow":8,"MoveSpeed":6}],
-[1004, {"_t":"HeroConfig","_id":1004,"PrefabName":"Hero4","BeAttackAnim":"","HeroName":"英雄4","Hp":2000,"HpGrow":43,"Attack":130,"AttackGrow":9,"MoveSpeed":6}],
-[1005, {"_t":"HeroConfig","_id":1005,"PrefabName":"Mogu","BeAttackAnim":"","HeroName":"蘑菇","Hp":864,"HpGrow":40,"Attack":10,"AttackGrow":6,"MoveSpeed":6}],
-[1006, {"_t":"HeroConfig","_id":1006,"PrefabName":"Tuzi","BeAttackAnim":"","HeroName":"兔子","Hp":864,"HpGrow":41,"Attack":10,"AttackGrow":7,"MoveSpeed":6}],
-[1007, {"_t":"HeroConfig","_id":1007,"PrefabName":"Yazi","BeAttackAnim":"","HeroName":"鸭子","Hp":864,"HpGrow":42,"Attack":10,"AttackGrow":8,"MoveSpeed":6}],
+[1001, {"_t":"HeroConfig","_id":1001,"PrefabName":"Hero1","BeAttackAnim":"","HeroName":"英雄1","Hp":2000,"HpGrow":40,"Attack":127,"AttackGrow":6,"MoveSpeed":6,"MaxAttackDistance":2,"MaxTrackDistance":5}],
+[1002, {"_t":"HeroConfig","_id":1002,"PrefabName":"Hero2","BeAttackAnim":"","HeroName":"英雄2","Hp":2000,"HpGrow":41,"Attack":128,"AttackGrow":7,"MoveSpeed":6,"MaxAttackDistance":2,"MaxTrackDistance":5}],
+[1003, {"_t":"HeroConfig","_id":1003,"PrefabName":"Hero3","BeAttackAnim":"","HeroName":"英雄3","Hp":2000,"HpGrow":42,"Attack":129,"AttackGrow":8,"MoveSpeed":6,"MaxAttackDistance":2,"MaxTrackDistance":5}],
+[1004, {"_t":"HeroConfig","_id":1004,"PrefabName":"Hero4","BeAttackAnim":"","HeroName":"英雄4","Hp":2000,"HpGrow":43,"Attack":130,"AttackGrow":9,"MoveSpeed":6,"MaxAttackDistance":2,"MaxTrackDistance":5}],
+[1005, {"_t":"HeroConfig","_id":1005,"PrefabName":"Mogu","BeAttackAnim":"","HeroName":"蘑菇","Hp":864,"HpGrow":40,"Attack":1,"AttackGrow":1,"MoveSpeed":6,"MaxAttackDistance":2,"MaxTrackDistance":5}],
+[1006, {"_t":"HeroConfig","_id":1006,"PrefabName":"Tuzi","BeAttackAnim":"","HeroName":"兔子","Hp":864,"HpGrow":41,"Attack":1,"AttackGrow":1,"MoveSpeed":6,"MaxAttackDistance":2,"MaxTrackDistance":5}],
+[1007, {"_t":"HeroConfig","_id":1007,"PrefabName":"Yazi","BeAttackAnim":"","HeroName":"鸭子","Hp":864,"HpGrow":42,"Attack":1,"AttackGrow":1,"MoveSpeed":6,"MaxAttackDistance":2,"MaxTrackDistance":5}],
 ]}

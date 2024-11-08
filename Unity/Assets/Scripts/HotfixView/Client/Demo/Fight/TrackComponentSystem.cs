@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using WeChatWASM;
 
@@ -17,176 +18,156 @@ namespace ET.Client
             self.AIComponent.OutStateAction += self.OnOutStateAction;
         }
 
-        public static void SetTrackObject(this TrackComponent self, Entity targetEntity)
+        // public static void SetTrackObject(this TrackComponent self, Entity targetEntity)
+        // {
+        //     self.TargetEntity = targetEntity;
+        // }
+
+        public static void SetTargetObjects(this TrackComponent self, List<Entity> targetEntities)
         {
-            self.TargetEntity = targetEntity;
+            self.TargetEntities = targetEntities;
+
+            self.AIComponent.EnterAIState(AIState.Track);
         }
 
-        [EntitySystem]
-        public static void Update(this TrackComponent self)
+        // private static void TrackTarget(this TrackComponent self)
+        // {
+        //     if (self.AIComponent.InSafeArea)
+        //     {
+        //         self.AIComponent.EnterAIState(AIState.Idle);
+        //
+        //         return;
+        //     }
+        //
+        //     if (self.TargetEntity == null)
+        //     {
+        //         self.AIComponent.EnterAIState(AIState.Patrol);
+        //
+        //         return;
+        //     }
+        //
+        //     MoveObjectComponent moveObjectComponent = self.Parent.GetComponent<MoveObjectComponent>();
+        //
+        //     ObjectComponent beAttackObjectComponent = self.TargetEntity.GetComponent<ObjectComponent>();
+        //
+        //     if (beAttackObjectComponent == null)
+        //     {
+        //         self.AIComponent.EnterAIState(AIState.Patrol);
+        //
+        //         return;
+        //     }
+        //
+        //     GameObject beGameObejct = beAttackObjectComponent.GameObject;
+        //
+        //     if (beGameObejct == null)
+        //     {
+        //         self.AIComponent.EnterAIState(AIState.Patrol);
+        //
+        //         return;
+        //     }
+        //
+        //     bool isCanAttack = FightDataHelper.GetCanAttack(self.TargetEntity);
+        //
+        //     if (!isCanAttack)
+        //     {
+        //         self.AIComponent.EnterAIState(AIState.Patrol);
+        //
+        //         return;
+        //     }
+        //
+        //     moveObjectComponent.Move(beGameObejct.transform.position);
+        //
+        //     ObjectComponent myObjectComponent = self.Parent.GetComponent<ObjectComponent>();
+        //
+        //     GameObject myGameObject = myObjectComponent.GameObject;
+        //
+        //     float distance = (myGameObject.transform.position - beGameObejct.transform.position).magnitude;
+        //
+        //     if (distance < 2f)
+        //     {
+        //         AttackComponent attackComponent = self.Parent.GetComponent<AttackComponent>();
+        //
+        //         attackComponent.SetAttackTarget(self.TargetEntity);
+        //
+        //         self.AIComponent.EnterAIState(AIState.Attacking);
+        //     }
+        //
+        //     if (distance > ConstValue.FindEnemyDistance + 1)
+        //     {
+        //         self.TargetEntity = null;
+        //     }
+        // }
+
+        public static async void OnEnterStateAction(this TrackComponent self, AIState aiState)
         {
-            if (self.AIComponent == null)
-            {
-                return;
-            }
-
-            AIState aiState = self.AIComponent.GetCurrentState();
-
-            if (aiState == AIState.TrackTree)
-            {
-                self.TrackTree();
-            }
 
             if (aiState == AIState.Track)
             {
-                self.TrackTarget();
-            }
-        }
+                TimerComponent timerComponent = self.Root().GetComponent<TimerComponent>();
 
-        private static void TrackTarget(this TrackComponent self)
-        {
-            if (self.AIComponent.InSafeArea)
-            {
-                self.AIComponent.EnterAIState(AIState.Idle);
+                ObjectComponent myObjectComponent = self.Parent.GetComponent<ObjectComponent>();
 
-                return;
-            }
+                FightDataComponent fightDataComponent = self.Parent.GetComponent<FightDataComponent>();
 
-            if (self.TargetEntity == null)
-            {
-                self.AIComponent.EnterAIState(AIState.Patrol);
+                float maxAttackDistance = fightDataComponent.GetValueByType(WordBarType.MaxAttackDistance);
 
-                return;
-            }
+                float maxTrackDistance = fightDataComponent.GetValueByType(WordBarType.MaxTrackDistance);
 
-            MoveObjectComponent moveObjectComponent = self.Parent.GetComponent<MoveObjectComponent>();
+                Log.Debug($"max attack distance {maxAttackDistance} {maxTrackDistance}");
 
-            ObjectComponent beAttackObjectComponent = self.TargetEntity.GetComponent<ObjectComponent>();
+                bool isSuccess = false;
 
-            if (beAttackObjectComponent == null)
-            {
-                self.AIComponent.EnterAIState(AIState.Patrol);
-
-                return;
-            }
-
-            GameObject beGameObejct = beAttackObjectComponent.GameObject;
-
-            if (beGameObejct == null)
-            {
-                self.AIComponent.EnterAIState(AIState.Patrol);
-
-                return;
-            }
-
-            bool isCanAttack = FightDataHelper.GetCanAttack(self.TargetEntity);
-
-            if (!isCanAttack)
-            {
-                self.AIComponent.EnterAIState(AIState.Patrol);
-
-                return;
-            }
-
-            moveObjectComponent.Move(beGameObejct.transform.position);
-
-            ObjectComponent myObjectComponent = self.Parent.GetComponent<ObjectComponent>();
-
-            GameObject myGameObject = myObjectComponent.GameObject;
-
-            float distance = (myGameObject.transform.position - beGameObejct.transform.position).magnitude;
-
-            if (distance < 2f)
-            {
-                AttackComponent attackComponent = self.Parent.GetComponent<AttackComponent>();
-
-                attackComponent.SetAttackTarget(self.TargetEntity);
-
-                self.AIComponent.EnterAIState(AIState.Attacking);
-            }
-
-            if (distance > ConstValue.FindEnemyDistance + 1)
-            {
-                self.TargetEntity = null;
-            }
-        }
-
-        private static void TrackTree(this TrackComponent self)
-        {
-            if (self.AIComponent.InSafeArea)
-            {
-                self.AIComponent.EnterAIState(AIState.Idle);
-
-                return;
-            }
-
-            if (self.TargetEntity == null)
-            {
-                self.AIComponent.EnterAIState(AIState.Patrol);
-
-                return;
-            }
-
-            ObjectComponent myObjectComponent = self.Parent.GetComponent<ObjectComponent>();
-
-            GameObject myGameObject = myObjectComponent.GameObject;
-
-            MoveObjectComponent moveObjectComponent = self.Parent.GetComponent<MoveObjectComponent>();
-
-            GameObject beGameObejct = null;
-
-            Tree tree = null;
-
-            try
-            {
-                tree = self.TargetEntity as Tree;
-
-                beGameObejct = tree.TreeObject;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-
-                self.AIComponent.EnterAIState(AIState.Patrol);
-
-                return;
-            }
-
-            if (beGameObejct == null)
-            {
-                self.AIComponent.EnterAIState(AIState.Patrol);
-
-                return;
-            }
-
-            moveObjectComponent.Move(beGameObejct.transform.position);
-
-            float distance = (myGameObject.transform.position - beGameObejct.transform.position).magnitude;
-
-            if (distance < 2f)
-            {
-                CutTreeComponent cutTreeComponent = self.Parent.GetComponent<CutTreeComponent>();
-
-                if (self.TargetEntity is not Tree)
+                while (true)
                 {
-                    self.AIComponent.EnterAIState(AIState.Patrol);
+                    if (self.AIComponent.GetCurrentState() != AIState.Track)
+                    {
+                        return;
+                    }
 
-                    return;
+                    if (myObjectComponent.GameObject == null || self.TargetEntities[0] == null)
+                    {
+                        break;
+                    }
+
+                    ObjectComponent objectComponent = self.TargetEntities[0].GetComponent<ObjectComponent>();
+
+                    if (objectComponent == null || objectComponent.GameObject == null)
+                    {
+                        break;
+                    }
+
+                    self.Parent.GetComponent<MoveObjectComponent>().Move(objectComponent.GameObject.transform.position);
+
+                    float distance = Vector3.Distance(objectComponent.GameObject.transform.position, myObjectComponent.GameObject.transform.position);
+
+                    if (distance > maxTrackDistance + 1)
+                    {
+                        break;
+                    }
+
+                    if (distance < maxAttackDistance)
+                    {
+                        isSuccess = true;
+
+                        break;
+                    }
+
+                    await timerComponent.WaitFrameAsync();
                 }
 
-                cutTreeComponent.SetTarget(self.TargetEntity as Tree);
+                Log.Debug($"is success {isSuccess}");
 
-                self.AIComponent.EnterAIState(AIState.CutTree);
+                if (isSuccess)
+                {
+                    AttackComponent attackComponent = self.Parent.GetComponent<AttackComponent>();
+
+                    attackComponent.SetAttackTargets(self.TargetEntities);
+                }
+                else
+                {
+                    self.AIComponent.EnterAIState(AIState.Patrol);
+                }
             }
-
-            if (distance > ConstValue.FindEnemyDistance + 1)
-            {
-                self.TargetEntity = null;
-            }
-        }
-
-        public static void OnEnterStateAction(this TrackComponent self, AIState aiState)
-        {
         }
 
         public static void OnOutStateAction(this TrackComponent self, AIState aiState)

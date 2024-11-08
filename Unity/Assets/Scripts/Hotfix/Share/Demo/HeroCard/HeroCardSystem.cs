@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using ET.Client;
@@ -6,8 +8,8 @@ using Microsoft.CodeAnalysis;
 
 namespace ET
 {
-    [EntitySystemOf(typeof (HeroCard))]
-    [FriendOfAttribute(typeof (ET.HeroCard))]
+    [EntitySystemOf(typeof(HeroCard))]
+    [FriendOfAttribute(typeof(ET.HeroCard))]
     public static partial class HeroCardSystem
     {
         [EntitySystem]
@@ -22,23 +24,37 @@ namespace ET
         {
             Type type = self.Config.GetType();
 
-            WordBarType[] wordBarTypes = new[] { WordBarType.Hp, WordBarType.Attack };
+            // WordBarType[] wordBarTypes = new[] { WordBarType.Hp, WordBarType.Attack };
 
-            foreach (var wordBarType in wordBarTypes)
+            List<WordBarConfig> wordBarConfigs = WordBarConfigCategory.Instance.GetAll().Values.ToList();
+
+            foreach (var wordBarConfig in wordBarConfigs)
             {
-                string baseName = wordBarType.ToString();
+                string wordBarType = wordBarConfig.WordBarType;
+
+                string baseName = wordBarType;
 
                 string growName = baseName + "Grow";
 
                 PropertyInfo propertyInfo = type.GetProperty(baseName);
 
-                PropertyInfo growPInfo = type.GetProperty(growName);
+                if (propertyInfo == null)
+                {
+                    continue;
+                }
 
-                int baseValue = Convert.ToInt32(propertyInfo.GetValue(self.Config));
+                PropertyInfo growInfo = type.GetProperty(growName);
 
-                int growValue = Convert.ToInt32(growPInfo.GetValue(self.Config));
+                float baseValue = Convert.ToSingle(propertyInfo.GetValue(self.Config));
 
-                int value = HeroCardHelper.GetHeroBaseDataValue(baseValue, growValue, self.Level, self.Star);
+                float growValue = 0;
+
+                if (growInfo != null)
+                {
+                    growValue = Convert.ToSingle(growInfo.GetValue(self.Config));
+                }
+
+                float value = HeroCardHelper.GetHeroBaseDataValue(baseValue, growValue, self.Level, self.Star);
 
                 self.Datas[baseName] = value;
             }
@@ -48,14 +64,16 @@ namespace ET
         {
             self.HeroConfigId = info.ConfigId;
 
-            for (int i = 0; i < info.DataKeys.Count; i++)
-            {
-                string key = info.DataKeys[i];
+            // for (int i = 0; i < info.DataKeys.Count; i++)
+            // {
+            //     string key = info.DataKeys[i];
+            //
+            //     float value = info.DataValues[i];
+            //
+            //     self.Datas[key] = value;
+            // }
 
-                float value = info.DataValues[i];
-
-                self.Datas[key] = value;
-            }
+            self.Datas = info.Datas;
 
             self.Level = info.Level;
 
@@ -70,12 +88,14 @@ namespace ET
 
             info.HeroId = self.Id;
 
-            foreach (var kv in self.Datas)
-            {
-                info.DataKeys.Add(kv.Key);
+            // foreach (var kv in self.Datas)
+            // {
+            //     info.DataKeys.Add(kv.Key);
+            //
+            //     info.DataValues.Add(kv.Value);
+            // }
 
-                info.DataValues.Add(kv.Value);
-            }
+            info.Datas = self.Datas;
 
             info.Level = self.Level;
 

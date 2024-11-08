@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-
+using UnityEditor.Rendering.LookDev;
 
 namespace ET.Client
 {
@@ -28,30 +28,40 @@ namespace ET.Client
             {
                 string wordBarType = wordBarConfig.WordBarType;
 
-                if (wordBarConfig.WordAttributeType == WordAttributeType.BaseAttribute.ToString())
+                if (wordBarConfig.WordAttributeType == WordAttributeType.BaseAttribute.ToString() ||
+                    wordBarConfig.WordAttributeType == WordAttributeType.FixedValueAttribute.ToString())
                 {
-                    PropertyInfo info = heroConfigType.GetProperty($"{wordBarType}");
+                    PropertyInfo baseInfo = heroConfigType.GetProperty($"{wordBarType}");
 
-                    int value = Convert.ToInt32(info.GetValue(self.HeroConfig));
+                    float baseValue = Convert.ToSingle(baseInfo.GetValue(self.HeroConfig));
 
-                    PropertyInfo baseInfo = heroConfigType.GetProperty($"{wordBarType}Grow");
+                    PropertyInfo growInfo = heroConfigType.GetProperty($"{wordBarType}Grow");
 
-                    int valueGrow = Convert.ToInt32(baseInfo.GetValue(self.HeroConfig));
+                    float valueGrow = 0;
 
-                    self.Datas[wordBarType] = HeroCardHelper.GetHeroBaseDataValue(value, valueGrow, level, star);
+                    if (growInfo != null)
+                    {
+                        valueGrow = Convert.ToSingle(growInfo.GetValue(self.HeroConfig));
+                    }
+
+                    self.Datas[wordBarType] = HeroCardHelper.GetHeroBaseDataValue(baseValue, valueGrow, level, star);
                 }
                 else
                 {
-                    PropertyInfo info = enemy.GetType().GetProperty(wordBarType);
-
-                    if (info == null)
-                    {
-                        continue;
-                    }
-
-                    int value = Convert.ToInt32(info.GetValue(enemyConfig));
-
-                    self.Datas[wordBarType] = value;
+                    // PropertyInfo info = heroConfigType.GetProperty($"{wordBarType}");
+                    //
+                    // Log.Debug($"  base value WordAttributeType  {wordBarType} {info == null}");
+                    //
+                    // if (info == null)
+                    // {
+                    //     continue;
+                    // }
+                    //
+                    // float value = Convert.ToSingle(info.GetValue(heroConfigType));
+                    //
+                    // Log.Debug($"  base value WordAttributeType {wordBarType} {value}");
+                    //
+                    // self.Datas[wordBarType] = value;
                 }
             }
 
@@ -101,16 +111,14 @@ namespace ET.Client
 
             if (self.CurrentHP <= 0)
             {
-                // self.Parent.GetParent<MoveObjectComponent>().PlayAnim("death", false);
+                AIComponent aiComponent = self.Parent.GetComponent<AIComponent>();
+
+                aiComponent.EnterAIState(AIState.Death);
 
                 EventSystem.Instance.Publish(self.Root(), new PlayDeadAnim()
                 {
                     Entity = self.GetParent<Entity>()
                 });
-
-                AIComponent aiComponent = self.Parent.GetComponent<AIComponent>();
-
-                aiComponent.EnterAIState(AIState.Death);
 
                 EventSystem.Instance.Publish(self.Root(), new CheckGameLoseLogic()
                 {

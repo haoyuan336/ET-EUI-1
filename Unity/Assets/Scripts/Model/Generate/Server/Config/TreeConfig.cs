@@ -67,6 +67,8 @@ namespace ET
 		public int AwardCount { get; set; }
 		/// <summary>血量</summary>
 		public int HP { get; set; }
+		/// <summary>复活时间</summary>
+		public int RiseTime { get; set; }
 
 	}
 }

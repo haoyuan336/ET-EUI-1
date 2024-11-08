@@ -2,17 +2,17 @@ using UnityEngine;
 
 namespace ET.Client
 {
-    public struct PlayAddWood
+    public struct PlayCutWoodDamage
     {
         public Entity Tree;
 
-        public int Count;
+        public int Damage;
     }
 
     [Event(SceneType.Demo)]
-    public class PlayAddWoodEventHandler : AEvent<Scene, PlayAddWood>
+    public class PlayCutWoodDamageEventHandler : AEvent<Scene, PlayCutWoodDamage>
     {
-        protected override async ETTask Run(Scene scene, PlayAddWood a)
+        protected override async ETTask Run(Scene scene, PlayCutWoodDamage a)
         {
             GameObject gameObject = null;
 
@@ -34,7 +34,7 @@ namespace ET.Client
 
             FGUIFightTextLayerComponent fguiFightTextLayerComponent = uiComponent.GetDlgLogic<FGUIFightTextLayerComponent>();
 
-            fguiFightTextLayerComponent.PlayAddMeatText(startPos, a.Count.ToString());
+            fguiFightTextLayerComponent.PlayAddMeatText(startPos, a.Damage.ToString());
 
             await ETTask.CompletedTask;
         }

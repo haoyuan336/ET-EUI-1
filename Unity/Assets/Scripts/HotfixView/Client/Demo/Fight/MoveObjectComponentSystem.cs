@@ -89,6 +89,8 @@ namespace ET.Client
                 return;
             }
 
+            self.OldPos = objectComponent.GameObject.transform.position;
+
             NavMeshAgent navMeshAgent = self.Parent.GetComponent<ObjectComponent>().NavMeshAgent;
 
             if (navMeshAgent == null)
@@ -97,29 +99,34 @@ namespace ET.Client
             }
 
             navMeshAgent.SetDestination(self.Parent.GetComponent<ObjectComponent>().GameObject.transform.position);
-
-            AIComponent aiComponent = self.Parent.GetComponent<AIComponent>();
-
-            if (aiComponent.GetCurrentState() == AIState.Idle && !aiComponent.InSafeArea)
-            {
-                aiComponent.EnterAIState(AIState.Patrol);
-            }
         }
 
         public static void OnEnterState(this MoveObjectComponent self, AIState aiState)
         {
-            if (aiState == AIState.Death || aiState == AIState.Attacking || aiState == AIState.Idle || aiState == AIState.CutTree)
+            // if (aiState == AIState.Death || aiState == AIState.Attacking || aiState == AIState.Idle || aiState == AIState.CutTree)
+            // {
+            // }
+
+            if (aiState == AIState.Attacking)
             {
+                self.MoveEnd();
+            }
+            
+            if (aiState == AIState.MovEnd)
+            {
+                AIComponent aiComponent = self.Parent.GetComponent<AIComponent>();
+
+                if (!aiComponent.InSafeArea)
+                {
+                    aiComponent.EnterAIState(AIState.Patrol);
+                }
+
                 self.MoveEnd();
             }
         }
 
         public static void OnOutStateAction(this MoveObjectComponent self, AIState aiState)
         {
-            if (aiState == AIState.Moving)
-            {
-                self.MoveEnd();
-            }
         }
     }
 }

@@ -3,10 +3,8 @@ using UnityEngine;
 namespace ET.Client
 {
     [ComponentOf(typeof(HeroCard))]
-    public class FindEnemyOrTreeComponent : Entity, IAwake<int>, IUpdate
+    public class FindTreeComponent : Entity, IAwake, IUpdate
     {
-        public int ColliderLayer;
-
         public int TreeColliderLayer;
 
         public AIComponent AIComponent;
@@ -14,5 +12,7 @@ namespace ET.Client
         public int FindAngle;
 
         public RaycastHit[] RaycastHits = new RaycastHit[10];
+
+        public float MaxFindTreeDistance = 0;
     }
 }

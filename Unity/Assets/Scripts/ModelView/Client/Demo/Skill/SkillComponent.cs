@@ -8,5 +8,7 @@ namespace ET.Client
         public int Level;
 
         public int OwnerConfigId;
+
+        public Skill CurrentSkill;
     }
 }

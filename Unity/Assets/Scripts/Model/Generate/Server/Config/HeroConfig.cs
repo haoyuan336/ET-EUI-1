@@ -68,15 +68,19 @@ namespace ET
 		/// <summary>英雄名称</summary>
 		public string HeroName { get; set; }
 		/// <summary>生命值基础之</summary>
-		public int Hp { get; set; }
+		public float Hp { get; set; }
 		/// <summary>生命值成长系数</summary>
-		public int HpGrow { get; set; }
+		public float HpGrow { get; set; }
 		/// <summary>攻击力基础数值</summary>
-		public int Attack { get; set; }
+		public float Attack { get; set; }
 		/// <summary>攻击力成长系数</summary>
-		public int AttackGrow { get; set; }
+		public float AttackGrow { get; set; }
 		/// <summary>移动速度</summary>
-		public int MoveSpeed { get; set; }
+		public float MoveSpeed { get; set; }
+		/// <summary>最大攻击距离</summary>
+		public float MaxAttackDistance { get; set; }
+		/// <summary>最大跟踪距离</summary>
+		public float MaxTrackDistance { get; set; }
 
 	}
 }

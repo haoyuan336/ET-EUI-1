@@ -21,6 +21,9 @@ namespace ET.Client
         Idle = 12, //等待状态，此状态 
         CutTree = 13, //砍树
         TrackTree = 14, //追踪树
+        MoveToInitPos = 15, //移动到初始化位置
+        Wait = 16, //等待中
+        MovEnd = 17, //移动结束
     }
 
     [ComponentOf(typeof(Entity))]

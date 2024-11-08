@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using WeChatWASM;
 
 namespace ET.Client
 {
@@ -63,6 +64,11 @@ namespace ET.Client
 
         public static Skill GetCurrentSkill(this SkillComponent self)
         {
+            if (self.CurrentSkill != null && self.CurrentSkill.GetIsReady())
+            {
+                return self.CurrentSkill;
+            }
+
             foreach (var kv in self.Children)
             {
                 Skill skill = kv.Value as Skill;
@@ -71,11 +77,12 @@ namespace ET.Client
 
                 if (isReady)
                 {
-                    return skill;
+                    self.CurrentSkill = skill;
+                    break;
                 }
             }
 
-            return null;
+            return self.CurrentSkill;
         }
     }
 }

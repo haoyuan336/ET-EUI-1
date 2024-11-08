@@ -16,5 +16,7 @@ namespace ET.Client
         public bool IsLive = true;
         
         public int HP = 0;
+
+        public bool IsAwardItem = false;
     }
 }

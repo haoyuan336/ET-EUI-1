@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using WeChatWASM;
 
@@ -15,83 +16,88 @@ namespace ET.Client
 
             self.AIComponent.OutStateAction += self.OnOutStateAction;
         }
-
-        [EntitySystem]
-        public static async void Update(this AttackComponent self)
+        public static void SetAttackTargets(this AttackComponent self, List<Entity> entities)
         {
-            if (self.AIComponent != null)
+            self.TargetEntities = entities;
+
+            self.AIComponent.EnterAIState(AIState.Attacking);
+        }
+
+        private static async void OnEnterStateAction(this AttackComponent self, AIState aiState)
+        {
+            if (aiState == AIState.Attacking)
             {
-                if (self.AIComponent.GetCurrentState() == AIState.Attacking)
+                FightDataComponent fightDataComponent = self.Parent.GetComponent<FightDataComponent>();
+
+                float maxAttackDiantance = fightDataComponent.GetValueByType(WordBarType.MaxAttackDistance);
+
+                TimerComponent timerComponent = self.Root().GetComponent<TimerComponent>();
+
+                SkillComponent skillComponent = self.Parent.GetComponent<SkillComponent>();
+
+                while (true)
                 {
-                    ObjectComponent objectComponent = self.Parent.GetComponent<ObjectComponent>();
-
-                    if (self.TargetEntity == null || self.TargetEntity.IsDisposed)
+                    if (self.AIComponent.GetCurrentState() != AIState.Attacking)
                     {
-                        self.AIComponent.EnterAIState(AIState.Patrol);
-
                         return;
                     }
 
-                    AIState targetState = self.TargetEntity.GetComponent<AIComponent>().GetCurrentState();
+                    Skill skill = skillComponent.GetCurrentSkill();
 
-                    if (targetState == AIState.Sleep || targetState == AIState.Death)
+                    if (skill == null)
                     {
-                        self.AIComponent.EnterAIState(AIState.Patrol);
-
-                        return;
-                    }
-
-                    GameObject gameObject = self.TargetEntity.GetComponent<ObjectComponent>().GameObject;
-
-                    float distance = (objectComponent.GameObject.transform.position - gameObject.transform.position).magnitude;
-
-                    if (distance > 2f)
-                    {
-                        TrackComponent trackComponent = self.Parent.GetComponent<TrackComponent>();
-
-                        trackComponent.SetTrackObject(self.TargetEntity);
-
                         self.AIComponent.EnterAIState(AIState.Track);
 
                         return;
                     }
 
-                    if (self.CurrentCastSkill == null)
+                    Entity entity = self.TargetEntities[0];
+
+                    if (entity == null)
                     {
-                        SkillComponent skillComponent = self.Parent.GetComponent<SkillComponent>();
-
-                        self.CurrentCastSkill = skillComponent.GetCurrentSkill();
-
-                        await self.CurrentCastSkill.Cast();
-
-                        self.CurrentCastSkill = null;
-                    }
-
-                    FightManagerComponent fightManagerComponent = self.Parent.GetParent<FightManagerComponent>();
-
-                    long entityId = self.TargetEntity.Id;
-
-                    bool isDead = FightDataHelper.GetIsDead(fightManagerComponent, entityId);
-
-                    if (isDead)
-                    {
-                        TrackComponent trackComponent = self.Parent.GetComponent<TrackComponent>();
-
-                        trackComponent.SetTrackObject(self.TargetEntity);
-
                         self.AIComponent.EnterAIState(AIState.Patrol);
+
+                        return;
                     }
+
+                    bool isAllDead = true;
+
+                    foreach (var en in self.TargetEntities)
+                    {
+                        AIComponent aiComponent = en.GetComponent<AIComponent>();
+
+                        if (aiComponent.GetCurrentState() != AIState.Death)
+                        {
+                            isAllDead = false;
+
+                            break;
+                        }
+                    }
+
+                    if (isAllDead)
+                    {
+                        self.AIComponent.EnterAIState(AIState.Patrol);
+
+                        return;
+                    }
+
+                    ObjectComponent entityObjectComponent = entity.GetComponent<ObjectComponent>();
+
+                    float distance = Vector3.Distance(self.Parent.GetComponent<ObjectComponent>().GameObject.transform.position,
+                        entityObjectComponent.GameObject.transform.position);
+
+                    if (distance > maxAttackDiantance + 1)
+                    {
+                        self.AIComponent.EnterAIState(AIState.Track);
+
+                        return;
+                    }
+
+                    await skill.Cast();
+
+                    await timerComponent.WaitFrameAsync();
                 }
             }
-        }
-
-        public static void SetAttackTarget(this AttackComponent self, Entity entity)
-        {
-            self.TargetEntity = entity;
-        }
-
-        private static void OnEnterStateAction(this AttackComponent self, AIState aiState)
-        {
         }
 
         private static void OnOutStateAction(this AttackComponent self, AIState aiState)

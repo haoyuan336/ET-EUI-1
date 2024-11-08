@@ -26,7 +26,7 @@ namespace ET.Client
 
             self.CreateObject();
 
-            self.LastPos = position;
+            self.InitPos = position;
 
             self.GameObject.transform.position = position;
 
@@ -131,7 +131,7 @@ namespace ET.Client
 
             if (isNew)
             {
-                self.GameObject.transform.position = self.LastPos;
+                self.GameObject.transform.position = self.InitPos;
             }
 
             AnimComponent animComponent = self.Parent.GetComponent<AnimComponent>();
@@ -143,7 +143,7 @@ namespace ET.Client
         {
             if (self.GameObject != null)
             {
-                self.LastPos = self.GameObject.transform.position;
+                // self.LastPos = self.GameObject.transform.position;
 
                 GameObject.Destroy(self.GameObject);
             }

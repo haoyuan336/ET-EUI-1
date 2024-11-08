@@ -50,12 +50,6 @@ namespace ET.Client
 
             fightHeroCard.AddComponent<TrackComponent>();
 
-            int maskCode = LayerMask.GetMask("Enemy");
-
-            Log.Debug($"mask code {maskCode}");
-
-            fightHeroCard.AddComponent<FindEnemyOrTreeComponent, int>(maskCode);
-
             fightHeroCard.AddComponent<AnimComponent>();
 
             fightHeroCard.AddComponent<MoveObjectComponent>();
@@ -63,7 +57,17 @@ namespace ET.Client
             fightHeroCard.AddComponent<SkillComponent, int, int>(fightHeroCard.HeroConfigId, fightHeroCard.Level);
 
             fightHeroCard.AddComponent<CutTreeComponent>();
+            
+            int maskCode = LayerMask.GetMask("Enemy");
+            
+            fightHeroCard.AddComponent<FindEnemyComponent, int>(maskCode);
 
+            fightHeroCard.AddComponent<FindTreeComponent>();
+
+            fightHeroCard.AddComponent<TrackTreeComponent>();
+
+            fightHeroCard.AddComponent<TimerComponent>();
+            
             gameObjectComponent.HeroCards.Add(fightHeroCard);
 
             aiComponent.EnterAIState(AIState.Idle);

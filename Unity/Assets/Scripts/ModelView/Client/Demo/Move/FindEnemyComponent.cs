@@ -12,6 +12,11 @@ namespace ET.Client
 
         public RaycastHit[] RaycastHits = new RaycastHit[10];
 
+        public SkillComponent SkillComponent;
+
+        public FightDataComponent FightDataComponent;
+
+        public float FindEnemyDistance;
     }
     
 }

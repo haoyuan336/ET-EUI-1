@@ -1217,13 +1217,10 @@ namespace ET
         [MemoryPackOrder(2)]
         public int ConfigId { get; set; }
 
+        [MongoDB.Bson.Serialization.Attributes.BsonDictionaryOptions(MongoDB.Bson.Serialization.Options.DictionaryRepresentation.ArrayOfArrays)]
         [MemoryPackOrder(3)]
-        public List<string> DataKeys { get; set; } = new();
-
+        public Dictionary<string, float> Datas { get; set; } = new();
         [MemoryPackOrder(4)]
-        public List<float> DataValues { get; set; } = new();
-
-        [MemoryPackOrder(5)]
         public int Star { get; set; }
 
         public override void Dispose()
@@ -1236,8 +1233,7 @@ namespace ET
             this.HeroId = default;
             this.Level = default;
             this.ConfigId = default;
-            this.DataKeys.Clear();
-            this.DataValues.Clear();
+            this.Datas.Clear();
             this.Star = default;
 
             ObjectPool.Instance.Recycle(this);

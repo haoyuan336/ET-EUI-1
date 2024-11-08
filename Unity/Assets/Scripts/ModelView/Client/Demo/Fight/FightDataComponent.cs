@@ -10,5 +10,6 @@ namespace ET.Client
         public float CurrentHP;
 
         public HeroConfig HeroConfig;
+        
     }
 }

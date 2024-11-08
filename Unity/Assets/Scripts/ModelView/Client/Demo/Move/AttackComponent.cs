@@ -1,13 +1,14 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET.Client
 {
-    public class AttackComponent : Entity, IAwake, IUpdate
+    public class AttackComponent : Entity, IAwake
     {
         public AIComponent AIComponent;
 
         public Skill CurrentCastSkill = null;
 
-        public Entity TargetEntity;
+        public List<Entity> TargetEntities = new List<Entity>();
     }
 }

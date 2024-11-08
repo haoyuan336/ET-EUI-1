@@ -16,5 +16,7 @@ namespace ET.Client
 
         public AIComponent AIComponent;
 
+        public Vector3 OldPos;
+
     }
 }
